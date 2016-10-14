@@ -12,7 +12,7 @@ import vn.jp.language.ljp.utils.Log;
 
 
 /**
- * Created by huynhtran on 10/11/16.
+ * Created by huynhtran on 10/11/16
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
