@@ -11,7 +11,7 @@ import vn.jp.language.ljp.utils.Log;
 public class WardTable{
 
     private static final String TAG = "WardTable";
-    public static final String TABLE_NAME = "Ward";
+    public static final String TABLE_NAME = "WardTable";
 
     public static final String COL_PROVINCE_ID = "ProvinceID";
     public static final String COL_WARD_CODE = "WardCode";

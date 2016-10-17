@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ljp</string>
+    <string name="title_button_alphabet">Alphabet</string>
+    <string name="title_button_number">Number</string>
+    <string name="title_button_phrase">Phrases</string>
+    <string name="title_button_word">Animal</string>
+    <string name="title_button_house">House</string>
+    <string name="title_button_kanji">Kanji</string>
+    <string name="title_button_grammar">Grammar</string>
+    <string name="title_button_date">Date</string>
+</resources>

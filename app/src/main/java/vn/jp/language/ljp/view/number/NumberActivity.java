@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.alphabet;
+package vn.jp.language.ljp.view.number;
 
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.view.BaseActivity;
