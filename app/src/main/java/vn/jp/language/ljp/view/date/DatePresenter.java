@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.words;
+package vn.jp.language.ljp.view.date;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -12,10 +12,10 @@ import vn.jp.language.ljp.view.ICallback;
  * Created by HuynhTD on 10/17/2016.
  */
 
-public class WordPresenter {
+public class DatePresenter {
     Context context;
 
-    public WordPresenter(Context context) {
+    public DatePresenter(Context context) {
         this.context = context;
     }
 

@@ -15,8 +15,6 @@ import vn.jp.language.ljp.Constant;
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static String TAG = "BaseActivity";
-    public ProgressDialog progressDialog;
-
     protected abstract int getLayout();
 
     protected abstract void initView();

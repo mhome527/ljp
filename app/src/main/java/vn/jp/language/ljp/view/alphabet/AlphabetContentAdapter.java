@@ -1,31 +1,30 @@
-package vn.jp.language.ljp.view.words;
+package vn.jp.language.ljp.view.alphabet;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
 
 import vn.jp.language.ljp.R;
-import vn.jp.language.ljp.entity.WordEntity;
+import vn.jp.language.ljp.entity.AlphabetEntity;
 
 /**
  * Created by HuynhTD on 10/17/2016.
  */
 
-public class WordsAdapter extends BaseAdapter {
+public class AlphabetContentAdapter extends BaseAdapter {
 
-    private static String TAG = "WordsAdapter";
+    private static String TAG = "AlphabetContentAdapter";
 
     Context context;
-    List<WordEntity> listData;
+    List<AlphabetEntity> listData;
     LayoutInflater layoutinflater;
 
-    public WordsAdapter(Context context, List<WordEntity> listData) {
+    public AlphabetContentAdapter(Context context, List<AlphabetEntity> listData) {
         this.context = context;
         layoutinflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.listData = listData;
@@ -52,22 +51,20 @@ public class WordsAdapter extends BaseAdapter {
 
         if (convertView == null) {
             holderView = new HolderView();
-            convertView = layoutinflater.inflate(R.layout.word_item, parent, false);
-            holderView.img = (ImageButton) convertView.findViewById(R.id.imageButton);
+            convertView = layoutinflater.inflate(R.layout.alphabet_item, parent, false);
             holderView.tv = (TextView) convertView.findViewById(R.id.tvContent);
             convertView.setTag(holderView);
-        }else{
-            holderView = (HolderView)convertView.getTag();
+        } else {
+            holderView = (HolderView) convertView.getTag();
         }
 
-        WordEntity entity = listData.get(position);
+        AlphabetEntity entity = listData.get(position);
 //        holderView.img.setImageResource(entity.img);
-        holderView.tv.setText(entity.other);
+        holderView.tv.setText(entity.content);
         return convertView;
     }
 
     static class HolderView {
-        ImageButton img;
         TextView tv;
     }
 }

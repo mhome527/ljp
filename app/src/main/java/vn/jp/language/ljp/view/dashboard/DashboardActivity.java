@@ -3,6 +3,7 @@ package vn.jp.language.ljp.view.dashboard;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import java.util.List;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.DashboardEntity;
 import vn.jp.language.ljp.view.BaseActivity;
+import vn.jp.language.ljp.view.alphabet.AlphabetActivity;
+import vn.jp.language.ljp.view.number.NumberActivity;
 
 public class DashboardActivity extends BaseActivity {
 
@@ -32,6 +35,22 @@ public class DashboardActivity extends BaseActivity {
         gridView.setNumColumns(2); //TODO:check tablet
 
         gridView.setAdapter(new DashboardAdapter(this, listData));
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        DashboardActivity.this.startActivity2(AlphabetActivity.class);
+                        break;
+                    case 1:
+                        DashboardActivity.this.startActivity2(NumberActivity.class);
+                        break;
+                    case 2:
+                        DashboardActivity.this.startActivity2(AlphabetActivity.class);
+                        break;
+                }
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

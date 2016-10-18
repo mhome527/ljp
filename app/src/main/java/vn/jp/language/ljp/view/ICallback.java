@@ -3,7 +3,7 @@ package vn.jp.language.ljp.view;
 import java.util.List;
 
 /**
- * Created by Administrator on 10/17/2016.
+ * Created by HuynhTD on 10/17/2016.
  */
 
 public interface ICallback {
