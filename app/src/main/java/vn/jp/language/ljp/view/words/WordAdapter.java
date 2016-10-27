@@ -12,6 +12,7 @@ import java.util.List;
 
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.WordEntity;
+import vn.jp.language.ljp.utils.Utility;
 
 /**
  * Created by HuynhTD on 10/17/2016.
@@ -24,6 +25,7 @@ public class WordAdapter extends BaseAdapter {
     Context context;
     List<WordEntity> listData;
     LayoutInflater layoutinflater;
+//    int lang =0;
 
     public WordAdapter(Context context, List<WordEntity> listData) {
         this.context = context;
@@ -54,20 +56,27 @@ public class WordAdapter extends BaseAdapter {
             holderView = new HolderView();
             convertView = layoutinflater.inflate(R.layout.word_item, parent, false);
             holderView.img = (ImageButton) convertView.findViewById(R.id.imageButton);
-            holderView.tv = (TextView) convertView.findViewById(R.id.tvContent);
+            holderView.tvJp1 = (TextView) convertView.findViewById(R.id.tvJp1);
+            holderView.tvOt = (TextView) convertView.findViewById(R.id.tvOt);
             convertView.setTag(holderView);
-        }else{
-            holderView = (HolderView)convertView.getTag();
+        } else {
+            holderView = (HolderView) convertView.getTag();
         }
 
+
         WordEntity entity = listData.get(position);
-//        holderView.img.setImageResource(entity.img);
-        holderView.tv.setText(entity.other);
+        int resourceId = Utility.getResourcesID(context, entity.img);
+        holderView.img.setImageResource(resourceId);
+        holderView.tvJp1.setText(entity.jp1);
+        holderView.tvOt.setText(entity.ot);
         return convertView;
     }
 
     static class HolderView {
         ImageButton img;
-        TextView tv;
+        TextView tvJp1;
+        //        TextView tvJp2;
+        TextView tvOt;
+//        TextView tvRomaji;
     }
 }

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
-import vn.jp.language.ljp.db.dao.WordDao;
+import vn.jp.language.ljp.db.dao.PhraseDao;
 import vn.jp.language.ljp.view.BasePresenter;
 import vn.jp.language.ljp.view.ICallback;
 
@@ -18,12 +18,12 @@ public class PhrasePresenter extends BasePresenter {
         super(context);
     }
 
-    public void getData(final int kind, ICallback iCallback) {
+    public void loadData(ICallback iCallback) {
         loadData(iCallback, new ILoadData() {
             @Override
             public List onBackground() {
-                WordDao dao = new WordDao(context);
-                return dao.getListData(kind);
+                PhraseDao dao = new PhraseDao(context);
+                return dao.getListData();
             }
         });
     }

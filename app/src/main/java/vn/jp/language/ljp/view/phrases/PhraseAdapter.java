@@ -34,8 +34,8 @@ public class PhraseAdapter extends RecyclerView.Adapter<PhraseAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         PhraseEntity entity = list.get(position);
-        holder.tvJp1.setText(entity.getJp1());
-        holder.tvJp2.setText(entity.getJp2());
+        holder.tvJp.setText(entity.getJp());
+        holder.tvRomaji.setText(entity.getRomaji());
         holder.tvOt.setText(entity.getOt());
     }
 
@@ -45,12 +45,12 @@ public class PhraseAdapter extends RecyclerView.Adapter<PhraseAdapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvJp1, tvJp2, tvOt;
+        public TextView tvJp, tvRomaji, tvOt;
 
         public MyViewHolder(View view) {
             super(view);
-            tvJp1 = (TextView) view.findViewById(R.id.tvJp1);
-            tvJp2 = (TextView) view.findViewById(R.id.tvJp2);
+            tvJp = (TextView) view.findViewById(R.id.tvJp1);
+            tvRomaji = (TextView) view.findViewById(R.id.tvRomaji);
             tvOt = (TextView) view.findViewById(R.id.tvOt);
         }
     }

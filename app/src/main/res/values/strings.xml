@@ -8,4 +8,21 @@
     <string name="title_button_kanji">Kanji</string>
     <string name="title_button_grammar">Grammar</string>
     <string name="title_button_date">Date</string>
+
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="tap_on_mic">Tap on mic to speak</string>
+    <string name="msg_recognition_voice">For recognition it\'s necessary to install Google Voice Search</string>
+    <string name="msg_title_recognition">Install Voice Search from Google Play?</string>
+    <string name="msg_premium_app">Please install the Professional version from Google Play</string>
+    <string name="msg_update_app">Please update new version from Google Play</string>
+    <string name="msg_title_premium">Upgrade to the Pro version</string>
+    <string name="msg_title_update">Update</string>
+    <string name="install">Install</string>
+    <string name="update">Update</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="speech_prompt">Say something…</string>
+
+    <string name="configm_replay">Are you want to quit application?</string>
+
 </resources>

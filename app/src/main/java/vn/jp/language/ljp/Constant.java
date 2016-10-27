@@ -19,7 +19,7 @@ public class Constant {
     // final static public String APP_TOCKEN = "ukTwK3tqg4YAAAAAAAAQTK0gVjiMjB5P_vrpMab3zHhmqNGEu_OVPdkYBKXvsavp";
 
 //    public static final String DB_NAME = "VN.db";
-    public static final String DB_NAME = "ljp.db";
+    public static final String DB_NAME = "ljp2.sqlite";
 
     //    public static final String JSON_WORDS_NAME;
     public static final String JSON_RECOGNIZE_NAME;

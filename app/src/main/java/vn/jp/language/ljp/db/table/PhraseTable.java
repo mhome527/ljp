@@ -2,33 +2,26 @@ package vn.jp.language.ljp.db.table;
 
 import android.database.sqlite.SQLiteDatabase;
 
-
 /**
  * Created by huynhtran on 5/12/16.
  */
-public class WordTable {
+public class PhraseTable {
 
-    private static final String TAG = "WordTable";
-    public static final String TABLE_NAME = "tblJpWord";
-    public static final String TABLE_NAME_EN = "tblJpWordEn";
+    private static final String TAG = "PhraseTable";
+    public static final String TABLE_NAME = "tblPhrase";
+    public static final String TABLE_NAME_EN = "tblPhraseEn";
 
     public static final String COL_NUM = "num";
-    public static final String COL_KIND = "KIND";
-    public static final String COL_JP1 = "JP1";
-    public static final String COL_JP2 = "JP2";
+    public static final String COL_JP = "JP";
     public static final String COL_OT = "OT";
-    public static final String COL_IMG = "imgpath";
     public static final String COL_SOUND = "sound";
     public static final String COL_ROMAJI = "romaji";
     public static final String CLEAR_TABLE = "delete from " + TABLE_NAME;
 
     private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( "
             + COL_NUM + " INTEGER, "
-            + COL_KIND + " INTEGER, "
-            + COL_JP1 + " TEXT, "
-            + COL_JP2 + " TEXT, "
+            + COL_JP + " TEXT, "
             + COL_OT + " TEXT"
-            + COL_IMG + " TEXT"
             + COL_SOUND + " TEXT"
             + COL_ROMAJI + " TEXT"
             + " );";

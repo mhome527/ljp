@@ -14,7 +14,7 @@ import vn.jp.language.ljp.view.ICallback;
  * Created by huynhtd on 10/17/2016.
  */
 
-public class WordActivity extends BaseActivity {
+public class WordActivity extends BaseActivity<WordActivity> {
 
     private static String TAG = "WordActivity";
     GridView gridView;
@@ -36,14 +36,12 @@ public class WordActivity extends BaseActivity {
         presenter.loadData(1, new ICallback() {
             @Override
             public void onCallback(List list) {
-                progressDialog.dismiss();
                 listData = list;
-                gridView.setAdapter(new WordAdapter(WordActivity.this, listData));
+                gridView.setAdapter(new WordAdapter(activity, listData));
             }
 
             @Override
             public void onFail(String err) {
-                progressDialog.dismiss();
                 Log.e(TAG, "onFail!!!!!!" + err);
             }
         });

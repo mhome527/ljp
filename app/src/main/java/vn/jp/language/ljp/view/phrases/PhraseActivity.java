@@ -15,13 +15,12 @@ import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
 import vn.jp.language.ljp.view.RecyclerTouchListener;
 import vn.jp.language.ljp.view.custom.DividerItemDecoration;
-import vn.jp.language.ljp.view.words.WordPresenter;
 
 /**
  * Created by huynhtd on 10/17/2016.
  */
 
-public class PhraseActivity extends BaseActivity {
+public class PhraseActivity extends BaseActivity<PhraseActivity> {
 
     private static String TAG = "PhraseActivity";
 
@@ -40,7 +39,7 @@ public class PhraseActivity extends BaseActivity {
     }
 
     private void initControl() {
-        recyclerView = getView(R.id.gridView);
+        recyclerView = getView(R.id.recyclerView);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -64,12 +63,12 @@ public class PhraseActivity extends BaseActivity {
     }
 
     private void loadData() {
-        WordPresenter presenter = new WordPresenter(this);
-        presenter.loadData(1, new ICallback() {
+        PhrasePresenter presenter = new PhrasePresenter(this);
+        presenter.loadData(new ICallback() {
             @Override
             public void onCallback(List list) {
-                PhraseActivity.this.list = list;
-                recyclerView.setAdapter(new PhraseAdapter(PhraseActivity.this.list));
+                activity.list = list;
+                recyclerView.setAdapter(new PhraseAdapter(activity.list));
             }
 
             @Override

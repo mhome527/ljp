@@ -5,30 +5,36 @@ package vn.jp.language.ljp.entity;
  */
 
 public class PhraseEntity {
-    public String jp1;
-    public String jp2;
+    public String jp;
+    public String romaji;
     public String ot;
+    public String sound;
 
-    public PhraseEntity(String jp1, String jp2, String ot) {
-        this.jp1 = jp1;
-        this.jp2 = jp2;
-        this.ot = ot;
+    public PhraseEntity() {
     }
 
-    public String getJp1() {
-        return jp1;
+//    public PhraseEntity(String jp, String ot, String sound, String romaji) {
+//        this.jp = jp;
+//        this.romaji = romaji;
+//        this.ot = ot;
+//        this.sound = sound;
+//    }
+
+
+    public String getJp() {
+        return jp;
     }
 
-    public void setJp1(String jp1) {
-        this.jp1 = jp1;
+    public void setJp(String jp) {
+        this.jp = jp;
     }
 
-    public String getJp2() {
-        return jp2;
+    public String getRomaji() {
+        return romaji;
     }
 
-    public void setJp2(String jp2) {
-        this.jp2 = jp2;
+    public void setRomaji(String romaji) {
+        this.romaji = romaji;
     }
 
     public String getOt() {
@@ -37,5 +43,13 @@ public class PhraseEntity {
 
     public void setOt(String ot) {
         this.ot = ot;
+    }
+
+    public String getSound() {
+        return sound;
+    }
+
+    public void setSound(String sound) {
+        this.sound = sound;
     }
 }
