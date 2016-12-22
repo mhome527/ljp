@@ -1,31 +1,29 @@
-package vn.jp.language.ljp.view.dashboard;
+package vn.jp.language.ljp.view.number;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import vn.jp.language.ljp.R;
-import vn.jp.language.ljp.entity.DashboardEntity;
 
 /**
- * Created by Administrator on 10/17/2016.
+ * Created by Administrator on 12/22/2016.
  */
 
-public class DashboardAdapter extends BaseAdapter {
+public class NumberHeaderAdapter extends BaseAdapter {
 
-    private static String TAG = "DashboardAdapter";
+    private static String TAG = "NumberHeaderAdapter";
 
     Context context;
-    List<DashboardEntity> listData;
+    List<String> listData;
     LayoutInflater layoutinflater;
 
-    public DashboardAdapter(Context context, List<DashboardEntity> listData) {
+    public NumberHeaderAdapter(Context context, List<String> listData) {
         this.context = context;
         layoutinflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.listData = listData;
@@ -52,22 +50,19 @@ public class DashboardAdapter extends BaseAdapter {
 
         if (convertView == null) {
             holderView = new HolderView();
-            convertView = layoutinflater.inflate(R.layout.dashboard_item, parent, false);
-            holderView.imgItem = (ImageView) convertView.findViewById(R.id.imgItem);
-            holderView.tv = (TextView) convertView.findViewById(R.id.tvContent);
+            convertView = layoutinflater.inflate(R.layout.number_header_layout, parent, false);
+            holderView.tvItem = (TextView) convertView.findViewById(R.id.tvItem);
             convertView.setTag(holderView);
         }else{
             holderView = (HolderView)convertView.getTag();
         }
 
-        DashboardEntity entity = listData.get(position);
-        holderView.imgItem.setImageResource(entity.img);
-        holderView.tv.setText(entity.text);
+        String name = listData.get(position);
+        holderView.tvItem.setText(name);
         return convertView;
     }
 
     static class HolderView {
-        ImageView imgItem;
-        TextView tv;
+        TextView tvItem;
     }
 }

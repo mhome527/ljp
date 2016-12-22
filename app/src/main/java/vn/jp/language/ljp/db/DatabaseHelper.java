@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.List;
 
+import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.utils.Log;
 
 
@@ -17,13 +18,13 @@ import vn.jp.language.ljp.utils.Log;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
-    public static final String DATABASE_NAME = "ljp.db";
-    public static final int DATABASE_VERSION = 1;
+//    public static final String DATABASE_NAME = "ljp.db";
+//    public static final int DATABASE_VERSION = 1;
     private static DatabaseHelper dbHelper = null;
     private static SQLiteDatabase db = null;
 
     private DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, Constant.DB_NAME, null, Constant.DATABASE_VERSION);
         // storing the object of this class to dbHelper
         dbHelper = this;
     }

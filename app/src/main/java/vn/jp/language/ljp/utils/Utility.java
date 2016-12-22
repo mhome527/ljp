@@ -9,10 +9,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.speech.RecognizerIntent;
+import android.util.DisplayMetrics;
 import android.widget.Toast;
 
 import java.io.File;
@@ -350,4 +352,7 @@ public class Utility {
         }
     }
 
+    public static int dpToPx(final float dp) {
+        return Math.round(dp * (Resources.getSystem().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
 }

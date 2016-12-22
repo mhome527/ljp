@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.utils.Log;
 
 //Test DB
@@ -26,7 +27,7 @@ public class DBSQLiteOpenHelper extends SQLiteOpenHelper {
 
     private Context mContext;
     public DBSQLiteOpenHelper(Context context) {
-        super(context, DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
+        super(context, Constant.DB_NAME, null, Constant.DATABASE_VERSION);
 //        super(context, path, null, 1);
         this.mContext = context;
 

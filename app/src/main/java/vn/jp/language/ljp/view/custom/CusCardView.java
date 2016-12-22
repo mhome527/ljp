@@ -27,7 +27,7 @@ public class CusCardView extends CardView {
 
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
 
 
 //        int h = this.getMeasuredHeight();
@@ -40,7 +40,25 @@ public class CusCardView extends CardView {
 
 //        Log.d("MyApp", "h " + h + "w " + w + "squareDim " + squareDim);
 //        setMeasuredDimension(squareDim, squareDim);
-        setMeasuredDimension(w, w);
 
+        setMeasuredDimension(w, w);
+//        int count = getChildCount();
+//        for (int i = 0; i < count; i++) {
+//            final View child = getChildAt(i);
+//            measureChild(child, w, w);
+//        }
+
+//        int totalWidth = 0;
+//        int totalHeight = 0;
+//        for (int i = 0; i < count; i++) {
+//            final View child = getChildAt(i);
+//            measureChild(child, w, heightMeasureSpec);
+////            totalWidth += child.getMeasuredWidth();
+//            if (child.getMeasuredHeight() > totalHeight) {
+//                //height of the container, will be the largest height.
+//                totalHeight = child.getMeasuredHeight();
+//            }
+//        }
+//        setMeasuredDimension(w, w);
     }
 }

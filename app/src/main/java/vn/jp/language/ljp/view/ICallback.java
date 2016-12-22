@@ -1,12 +1,10 @@
 package vn.jp.language.ljp.view;
 
-import java.util.List;
-
 /**
  * Created by HuynhTD on 10/17/2016.
  */
 
 public interface ICallback {
-    void onCallback(List list);
+    void onCallback(Object list);
     void onFail(String err);
 }

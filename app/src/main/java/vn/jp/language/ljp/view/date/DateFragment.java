@@ -28,7 +28,6 @@ public class DateFragment extends BaseFragment {
 
     @Override
     public void initView(View root) {
-        gridView = getView(R.id.gridView);
         loadData();
     }
 

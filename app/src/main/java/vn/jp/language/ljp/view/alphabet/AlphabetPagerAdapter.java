@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import vn.jp.language.ljp.Constant;
+
 /**
  * Created by Administrator on 10/18/2016.
  */
@@ -22,11 +24,11 @@ public class AlphabetPagerAdapter extends FragmentStatePagerAdapter {
         switch (position) {
             case 0:
                 AlphabetFragment tab1 = new AlphabetFragment();
-                tab1.page = 1;
+                tab1.alphabet = Constant.TYPE_ALPHABET.HIRAGANA;
                 return tab1;
             case 1:
                 AlphabetFragment tab2 = new AlphabetFragment();
-                tab2.page = 2;
+                tab2.alphabet = Constant.TYPE_ALPHABET.KATAKANA;
                 return tab2;
 
             default:

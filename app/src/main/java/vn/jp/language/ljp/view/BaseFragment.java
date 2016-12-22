@@ -7,13 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
 import vn.jp.language.ljp.R;
 
 /**
  * Created by Administrator on 10/18/2016.
  */
 
-abstract public class BaseFragment extends Fragment {
+abstract public class BaseFragment<T>  extends Fragment {
+
+    public T activity;
 
     abstract public int getLayout();
 
@@ -23,14 +26,16 @@ abstract public class BaseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.alphabet_sub1_layout, container, false);
+        root = inflater.inflate(getLayout(), container, false);
+        ButterKnife.bind(this, root);
+        activity = (T)getActivity();
         initView(root);
         return root;
     }
 
-    protected <V extends View> V getView(int id) {
-        return (V) root.findViewById(id);
-    }
+//    protected <V extends View> V getView(int id) {
+//        return (V) root.findViewById(id);
+//    }
 
 
 }

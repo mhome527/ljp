@@ -24,5 +24,7 @@
     <string name="speech_prompt">Say something…</string>
 
     <string name="configm_replay">Are you want to quit application?</string>
+    <string name="title_hiragana">Hiragana</string>
+    <string name="title_katakana">Katakana</string>
 
 </resources>

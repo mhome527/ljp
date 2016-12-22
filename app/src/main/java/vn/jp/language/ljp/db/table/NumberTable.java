@@ -5,24 +5,23 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * Created by huynhtran on 5/12/16.
  */
-public class PhraseTable {
+public class NumberTable {
 
-    private static final String TAG = "PhraseTable";
-    public static final String TABLE_NAME = "tblPhrase";
-    public static final String TABLE_NAME_EN = "tblPhraseEn";
+    private static final String TAG = "NumberTable";
+    public static final String TABLE_NAME = "tblJpNumber";
 
+    public static final String COL_KIND = "Kind";
     public static final String COL_NUM = "Num";
     public static final String COL_JP = "JP";
-    public static final String COL_OT = "OT";
-    public static final String COL_SOUND = "sound";
-    public static final String COL_ROMAJI = "romaji";
+    public static final String COL_SOUND = "Sound";
+    public static final String COL_ROMAJI = "Romaji";
     public static final String CLEAR_TABLE = "delete from " + TABLE_NAME;
 
     private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( "
+            + COL_KIND + " INTEGER, "
             + COL_NUM + " INTEGER, "
             + COL_JP + " TEXT, "
-            + COL_OT + " TEXT"
-            + COL_SOUND + " TEXT"
+            + COL_SOUND + " TEXT,"
             + COL_ROMAJI + " TEXT"
             + " );";
 

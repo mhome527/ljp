@@ -7,11 +7,11 @@ import android.view.View;
 
 import java.util.List;
 
+import butterknife.BindView;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.PhraseEntity;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
-import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
 import vn.jp.language.ljp.view.RecyclerTouchListener;
 import vn.jp.language.ljp.view.custom.DividerItemDecoration;
@@ -24,6 +24,7 @@ public class PhraseActivity extends BaseActivity<PhraseActivity> {
 
     private static String TAG = "PhraseActivity";
 
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     List<PhraseEntity> list;
 
@@ -39,8 +40,6 @@ public class PhraseActivity extends BaseActivity<PhraseActivity> {
     }
 
     private void initControl() {
-        recyclerView = getView(R.id.recyclerView);
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -63,18 +62,18 @@ public class PhraseActivity extends BaseActivity<PhraseActivity> {
     }
 
     private void loadData() {
-        PhrasePresenter presenter = new PhrasePresenter(this);
-        presenter.loadData(new ICallback() {
-            @Override
-            public void onCallback(List list) {
-                activity.list = list;
-                recyclerView.setAdapter(new PhraseAdapter(activity.list));
-            }
-
-            @Override
-            public void onFail(String err) {
-                Log.e(TAG, "onFail!!!!!!" + err);
-            }
-        });
+//        PhrasePresenter presenter = new PhrasePresenter(this);
+//        presenter.loadData(new ICallback() {
+//            @Override
+//            public void onCallback(List list) {
+//                activity.list = list;
+//                recyclerView.setAdapter(new PhraseAdapter(activity.list));
+//            }
+//
+//            @Override
+//            public void onFail(String err) {
+//                Log.e(TAG, "onFail!!!!!!" + err);
+//            }
+//        });
     }
 }

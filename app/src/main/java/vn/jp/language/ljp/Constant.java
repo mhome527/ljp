@@ -20,6 +20,7 @@ public class Constant {
 
 //    public static final String DB_NAME = "VN.db";
     public static final String DB_NAME = "ljp2.sqlite";
+    public static final int DATABASE_VERSION = 1;
 
     //    public static final String JSON_WORDS_NAME;
     public static final String JSON_RECOGNIZE_NAME;
@@ -123,5 +124,12 @@ public class Constant {
 //    public static String KEY_ANALYSIS = "UA-54709178-3"; // daohuynh7
     public static String KEY_ANALYSIS = "UA-54709178-4"; // daohuynh7-new
 
+    public enum TYPE_ALPHABET{
+        HIRAGANA, KATAKANA
+    }
+
+    public enum TYPE_NUMBERS{
+        NUMBER, LONG, SHORT, PERSON, ANIMAL, MACHINE
+    }
 
 }

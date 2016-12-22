@@ -9,27 +9,32 @@ import android.widget.GridView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.DashboardEntity;
+import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.alphabet.AlphabetActivity;
+import vn.jp.language.ljp.view.date.DateActivity;
 import vn.jp.language.ljp.view.number.NumberActivity;
 
-public class DashboardActivity extends BaseActivity {
+public class DashboardActivity extends BaseActivity<DateActivity> {
 
     private String TAG = "DashboardActivity";
 
     List<DashboardEntity> listData;
+
+    @BindView(R.id.gridView)
     GridView gridView;
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_dashboard;
+        return R.layout.dashboard_layout;
     }
 
     @Override
     protected void initView() {
-        gridView = getView(R.id.gridView);
+        Log.i(TAG, "initView");
         createData();
 
         gridView.setNumColumns(2); //TODO:check tablet
@@ -38,7 +43,7 @@ public class DashboardActivity extends BaseActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
                         DashboardActivity.this.startActivity2(AlphabetActivity.class);
                         break;
@@ -60,7 +65,7 @@ public class DashboardActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.mnColor:
                 break;
             case R.id.mnSearch:
@@ -71,15 +76,8 @@ public class DashboardActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()){
 
-        }
-    }
-
-    private void createData(){
+    private void createData() {
         listData = new ArrayList<>();
         listData.add(new DashboardEntity(R.drawable.button_alphabet_on, "alphabet"));
         listData.add(new DashboardEntity(R.drawable.button_number_on, "number"));
