@@ -1,8 +1,11 @@
 package vn.jp.language.ljp.view.number;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import java.util.List;
 
 import vn.jp.language.ljp.Constant;
 
@@ -11,49 +14,62 @@ import vn.jp.language.ljp.Constant;
  */
 
 public class NumberPagerAdapter extends FragmentStatePagerAdapter {
-    int mNumOfTabs;
+    Context context;
+    List<String> stringList;
 
-    public NumberPagerAdapter(FragmentManager fm, int NumOfTabs) {
+    public NumberPagerAdapter(Context context, FragmentManager fm, List<String> stringList) {
         super(fm);
-        this.mNumOfTabs = NumOfTabs;
+        this.stringList = stringList;
+        this.context = context;
     }
 
     @Override
     public Fragment getItem(int position) {
+        NumberFragment fragment = new NumberFragment();
 
         switch (position) {
             case 0:
-                NumberFragment tab1 = new NumberFragment();
-                tab1.numbers = Constant.TYPE_NUMBERS.NUMBER;
-                return tab1;
+                fragment.numbers = Constant.TYPE_NUMBERS.NUMBER;
+                break;
             case 1:
-                NumberFragment tab2 = new NumberFragment();
-                tab2.numbers = Constant.TYPE_NUMBERS.SHORT;
-                return tab2;
-           case 2:
-                NumberFragment tab3 = new NumberFragment();
-                tab3.numbers = Constant.TYPE_NUMBERS.LONG;
-                return tab3;
-           case 3:
-                NumberFragment tab4 = new NumberFragment();
-                tab4.numbers = Constant.TYPE_NUMBERS.ANIMAL;
-                return tab4;
-           case 4:
-                NumberFragment tab5 = new NumberFragment();
-                tab5.numbers = Constant.TYPE_NUMBERS.MACHINE;
-                return tab5;
-           case 5:
-                NumberFragment tab6 = new NumberFragment();
-                tab6.numbers = Constant.TYPE_NUMBERS.PERSON;
-                return tab6;
-
+                fragment.numbers = Constant.TYPE_NUMBERS.PERSON;
+                break;
+            case 2:
+                fragment.numbers = Constant.TYPE_NUMBERS.LONG;
+                break;
+            case 3:
+                fragment.numbers = Constant.TYPE_NUMBERS.THING;
+                break;
+            case 4:
+                fragment.numbers = Constant.TYPE_NUMBERS.BOOK;
+                break;
+            case 5:
+                fragment.numbers = Constant.TYPE_NUMBERS.ANIMAL;
+                break;
+            case 6:
+                fragment.numbers = Constant.TYPE_NUMBERS.AGE;
+                break;
+            case 7:
+                fragment.numbers = Constant.TYPE_NUMBERS.SMALL_OBJECT;
+                break;
+            case 8:
+                fragment.numbers = Constant.TYPE_NUMBERS.TIME;
+                break;
+            case 9:
+                fragment.numbers = Constant.TYPE_NUMBERS.LOCATION;
+                break;
+            case 10:
+                fragment.numbers = Constant.TYPE_NUMBERS.GENERIC;
+                break;
             default:
-                return null;
+                break;
         }
+
+        return fragment;
     }
 
     @Override
     public int getCount() {
-        return mNumOfTabs;
+        return stringList.size();
     }
 }

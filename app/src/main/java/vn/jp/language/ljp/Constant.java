@@ -129,7 +129,7 @@ public class Constant {
     }
 
     public enum TYPE_NUMBERS{
-        NUMBER, LONG, SHORT, PERSON, ANIMAL, MACHINE
+       NUMBER, PERSON, LONG, THING, BOOK, ANIMAL, AGE, SMALL_OBJECT, TIME, LOCATION, GENERIC
     }
 
 }

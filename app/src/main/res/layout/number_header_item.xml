@@ -5,6 +5,11 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray" />
+
     <TextView
         android:id="@+id/tvNum"
         android:layout_width="40dp"
@@ -43,5 +48,9 @@
         android:textColor="@android:color/black"
         android:textStyle="bold"
         tools:text="1234" />
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray" />
 
 </LinearLayout>

@@ -22,6 +22,7 @@ public class NumberHeaderAdapter extends BaseAdapter {
     Context context;
     List<String> listData;
     LayoutInflater layoutinflater;
+    public int currPos = 0;
 
     public NumberHeaderAdapter(Context context, List<String> listData) {
         this.context = context;
@@ -52,11 +53,19 @@ public class NumberHeaderAdapter extends BaseAdapter {
             holderView = new HolderView();
             convertView = layoutinflater.inflate(R.layout.number_header_layout, parent, false);
             holderView.tvItem = (TextView) convertView.findViewById(R.id.tvItem);
+            holderView.vLine = convertView.findViewById(R.id.vLine);
             convertView.setTag(holderView);
-        }else{
-            holderView = (HolderView)convertView.getTag();
+        } else {
+            holderView = (HolderView) convertView.getTag();
         }
 
+        if (currPos == position) {
+            holderView.tvItem.setTextColor(context.getResources().getColor(R.color.darkred));
+            holderView.vLine.setVisibility(View.VISIBLE);
+        } else {
+            holderView.tvItem.setTextColor(context.getResources().getColor(R.color.black));
+            holderView.vLine.setVisibility(View.INVISIBLE);
+        }
         String name = listData.get(position);
         holderView.tvItem.setText(name);
         return convertView;
@@ -64,5 +73,6 @@ public class NumberHeaderAdapter extends BaseAdapter {
 
     static class HolderView {
         TextView tvItem;
+        View vLine;
     }
 }

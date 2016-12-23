@@ -1,7 +1,5 @@
 package vn.jp.language.ljp.view.dashboard;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -15,10 +13,10 @@ import vn.jp.language.ljp.entity.DashboardEntity;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.alphabet.AlphabetActivity;
-import vn.jp.language.ljp.view.date.DateActivity;
+import vn.jp.language.ljp.view.grammar.GrammarActivity;
 import vn.jp.language.ljp.view.number.NumberActivity;
 
-public class DashboardActivity extends BaseActivity<DateActivity> {
+public class DashboardActivity extends BaseActivity<DashboardActivity> {
 
     private String TAG = "DashboardActivity";
 
@@ -51,30 +49,30 @@ public class DashboardActivity extends BaseActivity<DateActivity> {
                         DashboardActivity.this.startActivity2(NumberActivity.class);
                         break;
                     case 2:
-                        DashboardActivity.this.startActivity2(AlphabetActivity.class);
+                        DashboardActivity.this.startActivity2(GrammarActivity.class);
                         break;
                 }
             }
         });
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.mnColor:
-                break;
-            case R.id.mnSearch:
-
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.mnColor:
+//                break;
+//            case R.id.mnSearch:
+//
+//                break;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
 
     private void createData() {

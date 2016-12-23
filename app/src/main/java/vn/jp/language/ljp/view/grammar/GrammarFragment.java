@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.number;
+package vn.jp.language.ljp.view.grammar;
 
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,62 +8,57 @@ import android.view.View;
 import java.util.List;
 
 import butterknife.BindView;
-import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
-import vn.jp.language.ljp.entity.NumberEntity;
+import vn.jp.language.ljp.entity.GrammarEntity;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseFragment;
 import vn.jp.language.ljp.view.ICallback;
-import vn.jp.language.ljp.view.custom.DividerItemDecoration2;
 
 /**
- * Created by Administrator on 10/18/2016.
+ * Created by HuynhTran on 12/23/2016.
  */
 
-public class NumberFragment extends BaseFragment<NumberActivity> {
+public class GrammarFragment extends BaseFragment<GrammarActivity> {
 
-    private String TAG = "NumberFragment";
-    //    private View root;
-
-    Constant.TYPE_NUMBERS numbers;
+    private final String TAG = "GrammarFragment";
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    NumberPresenter presenter;
+    GrammarPresenter presenter;
+    int level = 5;
+
 
     @Override
     public int getLayout() {
-        return R.layout.number_content_layout;
+        return R.layout.grammar_fragment;
     }
 
     @Override
     public void initView(View root) {
-        Log.i(TAG, "initView");
-        presenter = new NumberPresenter(activity);
-
+        presenter = new GrammarPresenter(activity);
         setupView();
-//        numbers = Constant.TYPE_NUMBERS.NUMBER;
 
-        loadData();
+        loadData(level);
     }
+
 
     public void setupView() {
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new DividerItemDecoration2(getActivity(), R.drawable.line_divider));
+//        recyclerView.addItemDecoration(new DividerItemDecoration2(activity, R.drawable.line_divider));
 
     }
 
-    public void loadData() {
+    public void loadData(int level) {
         Log.i(TAG, "loadData");
-        presenter.loadData(numbers, new ICallback() {
+        presenter.loadData(level, new ICallback() {
             @Override
             public void onCallback(Object list) {
-                List<NumberEntity> listData = (List<NumberEntity>) list;
-                NumberContentAdapter adapter = new NumberContentAdapter(listData);
+                List<GrammarEntity> listData = (List<GrammarEntity>) list;
+                GrammarAdapter adapter = new GrammarAdapter(listData);
                 recyclerView.setAdapter(adapter);
             }
 
@@ -74,4 +69,6 @@ public class NumberFragment extends BaseFragment<NumberActivity> {
         });
 
     }
+
 }
+
