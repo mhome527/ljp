@@ -13,12 +13,13 @@ import vn.jp.language.ljp.entity.GrammarEntity;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseFragment;
 import vn.jp.language.ljp.view.ICallback;
+import vn.jp.language.ljp.view.IClickListener;
 
 /**
  * Created by HuynhTran on 12/23/2016.
  */
 
-public class GrammarFragment extends BaseFragment<GrammarActivity> {
+public class GrammarFragment extends BaseFragment<GrammarActivity> implements IClickListener {
 
     private final String TAG = "GrammarFragment";
 
@@ -42,7 +43,6 @@ public class GrammarFragment extends BaseFragment<GrammarActivity> {
         loadData(level);
     }
 
-
     public void setupView() {
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(activity);
@@ -58,7 +58,7 @@ public class GrammarFragment extends BaseFragment<GrammarActivity> {
             @Override
             public void onCallback(Object list) {
                 List<GrammarEntity> listData = (List<GrammarEntity>) list;
-                GrammarAdapter adapter = new GrammarAdapter(listData);
+                GrammarAdapter adapter = new GrammarAdapter(listData, GrammarFragment.this);
                 recyclerView.setAdapter(adapter);
             }
 
@@ -70,5 +70,15 @@ public class GrammarFragment extends BaseFragment<GrammarActivity> {
 
     }
 
+    @Override
+    public void onClick(View view, int position) {
+        //TODO: code something.
+//        Intent i = new Intent(activity, G)
+    }
+
+    @Override
+    public void onLongClick(View view, int position) {
+
+    }
 }
 

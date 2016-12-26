@@ -59,6 +59,7 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
 
     @Override
     protected void initView() {
+        setSupportActionBar(toolbar);
         presenter = new GrammarPresenter(activity);
         setupViewPager();
 

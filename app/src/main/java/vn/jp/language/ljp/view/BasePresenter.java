@@ -13,12 +13,12 @@ import java.util.List;
 
 public class BasePresenter<T extends Activity> {
     public T activity;
-    ProgressDialog progressDialog;
+//    ProgressDialog progressDialog;
 
 
     public BasePresenter(T activity) {
         this.activity = activity;
-        progressDialog = new ProgressDialog(activity);
+//        progressDialog = new ProgressDialog(activity);
     }
 
     public interface ILoadData {
@@ -42,7 +42,7 @@ public class BasePresenter<T extends Activity> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog.show();
+//            progressDialog.show();
         }
 
         @Override
@@ -53,7 +53,7 @@ public class BasePresenter<T extends Activity> {
         @Override
         protected void onPostExecute(Object list) {
             super.onPostExecute(list);
-            progressDialog.dismiss();
+//            progressDialog.dismiss();
             iCallback.onCallback(list);
         }
     }

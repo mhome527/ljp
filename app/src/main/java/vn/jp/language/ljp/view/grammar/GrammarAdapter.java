@@ -8,6 +8,7 @@ import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.GrammarEntity;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseAdapter;
+import vn.jp.language.ljp.view.IClickListener;
 
 /**
  * Created by HuynhTD on 10/17/2016.
@@ -18,10 +19,12 @@ public class GrammarAdapter extends BaseAdapter<GrammarHolder> {
     private static String TAG = "GrammarAdapter";
 
     private List<GrammarEntity> listData;
+    private IClickListener iClickListener ;
 
-    public GrammarAdapter(List<GrammarEntity> listData) {
+    public GrammarAdapter(List<GrammarEntity> listData, IClickListener iClickListener) {
         Log.i(TAG, "GrammarAdapter size:" + listData.size());
         this.listData = listData;
+        this.iClickListener = iClickListener;
     }
 
     @Override
@@ -32,7 +35,8 @@ public class GrammarAdapter extends BaseAdapter<GrammarHolder> {
 
     @Override
     public GrammarHolder onCreateView(View view) {
-        return new GrammarHolder(view);
+
+        return new GrammarHolder(view, iClickListener);
     }
 
     @Override
