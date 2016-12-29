@@ -104,16 +104,11 @@ public class Constant {
 //	public static String KEY_CITY = "city";
 //	public static final String PREF_MODIFY_AD = "date_modify_ad";
     //
-    // /////// dropbox
-//	static public String FOLDER_NAME;
-//	static {
-//		if (BuildConfig.DEBUG)
-//			FOLDER_NAME = "/Bus_debug/";
-//		else
-//			FOLDER_NAME = "/Bus/";
-//	}
 
+    public static final String INTENT_DETAIL_LEVEL = "intent_detail_level";
+    public static final String INTENT_DETAIL_NUM = "intent_detail_num";
     public static final String INTENT_WORD = "intent_word";
+
     //	public static String GA_RECOGNIZE_LEARN_FRAGMENT = "LEARN RECOGNIZE";
 //	public static String GA_RECOGNIZE_TEST_FRAGMENT = "TEST RECOGNIZE";
     public static final String PREF_BG_THEME = "bg_theme2";

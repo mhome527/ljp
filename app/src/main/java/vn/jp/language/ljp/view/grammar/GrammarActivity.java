@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.utils.Log;
@@ -60,6 +61,8 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
     @Override
     protected void initView() {
         setSupportActionBar(toolbar);
+        toolbarTitle.setText(getString(R.string.title_button_grammar));
+
         presenter = new GrammarPresenter(activity);
         setupViewPager();
 
@@ -105,6 +108,11 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @OnClick(R.id.tvBack)
+    public void actionBack(){
+        finish();
     }
 
     private void setupViewPager() {

@@ -1,5 +1,10 @@
 package vn.jp.language.ljp.entity;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
+
 /**
  * Created by HuynhTD on 10/17/2016.
  */
@@ -12,12 +17,21 @@ public class GrammarEntity {
     private String mean;
     private String formation;
     private String example;
+    List<GrammarDetailEntity> details;
 
     public GrammarEntity() {
+
     }
 
     ///////////
+    public void formatData(){
+        Gson gson = new Gson();
+        details = gson.fromJson(example, new TypeToken<List<GrammarDetailEntity>>(){}.getType());
+    }
 
+    public List<GrammarDetailEntity> getDetails(){
+        return details;
+    }
 
     public String getExample() {
         return example;

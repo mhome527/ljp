@@ -19,7 +19,7 @@ public class GrammarAdapter extends BaseAdapter<GrammarHolder> {
     private static String TAG = "GrammarAdapter";
 
     private List<GrammarEntity> listData;
-    private IClickListener iClickListener ;
+    private IClickListener iClickListener;
 
     public GrammarAdapter(List<GrammarEntity> listData, IClickListener iClickListener) {
         Log.i(TAG, "GrammarAdapter size:" + listData.size());
@@ -49,6 +49,10 @@ public class GrammarAdapter extends BaseAdapter<GrammarHolder> {
     @Override
     public int getItemCount() {
         return listData.size();
+    }
+
+    public GrammarEntity getItem(int pos) {
+        return listData.get(pos);
     }
 
 }

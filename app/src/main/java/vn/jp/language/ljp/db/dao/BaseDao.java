@@ -38,6 +38,25 @@ public abstract class BaseDao<T> {
 //        return listData;
 //    }
 
+    protected T fetch(String sql) {
+        Log.i(TAG, "fetchAll sql:" + sql);
+        T entity = null;
+        try {
+            Cursor cursor = DatabaseHelper.getInstance(context).executeQuery(sql);
+            if (cursor != null) {
+                Log.i(TAG, "list " + this.getClass() + " size:" + cursor.getCount());
+                if (cursor.moveToFirst()) {
+                    entity = fetch(cursor);
+                }
+                cursor.close();
+            }
+        } catch (Exception e) {
+            if (BuildConfig.DEBUG)
+                e.printStackTrace();
+        }
+        return entity;
+    }
+
     protected List<T> fetchAll(String sql) {
         Log.i(TAG, "fetchAll sql:" + sql);
         List<T> listData = new ArrayList<>();

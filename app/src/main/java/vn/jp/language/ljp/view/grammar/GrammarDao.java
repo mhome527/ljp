@@ -15,7 +15,7 @@ import vn.jp.language.ljp.utils.Log;
  */
 public class GrammarDao extends BaseDao<GrammarEntity> {
 
-    private final String TAG = "GrammarDao";
+    private static final String TAG = "GrammarDao";
 
     public GrammarDao(Context context) {
         super(context);
@@ -34,18 +34,34 @@ public class GrammarDao extends BaseDao<GrammarEntity> {
     }
 
     public List<GrammarEntity> getListData() {
-        String sql = "SELECT * FROM " + GrammarTable.TABLE_NAME
+        String sql = "SELECT "
+                + GrammarTable.COL_NUM
+                + GrammarTable.COL_JP
+                + GrammarTable.COL_ROMAJI
+                + GrammarTable.COL_MEAN
+                + GrammarTable.COL_FORMATION
+                + "'" + GrammarTable.COL_EXAMPLE + "'"
+                + " FROM " + GrammarTable.TABLE_NAME
                 + " ORDER BY " + GrammarTable.COL_NUM;
         Log.i(TAG, "grammar: sql=" + sql);
         return fetchAll(sql);
     }
 
- public List<GrammarEntity> getListData(int level) {
+    public List<GrammarEntity> getListData(int level) {
         String sql = "SELECT * FROM " + GrammarTable.TABLE_NAME
                 + " WHERE " + GrammarTable.COL_LEVEL + " = " + level
                 + " ORDER BY " + GrammarTable.COL_NUM;
         Log.i(TAG, "grammar: sql=" + sql);
         return fetchAll(sql);
+    }
+
+    public static GrammarEntity getItemData(Context context, int level, int num) {
+        String sql = "SELECT * FROM " + GrammarTable.TABLE_NAME
+                + " WHERE " + GrammarTable.COL_LEVEL + " = " + level
+                + " AND " + GrammarTable.COL_NUM + " = " + num;
+        Log.i(TAG, "grammar: sql=" + sql);
+        GrammarDao dao = new GrammarDao(context);
+        return dao.fetch(sql);
     }
 
 

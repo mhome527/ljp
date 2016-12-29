@@ -24,4 +24,13 @@ public class GrammarPresenter extends BasePresenter<GrammarActivity> {
 
     }
 
+    public void loadItem(final int level, final int num, ICallback callback) {
+        loadData(callback, new ILoadData() {
+            @Override
+            public Object onBackground() {
+                return GrammarDao.getItemData(activity, level, num);
+            }
+        });
+    }
+
 }
