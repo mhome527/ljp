@@ -26,6 +26,7 @@ public class GrammarDao extends BaseDao<GrammarEntity> {
         GrammarEntity entity = new GrammarEntity();
         entity.setNum(cursor.getInt(cursor.getColumnIndex(GrammarTable.COL_NUM)));
         entity.setJp(cursor.getString(cursor.getColumnIndex(GrammarTable.COL_JP)));
+        entity.setLevel(cursor.getInt(cursor.getColumnIndex(GrammarTable.COL_LEVEL)));
         entity.setRomaji(cursor.getString(cursor.getColumnIndex(GrammarTable.COL_ROMAJI)));
         entity.setMean(cursor.getString(cursor.getColumnIndex(GrammarTable.COL_MEAN)));
         entity.setExample(cursor.getString(cursor.getColumnIndex(GrammarTable.COL_EXAMPLE)));
@@ -62,6 +63,16 @@ public class GrammarDao extends BaseDao<GrammarEntity> {
         Log.i(TAG, "grammar: sql=" + sql);
         GrammarDao dao = new GrammarDao(context);
         return dao.fetch(sql);
+    }
+
+    public static List<GrammarEntity> searchData(Context context, String text) {
+        String sql = "SELECT * FROM " + GrammarTable.TABLE_NAME
+                + " WHERE " + GrammarTable.COL_JP + " like '%" + text + "%'"
+                + " OR " + GrammarTable.COL_ROMAJI + " like '%" + text + "%'"
+                + " OR " + GrammarTable.COL_MEAN + " like '%" + text + "%'";
+        Log.i(TAG, "grammar: sql=" + sql);
+        GrammarDao dao = new GrammarDao(context);
+        return dao.fetchAll(sql);
     }
 
 

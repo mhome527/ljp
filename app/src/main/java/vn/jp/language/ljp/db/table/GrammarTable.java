@@ -12,7 +12,7 @@ public class GrammarTable {
     public static final String COL_NUM = "num";
     public static final String COL_LEVEL = "level";
     public static final String COL_JP = "jp";
-    public static final String COL_ROMAJI = "romji";
+    public static final String COL_ROMAJI = "romaji";
     public static final String COL_MEAN = "mean";
     public static final String COL_FORMATION = "formation";
     public static final String COL_EXAMPLE = "example";

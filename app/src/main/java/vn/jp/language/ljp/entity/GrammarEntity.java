@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GrammarEntity {
     private int num;
-    private int kind;
+    private int level;
     private String jp;
     private String romaji;
     private String mean;
@@ -41,12 +41,12 @@ public class GrammarEntity {
         this.example = example;
     }
 
-    public int getKind() {
-        return kind;
+    public int getLevel() {
+        return level;
     }
 
-    public void setKind(int kind) {
-        this.kind = kind;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public String getMean() {

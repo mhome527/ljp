@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -19,6 +18,7 @@ import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
+import vn.jp.language.ljp.view.grammar.search.GrammarSearchActivity;
 import vn.jp.language.ljp.view.test.AndroidDatabaseManager;
 
 /**
@@ -99,7 +99,9 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_search:
-                Toast.makeText(this, "You have selected Bookmark Menu", Toast.LENGTH_SHORT).show();
+                Intent iSearch = new Intent(activity, GrammarSearchActivity.class);
+                startActivity(iSearch);
+//                Toast.makeText(this, "You have selected Bookmark Menu", Toast.LENGTH_SHORT).show();
                 return true;
 
             case android.R.id.home:
@@ -111,7 +113,7 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
     }
 
     @OnClick(R.id.tvBack)
-    public void actionBack(){
+    public void actionBack() {
         finish();
     }
 

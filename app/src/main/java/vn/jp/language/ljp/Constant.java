@@ -37,22 +37,6 @@ public class Constant {
 //    public static final String macAllow = "a";
 
 
-    public static final String JA = "ja";
-    public static final String KO = "ko";
-    public static final String RU = "ru";
-    public static final String FR = "fr";
-    public static final String ES = "es";
-    public static final String IT = "it";
-    public static final String EN = "en";
-
-    public static final String REC_JA = "rec_ja.txt";
-    public static final String REC_KO = "rec_ko.txt";
-    public static final String REC_RU = "rec_ru.txt";
-    public static final String REC_FR = "rec_fr.txt";
-    public static final String REC_ES = "rec_es.txt";
-    public static final String REC_IT = "rec_it.txt";
-    public static final String REC_EN = "rec_en.txt";
-
     static {
 //        if (isMyDebug) {
         JSON_RECOGNIZE_NAME = "recognize.txt";

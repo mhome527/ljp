@@ -18,10 +18,7 @@ import vn.jp.language.ljp.entity.PhraseEntity;
 public class PhraseAdapter extends RecyclerView.Adapter<PhraseAdapter.MyViewHolder> {
 
     List<PhraseEntity> list;
-
-    public PhraseAdapter(List<PhraseEntity> list) {
-        this.list = list;
-    }
+    String text = "";
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,6 +38,8 @@ public class PhraseAdapter extends RecyclerView.Adapter<PhraseAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
+        if (list == null)
+            return 0;
         return list.size();
     }
 
@@ -55,4 +54,8 @@ public class PhraseAdapter extends RecyclerView.Adapter<PhraseAdapter.MyViewHold
         }
     }
 
+    public void setData(List<PhraseEntity> list, String text) {
+        this.list = list;
+        this.text = text;
+    }
 }

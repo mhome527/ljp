@@ -2,7 +2,7 @@ package vn.jp.language.ljp.view.phrases;
 
 import java.util.List;
 
-import vn.jp.language.ljp.db.dao.PhraseDao;
+import vn.jp.language.ljp.entity.PhraseEntity;
 import vn.jp.language.ljp.view.BasePresenter;
 import vn.jp.language.ljp.view.ICallback;
 
@@ -17,12 +17,21 @@ public class PhrasePresenter extends BasePresenter<PhraseActivity> {
         super(activity);
     }
 
-    public void loadData(ICallback iCallback) {
+    public void loadData(ICallback<List<PhraseEntity>> iCallback) {
         loadData(iCallback, new ILoadData() {
             @Override
             public List onBackground() {
                 PhraseDao dao = new PhraseDao(activity);
                 return dao.getListData();
+            }
+        });
+    }
+
+    public void searchData(final String text, ICallback<List<PhraseEntity>> iCallback) {
+        loadData(iCallback, new ILoadData() {
+            @Override
+            public List onBackground() {
+                return PhraseDao.searchData(activity, text);
             }
         });
     }

@@ -1,28 +1,25 @@
-package vn.jp.language.ljp.view.grammar.detail;
+package vn.jp.language.ljp.view.kanji.detail;
 
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
-import vn.jp.language.ljp.entity.GrammarEntity;
+import vn.jp.language.ljp.entity.KanjiEntity;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.ICallback;
-import vn.jp.language.ljp.view.custom.DividerLineDecoration;
 
 /**
  * Created by HuynhTD on 12/26/2016.
  */
 
-public class GrammarDetailActivity extends BaseActivity<GrammarDetailActivity> {
+public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
 
     private static final String TAG = "GrammarDetailActivity";
 
@@ -36,24 +33,27 @@ public class GrammarDetailActivity extends BaseActivity<GrammarDetailActivity> {
     TextView toolbarTitle;
 
 
-    @BindView(R.id.tvGrammar)
-    TextView tvGrammar;
+    @BindView(R.id.imgKanji)
+    ImageView imgKanji;
 
-    @BindView(R.id.tvRomaji)
-    TextView tvRomaji;
+    @BindView(R.id.tvOt)
+    TextView tvOt;
 
-    @BindView(R.id.tvMean)
-    TextView tvMean;
+    @BindView(R.id.tvJp1)
+    TextView tvJp1;
 
-    @BindView(R.id.tvFormation)
-    TextView tvFormation;
+    @BindView(R.id.tvJp2)
+    TextView tvJp2;
 
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
+    @BindView(R.id.tvExample)
+    TextView tvExample;
+
+
+    KanjiDetailPresenter presenter;
 
     @Override
     protected int getLayout() {
-        return R.layout.grammar_detail_layout;
+        return R.layout.kanji_detail_layout;
     }
 
     @Override
@@ -69,26 +69,18 @@ public class GrammarDetailActivity extends BaseActivity<GrammarDetailActivity> {
 
         } else
             Log.e(TAG, "initView actionBar NULL!!!!");
-        setupView();
 
-        int level = getIntent().getIntExtra(Constant.INTENT_DETAIL_LEVEL, 0);
+        presenter = new KanjiDetailPresenter(activity);
+
         int num = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
 
-        toolbarTitle.setText("N" + level);
-
-        GrammarDetailPresenter presenter = new GrammarDetailPresenter(activity);
-        presenter.loadItem(level, num, new ICallback<GrammarEntity>() {
+        presenter.getData(num, new ICallback<KanjiEntity>() {
             @Override
-            public void onCallback(final GrammarEntity data) {
+            public void onCallback(final KanjiEntity data) {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        tvGrammar.setText(data.getJp());
-                        tvRomaji.setText(data.getRomaji());
-                        tvMean.setText(data.getMean());
-                        tvFormation.setText(data.getFormation());
-                        GrammarDetailAdapter adapter = new GrammarDetailAdapter(data.getDetails());
-                        recyclerView.setAdapter(adapter);
+                        setData(data);
                     }
                 });
             }
@@ -116,12 +108,13 @@ public class GrammarDetailActivity extends BaseActivity<GrammarDetailActivity> {
         finish();
     }
 
-    private void setupView() {
-        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(activity);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.getLayoutManager().setAutoMeasureEnabled(true);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new DividerLineDecoration(activity, R.drawable.line_divider));
-    }
+    private void setData(KanjiEntity entity) {
+//        toolbarTitle.setText(getString(R.string.title_kanji));
+        toolbarTitle.setText(entity.getKanji());
 
+        tvJp1.setText(entity.getJp1());
+        tvJp2.setText(entity.getJp2());
+        tvOt.setText(entity.getOt());
+        tvExample.setText(entity.getExample());
+    }
 }

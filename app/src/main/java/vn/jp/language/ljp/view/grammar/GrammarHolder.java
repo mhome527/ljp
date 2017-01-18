@@ -12,8 +12,8 @@ import vn.jp.language.ljp.view.IClickListener;
  */
 
 public class GrammarHolder extends RecyclerView.ViewHolder {
-    TextView tvGrammar;
-    TextView tvMean;
+    public TextView tvGrammar;
+    public TextView tvMean;
 
     public GrammarHolder(final View itemView, final IClickListener iClickListener) {
         super(itemView);

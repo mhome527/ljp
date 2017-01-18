@@ -24,20 +24,20 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         GrammarFragment fragment = new GrammarFragment();
 //        return mFragmentList.get(position);
         switch (position) {
+            case 0:
+                fragment.level = 5;
+                break;
             case 1:
                 fragment.level = 4;
                 break;
             case 2:
-                fragment.level = 5;
+                fragment.level = 3;
                 break;
-            case 3:
-                fragment.level = 5;
-                break;
-             case 4:
-                fragment.level = 5;
+             case 3:
+                fragment.level = 2;
                 break;
             default:
-                fragment.level = 5;
+                fragment.level = 1;
                 break;
         }
         return fragment;

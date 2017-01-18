@@ -14,6 +14,7 @@ import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.alphabet.AlphabetActivity;
 import vn.jp.language.ljp.view.grammar.GrammarActivity;
+import vn.jp.language.ljp.view.kanji.KanjiActivity;
 import vn.jp.language.ljp.view.number.NumberActivity;
 
 public class DashboardActivity extends BaseActivity<DashboardActivity> {
@@ -50,6 +51,9 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
                         break;
                     case 2:
                         DashboardActivity.this.startActivity2(GrammarActivity.class);
+                        break;
+                    case 3:
+                        DashboardActivity.this.startActivity2(KanjiActivity.class);
                         break;
                 }
             }

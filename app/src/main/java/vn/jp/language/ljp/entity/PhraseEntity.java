@@ -5,6 +5,7 @@ package vn.jp.language.ljp.entity;
  */
 
 public class PhraseEntity {
+    public int num;
     public String jp;
     public String romaji;
     public String ot;

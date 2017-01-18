@@ -1,12 +1,12 @@
-package vn.jp.language.ljp.db.dao;
+package vn.jp.language.ljp.view.phrases;
 
 import android.content.Context;
 import android.database.Cursor;
 
 import java.util.List;
 
+import vn.jp.language.ljp.db.dao.BaseDao;
 import vn.jp.language.ljp.db.table.PhraseTable;
-import vn.jp.language.ljp.db.table.WordTable;
 import vn.jp.language.ljp.entity.PhraseEntity;
 import vn.jp.language.ljp.utils.Log;
 
@@ -15,7 +15,7 @@ import vn.jp.language.ljp.utils.Log;
  */
 public class PhraseDao extends BaseDao<PhraseEntity> {
 
-    private final String TAG = "PhraseDao";
+    private static final String TAG = "PhraseDao";
 
     public PhraseDao(Context context) {
         super(context);
@@ -32,11 +32,19 @@ public class PhraseDao extends BaseDao<PhraseEntity> {
     }
 
     public List<PhraseEntity> getListData() {
-        String sql = "SELECT * FROM " + WordTable.TABLE_NAME + " w1, " + WordTable.TABLE_NAME_EN + " w2"
-                + " ORDER BY " + WordTable.COL_JP1;
+        String sql = "SELECT * FROM " + PhraseTable.TABLE_NAME;
+
         Log.i(TAG, "phrase: sql=" + sql);
         return fetchAll(sql);
     }
 
+    public static List<PhraseEntity> searchData(Context context, String text) {
+        String sql = "SELECT * FROM " + PhraseTable.TABLE_NAME
+                + " WHERE " + PhraseTable.COL_ROMAJI + " like '%" + text + "%'"
+                + " OR " + PhraseTable.COL_OT + " like '%" + text + "%'";
+        Log.i(TAG, "searchData: sql:" + sql);
+        PhraseDao dao = new PhraseDao(context);
+        return dao.fetchAll(sql);
+    }
 
 }
