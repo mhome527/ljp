@@ -1,10 +1,11 @@
-package vn.jp.language.ljp.db.dao;
+package vn.jp.language.ljp.view.words;
 
 import android.content.Context;
 import android.database.Cursor;
 
 import java.util.List;
 
+import vn.jp.language.ljp.db.dao.BaseDao;
 import vn.jp.language.ljp.db.table.WordTable;
 import vn.jp.language.ljp.entity.WordEntity;
 import vn.jp.language.ljp.utils.Log;
@@ -14,7 +15,7 @@ import vn.jp.language.ljp.utils.Log;
  */
 public class WordDao extends BaseDao<WordEntity> {
 
-    private final String TAG = "WardDao";
+    private static final String TAG = "WardDao";
 
     public WordDao(Context context) {
         super(context);
@@ -27,17 +28,19 @@ public class WordDao extends BaseDao<WordEntity> {
         entity.jp1 = cursor.getString(cursor.getColumnIndex(WordTable.COL_JP1));
         entity.jp2 = cursor.getString(cursor.getColumnIndex(WordTable.COL_JP2));
         entity.ot = cursor.getString(cursor.getColumnIndex(WordTable.COL_OT));
+        entity.romaji = cursor.getString(cursor.getColumnIndex(WordTable.COL_ROMAJI));
         entity.sound = cursor.getString(cursor.getColumnIndex(WordTable.COL_SOUND));
         entity.img = cursor.getString(cursor.getColumnIndex(WordTable.COL_IMG));
         return entity;
     }
 
-    public List<WordEntity> getListData(int num) {
-        String sql = "SELECT * FROM " + WordTable.TABLE_NAME + " w1, " + WordTable.TABLE_NAME_EN + " w2"
-                + " WHERE " + WordTable.COL_NUM + " = " + num
+    public static List<WordEntity> getListData(Context context, int kind) {
+        String sql = "SELECT * FROM " + WordTable.TABLE_NAME
+                + " WHERE " + WordTable.COL_KIND + " = " + kind
                 + " ORDER BY " + WordTable.COL_JP1;
         Log.i(TAG, "word: sql=" + sql);
-        return fetchAll(sql);
+        WordDao dao = new WordDao(context);
+        return dao.fetchAll(sql);
     }
 
 

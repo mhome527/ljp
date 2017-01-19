@@ -355,4 +355,7 @@ public class Utility {
     public static int dpToPx(final float dp) {
         return Math.round(dp * (Resources.getSystem().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
+
+
+
 }

@@ -6,6 +6,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
@@ -116,5 +118,9 @@ public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
         tvJp2.setText(entity.getJp2());
         tvOt.setText(entity.getOt());
         tvExample.setText(entity.getExample());
+
+        Glide.with(activity)
+                .load("file:///android_asset/butterfly.gif")
+                .into(imgKanji);
     }
 }

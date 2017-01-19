@@ -16,6 +16,8 @@ import vn.jp.language.ljp.view.alphabet.AlphabetActivity;
 import vn.jp.language.ljp.view.grammar.GrammarActivity;
 import vn.jp.language.ljp.view.kanji.KanjiActivity;
 import vn.jp.language.ljp.view.number.NumberActivity;
+import vn.jp.language.ljp.view.phrases.PhraseActivity;
+import vn.jp.language.ljp.view.words.WordActivity;
 
 public class DashboardActivity extends BaseActivity<DashboardActivity> {
 
@@ -44,16 +46,22 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        DashboardActivity.this.startActivity2(AlphabetActivity.class);
+                        startActivity2(AlphabetActivity.class);
                         break;
                     case 1:
-                        DashboardActivity.this.startActivity2(NumberActivity.class);
+                        startActivity2(NumberActivity.class);
                         break;
                     case 2:
-                        DashboardActivity.this.startActivity2(GrammarActivity.class);
+                        startActivity2(GrammarActivity.class);
                         break;
                     case 3:
-                        DashboardActivity.this.startActivity2(KanjiActivity.class);
+                        startActivity2(KanjiActivity.class);
+                        break;
+                    case 4:
+                        startActivity2(PhraseActivity.class);
+                        break;
+                    case 5:
+                        startActivity2(WordActivity.class);
                         break;
                 }
             }

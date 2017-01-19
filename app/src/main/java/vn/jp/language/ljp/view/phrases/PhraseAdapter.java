@@ -48,7 +48,7 @@ public class PhraseAdapter extends RecyclerView.Adapter<PhraseAdapter.MyViewHold
 
         public MyViewHolder(View view) {
             super(view);
-            tvJp = (TextView) view.findViewById(R.id.tvJp1);
+            tvJp = (TextView) view.findViewById(R.id.tvJp);
             tvRomaji = (TextView) view.findViewById(R.id.tvRomaji);
             tvOt = (TextView) view.findViewById(R.id.tvOt);
         }

@@ -107,6 +107,10 @@ public class Constant {
         HIRAGANA, KATAKANA
     }
 
+  public enum TYPE_WORD{
+        ANIMAL, OTHER
+    }
+
     public enum TYPE_NUMBERS{
        NUMBER, PERSON, LONG, THING, BOOK, ANIMAL, AGE, SMALL_OBJECT, TIME, LOCATION, GENERIC
     }

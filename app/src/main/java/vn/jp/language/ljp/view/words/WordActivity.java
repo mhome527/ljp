@@ -1,12 +1,14 @@
 package vn.jp.language.ljp.view.words;
 
-import android.widget.GridView;
-
-import java.util.List;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import vn.jp.language.ljp.R;
-import vn.jp.language.ljp.entity.WordEntity;
 import vn.jp.language.ljp.view.BaseActivity;
 
 /**
@@ -17,10 +19,18 @@ public class WordActivity extends BaseActivity<WordActivity> {
 
     private static String TAG = "WordActivity";
 
-    @BindView(R.id.gridView)
-    GridView gridView;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
-    List<WordEntity> listData;
+    @BindView(R.id.toolbarTitle)
+    TextView toolbarTitle;
+
+    @BindView(R.id.tab_layout)
+    TabLayout tabLayout;
+
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
+
 
     @Override
     protected int getLayout() {
@@ -29,22 +39,45 @@ public class WordActivity extends BaseActivity<WordActivity> {
 
     @Override
     protected void initView() {
-        loadData();
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(false); // disable the button
+            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
+            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
+            actionBar.setDisplayShowTitleEnabled(false); // remove title
+            toolbarTitle.setText(getString(R.string.title_word));
+        }
+
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.title_animal));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.title_other));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final WordPagerAdapter adapter = new WordPagerAdapter
+                (getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
-    private void loadData() {
-        WordPresenter presenter = new WordPresenter(this);
-//        presenter.loadData(1, new ICallback() {
-//            @Override
-//            public void onCallback(List list) {
-//                listData = list;
-//                gridView.setAdapter(new WordAdapter(activity, listData));
-//            }
-//
-//            @Override
-//            public void onFail(String err) {
-//                Log.e(TAG, "onFail!!!!!!" + err);
-//            }
-//        });
+    @OnClick(R.id.tvBack)
+    public void actionBack() {
+        finish();
     }
+
 }

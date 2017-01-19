@@ -2,8 +2,12 @@ package vn.jp.language.ljp.view.alphabet;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.view.BaseActivity;
 
@@ -13,8 +17,11 @@ import vn.jp.language.ljp.view.BaseActivity;
 
 public class AlphabetActivity extends BaseActivity<AlphabetActivity> {
 
-//    @BindView(R.id.toolbar)
-//    Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.toolbarTitle)
+    TextView toolbarTitle;
 
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
@@ -29,8 +36,15 @@ public class AlphabetActivity extends BaseActivity<AlphabetActivity> {
 
     @Override
     protected void initView() {
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(false); // disable the button
+            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
+            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
+            actionBar.setDisplayShowTitleEnabled(false); // remove title
+            toolbarTitle.setText(getString(R.string.title_alphabet));
+        }
 
 //        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_hiragana));
@@ -59,4 +73,11 @@ public class AlphabetActivity extends BaseActivity<AlphabetActivity> {
             }
         });
     }
+
+    @OnClick(R.id.tvBack)
+    public void actionBack() {
+        finish();
+    }
+
+
 }

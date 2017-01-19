@@ -1,13 +1,16 @@
 package vn.jp.language.ljp.view.phrases;
 
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -29,8 +32,15 @@ public class PhraseActivity extends BaseActivity<PhraseActivity>  implements Sea
 
     private static String TAG = "PhraseActivity";
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.toolbarTitle)
+    TextView toolbarTitle;
+
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+
     List<PhraseEntity> list;
 
     PhraseAdapter adapter;
@@ -45,6 +55,16 @@ public class PhraseActivity extends BaseActivity<PhraseActivity>  implements Sea
     protected void initView() {
         presenter = new PhrasePresenter(this);
         adapter = new PhraseAdapter();
+
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(false); // disable the button
+            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
+            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
+            actionBar.setDisplayShowTitleEnabled(false); // remove title
+            toolbarTitle.setText(getString(R.string.title_Phrase));
+        }
         initControl();
         loadData();
     }
@@ -147,7 +167,13 @@ public class PhraseActivity extends BaseActivity<PhraseActivity>  implements Sea
         presenter.loadData(new ICallback<List<PhraseEntity>>() {
             @Override
             public void onCallback(List list) {
-                activity.list = list;
+                adapter.setData(list, "");
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
             }
 
             @Override
