@@ -48,12 +48,14 @@
     <string name="menu_search_hint">ひらがな, Romaji, Mean</string>
     <string name="coming_soon">Coming Soon!</string>
 
-    <string name="title_kanji">漢字 - Kanji</string>
+    <string name="title_kanji">漢字</string>
     <string name="title_alphabet">Alphabet</string>
-    <string name="title_word">Word</string>
+    <string name="title_grammar">Grammar</string>
+    <string name="title_word">Words</string>
     <string name="title_Phrase">Phrase</string>
 
     <string name="title_animal">Animal</string>
     <string name="title_other">other</string>
+    <string name="title_count">Count</string>
 
 </resources>

@@ -2,9 +2,10 @@ package vn.jp.language.ljp.db;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+
+import net.sqlcipher.Cursor;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteOpenHelper;
 
 import java.util.List;
 
@@ -18,8 +19,6 @@ import vn.jp.language.ljp.utils.Log;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
-//    public static final String DATABASE_NAME = "ljp.db";
-//    public static final int DATABASE_VERSION = 1;
     private static DatabaseHelper dbHelper = null;
     private static SQLiteDatabase db = null;
 
@@ -32,10 +31,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
         Log.i(TAG, "onCreate CREATE TABLE....");
-
-
-//        NotificationTable.onCreate(database);
-//        WardTable.onCreate(database);
     }
 
     // Method is called during an upgrade of the database,
@@ -45,9 +40,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, int oldVersion,
                           int newVersion) {
         Log.i(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion);
-
-//        NotificationTable.onUpgrade(database, oldVersion, newVersion);
-//        WardTable.onUpgrade(database, oldVersion, newVersion);
     }
 
     public Cursor executeQuery(String sql) {
@@ -71,6 +63,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (dbHelper == null) {
             dbHelper = new DatabaseHelper(context);
             openConnecion();
+        }else if(db == null){
+            openConnecion();
         }
         return dbHelper;
     }
@@ -78,7 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // will be called only once when singleton is created
     private static void openConnecion() {
         if (db == null) {
-            db = dbHelper.getWritableDatabase();
+            db = dbHelper.getWritableDatabase(Constant.MY_TEXT);
         }
     }
 

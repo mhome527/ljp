@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.DashboardEntity;
 import vn.jp.language.ljp.utils.Log;
@@ -35,7 +36,7 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
 
     @Override
     protected void initView() {
-        Log.i(TAG, "initView");
+        Log.i(TAG, "initView " + Constant.MY_TEXT);
         createData();
 
         gridView.setNumColumns(2); //TODO:check tablet
@@ -89,11 +90,11 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
 
     private void createData() {
         listData = new ArrayList<>();
-        listData.add(new DashboardEntity(R.drawable.button_alphabet_on, "alphabet"));
-        listData.add(new DashboardEntity(R.drawable.button_number_on, "number"));
-        listData.add(new DashboardEntity(R.drawable.button_date_on, "date"));
-        listData.add(new DashboardEntity(R.drawable.button_word_on, "word"));
-        listData.add(new DashboardEntity(R.drawable.button_grammer_on, "grammar"));
-        listData.add(new DashboardEntity(R.drawable.button_alphabet_on, "alphabet"));
+        listData.add(new DashboardEntity(R.drawable.button_alphabet_on, getString(R.string.title_alphabet)));
+        listData.add(new DashboardEntity(R.drawable.button_number_on, getString(R.string.title_count)));
+        listData.add(new DashboardEntity(R.drawable.button_grammar_on, getString(R.string.title_grammar)));
+        listData.add(new DashboardEntity(R.drawable.button_kanji_on, getString(R.string.title_kanji)));
+        listData.add(new DashboardEntity(R.drawable.button_phrases_on, getString(R.string.title_Phrase)));
+        listData.add(new DashboardEntity(R.drawable.button_word_on, getString(R.string.title_word)));
     }
 }

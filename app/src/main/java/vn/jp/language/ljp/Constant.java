@@ -10,16 +10,19 @@ public class Constant {
     final static public String PACKAGE_UPDATE = "market://details?id=" + BuildConfig.APPLICATION_ID;
     final static public String API_MARKER = "https://androidquery.appspot.com/api/market?app=" + BuildConfig.APPLICATION_ID;
 
-    // /////////
-//	final static public String APP_KEY = "784aqs9zpcajd47";
-//	final static public String APP_SECRET = "8i4fgakaa12k8q6";
-//	static public String APP_TOCKEN = "ukTwK3tqg4YAAAAAAAAUc5W0O_qi3r7hEKLszLaTmdo_md7TWJSLNF5bJrY2Zj5G";
-    // final static public String APP_KEY = "784aqs9zpcajd47";
-    // final static public String APP_SECRET = "8i4fgakaa12k8q6";
-    // final static public String APP_TOCKEN = "ukTwK3tqg4YAAAAAAAAQTK0gVjiMjB5P_vrpMab3zHhmqNGEu_OVPdkYBKXvsavp";
+    /////
 
-//    public static final String DB_NAME = "VN.db";
-    public static final String DB_NAME = "ljp2.sqlite";
+    ////
+    final static public String MY_TEXT;
+    public static native String stringFromJNI();
+
+    static {
+        System.loadLibrary("native-lib");
+        MY_TEXT = stringFromJNI();
+    }
+
+//    public static final String DB_NAME = "ljp2.sqlite";
+    public static final String DB_NAME = "ljp3.sqlite";
     public static final int DATABASE_VERSION = 1;
 
     //    public static final String JSON_WORDS_NAME;
@@ -49,19 +52,6 @@ public class Constant {
         FILE_ES = "es.txt";
         FILE_IT = "it.txt";
         FILE_EN = "en.txt";
-
-//        } else {
-//            JSON_RECOGNIZE_NAME = "recognize.txt";
-//            JSON_MAPNAME_NAME = "MapName.data";
-//
-//            FILE_JA = "ja.data";
-//            FILE_KO = "ko.data";
-//            FILE_RU = "ru.data";
-//            FILE_FR = "fr.data";
-//            FILE_ES = "es.data";
-//            FILE_IT = "it.data";
-//            FILE_EN = "en.data";
-//        }
 
 
 //        if (Utility.getMacAddress(MyApplication.getInstance()).equals(macAllow))
