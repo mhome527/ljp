@@ -2,21 +2,17 @@ package vn.jp.language.ljp.view.kanji;
 
 import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.KanjiEntity;
@@ -34,11 +30,11 @@ public class KanjiActivity extends BaseActivity<KanjiActivity> implements IClick
 
     private final String TAG = "KanjiActivity";
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
-    @BindView(R.id.toolbarTitle)
-    TextView toolbarTitle;
+//    @BindView(R.id.toolbar)
+//    Toolbar toolbar;
+//
+//    @BindView(R.id.toolbarTitle)
+//    TextView toolbarTitle;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -55,18 +51,19 @@ public class KanjiActivity extends BaseActivity<KanjiActivity> implements IClick
     protected void initView() {
         adapter = new KanjiAdapter(activity);
         presenter = new KanjiPresenter(activity);
+        setTitle(getString(R.string.title_kanji));
 
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false); // disable the button
-            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
-            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
-            actionBar.setDisplayShowTitleEnabled(false); // remove title
-            toolbarTitle.setText(getString(R.string.title_kanji));
-
-        } else
-            Log.e(TAG, "initView actionBar NULL!!!!");
+//        setSupportActionBar(toolbar);
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setHomeButtonEnabled(false); // disable the button
+//            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
+//            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
+//            actionBar.setDisplayShowTitleEnabled(false); // remove title
+//            toolbarTitle.setText(getString(R.string.title_kanji));
+//
+//        } else
+//            Log.e(TAG, "initView actionBar NULL!!!!");
         setupView();
         presenter.getListData(new ICallback<List<KanjiEntity>>() {
             @Override
@@ -117,10 +114,10 @@ public class KanjiActivity extends BaseActivity<KanjiActivity> implements IClick
         }
     }
 
-    @OnClick(R.id.tvBack)
-    public void actionBack() {
-        finish();
-    }
+//    @OnClick(R.id.tvBack)
+//    public void actionBack() {
+//        finish();
+//    }
 
     public void setupView() {
 

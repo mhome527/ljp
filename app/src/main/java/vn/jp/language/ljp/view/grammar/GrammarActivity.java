@@ -5,21 +5,13 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import butterknife.BindView;
-import butterknife.OnClick;
-import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.R;
-import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.grammar.search.GrammarSearchActivity;
-import vn.jp.language.ljp.view.test.AndroidDatabaseManager;
 
 /**
  * Created by HuynhTran on 12/23/2016.
@@ -35,20 +27,11 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
     @BindView(R.id.appBar)
     AppBarLayout appBar;
 
-    @BindView(R.id.tvBack)
-    TextView tvBack;
-
-    @BindView(R.id.toolbarTitle)
-    TextView toolbarTitle;
-
     @BindView(R.id.viewpager)
     ViewPager viewPager;
 
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
 
     GrammarPresenter presenter;
     ViewPagerAdapter adapter;
@@ -60,33 +43,12 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
 
     @Override
     protected void initView() {
-        setSupportActionBar(toolbar);
-        toolbarTitle.setText(getString(R.string.title_button_grammar));
+        setTitle(getString(R.string.title_button_grammar));
 
         presenter = new GrammarPresenter(activity);
+
         setupViewPager();
 
-        ActionBar actionBar = getSupportActionBar();
-//        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false); // disable the button
-            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
-            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
-            actionBar.setDisplayShowTitleEnabled(false); // remove title
-
-        } else
-            Log.e(TAG, "initView actionBar NULL!!!!");
-
-        if (BuildConfig.DEBUG) {
-            toolbarTitle.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.i(TAG, "click!!");
-                    Intent i = new Intent(activity, AndroidDatabaseManager.class);
-                    startActivity(i);
-                }
-            });
-        }
     }
 
     @Override
@@ -112,10 +74,10 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
         }
     }
 
-    @OnClick(R.id.tvBack)
-    public void actionBack() {
-        finish();
-    }
+//    @OnClick(R.id.tvBack)
+//    public void actionBack() {
+//        finish();
+//    }
 
     private void setupViewPager() {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -135,6 +97,7 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+//                actionBar.setTitle(tab.getText());
                 resetScroll();
             }
 
@@ -148,8 +111,6 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
 
             }
         });
-
-//        setTabIcon();
 
     }
 

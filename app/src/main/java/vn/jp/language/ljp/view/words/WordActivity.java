@@ -2,12 +2,8 @@ package vn.jp.language.ljp.view.words;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.view.BaseActivity;
 
@@ -19,11 +15,11 @@ public class WordActivity extends BaseActivity<WordActivity> {
 
     private static String TAG = "WordActivity";
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
-    @BindView(R.id.toolbarTitle)
-    TextView toolbarTitle;
+//    @BindView(R.id.toolbar)
+//    Toolbar toolbar;
+//
+//    @BindView(R.id.toolbarTitle)
+//    TextView toolbarTitle;
 
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
@@ -39,16 +35,16 @@ public class WordActivity extends BaseActivity<WordActivity> {
 
     @Override
     protected void initView() {
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false); // disable the button
-            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
-            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
-            actionBar.setDisplayShowTitleEnabled(false); // remove title
-            toolbarTitle.setText(getString(R.string.title_word));
-        }
-
+//        setSupportActionBar(toolbar);
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setHomeButtonEnabled(true); // disable the button
+//            actionBar.setDisplayHomeAsUpEnabled(true); // remove the left caret
+//            actionBar.setDisplayShowHomeEnabled(true); // remove the icon
+//            actionBar.setDisplayShowTitleEnabled(true); // remove title
+////            toolbarTitle.setText(getString(R.string.title_word));
+//        }
+        setTitleCenter(getString(R.string.title_word));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_animal));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_other));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -75,9 +71,9 @@ public class WordActivity extends BaseActivity<WordActivity> {
         });
     }
 
-    @OnClick(R.id.tvBack)
-    public void actionBack() {
-        finish();
-    }
+//    @OnClick(R.id.tvBack)
+//    public void actionBack() {
+//        finish();
+//    }
 
 }

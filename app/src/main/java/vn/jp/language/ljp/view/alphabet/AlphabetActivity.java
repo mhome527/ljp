@@ -1,13 +1,13 @@
 package vn.jp.language.ljp.view.alphabet;
 
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.view.BaseActivity;
 
@@ -17,11 +17,14 @@ import vn.jp.language.ljp.view.BaseActivity;
 
 public class AlphabetActivity extends BaseActivity<AlphabetActivity> {
 
+    @BindView(R.id.coordinator)
+    CoordinatorLayout coordinator;
+
+    @BindView(R.id.appBar)
+    AppBarLayout appBar;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    @BindView(R.id.toolbarTitle)
-    TextView toolbarTitle;
 
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
@@ -39,11 +42,12 @@ public class AlphabetActivity extends BaseActivity<AlphabetActivity> {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false); // disable the button
-            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
-            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
-            actionBar.setDisplayShowTitleEnabled(false); // remove title
-            toolbarTitle.setText(getString(R.string.title_alphabet));
+            actionBar.setHomeButtonEnabled(true); // disable the button
+            actionBar.setDisplayHomeAsUpEnabled(true); // remove the left caret
+            actionBar.setDisplayShowHomeEnabled(true); // remove the icon
+            actionBar.setDisplayShowTitleEnabled(true); // remove title
+//            toolbarTitle.setText(getString(R.string.title_alphabet));
+            actionBar.setTitle(getString(R.string.title_alphabet));
         }
 
 //        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
@@ -60,6 +64,7 @@ public class AlphabetActivity extends BaseActivity<AlphabetActivity> {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                resetScroll();
             }
 
             @Override
@@ -74,9 +79,10 @@ public class AlphabetActivity extends BaseActivity<AlphabetActivity> {
         });
     }
 
-    @OnClick(R.id.tvBack)
-    public void actionBack() {
-        finish();
+    private void resetScroll() {
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appBar.getLayoutParams();
+        AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
+        behavior.onNestedFling(coordinator, appBar, null, 0, -1000, true);
     }
 
 

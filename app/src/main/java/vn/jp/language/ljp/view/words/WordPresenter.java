@@ -25,7 +25,6 @@ public class WordPresenter extends BasePresenter<WordActivity> {
                     }
                 }
         );
-
     }
 
 }

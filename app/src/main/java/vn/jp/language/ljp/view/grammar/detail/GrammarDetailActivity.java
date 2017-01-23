@@ -1,15 +1,12 @@
 package vn.jp.language.ljp.view.grammar.detail;
 
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.GrammarEntity;
@@ -25,16 +22,6 @@ import vn.jp.language.ljp.view.custom.DividerLineDecoration;
 public class GrammarDetailActivity extends BaseActivity<GrammarDetailActivity> {
 
     private static final String TAG = "GrammarDetailActivity";
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
-    @BindView(R.id.tvBack)
-    TextView tvBack;
-
-    @BindView(R.id.toolbarTitle)
-    TextView toolbarTitle;
-
 
     @BindView(R.id.tvGrammar)
     TextView tvGrammar;
@@ -58,23 +45,13 @@ public class GrammarDetailActivity extends BaseActivity<GrammarDetailActivity> {
 
     @Override
     protected void initView() {
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-//        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false); // disable the button
-            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
-            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
-            actionBar.setDisplayShowTitleEnabled(false); // remove title
 
-        } else
-            Log.e(TAG, "initView actionBar NULL!!!!");
         setupView();
 
         int level = getIntent().getIntExtra(Constant.INTENT_DETAIL_LEVEL, 0);
         int num = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
 
-        toolbarTitle.setText("N" + level);
+        setTitle("N" + level);
 
         GrammarDetailPresenter presenter = new GrammarDetailPresenter(activity);
         presenter.loadItem(level, num, new ICallback<GrammarEntity>() {
@@ -109,11 +86,6 @@ public class GrammarDetailActivity extends BaseActivity<GrammarDetailActivity> {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @OnClick(R.id.tvBack)
-    public void actionBack() {
-        finish();
     }
 
     private void setupView() {

@@ -11,9 +11,12 @@ import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.WordEntity;
+import vn.jp.language.ljp.sound.AudioManager;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseFragment;
 import vn.jp.language.ljp.view.ICallback;
+import vn.jp.language.ljp.view.IClickListener;
+import vn.jp.language.ljp.view.RecyclerTouchListener;
 
 /**
  * Created by HuynhTD on 01/19/2017.
@@ -21,7 +24,8 @@ import vn.jp.language.ljp.view.ICallback;
 
 public class WordFragment extends BaseFragment<WordActivity> {
 
-    private String TAG = "WordFragment";
+    private final String TAG = "WordFragment";
+    private final String FOLDER = "words/";
     //    private View root;
     public Constant.TYPE_WORD typeWord = Constant.TYPE_WORD.ANIMAL;
 
@@ -30,7 +34,9 @@ public class WordFragment extends BaseFragment<WordActivity> {
 
     WordContentAdapter adapter;
     WordPresenter presenter;
+    AudioManager audio;
 
+    List<WordEntity> listData;
 
     @Override
     public int getLayout() {
@@ -42,6 +48,7 @@ public class WordFragment extends BaseFragment<WordActivity> {
         Log.i(TAG, "initView");
         presenter = new WordPresenter(activity);
         adapter = new WordContentAdapter();
+        audio = new AudioManager(activity);
 
         setupView();
         loadData();
@@ -56,6 +63,20 @@ public class WordFragment extends BaseFragment<WordActivity> {
 //        int spacingInPixels = Utility.dpToPx(2);
 //        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
 
+        //Add event
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(activity, recyclerView, new IClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Log.i(TAG, "onClick row pos:" + position);
+                activity.setTitleCenter(listData.get(position).getOt());
+                audio.play(FOLDER + listData.get(position).sound);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Log.i(TAG, "onLongClick row pos:" + position);
+            }
+        }));
     }
 
     public void loadData() {
@@ -63,8 +84,14 @@ public class WordFragment extends BaseFragment<WordActivity> {
         presenter.loadData(getKind(), new ICallback<List<WordEntity>>() {
             @Override
             public void onCallback(List<WordEntity> list) {
-                adapter.setData(list);
-                recyclerView.setAdapter(adapter);
+                listData = list;
+                adapter.setData(listData);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
             }
 
             @Override

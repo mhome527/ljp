@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <!--<android.support.design.widget.AppBarLayout-->
+    <!--android:id="@+id/appBar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolbar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="?attr/actionBarSize"-->
+    <!--android:background="?attr/colorPrimary"-->
+    <!--app:layout_scrollFlags="scroll|enterAlways|snap"-->
+    <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light">-->
 
-            <Button
-                android:id="@+id/tvBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/btn_back_previous" />
+    <!--<Button-->
+    <!--android:id="@+id/tvBack"-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:background="@drawable/btn_back_previous" />-->
 
-            <TextView
-                android:id="@+id/toolbarTitle"
-                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-                android:layout_width="180dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/app_name" />
-        </android.support.v7.widget.Toolbar>
+    <!--<TextView-->
+    <!--android:id="@+id/toolbarTitle"-->
+    <!--style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"-->
+    <!--android:layout_width="180dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:text="@string/app_name" />-->
+    <!--</android.support.v7.widget.Toolbar>-->
 
-    </android.support.design.widget.AppBarLayout>
+    <!--</android.support.design.widget.AppBarLayout>-->
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:orientation="vertical">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -108,6 +107,6 @@
         </ScrollView>
     </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>
 
 

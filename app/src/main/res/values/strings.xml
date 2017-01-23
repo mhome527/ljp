@@ -56,6 +56,6 @@
 
     <string name="title_animal">Animal</string>
     <string name="title_other">other</string>
-    <string name="title_count">Count</string>
+    <string name="title_counter">Counters</string>
 
 </resources>

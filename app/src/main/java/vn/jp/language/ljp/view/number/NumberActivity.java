@@ -41,6 +41,17 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
     @Override
     protected void initView() {
         List<String> stringList;
+        setTitle(getString(R.string.title_counter));
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setHomeButtonEnabled(false); // disable the button
+//            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
+//            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
+//            actionBar.setDisplayShowTitleEnabled(false); // remove title
+////            toolbarTitle.setText(getString(R.string.title_kanji));
+//
+//        } else
+//            Log.e(TAG, "initView actionBar NULL!!!!");
 
         presenter = new NumberPresenter(activity);
         stringList = presenter.getHeaderItem();

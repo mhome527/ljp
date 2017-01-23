@@ -1,23 +1,20 @@
 package vn.jp.language.ljp.view.phrases;
 
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.PhraseEntity;
+import vn.jp.language.ljp.sound.AudioManager;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.ICallback;
@@ -28,23 +25,19 @@ import vn.jp.language.ljp.view.RecyclerTouchListener;
  * Created by huynhtd on 10/17/2016.
  */
 
-public class PhraseActivity extends BaseActivity<PhraseActivity>  implements SearchView.OnQueryTextListener  {
+public class PhraseActivity extends BaseActivity<PhraseActivity> implements SearchView.OnQueryTextListener {
 
-    private static String TAG = "PhraseActivity";
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
-    @BindView(R.id.toolbarTitle)
-    TextView toolbarTitle;
+    private final String TAG = "PhraseActivity";
+    private final String FOLDER = "phrase/";
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    List<PhraseEntity> list;
+    List<PhraseEntity> listData;
 
     PhraseAdapter adapter;
     PhrasePresenter presenter;
+    AudioManager audio;
 
     @Override
     protected int getLayout() {
@@ -55,16 +48,9 @@ public class PhraseActivity extends BaseActivity<PhraseActivity>  implements Sea
     protected void initView() {
         presenter = new PhrasePresenter(this);
         adapter = new PhraseAdapter();
+        audio = new AudioManager(this);
 
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false); // disable the button
-            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
-            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
-            actionBar.setDisplayShowTitleEnabled(false); // remove title
-            toolbarTitle.setText(getString(R.string.title_Phrase));
-        }
+        setTitle(getString(R.string.title_Phrase));
         initControl();
         loadData();
     }
@@ -99,12 +85,6 @@ public class PhraseActivity extends BaseActivity<PhraseActivity>  implements Sea
         }
     }
 
-    @OnClick(R.id.tvBack)
-    public void actionBack() {
-        finish();
-    }
-
-
     // ============ OnQueryTextListener =============
     @Override
     public boolean onQueryTextSubmit(String query) {
@@ -124,7 +104,8 @@ public class PhraseActivity extends BaseActivity<PhraseActivity>  implements Sea
         presenter.searchData(text, new ICallback<List<PhraseEntity>>() {
             @Override
             public void onCallback(List<PhraseEntity> data) {
-                adapter.setData(data, text);
+                listData = data;
+                adapter.setData(listData, text);
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -153,12 +134,13 @@ public class PhraseActivity extends BaseActivity<PhraseActivity>  implements Sea
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new IClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Log.i(TAG, "onClick row pos:" + position);
+                Log.i(TAG, "onClick row pos:" + listData.get(position).sound);
+                audio.play(FOLDER + listData.get(position).sound);
             }
 
             @Override
             public void onLongClick(View view, int position) {
-                Log.i(TAG, "onLongClick row pos:" + position);
+                Log.i(TAG, "onLongClick row pos:" + listData.get(position).romaji);
             }
         }));
     }
@@ -167,7 +149,8 @@ public class PhraseActivity extends BaseActivity<PhraseActivity>  implements Sea
         presenter.loadData(new ICallback<List<PhraseEntity>>() {
             @Override
             public void onCallback(List list) {
-                adapter.setData(list, "");
+                listData = list;
+                adapter.setData(listData, "");
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

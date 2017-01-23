@@ -2,12 +2,10 @@ package vn.jp.language.ljp.view.grammar.search;
 
 import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +14,6 @@ import android.widget.Toast;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.GrammarEntity;
@@ -33,9 +30,6 @@ import vn.jp.language.ljp.view.grammar.detail.GrammarDetailActivity;
 public class GrammarSearchActivity extends BaseActivity<GrammarSearchActivity> implements IClickListener, SearchView.OnQueryTextListener {
 
     private final String TAG = "GrammarSearchActivity";
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -54,16 +48,16 @@ public class GrammarSearchActivity extends BaseActivity<GrammarSearchActivity> i
     protected void initView() {
         adapter = new GrammarSearchAdapter(activity);
         presenter = new GrammarSearchPresenter(activity);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false); // disable the button
-            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
-            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
-            actionBar.setDisplayShowTitleEnabled(false); // remove title
-
-        } else
-            Log.e(TAG, "initView actionBar NULL!!!!");
+//        setSupportActionBar(toolbar);
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setHomeButtonEnabled(false); // disable the button
+//            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
+//            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
+//            actionBar.setDisplayShowTitleEnabled(false); // remove title
+//
+//        } else
+//            Log.e(TAG, "initView actionBar NULL!!!!");
         setupView();
     }
 
@@ -81,7 +75,7 @@ public class GrammarSearchActivity extends BaseActivity<GrammarSearchActivity> i
             searchView.setPadding(15, 0, 0, 0);
 
         searchView.setQueryHint(getString(R.string.menu_search_hint)); // fill in the search term by default
-        searchView.clearFocus(); // close the keyboard on load
+//        searchView.clearFocus(); // close the keyboard on load
         return true;
     }
 
@@ -95,11 +89,6 @@ public class GrammarSearchActivity extends BaseActivity<GrammarSearchActivity> i
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @OnClick(R.id.tvBack)
-    public void actionBack() {
-        finish();
     }
 
     public void setupView() {

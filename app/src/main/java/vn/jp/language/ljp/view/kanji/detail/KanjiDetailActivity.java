@@ -1,7 +1,5 @@
 package vn.jp.language.ljp.view.kanji.detail;
 
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,7 +7,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.KanjiEntity;
@@ -24,16 +21,6 @@ import vn.jp.language.ljp.view.ICallback;
 public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
 
     private static final String TAG = "GrammarDetailActivity";
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
-    @BindView(R.id.tvBack)
-    TextView tvBack;
-
-    @BindView(R.id.toolbarTitle)
-    TextView toolbarTitle;
-
 
     @BindView(R.id.imgKanji)
     ImageView imgKanji;
@@ -60,17 +47,6 @@ public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
 
     @Override
     protected void initView() {
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-//        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false); // disable the button
-            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
-            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
-            actionBar.setDisplayShowTitleEnabled(false); // remove title
-
-        } else
-            Log.e(TAG, "initView actionBar NULL!!!!");
 
         presenter = new KanjiDetailPresenter(activity);
 
@@ -105,14 +81,10 @@ public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
         }
     }
 
-    @OnClick(R.id.tvBack)
-    public void actionBack() {
-        finish();
-    }
 
     private void setData(KanjiEntity entity) {
-//        toolbarTitle.setText(getString(R.string.title_kanji));
-        toolbarTitle.setText(entity.getKanji());
+
+        setTitleCenter(entity.getKanji());
 
         tvJp1.setText(entity.getJp1());
         tvJp2.setText(entity.getJp2());
@@ -123,4 +95,5 @@ public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
                 .load("file:///android_asset/butterfly.gif")
                 .into(imgKanji);
     }
+
 }

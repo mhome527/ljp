@@ -91,7 +91,7 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
     private void createData() {
         listData = new ArrayList<>();
         listData.add(new DashboardEntity(R.drawable.button_alphabet_on, getString(R.string.title_alphabet)));
-        listData.add(new DashboardEntity(R.drawable.button_number_on, getString(R.string.title_count)));
+        listData.add(new DashboardEntity(R.drawable.button_number_on, getString(R.string.title_counter)));
         listData.add(new DashboardEntity(R.drawable.button_grammar_on, getString(R.string.title_grammar)));
         listData.add(new DashboardEntity(R.drawable.button_kanji_on, getString(R.string.title_kanji)));
         listData.add(new DashboardEntity(R.drawable.button_phrases_on, getString(R.string.title_Phrase)));
