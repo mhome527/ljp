@@ -37,6 +37,7 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
     @Override
     protected void initView() {
         Log.i(TAG, "initView " + Constant.MY_TEXT);
+//        setTitle("asd");
         createData();
 
         gridView.setNumColumns(2); //TODO:check tablet

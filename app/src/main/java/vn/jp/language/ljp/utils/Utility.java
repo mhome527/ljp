@@ -15,6 +15,10 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.speech.RecognizerIntent;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import java.io.File;
@@ -357,5 +361,19 @@ public class Utility {
     }
 
 
-
+    public static void setWidthGrid(GridView gridView) {
+        ListAdapter gridViewAdapter = gridView.getAdapter();
+        if (gridViewAdapter == null) {
+            return;
+        }
+        int totalWidth;
+        int items = gridViewAdapter.getCount();
+        View listItem = gridViewAdapter.getView(0, null, gridView);
+        listItem.measure(0, 0);
+        totalWidth = listItem.getMeasuredWidth();
+        totalWidth = totalWidth*items;
+        ViewGroup.LayoutParams params = gridView.getLayoutParams();
+        params.width = totalWidth;
+        gridView.setLayoutParams(params);
+    }
 }

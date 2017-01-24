@@ -53,12 +53,14 @@ public class NumberPresenter extends BasePresenter<NumberActivity> {
                 return 10;
             case GENERIC:
                 return 11;
+            case MONTH:
+                return 12;
             default:
                 return 1;
         }
     }
 
-    public String getNumberDescription(int position){
+    public String getNumberDescription(int position) {
         List<String> stringList = getHeaderItem();
         switch (position) {
             case 0:
@@ -66,29 +68,31 @@ public class NumberPresenter extends BasePresenter<NumberActivity> {
             case 1:
                 return stringList.get(1) + ": " + activity.getString(R.string.number_count_person);
             case 2:
-                return stringList.get(2) + ": " +  activity.getString(R.string.number_count_long);
+                return stringList.get(2) + ": " + activity.getString(R.string.number_count_long);
             case 3:
-                return stringList.get(3) + ": " +  activity.getString(R.string.number_count_thing);
+                return stringList.get(3) + ": " + activity.getString(R.string.number_count_thing);
             case 4:
-                return stringList.get(4) + ": " +  activity.getString(R.string.number_count_book);
+                return stringList.get(4) + ": " + activity.getString(R.string.number_count_book);
             case 5:
-                return stringList.get(5) + ": " +  activity.getString(R.string.number_count_animal);
+                return stringList.get(5) + ": " + activity.getString(R.string.number_count_animal);
             case 6:
-                return stringList.get(6) + ": " +  activity.getString(R.string.number_count_age);
+                return stringList.get(6) + ": " + activity.getString(R.string.number_count_age);
             case 7:
-                return stringList.get(7) + ": " +  activity.getString(R.string.number_count_small_object);
+                return stringList.get(7) + ": " + activity.getString(R.string.number_count_small_object);
             case 8:
-                return stringList.get(8) + ": " +  activity.getString(R.string.number_count_time);
+                return stringList.get(8) + ": " + activity.getString(R.string.number_count_time);
             case 9:
-                return stringList.get(9) + ": " +  activity.getString(R.string.number_count_location);
+                return stringList.get(9) + ": " + activity.getString(R.string.number_count_location);
             case 10:
-                return stringList.get(10) + ": " +  activity.getString(R.string.number_count_generic);
+                return stringList.get(10) + ": " + activity.getString(R.string.number_count_generic);
+            case 11:
+                return stringList.get(10) + ": " + activity.getString(R.string.number_count_generic);
             default:
                 return stringList.get(0);
         }
     }
 
-    public List<String> getHeaderItem(){
+    public List<String> getHeaderItem() {
         List<String> list = new ArrayList<>();
         list.add("1");
         list.add("人");

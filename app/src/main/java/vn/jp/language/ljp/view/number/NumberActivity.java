@@ -11,6 +11,7 @@ import java.util.List;
 import butterknife.BindView;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.utils.Log;
+import vn.jp.language.ljp.utils.Utility;
 import vn.jp.language.ljp.view.BaseActivity;
 
 /**
@@ -83,6 +84,7 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
 
         headerAdapter = new NumberHeaderAdapter(activity, stringList);
         gridView.setNumColumns(stringList.size());
+
         gridView.setAdapter(headerAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -90,6 +92,8 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
                 viewPager.setCurrentItem(position);
             }
         });
+
+        Utility.setWidthGrid(gridView);
     }
 }
 

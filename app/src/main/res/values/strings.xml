@@ -34,16 +34,17 @@
     <string name="title_N4">N4</string>
     <string name="title_N5">N5</string>
 
-    <string name="number_count_person">To count the number of people</string>>
-    <string name="number_count_long">To count long, cylindrical objects such as bottles or chopsticks</string>
-    <string name="number_count_thing">To count thin objects such as paper or shirts</string>
-    <string name="number_count_book">To count bound objects usually books</string>
-    <string name="number_count_animal">To count small animals like cats or dogs</string>
-    <string name="number_count_age">To count the age of a living creatures such as people</string>
-    <string name="number_count_small_object">To count small (often round) objects</string>
-    <string name="number_count_time">To count number of times</string>
-    <string name="number_count_location">To count number of locations</string>
+    <string name="number_count_person">COUNTER FOR PEOPLE</string>>
+    <string name="number_count_long">COUNTER FOR LONG CYLINDRICAL THINGS</string>
+    <string name="number_count_thing">COUNTER FOR FLAT OBJECTS</string>
+    <string name="number_count_book">COUNTER FOR BOOKS</string>
+    <string name="number_count_animal">COUNTER FOR SMALL ANIMALS</string>
+    <string name="number_count_age">COUNTER FOR YEARS OLD</string>
+    <string name="number_count_small_object">COUNTER FOR ARTICLES</string>
+    <string name="number_count_time">COUNTER FOR OCCURRENCES</string>
+    <string name="number_count_location">COUNTER FOR PLACES</string>
     <string name="number_count_generic">To count any generic object that has a rare or no counter</string>
+
     <string name="menu_search">search</string>
     <string name="menu_search_hint">ひらがな, Romaji, Mean</string>
     <string name="coming_soon">Coming Soon!</string>
