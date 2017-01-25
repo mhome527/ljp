@@ -85,5 +85,4 @@ public class AlphabetActivity extends BaseActivity<AlphabetActivity> {
         behavior.onNestedFling(coordinator, appBar, null, 0, -1000, true);
     }
 
-
 }

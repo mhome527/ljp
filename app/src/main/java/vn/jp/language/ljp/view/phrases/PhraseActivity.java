@@ -50,7 +50,7 @@ public class PhraseActivity extends BaseActivity<PhraseActivity> implements Sear
         adapter = new PhraseAdapter();
         audio = new AudioManager(this);
 
-        setTitle(getString(R.string.title_Phrase));
+        setTitle(getString(R.string.title_phrase));
         initControl();
         loadData();
     }

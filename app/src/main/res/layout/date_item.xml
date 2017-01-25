@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvAlphabet"
+        android:id="@+id/tvKanji"
         android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:gravity="center"
-        android:paddingBottom="10dp"
-        tools:text="OK"
-        android:textSize="38sp" />
+        android:textSize="30sp"
+        tools:text="OK" />
 
     <TextView
-        android:id="@+id/tvAlphabetRight"
+        android:id="@+id/tvHiragana"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/tvKanji"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        tools:text="1234" />
+
+    <TextView
+        android:id="@+id/tvRomaji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvHiragana"
+        android:layout_toRightOf="@+id/tvKanji"
+        android:textSize="19sp"
+        tools:text="1234" />
+
+    <TextView
+        android:id="@+id/tvMean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:padding="10dp"
-        tools:text="1234"
-        android:textSize="19sp" />
+        android:textSize="19sp"
+        tools:text="1234" />
 
 </RelativeLayout>

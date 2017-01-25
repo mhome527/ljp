@@ -1,10 +1,14 @@
 package vn.jp.language.ljp.view.kanji.detail;
 
+import android.net.Uri;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
@@ -21,12 +25,10 @@ import vn.jp.language.ljp.view.ICallback;
 public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
 
     private static final String TAG = "GrammarDetailActivity";
+    private final String PATH = "file:///android_asset/kanji/";
 
     @BindView(R.id.imgKanji)
     ImageView imgKanji;
-
-    @BindView(R.id.tvOt)
-    TextView tvOt;
 
     @BindView(R.id.tvJp1)
     TextView tvJp1;
@@ -81,19 +83,38 @@ public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
         }
     }
 
-
     private void setData(KanjiEntity entity) {
-
-        setTitleCenter(entity.getKanji());
+        String fullPath;
+        setTitleCenter(entity.getOt());
 
         tvJp1.setText(entity.getJp1());
         tvJp2.setText(entity.getJp2());
-        tvOt.setText(entity.getOt());
         tvExample.setText(entity.getExample());
 
-        Glide.with(activity)
-                .load("file:///android_asset/butterfly.gif")
+        fullPath = PATH + entity.getImgPath() + ".gif";
+        Log.i(TAG, "path:" + fullPath);
+
+        RequestListener rq = new RequestListener<Uri, GlideDrawable>() {
+            @Override
+            public boolean onException(Exception e, Uri uri, Target<GlideDrawable> target, boolean b) {
+                Log.e(TAG, "Error!!!!");
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(GlideDrawable glideDrawable, Uri uri, Target<GlideDrawable> target, boolean b, boolean b1) {
+                Log.i(TAG, "ready....");
+                imgKanji.requestLayout();
+                imgKanji.invalidate();
+                return false;
+            }
+        };
+
+        Glide.with(activity).load(Uri.parse(fullPath))
+                .listener(rq)
+                .dontTransform()
                 .into(imgKanji);
+
     }
 
 }

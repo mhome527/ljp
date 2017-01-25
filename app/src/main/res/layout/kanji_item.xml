@@ -15,11 +15,14 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/imgKanji"
+        <TextView
+            android:id="@+id/tvKanji"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:background="@drawable/ic_shop" />
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            tools:text="@string/title_N1" />
 
 
         <LinearLayout
