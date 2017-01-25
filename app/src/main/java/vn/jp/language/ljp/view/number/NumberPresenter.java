@@ -53,46 +53,29 @@ public class NumberPresenter extends BasePresenter<NumberActivity> {
                 return 10;
             case GENERIC:
                 return 11;
-            case MONTH:
-                return 12;
             default:
                 return 1;
         }
     }
 
-    public String getNumberDescription(int position) {
-        List<String> stringList = getHeaderItem();
-        switch (position) {
-            case 0:
-                return stringList.get(0);
-            case 1:
-                return stringList.get(1) + ": " + activity.getString(R.string.number_count_person);
-            case 2:
-                return stringList.get(2) + ": " + activity.getString(R.string.number_count_long);
-            case 3:
-                return stringList.get(3) + ": " + activity.getString(R.string.number_count_thing);
-            case 4:
-                return stringList.get(4) + ": " + activity.getString(R.string.number_count_book);
-            case 5:
-                return stringList.get(5) + ": " + activity.getString(R.string.number_count_animal);
-            case 6:
-                return stringList.get(6) + ": " + activity.getString(R.string.number_count_age);
-            case 7:
-                return stringList.get(7) + ": " + activity.getString(R.string.number_count_small_object);
-            case 8:
-                return stringList.get(8) + ": " + activity.getString(R.string.number_count_time);
-            case 9:
-                return stringList.get(9) + ": " + activity.getString(R.string.number_count_location);
-            case 10:
-                return stringList.get(10) + ": " + activity.getString(R.string.number_count_generic);
-            case 11:
-                return stringList.get(10) + ": " + activity.getString(R.string.number_count_generic);
-            default:
-                return stringList.get(0);
-        }
+    public List<String> getContentHeaderItem() {
+        List<String> list = new ArrayList<>();
+        list.add(activity.getString(R.string.number_count_number));
+        list.add(activity.getString(R.string.number_count_person));
+        list.add(activity.getString(R.string.number_count_long));
+        list.add(activity.getString(R.string.number_count_flat));
+        list.add(activity.getString(R.string.number_count_book));
+        list.add(activity.getString(R.string.number_count_small_animal));
+        list.add(activity.getString(R.string.number_count_age));
+        list.add(activity.getString(R.string.number_count_small_object));
+        list.add(activity.getString(R.string.number_count_time));
+        list.add(activity.getString(R.string.number_count_location));
+        list.add(activity.getString(R.string.number_count_generic));
+
+        return list;
     }
 
-    public List<String> getHeaderItem() {
+        public List<String> getHeaderItem() {
         List<String> list = new ArrayList<>();
         list.add("1");
         list.add("人");

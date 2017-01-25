@@ -7,8 +7,6 @@ import android.widget.TextView;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.WordEntity;
 
-import static vn.jp.language.ljp.R.id.tvJp;
-
 /**
  * Created by HuynhTD on 12/20/2016.
  */

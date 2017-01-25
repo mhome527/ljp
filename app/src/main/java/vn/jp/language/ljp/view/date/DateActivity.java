@@ -48,7 +48,7 @@ public class DateActivity extends BaseActivity {
             actionBar.setDisplayHomeAsUpEnabled(true); // remove the left caret
             actionBar.setDisplayShowHomeEnabled(true); // remove the icon
             actionBar.setDisplayShowTitleEnabled(true); // remove title
-            actionBar.setTitle(getString(R.string.title_alphabet));
+            actionBar.setTitle(getString(R.string.title_date));
         }
 
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_date_day));

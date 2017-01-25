@@ -5,8 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import java.util.List;
-
 import vn.jp.language.ljp.Constant;
 
 /**
@@ -15,12 +13,12 @@ import vn.jp.language.ljp.Constant;
 
 public class NumberPagerAdapter extends FragmentStatePagerAdapter {
     Context context;
-    List<String> stringList;
+    int pages;
 
-    public NumberPagerAdapter(Context context, FragmentManager fm, List<String> stringList) {
+    public NumberPagerAdapter(Context context, FragmentManager fm, int pages) {
         super(fm);
-        this.stringList = stringList;
         this.context = context;
+        this.pages = pages;
     }
 
     @Override
@@ -70,6 +68,6 @@ public class NumberPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return stringList.size();
+        return pages;
     }
 }

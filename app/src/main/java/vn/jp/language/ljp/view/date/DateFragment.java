@@ -47,7 +47,7 @@ public class DateFragment extends BaseFragment<DateActivity> implements IClickLi
 
     private void setupView() {
         recyclerView.setAdapter(adapter);
-        Common.setupRecyclerView(activity, recyclerView, this);
+        Common.setupRecyclerViewGrid(activity, recyclerView, this);
     }
 
     public void loadData() {
@@ -72,7 +72,7 @@ public class DateFragment extends BaseFragment<DateActivity> implements IClickLi
     }
 
     private int getKind() {
-        if (page == 0)
+        if (page == 1)
             return 16;
         return 15;
     }

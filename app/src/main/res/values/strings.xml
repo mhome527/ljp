@@ -37,16 +37,17 @@
     <string name="title_N4">N4</string>
     <string name="title_N5">N5</string>
 
+    <string name="number_count_number">NUMBERS</string>>
     <string name="number_count_person">COUNTER FOR PEOPLE</string>>
-    <string name="number_count_long">COUNTER FOR LONG CYLINDRICAL THINGS</string>
-    <string name="number_count_thing">COUNTER FOR FLAT OBJECTS</string>
+    <string name="number_count_long">LONG THIN OBJECTS</string>
+    <string name="number_count_flat">FLAT OBJECTS</string>
     <string name="number_count_book">COUNTER FOR BOOKS</string>
-    <string name="number_count_animal">COUNTER FOR SMALL ANIMALS</string>
+    <string name="number_count_small_animal">SMALL ANIMALS</string>
     <string name="number_count_age">COUNTER FOR YEARS OLD</string>
-    <string name="number_count_small_object">COUNTER FOR ARTICLES</string>
+    <string name="number_count_small_object">SMALL OBJECTS</string>
     <string name="number_count_time">COUNTER FOR OCCURRENCES</string>
     <string name="number_count_location">COUNTER FOR PLACES</string>
-    <string name="number_count_generic">To count any generic object that has a rare or no counter</string>
+    <string name="number_count_generic">COUNT ANY GENERIC OBJECT</string>
 
     <string name="menu_search">search</string>
     <string name="menu_search_hint">ひらがな, Romaji, Mean</string>
@@ -62,6 +63,6 @@
     <string name="title_animal">Animal</string>
     <string name="title_other">other</string>
     <string name="title_counter">Counters</string>
-    <string name="title_date">Date</string>
+    <string name="title_date">Dates</string>
 
 </resources>

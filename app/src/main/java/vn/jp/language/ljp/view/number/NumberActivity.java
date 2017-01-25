@@ -4,7 +4,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -25,11 +24,11 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
     @BindView(R.id.gridView)
     GridView gridView;
 
-    @BindView(R.id.tvMean)
-    TextView tvMean;
-
     @BindView(R.id.viewpager)
     ViewPager viewPager;
+
+    List<String> stringList;
+
 
     NumberPresenter presenter;
     NumberHeaderAdapter headerAdapter;
@@ -41,7 +40,6 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
 
     @Override
     protected void initView() {
-        List<String> stringList;
         setTitle(getString(R.string.title_counter));
 //        ActionBar actionBar = getSupportActionBar();
 //        if (actionBar != null) {
@@ -55,10 +53,10 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
 //            Log.e(TAG, "initView actionBar NULL!!!!");
 
         presenter = new NumberPresenter(activity);
-        stringList = presenter.getHeaderItem();
+        stringList = presenter.getContentHeaderItem();
 
         final NumberPagerAdapter adapter = new NumberPagerAdapter
-                (activity, getSupportFragmentManager(), stringList);
+                (activity, getSupportFragmentManager(), stringList.size());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -72,8 +70,9 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
                 headerAdapter.currPos = position;
                 headerAdapter.notifyDataSetChanged();
 
-                tvMean.setText(presenter.getNumberDescription(position));
-
+//                tvMean.setText(presenter.getNumberDescription(position));
+                gridView.smoothScrollToPosition(position);
+                setTitleCenter(stringList.get(position));
             }
 
             @Override
@@ -82,8 +81,9 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
             }
         });
 
-        headerAdapter = new NumberHeaderAdapter(activity, stringList);
-        gridView.setNumColumns(stringList.size());
+        headerAdapter = new NumberHeaderAdapter(activity, presenter.getHeaderItem());
+//        gridView.setNumColumns(stringList.size());
+        gridView.setNumColumns(presenter.getHeaderItem().size());
 
         gridView.setAdapter(headerAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -95,5 +95,6 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
 
         Utility.setWidthGrid(gridView);
     }
+
 }
 
