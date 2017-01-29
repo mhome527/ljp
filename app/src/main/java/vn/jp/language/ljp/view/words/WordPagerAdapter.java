@@ -28,8 +28,12 @@ public class WordPagerAdapter extends FragmentStatePagerAdapter {
                 return tab1;
             case 1:
                 WordFragment tab2 = new WordFragment();
-                tab2.typeWord = Constant.TYPE_WORD.OTHER;
+                tab2.typeWord = Constant.TYPE_WORD.FRUIT;
                 return tab2;
+            case 2:
+                WordFragment tab3 = new WordFragment();
+                tab3.typeWord = Constant.TYPE_WORD.OTHER;
+                return tab3;
 
             default:
                 return null;

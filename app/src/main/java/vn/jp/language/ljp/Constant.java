@@ -98,7 +98,7 @@ public class Constant {
     }
 
   public enum TYPE_WORD{
-        ANIMAL, OTHER
+        ANIMAL, FRUIT, OTHER
     }
 
     public enum TYPE_NUMBERS{

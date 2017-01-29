@@ -46,6 +46,7 @@ public class WordActivity extends BaseActivity<WordActivity> {
 //        }
         setTitleCenter(getString(R.string.title_word));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_animal));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.title_fruit));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_other));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 

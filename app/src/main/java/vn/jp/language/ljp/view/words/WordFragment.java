@@ -101,13 +101,19 @@ public class WordFragment extends BaseFragment<WordActivity> {
         });
     }
 
-    private int getKind() {
+    private int[] getKind() {
         switch (typeWord) {
             case ANIMAL:
-                return 4;
+                return new int[] {4};
+
+            case FRUIT:
+                return new int[] {1};
+
             case OTHER:
+                return new int[] {2,5,6,7,12,13};
+
             default:
-                return 2;
+                return new int[] {1};
         }
     }
 }

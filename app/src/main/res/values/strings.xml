@@ -60,8 +60,9 @@
     <string name="title_phrase">Phrase</string>
     <string name="title_coming_soon">Coming soon</string>
 
-    <string name="title_animal">Animal</string>
-    <string name="title_other">other</string>
+    <string name="title_animal">ANIMAL</string>
+    <string name="title_fruit">FRUITS</string>
+    <string name="title_other">OTHER</string>
     <string name="title_counter">Counters</string>
     <string name="title_date">Dates</string>
 

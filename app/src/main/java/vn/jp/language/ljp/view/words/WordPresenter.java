@@ -17,7 +17,7 @@ public class WordPresenter extends BasePresenter<WordActivity> {
         super(activity);
     }
 
-    public void loadData(final int kind, ICallback<List<WordEntity>> callback) {
+    public void loadData(final int[] kind, ICallback<List<WordEntity>> callback) {
         loadData(callback, new ILoadData() {
                     @Override
                     public List<WordEntity> onBackground() {

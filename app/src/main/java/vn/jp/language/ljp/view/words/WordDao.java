@@ -8,7 +8,6 @@ import java.util.List;
 import vn.jp.language.ljp.db.dao.BaseDao;
 import vn.jp.language.ljp.db.table.WordTable;
 import vn.jp.language.ljp.entity.WordEntity;
-import vn.jp.language.ljp.utils.Log;
 
 /**
  * Created by huynhtran on 5/12/16.
@@ -34,11 +33,22 @@ public class WordDao extends BaseDao<WordEntity> {
         return entity;
     }
 
-    public static List<WordEntity> getListData(Context context, int kind) {
-        String sql = "SELECT * FROM " + WordTable.TABLE_NAME
-                + " WHERE " + WordTable.COL_KIND + " = " + kind
+    public static List<WordEntity> getListData(Context context, int[] kind) {
+        String where = " WHERE " + WordTable.COL_KIND + " ";
+        String tmp;
+        if (kind.length > 1) {
+            tmp = kind[0] + "";
+            for (int i = 1; i < kind.length; i++) {
+                tmp += "," + i;
+            }
+            where += " IN (" + tmp + ")";
+        } else {
+            where += " = " + kind[0];
+        }
+
+
+        String sql = "SELECT * FROM " + WordTable.TABLE_NAME + where
                 + " ORDER BY " + WordTable.COL_JP1;
-        Log.i(TAG, "word: sql=" + sql);
         WordDao dao = new WordDao(context);
         return dao.fetchAll(sql);
     }
