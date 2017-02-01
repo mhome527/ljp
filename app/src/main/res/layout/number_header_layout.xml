@@ -16,12 +16,12 @@
         android:textSize="20sp"
         tools:text="123" />
 
-    <View
-        android:id="@+id/vLine"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:background="@android:color/holo_red_dark" />
+    <!--<View-->
+        <!--android:id="@+id/vLine"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_marginLeft="2dp"-->
+        <!--android:layout_marginRight="2dp"-->
+        <!--android:background="@android:color/holo_red_dark" />-->
 
 </LinearLayout>

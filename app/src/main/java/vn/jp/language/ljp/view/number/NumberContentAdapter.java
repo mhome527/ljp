@@ -52,7 +52,10 @@ public class NumberContentAdapter extends BaseAdapter<NumberItemHolder> {
     @Override
     public void onBindViewHolder(NumberItemHolder holder, int position) {
         NumberEntity entity = listData.get(position);
-        holder.tvNum.setText(entity.getNum() + "");
+        if (entity.getNum() == -1)
+            holder.tvNum.setText("");
+        else
+            holder.tvNum.setText(entity.getNum() + "");
         holder.tvJp.setText(entity.getJp());
         holder.tvRomaji.setText(entity.getRomaji());
     }

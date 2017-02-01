@@ -39,7 +39,7 @@ public class WordDao extends BaseDao<WordEntity> {
         if (kind.length > 1) {
             tmp = kind[0] + "";
             for (int i = 1; i < kind.length; i++) {
-                tmp += "," + i;
+                tmp += "," + kind[i] ;
             }
             where += " IN (" + tmp + ")";
         } else {

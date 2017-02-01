@@ -6,15 +6,15 @@
     android:orientation="vertical">
 
     <!--<TextView-->
-        <!--android:id="@+id/tvMean"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="5dp"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:lines="2"-->
-        <!--android:paddingLeft="10dp"-->
-        <!--android:text="@string/title_button_number"-->
-        <!--android:textColor="@android:color/black" />-->
+    <!--android:id="@+id/tvMean"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="5dp"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:lines="2"-->
+    <!--android:paddingLeft="10dp"-->
+    <!--android:text="@string/title_button_number"-->
+    <!--android:textColor="@android:color/black" />-->
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
@@ -23,13 +23,15 @@
         android:layout_below="@+id/tab_layout"
         android:layout_weight="1" />
 
-    <LinearLayout android:background="@color/silver"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="@color/silver"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageButton
+            android:id="@+id/imgPre"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/ic_pre" />
@@ -58,9 +60,10 @@
         </LinearLayout>
 
         <ImageButton
+            android:id="@+id/imgNext"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/ic_pre" />
+            android:background="@drawable/ic_next" />
 
     </LinearLayout>
 </LinearLayout>

@@ -53,7 +53,7 @@ public class NumberHeaderAdapter extends BaseAdapter {
             holderView = new HolderView();
             convertView = layoutinflater.inflate(R.layout.number_header_layout, parent, false);
             holderView.tvItem = (TextView) convertView.findViewById(R.id.tvItem);
-            holderView.vLine = convertView.findViewById(R.id.vLine);
+//            holderView.vLine = convertView.findViewById(R.id.vLine);
             convertView.setTag(holderView);
         } else {
             holderView = (HolderView) convertView.getTag();
@@ -61,10 +61,10 @@ public class NumberHeaderAdapter extends BaseAdapter {
 
         if (currPos == position) {
             holderView.tvItem.setTextColor(context.getResources().getColor(R.color.darkred));
-            holderView.vLine.setVisibility(View.VISIBLE);
+//            holderView.vLine.setVisibility(View.VISIBLE);
         } else {
             holderView.tvItem.setTextColor(context.getResources().getColor(R.color.black));
-            holderView.vLine.setVisibility(View.INVISIBLE);
+//            holderView.vLine.setVisibility(View.INVISIBLE);
         }
         String name = listData.get(position);
         holderView.tvItem.setText(name);
@@ -73,6 +73,6 @@ public class NumberHeaderAdapter extends BaseAdapter {
 
     static class HolderView {
         TextView tvItem;
-        View vLine;
+//        View vLine;
     }
 }

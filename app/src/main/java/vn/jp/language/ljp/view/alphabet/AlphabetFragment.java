@@ -69,7 +69,8 @@ public class AlphabetFragment extends BaseFragment<AlphabetActivity> {
             public void onClick(View view, int position) {
                 Log.i(TAG, "onClick row pos:" + listData.get(position).getSound());
                 if (!listData.get(position).getOt().equals("-"))
-                    audio.play(folder + listData.get(position).getOt());
+                    audio.play(folder + listData.get(position).getSound());
+//                    audio.play(folder + listData.get(position).getOt());
 //                audio.play(folder + "call2.mp3");
             }
 

@@ -8,6 +8,7 @@ import android.widget.GridView;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.utils.Utility;
@@ -95,6 +96,28 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
 
         Utility.setWidthGrid(gridView);
     }
+
+    @OnClick(R.id.imgPre)
+    public void actionPre() {
+        if (headerAdapter.currPos == 0) {
+            return;
+        }
+        headerAdapter.currPos--;
+        headerAdapter.notifyDataSetChanged();
+        viewPager.setCurrentItem(headerAdapter.currPos);
+
+    }
+
+    @OnClick(R.id.imgNext)
+    public void actionNext() {
+        if (headerAdapter.currPos == stringList.size()) {
+            return;
+        }
+        headerAdapter.currPos++;
+        headerAdapter.notifyDataSetChanged();
+        viewPager.setCurrentItem(headerAdapter.currPos);
+    }
+
 
 }
 
