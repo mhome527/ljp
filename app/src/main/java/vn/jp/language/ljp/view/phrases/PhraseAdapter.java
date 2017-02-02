@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -15,25 +14,22 @@ import vn.jp.language.ljp.entity.PhraseEntity;
  * Created by Administrator on 10/18/2016.
  */
 
-public class PhraseAdapter extends RecyclerView.Adapter<PhraseAdapter.MyViewHolder> {
+public class PhraseAdapter extends RecyclerView.Adapter<PhraseItemHolder> {
 
     List<PhraseEntity> list;
     String text = "";
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PhraseItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.phrase_item, parent, false);
 
-        return new MyViewHolder(itemView);
+        return new PhraseItemHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        PhraseEntity entity = list.get(position);
-        holder.tvJp.setText(entity.getJp());
-        holder.tvRomaji.setText(entity.getRomaji());
-        holder.tvOt.setText(entity.getOt());
+    public void onBindViewHolder(PhraseItemHolder holder, int position) {
+       holder.bind(position, list.get(position));
     }
 
     @Override
@@ -41,17 +37,6 @@ public class PhraseAdapter extends RecyclerView.Adapter<PhraseAdapter.MyViewHold
         if (list == null)
             return 0;
         return list.size();
-    }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvJp, tvRomaji, tvOt;
-
-        public MyViewHolder(View view) {
-            super(view);
-            tvJp = (TextView) view.findViewById(R.id.tvJp);
-            tvRomaji = (TextView) view.findViewById(R.id.tvRomaji);
-            tvOt = (TextView) view.findViewById(R.id.tvOt);
-        }
     }
 
     public void setData(List<PhraseEntity> list, String text) {

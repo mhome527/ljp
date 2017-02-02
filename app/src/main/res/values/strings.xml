@@ -38,6 +38,7 @@
     <string name="title_N5">N5</string>
 
     <string name="number_count_number">NUMBERS</string>>
+    <string name="number_count_month">COUNTING MONTHS</string>>
     <string name="number_count_person">COUNTER FOR PEOPLE</string>>
     <string name="number_count_long">LONG THIN OBJECTS</string>
     <string name="number_count_flat">FLAT OBJECTS</string>

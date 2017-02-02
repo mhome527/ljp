@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import vn.jp.language.ljp.BaseApplication;
+import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.WordEntity;
 import vn.jp.language.ljp.utils.Utility;
@@ -16,6 +17,7 @@ import vn.jp.language.ljp.utils.Utility;
 
 public class WordItemHolder extends RecyclerView.ViewHolder {
 
+    ImageView imgSound;
     ImageView imgWord;
     TextView tvJp;
     TextView tvRomaji;
@@ -23,12 +25,17 @@ public class WordItemHolder extends RecyclerView.ViewHolder {
     public WordItemHolder(final View itemView) {
         super(itemView);
         imgWord = (ImageView) itemView.findViewById(R.id.imgWord);
+        imgSound = (ImageView) itemView.findViewById(R.id.imgSound);
         tvJp = (TextView) itemView.findViewById(R.id.tvJp);
         tvRomaji = (TextView) itemView.findViewById(R.id.tvRomaji);
-
     }
 
-    public void bind(WordEntity entity) {
+    public void bind(int position, WordEntity entity) {
+        if(Constant.isPro || position < 4)
+            imgSound.setImageResource(R.drawable.ic_speaker);
+        else
+            imgSound.setImageResource(R.drawable.ic_lock);
+
         tvJp.setText(entity.getJp1());
         tvRomaji.setText(entity.getRomaji());
 

@@ -53,6 +53,8 @@ public class NumberPresenter extends BasePresenter<NumberActivity> {
                 return 10;
             case GENERIC:
                 return 11;
+            case MONTH:
+                return 12;
             default:
                 return 1;
         }
@@ -61,6 +63,7 @@ public class NumberPresenter extends BasePresenter<NumberActivity> {
     public List<String> getContentHeaderItem() {
         List<String> list = new ArrayList<>();
         list.add(activity.getString(R.string.number_count_number));
+        list.add(activity.getString(R.string.number_count_month));
         list.add(activity.getString(R.string.number_count_person));
         list.add(activity.getString(R.string.number_count_long));
         list.add(activity.getString(R.string.number_count_flat));
@@ -75,9 +78,10 @@ public class NumberPresenter extends BasePresenter<NumberActivity> {
         return list;
     }
 
-        public List<String> getHeaderItem() {
+    public List<String> getHeaderItem() {
         List<String> list = new ArrayList<>();
         list.add("1");
+        list.add("月");
         list.add("人");
         list.add("本");
         list.add("枚");

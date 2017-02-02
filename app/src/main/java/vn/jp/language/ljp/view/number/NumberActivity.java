@@ -72,7 +72,8 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
                 headerAdapter.notifyDataSetChanged();
 
 //                tvMean.setText(presenter.getNumberDescription(position));
-                gridView.smoothScrollToPosition(position);
+//                gridView.smoothScrollToPosition(position);
+                gridView.setSelection(position);
                 setTitleCenter(stringList.get(position));
             }
 
@@ -105,7 +106,7 @@ public class NumberActivity extends BaseActivity<NumberActivity> {
         headerAdapter.currPos--;
         headerAdapter.notifyDataSetChanged();
         viewPager.setCurrentItem(headerAdapter.currPos);
-
+        gridView.setSelection(headerAdapter.currPos);
     }
 
     @OnClick(R.id.imgNext)

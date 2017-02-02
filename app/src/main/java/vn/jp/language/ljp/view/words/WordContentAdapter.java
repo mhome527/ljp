@@ -30,7 +30,7 @@ public class WordContentAdapter extends BaseAdapter<WordItemHolder> {
 
     @Override
     public void onBindViewHolder(WordItemHolder holder, int position) {
-        holder.bind(listData.get(position));
+        holder.bind(position, listData.get(position));
     }
 
     @Override

@@ -38,7 +38,7 @@ public class NumberDao extends BaseDao<NumberEntity> {
         return fetchAll(sql);
     }
 
- public List<NumberEntity> getListData(int kind) {
+    public List<NumberEntity> getListData(int kind) {
         String sql = "SELECT * FROM " + NumberTable.TABLE_NAME
                 + " WHERE " + NumberTable.COL_KIND + " = " + kind
                 + " ORDER BY " + NumberTable.COL_NUM;

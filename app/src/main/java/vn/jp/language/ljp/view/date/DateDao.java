@@ -37,7 +37,7 @@ public class DateDao extends BaseDao<WordEntity> {
     public static List<WordEntity> getListData(Context context, int kind) {
         String sql = "SELECT * FROM " + WordTable.TABLE_NAME
                 + " WHERE " + WordTable.COL_KIND + " = " + kind
-                + " ORDER BY " + WordTable.COL_JP1;
+                + " ORDER BY " + WordTable.COL_NUM;
         Log.i(TAG, "word: sql=" + sql);
         DateDao dao = new DateDao(context);
         return dao.fetchAll(sql);

@@ -30,36 +30,38 @@ public class NumberPagerAdapter extends FragmentStatePagerAdapter {
                 fragment.numbers = Constant.TYPE_NUMBERS.NUMBER;
                 break;
             case 1:
-                fragment.numbers = Constant.TYPE_NUMBERS.PERSON;
+                fragment.numbers = Constant.TYPE_NUMBERS.MONTH;
                 break;
             case 2:
-                fragment.numbers = Constant.TYPE_NUMBERS.LONG;
+                fragment.numbers = Constant.TYPE_NUMBERS.PERSON;
                 break;
             case 3:
-                fragment.numbers = Constant.TYPE_NUMBERS.THING;
+                fragment.numbers = Constant.TYPE_NUMBERS.LONG;
                 break;
             case 4:
-                fragment.numbers = Constant.TYPE_NUMBERS.BOOK;
+                fragment.numbers = Constant.TYPE_NUMBERS.THING;
                 break;
             case 5:
-                fragment.numbers = Constant.TYPE_NUMBERS.ANIMAL;
+                fragment.numbers = Constant.TYPE_NUMBERS.BOOK;
                 break;
             case 6:
-                fragment.numbers = Constant.TYPE_NUMBERS.AGE;
+                fragment.numbers = Constant.TYPE_NUMBERS.ANIMAL;
                 break;
             case 7:
-                fragment.numbers = Constant.TYPE_NUMBERS.SMALL_OBJECT;
+                fragment.numbers = Constant.TYPE_NUMBERS.AGE;
                 break;
             case 8:
-                fragment.numbers = Constant.TYPE_NUMBERS.TIME;
+                fragment.numbers = Constant.TYPE_NUMBERS.SMALL_OBJECT;
                 break;
             case 9:
-                fragment.numbers = Constant.TYPE_NUMBERS.LOCATION;
+                fragment.numbers = Constant.TYPE_NUMBERS.TIME;
                 break;
             case 10:
-                fragment.numbers = Constant.TYPE_NUMBERS.GENERIC;
+                fragment.numbers = Constant.TYPE_NUMBERS.LOCATION;
                 break;
+            case 11:
             default:
+                fragment.numbers = Constant.TYPE_NUMBERS.GENERIC;
                 break;
         }
 
