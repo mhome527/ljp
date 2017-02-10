@@ -10,10 +10,17 @@ public class Constant {
     final static public String PACKAGE_UPDATE = "market://details?id=" + BuildConfig.APPLICATION_ID;
     final static public String API_MARKER = "https://androidquery.appspot.com/api/market?app=" + BuildConfig.APPLICATION_ID;
 
+    // ========== Purchase ===========
+    public static final String BASE_64_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxUMxIhJ+tM1Ljj9x6eqL52tUVOpKsihGfgSD0GJ2tB5vTiS5E2+xA0iqfsFgTX3atsSNKefIY8gET//T0czPNCdF7bmnQJC0xDYPRXzebh0KbxAWqkRWr7eUb0fGafOc68v9YcjgCpM4q/S0T1lkvDJlax4CBLgEd4N/GEKaxHospLyxVbzoQ4yn0b2K4XZUGB5Dvo6XwHxI6w+D668uZPW/oz/zZW7KgoXpvtNYVwTFUBCMvSPhqFu8Ek4+OBo7feYIsPUyXf1fk4M8b+6nMybBxUnyzr3osM8kDltGg64ZqVD8BXVxvbJ7RWCZPIL8hL/IV+WFesso/MLktXPpSQIDAQAB";
+    public static final String SKU = "study.vn.jp";
+    public static final int PURCHASE_REQUEST_CODE = 1080;
+    /// ===========
+
     /////
 
     ////
     final static public String MY_TEXT;
+
     public static native String stringFromJNI();
 
     static {
@@ -21,7 +28,7 @@ public class Constant {
         MY_TEXT = stringFromJNI();
     }
 
-//    public static final String DB_NAME = "ljp2.sqlite";
+    //    public static final String DB_NAME = "ljp2.sqlite";
     public static final String DB_NAME = "ljp3.sqlite";
     public static final int DATABASE_VERSION = 1;
 
@@ -93,16 +100,16 @@ public class Constant {
 //    public static String KEY_ANALYSIS = "UA-54709178-3"; // daohuynh7
     public static String KEY_ANALYSIS = "UA-54709178-4"; // daohuynh7-new
 
-    public enum TYPE_ALPHABET{
+    public enum TYPE_ALPHABET {
         HIRAGANA, KATAKANA
     }
 
-  public enum TYPE_WORD{
+    public enum TYPE_WORD {
         ANIMAL, FRUIT, OTHER
     }
 
-    public enum TYPE_NUMBERS{
-       NUMBER, PERSON, LONG, THING, BOOK, ANIMAL, AGE, SMALL_OBJECT, TIME, LOCATION, GENERIC, MONTH
+    public enum TYPE_NUMBERS {
+        NUMBER, PERSON, LONG, THING, BOOK, ANIMAL, AGE, SMALL_OBJECT, TIME, LOCATION, GENERIC, MONTH
     }
 
 }

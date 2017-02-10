@@ -28,4 +28,10 @@ public class Log {
         }
     }
 
+    public static void trace(Exception e){
+        if(BuildConfig.DEBUG){
+            e.printStackTrace();
+        }
+    }
+
 }

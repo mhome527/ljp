@@ -76,25 +76,6 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         });
     }
 
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.mnColor:
-//                break;
-//            case R.id.mnSearch:
-//
-//                break;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
     private void createData() {
         listData = new ArrayList<>();
         listData.add(new DashboardEntity(R.drawable.ic_alphabet, getString(R.string.title_alphabet)));
@@ -106,4 +87,5 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         listData.add(new DashboardEntity(R.drawable.ic_animal, getString(R.string.title_word)));
 //        listData.add(new DashboardEntity(R.drawable.button_word_on, getString(R.string.title_coming_soon)));
     }
+
 }

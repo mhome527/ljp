@@ -12,20 +12,21 @@ import android.view.View;
 import java.util.List;
 
 import butterknife.BindView;
+import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.PhraseEntity;
 import vn.jp.language.ljp.sound.AudioManager;
 import vn.jp.language.ljp.utils.Log;
-import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
 import vn.jp.language.ljp.view.RecyclerTouchListener;
+import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 /**
  * Created by huynhtd on 10/17/2016.
  */
 
-public class PhraseActivity extends BaseActivity<PhraseActivity> implements SearchView.OnQueryTextListener {
+public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements SearchView.OnQueryTextListener {
 
     private final String TAG = "PhraseActivity";
     private final String FOLDER = "phrase/";
@@ -46,6 +47,8 @@ public class PhraseActivity extends BaseActivity<PhraseActivity> implements Sear
 
     @Override
     protected void initView() {
+        Log.i(TAG, "onCreate");
+
         presenter = new PhrasePresenter(this);
         adapter = new PhraseAdapter();
         audio = new AudioManager(this);
@@ -53,6 +56,9 @@ public class PhraseActivity extends BaseActivity<PhraseActivity> implements Sear
         setTitle(getString(R.string.title_phrase));
         initControl();
         loadData();
+
+        ///
+//        getItemPurchased();
     }
 
     @Override
@@ -99,6 +105,19 @@ public class PhraseActivity extends BaseActivity<PhraseActivity> implements Sear
     }
     /// ========= end OnQueryTextListener ===============
 
+    // ================= Purchase ====================
+    @Override
+    protected void dealWithIabSetupSuccess() {
+
+    }
+
+    @Override
+    protected void dealWithIabSetupFailure() {
+
+    }
+    // ================ Purchase ===========
+    //////////////
+
     public void filter(final String text) {
 
         presenter.searchData(text, new ICallback<List<PhraseEntity>>() {
@@ -135,7 +154,14 @@ public class PhraseActivity extends BaseActivity<PhraseActivity> implements Sear
             @Override
             public void onClick(View view, int position) {
                 Log.i(TAG, "onClick row pos:" + listData.get(position).sound);
-                audio.play(FOLDER + listData.get(position).sound);
+                getItemPurchased();
+
+                // Purchase test
+                purchaseItem(Constant.SKU);
+
+                //////////
+
+                //audio.play(FOLDER + listData.get(position).sound);
             }
 
             @Override
@@ -165,4 +191,6 @@ public class PhraseActivity extends BaseActivity<PhraseActivity> implements Sear
             }
         });
     }
+
+
 }

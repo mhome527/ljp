@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_shop" />
+            android:src="@drawable/ic_phrase" />
 
         <TextView
             android:id="@+id/tvContent"
