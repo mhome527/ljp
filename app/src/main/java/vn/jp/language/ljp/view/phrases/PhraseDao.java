@@ -24,6 +24,7 @@ public class PhraseDao extends BaseDao<PhraseEntity> {
     @Override
     public PhraseEntity fetch(Cursor cursor) {
         PhraseEntity entity = new PhraseEntity();
+        entity.num = cursor.getInt(cursor.getColumnIndex(PhraseTable.COL_NUM));
         entity.jp = cursor.getString(cursor.getColumnIndex(PhraseTable.COL_JP));
         entity.romaji = cursor.getString(cursor.getColumnIndex(PhraseTable.COL_ROMAJI));
         entity.ot = cursor.getString(cursor.getColumnIndex(PhraseTable.COL_OT));

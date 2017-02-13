@@ -22,6 +22,14 @@ public class PhraseEntity {
 //    }
 
 
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
     public String getJp() {
         return jp;
     }

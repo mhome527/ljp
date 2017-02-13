@@ -30,7 +30,7 @@ public class PhraseAdapter extends RecyclerView.Adapter<PhraseItemHolder> {
 
     @Override
     public void onBindViewHolder(PhraseItemHolder holder, int position) {
-       holder.bind(position, isPurchased, list.get(position));
+       holder.bind(isPurchased, list.get(position));
     }
 
     @Override

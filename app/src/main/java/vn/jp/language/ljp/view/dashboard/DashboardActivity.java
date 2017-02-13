@@ -11,6 +11,7 @@ import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.DashboardEntity;
+import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.alphabet.AlphabetActivity;
@@ -38,10 +39,13 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
     @Override
     protected void initView() {
         Log.i(TAG, "initView text: " + Constant.MY_TEXT);
-//        setTitle("asd");
+        setTitle(getString(R.string.title_dashboard));
         createData();
 
-        gridView.setNumColumns(2); //TODO:check tablet
+        if (Common.isTablet(activity))
+            gridView.setNumColumns(3);
+        else
+            gridView.setNumColumns(2);
 
         gridView.setAdapter(new DashboardAdapter(this, listData));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

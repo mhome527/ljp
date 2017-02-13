@@ -1,6 +1,7 @@
 package vn.jp.language.ljp.utils;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,5 +34,9 @@ public class Common {
         //Add event
         if (iClickListener != null)
             recyclerView.addOnItemTouchListener(new RecyclerTouchListener(context, recyclerView, iClickListener));
+    }
+
+    public static boolean isTablet(Context ctx){
+        return (ctx.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 }

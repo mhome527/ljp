@@ -12,6 +12,7 @@ import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.WordEntity;
 import vn.jp.language.ljp.sound.AudioManager;
+import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseFragment;
 import vn.jp.language.ljp.view.ICallback;
@@ -55,7 +56,12 @@ public class WordFragment extends BaseFragment<WordActivity> {
     }
 
     public void setupView() {
-        GridLayoutManager lLayout = new GridLayoutManager(activity, 2);
+        GridLayoutManager lLayout;
+        if (Common.isTablet(activity))
+         lLayout = new GridLayoutManager(activity, 3);
+        else
+         lLayout = new GridLayoutManager(activity, 2);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(lLayout);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -72,7 +78,7 @@ public class WordFragment extends BaseFragment<WordActivity> {
                 activity.setTitleCenter(listData.get(position).getOt());
 
                 if (activity.isPurchased || position < Constant.TRIAL) {
-//                    audio.play(FOLDER + listData.get(position).sound);
+                    audio.play(FOLDER + listData.get(position).sound);
                 } else {
                     Log.i(TAG, "===> buy!!!");
                     activity.purchaseItem();

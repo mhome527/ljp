@@ -36,19 +36,44 @@
                     android:layout_marginTop="5dp"
                     android:background="@color/gray" />
 
-                <TextView
-                    android:id="@+id/tvJp1"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="@string/app_name" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
 
-                <TextView
-                    android:id="@+id/tvJp2"
+                    <ImageView
+                        android:id="@+id/img1" android:layout_marginRight="5dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/ic_num1" />
+
+                    <TextView
+                        android:id="@+id/tvJp1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/app_name" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    tools:text="@string/app_name" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_width="20dp" android:layout_marginRight="5dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/ic_num2" />
+
+                    <TextView
+                        android:id="@+id/tvJp2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/app_name" />
+                </LinearLayout>
 
             </LinearLayout>
 

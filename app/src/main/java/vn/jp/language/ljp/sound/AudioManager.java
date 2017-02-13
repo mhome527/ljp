@@ -36,7 +36,15 @@ public class AudioManager {
             m.prepare();
             m.setVolume(1f, 1f);
 //            m.setLooping(true);
-            m.start();
+//            m.start();
+            m.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    if (mp == m) {
+                        m.start();
+                    }
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }

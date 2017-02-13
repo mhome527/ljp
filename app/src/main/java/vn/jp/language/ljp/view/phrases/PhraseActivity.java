@@ -12,7 +12,6 @@ import android.view.View;
 import java.util.List;
 
 import butterknife.BindView;
-import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.PhraseEntity;
@@ -122,8 +121,8 @@ public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements 
             });
 
             /// Test only
-            if (BuildConfig.DEBUG)
-                clearPurchaseTest();
+//            if (BuildConfig.DEBUG)
+//                clearPurchaseTest();
 
         } else {
             Log.i(TAG, "WithIabSetupSuccess item not purchase");
@@ -176,7 +175,7 @@ public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements 
                 Log.i(TAG, "onClick row pos:" + listData.get(position).sound);
 //                getItemPurchased();
 
-                if (isPurchased || position < Constant.TRIAL) {
+                if (isPurchased || listData.get(position).getNum() < Constant.TRIAL) {
                     audio.play(FOLDER + listData.get(position).sound);
                 } else {
                     //////////
