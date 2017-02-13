@@ -4,6 +4,7 @@ import android.view.View;
 
 import java.util.List;
 
+import vn.jp.language.ljp.BaseApplication;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.NumberEntity;
 import vn.jp.language.ljp.utils.Log;
@@ -56,6 +57,12 @@ public class NumberContentAdapter extends BaseAdapter<NumberItemHolder> {
             holder.tvNum.setText("");
         else
             holder.tvNum.setText(entity.getNum() + "");
+
+        if (entity.getSound() != null && !entity.getSound().equals(""))
+            holder.tvNum.setTextColor(BaseApplication.getInstance().getResources().getColor(R.color.blue));
+        else
+            holder.tvNum.setTextColor(BaseApplication.getInstance().getResources().getColor(R.color.black));
+
         holder.tvJp.setText(entity.getJp());
         holder.tvRomaji.setText(entity.getRomaji());
     }

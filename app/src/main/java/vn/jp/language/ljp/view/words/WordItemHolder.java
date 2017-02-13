@@ -30,8 +30,8 @@ public class WordItemHolder extends RecyclerView.ViewHolder {
         tvRomaji = (TextView) itemView.findViewById(R.id.tvRomaji);
     }
 
-    public void bind(int position, WordEntity entity) {
-        if(Constant.isPro || position < 4)
+    public void bind(int position, boolean isPurchased, WordEntity entity) {
+        if(isPurchased || position < Constant.TRIAL)
             imgSound.setImageResource(R.drawable.ic_speaker);
         else
             imgSound.setImageResource(R.drawable.ic_lock);

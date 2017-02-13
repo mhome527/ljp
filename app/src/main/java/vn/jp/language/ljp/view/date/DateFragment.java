@@ -8,6 +8,7 @@ import java.util.List;
 import butterknife.BindView;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.WordEntity;
+import vn.jp.language.ljp.sound.AudioManager;
 import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseFragment;
@@ -21,6 +22,7 @@ import vn.jp.language.ljp.view.IClickListener;
 public class DateFragment extends BaseFragment<DateActivity> implements IClickListener {
 
     private String TAG = "DateFragment";
+    private final String FOLDER = "date/";
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -30,6 +32,7 @@ public class DateFragment extends BaseFragment<DateActivity> implements IClickLi
     List<WordEntity> listData;
     DatePresenter presenter;
     DateContentAdapter adapter;
+    AudioManager audio;
 
     @Override
     public int getLayout() {
@@ -41,6 +44,7 @@ public class DateFragment extends BaseFragment<DateActivity> implements IClickLi
         presenter = new DatePresenter(activity);
         adapter = new DateContentAdapter();
         setupView();
+        audio = new AudioManager(activity);
 
         loadData();
     }
@@ -80,7 +84,9 @@ public class DateFragment extends BaseFragment<DateActivity> implements IClickLi
     // ========== IClickListener ==========
     @Override
     public void onClick(View view, int position) {
-        Log.i(TAG, "pos: " + position);
+//        Log.i(TAG, "pos: " + position);
+        Log.i(TAG, "onClick row pos:" + listData.get(position).sound);
+        audio.play(FOLDER + listData.get(position).sound);
     }
 
     @Override

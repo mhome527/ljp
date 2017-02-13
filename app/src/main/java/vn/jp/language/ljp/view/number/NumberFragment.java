@@ -11,19 +11,23 @@ import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.NumberEntity;
+import vn.jp.language.ljp.sound.AudioManager;
+import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseFragment;
 import vn.jp.language.ljp.view.ICallback;
+import vn.jp.language.ljp.view.IClickListener;
 import vn.jp.language.ljp.view.custom.DividerItemDecoration2;
 
 /**
  * Created by Administrator on 10/18/2016.
  */
 
-public class NumberFragment extends BaseFragment<NumberActivity> {
+public class NumberFragment extends BaseFragment<NumberActivity> implements IClickListener {
 
     private String TAG = "NumberFragment";
     //    private View root;
+    private final String FOLDER = "number/";
 
     Constant.TYPE_NUMBERS numbers;
 
@@ -31,6 +35,8 @@ public class NumberFragment extends BaseFragment<NumberActivity> {
     RecyclerView recyclerView;
 
     NumberPresenter presenter;
+    AudioManager audio;
+    List<NumberEntity> listData;
 
     @Override
     public int getLayout() {
@@ -43,6 +49,7 @@ public class NumberFragment extends BaseFragment<NumberActivity> {
         presenter = new NumberPresenter(activity);
 
         setupView();
+        audio = new AudioManager(activity);
 //        numbers = Constant.TYPE_NUMBERS.NUMBER;
 
         loadData();
@@ -54,6 +61,7 @@ public class NumberFragment extends BaseFragment<NumberActivity> {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration2(getActivity(), R.drawable.line_divider));
+        Common.setupRecyclerView(activity, recyclerView, this);
 
     }
 
@@ -62,7 +70,7 @@ public class NumberFragment extends BaseFragment<NumberActivity> {
         presenter.loadData(numbers, new ICallback() {
             @Override
             public void onCallback(Object list) {
-                List<NumberEntity> listData = (List<NumberEntity>) list;
+                listData = (List<NumberEntity>) list;
                 NumberContentAdapter adapter = new NumberContentAdapter(listData);
                 recyclerView.setAdapter(adapter);
             }
@@ -74,4 +82,20 @@ public class NumberFragment extends BaseFragment<NumberActivity> {
         });
 
     }
+
+    // =========== IClickListener ==============
+    @Override
+    public void onClick(View view, int position) {
+        switch (numbers){
+            case NUMBER:
+                audio.play(FOLDER + listData.get(position).getSound());
+                break;
+        }
+    }
+
+    @Override
+    public void onLongClick(View view, int position) {
+
+    }
+    // ========= END IClickListener =============
 }

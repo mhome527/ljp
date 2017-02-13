@@ -17,6 +17,8 @@ public class WordContentAdapter extends BaseAdapter<WordItemHolder> {
     private static String TAG = "WordContentAdapter";
 
     private List<WordEntity> listData;
+    private boolean isPurchased = false;
+
 
     @Override
     public int getItemLayout() {
@@ -30,7 +32,7 @@ public class WordContentAdapter extends BaseAdapter<WordItemHolder> {
 
     @Override
     public void onBindViewHolder(WordItemHolder holder, int position) {
-        holder.bind(position, listData.get(position));
+        holder.bind(position, isPurchased, listData.get(position));
     }
 
     @Override
@@ -42,6 +44,11 @@ public class WordContentAdapter extends BaseAdapter<WordItemHolder> {
 
     public void setData(List<WordEntity> listData) {
         this.listData = listData;
+    }
+
+    public void setPurchased(boolean isPurchased){
+        this.isPurchased = isPurchased;
+        this.notifyDataSetChanged();
     }
 
 

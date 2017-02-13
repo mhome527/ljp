@@ -12,6 +12,9 @@ import vn.jp.language.ljp.Constant;
 
 public class WordPagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
+    WordFragment tab1;
+    WordFragment tab2;
+    WordFragment tab3;
 
     public WordPagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
@@ -23,15 +26,18 @@ public class WordPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                WordFragment tab1 = new WordFragment();
+                if (tab1 == null)
+                    tab1 = new WordFragment();
                 tab1.typeWord = Constant.TYPE_WORD.ANIMAL;
                 return tab1;
             case 1:
-                WordFragment tab2 = new WordFragment();
+                if (tab2 == null)
+                    tab2 = new WordFragment();
                 tab2.typeWord = Constant.TYPE_WORD.FRUIT;
                 return tab2;
             case 2:
-                WordFragment tab3 = new WordFragment();
+                if (tab3 == null)
+                    tab3 = new WordFragment();
                 tab3.typeWord = Constant.TYPE_WORD.OTHER;
                 return tab3;
 

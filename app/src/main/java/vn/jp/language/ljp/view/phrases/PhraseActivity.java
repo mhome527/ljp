@@ -12,6 +12,7 @@ import android.view.View;
 import java.util.List;
 
 import butterknife.BindView;
+import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.PhraseEntity;
@@ -40,6 +41,9 @@ public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements 
     PhrasePresenter presenter;
     AudioManager audio;
 
+    public boolean isPurchased = false; //  true: user has already bought product
+
+
     @Override
     protected int getLayout() {
         return R.layout.phrase_layout;
@@ -57,8 +61,6 @@ public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements 
         initControl();
         loadData();
 
-        ///
-//        getItemPurchased();
     }
 
     @Override
@@ -108,12 +110,30 @@ public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements 
     // ================= Purchase ====================
     @Override
     protected void dealWithIabSetupSuccess() {
+        if (getItemPurchased() == Constant.ITEM_PURCHASED) {
+            Log.i(TAG, "WithIabSetupSuccess...item purchased");
+            isPurchased = true;
+            adapter.setPurchased(isPurchased);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    adapter.notifyDataSetChanged();
+                }
+            });
 
+            /// Test only
+            if (BuildConfig.DEBUG)
+                clearPurchaseTest();
+
+        } else {
+            Log.i(TAG, "WithIabSetupSuccess item not purchase");
+            isPurchased = false;
+        }
     }
 
     @Override
     protected void dealWithIabSetupFailure() {
-
+        Log.i(TAG, "dealWithIabSetupFailure...");
     }
     // ================ Purchase ===========
     //////////////
@@ -154,14 +174,15 @@ public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements 
             @Override
             public void onClick(View view, int position) {
                 Log.i(TAG, "onClick row pos:" + listData.get(position).sound);
-                getItemPurchased();
+//                getItemPurchased();
 
-                // Purchase test
-                purchaseItem(Constant.SKU);
-
-                //////////
-
-                //audio.play(FOLDER + listData.get(position).sound);
+                if (isPurchased || position < Constant.TRIAL) {
+                    audio.play(FOLDER + listData.get(position).sound);
+                } else {
+                    //////////
+                    Log.i(TAG, "===> buy!!!");
+                    purchaseItem();
+                }
             }
 
             @Override

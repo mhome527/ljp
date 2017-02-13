@@ -18,6 +18,7 @@ public class PhraseAdapter extends RecyclerView.Adapter<PhraseItemHolder> {
 
     List<PhraseEntity> list;
     String text = "";
+    private boolean isPurchased = false;
 
     @Override
     public PhraseItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,7 +30,7 @@ public class PhraseAdapter extends RecyclerView.Adapter<PhraseItemHolder> {
 
     @Override
     public void onBindViewHolder(PhraseItemHolder holder, int position) {
-       holder.bind(position, list.get(position));
+       holder.bind(position, isPurchased, list.get(position));
     }
 
     @Override
@@ -42,5 +43,9 @@ public class PhraseAdapter extends RecyclerView.Adapter<PhraseItemHolder> {
     public void setData(List<PhraseEntity> list, String text) {
         this.list = list;
         this.text = text;
+    }
+
+    public void setPurchased(boolean isPurchased){
+        this.isPurchased = isPurchased;
     }
 }

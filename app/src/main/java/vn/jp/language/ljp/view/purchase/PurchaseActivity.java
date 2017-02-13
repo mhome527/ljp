@@ -54,7 +54,7 @@ public abstract class PurchaseActivity<T> extends BaseActivity<T> implements Iab
         }
     }
 
-    protected void getItemPurchased() {
+    protected boolean getItemPurchased() {
         Log.i(TAG, "getItemPurchased ...");
         List<String> list = new ArrayList<>();
         list.add(Constant.SKU);
@@ -65,8 +65,10 @@ public abstract class PurchaseActivity<T> extends BaseActivity<T> implements Iab
                     SkuDetails detail = inv.getSkuDetails(Constant.SKU);
                     if (detail != null) {
                         Log.i(TAG, "getItemPurchased price:" + detail.getPrice());
+                        return Constant.ITEM_PURCHASED;
                     } else {
                         Log.e(TAG, "getItemPurchased detail null");
+                        return !Constant.ITEM_PURCHASED;
                     }
                 } else {
                     Log.i(TAG, "getItemPurchased item not found");
@@ -77,11 +79,25 @@ public abstract class PurchaseActivity<T> extends BaseActivity<T> implements Iab
         } catch (Exception e) {
             Log.trace(e);
         }
+        return !Constant.ITEM_PURCHASED;
     }
 
+    public void clearPurchaseTest() {
+        List<String> list = new ArrayList<>();
+        list.add(Constant.SKU);
+        try {
+            Log.i(TAG, "clearPurchaseTest...");
+            Inventory inv = billingHelper.queryInventory(true, list);
+            billingHelper.consumeAsync(inv.getPurchase("android.test.purchased"), null);
+        } catch (Exception e) {
+            Log.trace(e);
+        }
+    }
 
-    protected void purchaseItem(String sku) {
-        billingHelper.launchPurchaseFlow(this, sku, Constant.PURCHASE_REQUEST_CODE, this);
+    public void purchaseItem() {
+        if (billingHelper != null)
+            billingHelper.flagEndAsync();
+        billingHelper.launchPurchaseFlow(this, Constant.SKU, Constant.PURCHASE_REQUEST_CODE, this);
     }
 
     @Override
@@ -117,10 +133,12 @@ public abstract class PurchaseActivity<T> extends BaseActivity<T> implements Iab
     }
 
     protected void dealWithPurchaseSuccess(IabResult result, Purchase info) {
-        Log.i(TAG, "Item purchased: " + result);
+        Log.i(TAG, "====== Item purchased: " + result);
+//        dealWithPurchaseSuccess(result, info);
+        dealWithIabSetupSuccess();
         // DEBUG XXX
         // We consume the item straight away so we can test multiple purchases
-        billingHelper.consumeAsync(info, null);
+//        billingHelper.consumeAsync(info, null);
         // END DEBUG
     }
 

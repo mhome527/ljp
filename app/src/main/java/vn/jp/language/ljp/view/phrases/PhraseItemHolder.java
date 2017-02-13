@@ -26,8 +26,8 @@ public class PhraseItemHolder extends RecyclerView.ViewHolder {
         imgSound = (ImageButton) view.findViewById(R.id.imgSound);
     }
 
-    public void bind(int position, PhraseEntity entity){
-        if(Constant.isPro || position < 4)
+    public void bind(int position, boolean isPurchased, PhraseEntity entity) {
+        if (isPurchased || position < Constant.TRIAL)
             imgSound.setImageResource(R.drawable.ic_speaker);
         else
             imgSound.setImageResource(R.drawable.ic_lock);

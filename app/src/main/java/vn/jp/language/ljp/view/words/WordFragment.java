@@ -60,6 +60,7 @@ public class WordFragment extends BaseFragment<WordActivity> {
         recyclerView.setLayoutManager(lLayout);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+        adapter.setPurchased(activity.isPurchased);
 //        int spacingInPixels = Utility.dpToPx(2);
 //        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
 
@@ -69,7 +70,13 @@ public class WordFragment extends BaseFragment<WordActivity> {
             public void onClick(View view, int position) {
                 Log.i(TAG, "onClick row pos:" + position);
                 activity.setTitleCenter(listData.get(position).getOt());
-                audio.play(FOLDER + listData.get(position).sound);
+
+                if (activity.isPurchased || position < Constant.TRIAL) {
+//                    audio.play(FOLDER + listData.get(position).sound);
+                } else {
+                    Log.i(TAG, "===> buy!!!");
+                    activity.purchaseItem();
+                }
             }
 
             @Override
@@ -80,7 +87,7 @@ public class WordFragment extends BaseFragment<WordActivity> {
     }
 
     public void loadData() {
-        Log.i(TAG, "loadData");
+        Log.i(TAG, "loadData getKind():" + getKind());
         presenter.loadData(getKind(), new ICallback<List<WordEntity>>() {
             @Override
             public void onCallback(List<WordEntity> list) {
@@ -104,16 +111,16 @@ public class WordFragment extends BaseFragment<WordActivity> {
     private int[] getKind() {
         switch (typeWord) {
             case ANIMAL:
-                return new int[] {4};
+                return new int[]{4};
 
             case FRUIT:
-                return new int[] {1};
+                return new int[]{1};
 
             case OTHER:
-                return new int[] {2,5,6,7,12,13};
+                return new int[]{2, 5, 6, 7, 12, 13};
 
             default:
-                return new int[] {1};
+                return new int[]{1};
         }
     }
 }
