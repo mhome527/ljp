@@ -41,6 +41,8 @@ public class GrammarDetailAdapter extends BaseAdapter<GrammarDetailHolder> {
         holder.tvJp.setText(entity.getJp());
         holder.tvRomaji.setText(entity.getRomaji());
         holder.tvOt.setText(entity.getOt());
+
+        Log.i(TAG, " ============== item jp: " + entity.getJp() +"; rmj:" + entity.getRomaji());
     }
 
     @Override

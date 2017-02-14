@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.DashboardEntity;
 import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
+import vn.jp.language.ljp.utils.Utility;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.alphabet.AlphabetActivity;
 import vn.jp.language.ljp.view.date.DateActivity;
@@ -59,19 +61,19 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
                         startActivity2(DateActivity.class);
                         break;
                     case 2:
-                        startActivity2(NumberActivity.class);
+                        startActivity2(WordActivity.class);
                         break;
                     case 3:
-                        startActivity2(KanjiActivity.class);
+                        startActivity2(PhraseActivity.class);
                         break;
                     case 4:
-                        startActivity2(PhraseActivity.class);
+                        startActivity2(KanjiActivity.class);
                         break;
                     case 5:
                         startActivity2(GrammarActivity.class);
                         break;
                     case 6:
-                        startActivity2(WordActivity.class);
+                        startActivity2(NumberActivity.class);
                         break;
                     default:
                         break;
@@ -80,15 +82,20 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         });
     }
 
+    @OnClick(R.id.llOtherApp)
+    public void actionOtherApp() {
+        Utility.installVnApp(activity);
+    }
+
     private void createData() {
         listData = new ArrayList<>();
         listData.add(new DashboardEntity(R.drawable.ic_alphabet, getString(R.string.title_alphabet)));
         listData.add(new DashboardEntity(R.drawable.ic_dates, getString(R.string.title_date)));
-        listData.add(new DashboardEntity(R.drawable.ic_number, getString(R.string.title_counter)));
-        listData.add(new DashboardEntity(R.drawable.ic_kanji, getString(R.string.title_kanji)));
-        listData.add(new DashboardEntity(R.drawable.ic_phrase, getString(R.string.title_phrase)));
-        listData.add(new DashboardEntity(R.drawable.ic_grammar, getString(R.string.title_grammar)));
         listData.add(new DashboardEntity(R.drawable.ic_animal, getString(R.string.title_word)));
+        listData.add(new DashboardEntity(R.drawable.ic_phrase, getString(R.string.title_phrase)));
+        listData.add(new DashboardEntity(R.drawable.ic_kanji, getString(R.string.title_kanji)));
+        listData.add(new DashboardEntity(R.drawable.ic_grammar, getString(R.string.title_grammar)));
+        listData.add(new DashboardEntity(R.drawable.ic_number, getString(R.string.title_counter)));
 //        listData.add(new DashboardEntity(R.drawable.button_word_on, getString(R.string.title_coming_soon)));
     }
 

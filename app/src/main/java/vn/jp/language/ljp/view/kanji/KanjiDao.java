@@ -59,7 +59,8 @@ public class KanjiDao extends BaseDao<KanjiEntity> {
         String sql = "SELECT * FROM " + KanjiTable.TABLE_NAME
                 + " WHERE " + KanjiTable.COL_JP1 + " like '%" + text + "%'"
                 + " OR " + KanjiTable.COL_JP2 + " like '%" + text + "%'"
-                + " OR " + KanjiTable.COL_ROMAJI + " like '%" + text + "%'";
+                + " OR " + KanjiTable.COL_ROMAJI + " like '%" + text + "%'"
+                + " OR " + KanjiTable.COL_OT + " like '%" + text + "%'";
         Log.i(TAG, "searchData: sql=" + sql);
         KanjiDao dao = new KanjiDao(context);
         return dao.fetchAll(sql);

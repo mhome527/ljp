@@ -5,6 +5,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
+import vn.jp.language.ljp.utils.Log;
+
 /**
  * Created by HuynhTD on 10/17/2016.
  */
@@ -26,7 +28,9 @@ public class GrammarEntity {
     ///////////
     public void formatData(){
         Gson gson = new Gson();
+        Log.i("GrammarEntity", "formatData json:" + example);
         details = gson.fromJson(example, new TypeToken<List<GrammarDetailEntity>>(){}.getType());
+        Log.i("GrammarEntity", "formatData size: " + details.size()+ "; item jp:" + details.get(0).getJp());
     }
 
     public List<GrammarDetailEntity> getDetails(){

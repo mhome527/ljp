@@ -3,15 +3,21 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--<item name="colorPrimary1">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark1">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent1">@color/colorAccent</item>-->
+
+        <item name="colorPrimary">@color/darkred</item>
+        <item name="colorPrimaryDark">@color/maroon</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="MyTheme" parent="Base.MyTheme"></style>
     <style name="Base.MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <item name="colorPrimary">@color/darkred</item>
+        <item name="colorPrimaryDark">@color/maroon</item>
         <item name="colorAccent">@color/white</item>
         <item name="windowActionBar">false</item>
         <item name="windowActionBarOverlay">true</item>

@@ -60,7 +60,7 @@ public class GrammarDao extends BaseDao<GrammarEntity> {
         String sql = "SELECT * FROM " + GrammarTable.TABLE_NAME
                 + " WHERE " + GrammarTable.COL_LEVEL + " = " + level
                 + " AND " + GrammarTable.COL_NUM + " = " + num;
-        Log.i(TAG, "grammar: sql=" + sql);
+//        Log.i(TAG, "grammar: sql=" + sql);
         GrammarDao dao = new GrammarDao(context);
         return dao.fetch(sql);
     }
