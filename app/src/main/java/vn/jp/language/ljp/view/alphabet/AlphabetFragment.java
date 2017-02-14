@@ -11,7 +11,7 @@ import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.AlphabetEntity;
-import vn.jp.language.ljp.sound.AudioManager;
+import vn.jp.language.ljp.sound.AudioPlayerManager;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.utils.Utility;
 import vn.jp.language.ljp.view.BaseFragment;
@@ -36,7 +36,7 @@ public class AlphabetFragment extends BaseFragment<AlphabetActivity> {
     AlphabetContentAdapter adapter;
     AlphabetPresenter presenter;
     List<AlphabetEntity> listData;
-    AudioManager audio;
+    AudioPlayerManager audio;
     private final String folder = "alphabet/";
 
     @Override
@@ -48,7 +48,7 @@ public class AlphabetFragment extends BaseFragment<AlphabetActivity> {
     public void initView(View root) {
         Log.i(TAG, "initView");
         presenter = new AlphabetPresenter(activity);
-        audio = new AudioManager(activity);
+        audio = new AudioPlayerManager(activity);
 
         setupView();
         loadData();

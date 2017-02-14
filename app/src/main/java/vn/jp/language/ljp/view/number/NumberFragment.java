@@ -11,7 +11,7 @@ import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.NumberEntity;
-import vn.jp.language.ljp.sound.AudioManager;
+import vn.jp.language.ljp.sound.AudioPlayerManager;
 import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseFragment;
@@ -35,7 +35,7 @@ public class NumberFragment extends BaseFragment<NumberActivity> implements ICli
     RecyclerView recyclerView;
 
     NumberPresenter presenter;
-    AudioManager audio;
+    AudioPlayerManager audio;
     List<NumberEntity> listData;
 
     @Override
@@ -49,7 +49,7 @@ public class NumberFragment extends BaseFragment<NumberActivity> implements ICli
         presenter = new NumberPresenter(activity);
 
         setupView();
-        audio = new AudioManager(activity);
+        audio = new AudioPlayerManager(activity);
 //        numbers = Constant.TYPE_NUMBERS.NUMBER;
 
         loadData();

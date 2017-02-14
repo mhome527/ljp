@@ -8,7 +8,7 @@ import java.util.List;
 import butterknife.BindView;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.WordEntity;
-import vn.jp.language.ljp.sound.AudioManager;
+import vn.jp.language.ljp.sound.AudioPlayerManager;
 import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseFragment;
@@ -32,7 +32,7 @@ public class DateFragment extends BaseFragment<DateActivity> implements IClickLi
     List<WordEntity> listData;
     DatePresenter presenter;
     DateContentAdapter adapter;
-    AudioManager audio;
+    AudioPlayerManager audio;
 
     @Override
     public int getLayout() {
@@ -44,7 +44,7 @@ public class DateFragment extends BaseFragment<DateActivity> implements IClickLi
         presenter = new DatePresenter(activity);
         adapter = new DateContentAdapter();
         setupView();
-        audio = new AudioManager(activity);
+        audio = new AudioPlayerManager(activity);
 
         loadData();
     }
