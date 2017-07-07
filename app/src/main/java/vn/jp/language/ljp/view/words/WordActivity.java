@@ -40,15 +40,7 @@ public class WordActivity extends PurchaseActivity<WordActivity> {
 
     @Override
     protected void initView() {
-//        setSupportActionBar(toolbar);
-//        ActionBar actionBar = getSupportActionBar();
-//        if (actionBar != null) {
-//            actionBar.setHomeButtonEnabled(true); // disable the button
-//            actionBar.setDisplayHomeAsUpEnabled(true); // remove the left caret
-//            actionBar.setDisplayShowHomeEnabled(true); // remove the icon
-//            actionBar.setDisplayShowTitleEnabled(true); // remove title
-////            toolbarTitle.setText(getString(R.string.title_word));
-//        }
+
         setTitleCenter(getString(R.string.title_word));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_animal));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_fruit));

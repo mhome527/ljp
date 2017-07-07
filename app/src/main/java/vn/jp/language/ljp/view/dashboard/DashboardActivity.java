@@ -70,9 +70,12 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
                         startActivity2(KanjiActivity.class);
                         break;
                     case 5:
-                        startActivity2(GrammarActivity.class);
+                        startActivity2(NumberActivity.class);
                         break;
                     case 6:
+                        startActivity2(GrammarActivity.class);
+                        break;
+                    case 7:
                         startActivity2(NumberActivity.class);
                         break;
                     default:
