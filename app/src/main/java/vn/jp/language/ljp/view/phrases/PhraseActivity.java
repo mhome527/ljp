@@ -15,7 +15,7 @@ import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.PhraseEntity;
-import vn.jp.language.ljp.sound.AudioManager;
+import vn.jp.language.ljp.sound.AudioPlayerManager;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
@@ -38,7 +38,7 @@ public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements 
 
     PhraseAdapter adapter;
     PhrasePresenter presenter;
-    AudioManager audio;
+    AudioPlayerManager audio;
 
     public boolean isPurchased = false; //  true: user has already bought product
 
@@ -54,7 +54,7 @@ public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements 
 
         presenter = new PhrasePresenter(this);
         adapter = new PhraseAdapter();
-        audio = new AudioManager(this);
+        audio = new AudioPlayerManager(this);
 
         setTitle(getString(R.string.title_phrase));
         initControl();

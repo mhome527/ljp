@@ -11,7 +11,7 @@ import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.WordEntity;
-import vn.jp.language.ljp.sound.AudioManager;
+import vn.jp.language.ljp.sound.AudioPlayerManager;
 import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseFragment;
@@ -35,7 +35,7 @@ public class WordFragment extends BaseFragment<WordActivity> {
 
     WordContentAdapter adapter;
     WordPresenter presenter;
-    AudioManager audio;
+    AudioPlayerManager audio;
 
     List<WordEntity> listData;
 
@@ -49,7 +49,7 @@ public class WordFragment extends BaseFragment<WordActivity> {
         Log.i(TAG, "initView");
         presenter = new WordPresenter(activity);
         adapter = new WordContentAdapter();
-        audio = new AudioManager(activity);
+        audio = new AudioPlayerManager(activity);
 
         setupView();
         loadData();
