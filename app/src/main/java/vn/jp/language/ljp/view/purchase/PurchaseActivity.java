@@ -35,6 +35,8 @@ public abstract class PurchaseActivity<T> extends BaseActivity<T> implements Iab
 
     protected abstract void dealWithIabSetupFailure();
 
+    public boolean isPurchased = false; //  true: user has already bought product
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "onCreate");

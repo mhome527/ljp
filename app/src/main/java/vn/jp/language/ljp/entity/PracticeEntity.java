@@ -5,22 +5,35 @@ package vn.jp.language.ljp.entity;
  */
 
 public class PracticeEntity {
+    int num;
     int kind;
-    String grammar;
-    String reading;
-    String vocabulary;
-    String kanji;
-    String listening;
+    int bookmarks; //1:checked
+    String title;
+    String question;
+    String q1;
+    String q2;
+    String q3;
+    String q4;
+    int ans;
+    int review; //0:read; 1: unread; 2: wrong answer
 
     ///////
 
-    public PracticeEntity(int kind, String grammar, String reading, String vocabulary, String kanji, String listening) {
-        this.kind = kind;
-        this.grammar = grammar;
-        this.reading = reading;
-        this.vocabulary = vocabulary;
-        this.kanji = kanji;
-        this.listening = listening;
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
     public int getKind() {
@@ -31,43 +44,67 @@ public class PracticeEntity {
         this.kind = kind;
     }
 
-    public String getGrammar() {
-        return grammar;
+    public int getBookmarks() {
+        return bookmarks;
     }
 
-    public void setGrammar(String grammar) {
-        this.grammar = grammar;
+    public void setBookmarks(int bookmarks) {
+        this.bookmarks = bookmarks;
     }
 
-    public String getReading() {
-        return reading;
+    public String getTitle() {
+        return title;
     }
 
-    public void setReading(String reading) {
-        this.reading = reading;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getVocabulary() {
-        return vocabulary;
+    public String getQ1() {
+        return q1;
     }
 
-    public void setVocabulary(String vocabulary) {
-        this.vocabulary = vocabulary;
+    public void setQ1(String q1) {
+        this.q1 = q1;
     }
 
-    public String getKanji() {
-        return kanji;
+    public String getQ2() {
+        return q2;
     }
 
-    public void setKanji(String kanji) {
-        this.kanji = kanji;
+    public void setQ2(String q2) {
+        this.q2 = q2;
     }
 
-    public String getListening() {
-        return listening;
+    public String getQ3() {
+        return q3;
     }
 
-    public void setListening(String listening) {
-        this.listening = listening;
+    public void setQ3(String q3) {
+        this.q3 = q3;
+    }
+
+    public String getQ4() {
+        return q4;
+    }
+
+    public void setQ4(String q4) {
+        this.q4 = q4;
+    }
+
+    public int getAns() {
+        return ans;
+    }
+
+    public void setAns(int ans) {
+        this.ans = ans;
+    }
+
+    public int getReview() {
+        return review;
+    }
+
+    public void setReview(int review) {
+        this.review = review;
     }
 }

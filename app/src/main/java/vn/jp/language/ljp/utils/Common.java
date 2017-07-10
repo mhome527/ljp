@@ -26,7 +26,19 @@ public class Common {
     }
 
     public static void setupRecyclerViewGrid(Context context, RecyclerView recyclerView, IClickListener iClickListener) {
-        GridLayoutManager lLayout = new GridLayoutManager(context, 2);
+//        GridLayoutManager lLayout = new GridLayoutManager(context, 2);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(lLayout);
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//
+//        //Add event
+//        if (iClickListener != null)
+//            recyclerView.addOnItemTouchListener(new RecyclerTouchListener(context, recyclerView, iClickListener));
+        setupRecyclerViewGrid(context, recyclerView, 2, iClickListener);
+    }
+
+    public static void setupRecyclerViewGrid(Context context, RecyclerView recyclerView, int column, IClickListener iClickListener) {
+        GridLayoutManager lLayout = new GridLayoutManager(context, column);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(lLayout);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -36,7 +48,7 @@ public class Common {
             recyclerView.addOnItemTouchListener(new RecyclerTouchListener(context, recyclerView, iClickListener));
     }
 
-    public static boolean isTablet(Context ctx){
+    public static boolean isTablet(Context ctx) {
         return (ctx.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 }

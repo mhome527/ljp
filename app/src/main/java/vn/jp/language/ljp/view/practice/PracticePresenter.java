@@ -6,9 +6,9 @@ import vn.jp.language.ljp.view.BasePresenter;
  * Created by Administrator on 7/7/2017.
  */
 
-public class PracticePresenter extends BasePresenter<PracticeListActivity> {
+public class PracticePresenter extends BasePresenter<PracticeDashboardActivity> {
 
-    public PracticePresenter(PracticeListActivity activity) {
+    public PracticePresenter(PracticeDashboardActivity activity) {
         super(activity);
     }
 

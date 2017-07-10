@@ -2,6 +2,8 @@ package vn.jp.language.ljp;
 
 import android.app.Application;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import vn.jp.language.ljp.db.SqlLiteCopyDbHelper;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.utils.Prefs;
@@ -19,9 +21,6 @@ public class BaseApplication extends Application {
         super.onCreate();
 
         mInstance = this;
-        String temp;
-        String url;
-        String domain;
 
         /////////////// Import DB
         Prefs pref = new Prefs(this.getApplicationContext());
@@ -32,6 +31,7 @@ public class BaseApplication extends Application {
         }
 
         SqlLiteCopyDbHelper dbHelper = new SqlLiteCopyDbHelper(this);
+        SQLiteDatabase.loadLibs(this);
         if(dbHelper.openDataBase()) {
             pref.putStringValue(Constant.KEY_UPDATE, Constant.KEY_UPDATE);
         }

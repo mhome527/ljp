@@ -1,73 +1,112 @@
 package vn.jp.language.ljp.view.dashboard;
 
-import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.List;
 
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.DashboardEntity;
+import vn.jp.language.ljp.view.BaseAdapterView;
 
 /**
  * Created by Administrator on 10/17/2016.
  */
 
-public class DashboardAdapter extends BaseAdapter {
+public class DashboardAdapter extends BaseAdapterView<DashboardHolder> {
 
     private static String TAG = "DashboardAdapter";
-
-    Context context;
     List<DashboardEntity> listData;
-    LayoutInflater layoutinflater;
 
-    public DashboardAdapter(Context context, List<DashboardEntity> listData) {
-        this.context = context;
-        layoutinflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public DashboardAdapter(List<DashboardEntity> listData) {
         this.listData = listData;
     }
 
     @Override
-    public int getCount() {
-        return listData.size();
+    protected int getHeaderLayout() {
+        return 0;
     }
 
     @Override
-    public Object getItem(int position) {
-        return listData.get(position);
+    protected int getFooterLayout() {
+        return 0;
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    protected int getItemLayout() {
+        return R.layout.dashboard_item;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        HolderView holderView;
-
-        if (convertView == null) {
-            holderView = new HolderView();
-            convertView = layoutinflater.inflate(R.layout.dashboard_item, parent, false);
-            holderView.imgItem = (ImageView) convertView.findViewById(R.id.imgItem);
-            holderView.tv = (TextView) convertView.findViewById(R.id.tvContent);
-            convertView.setTag(holderView);
-        }else{
-            holderView = (HolderView)convertView.getTag();
-        }
-
-        DashboardEntity entity = listData.get(position);
-        holderView.imgItem.setImageResource(entity.img);
-        holderView.tv.setText(entity.text);
-        return convertView;
+    protected DashboardHolder getHeaderView(View view) {
+        return null;
     }
 
-    static class HolderView {
-        ImageView imgItem;
-        TextView tv;
+    @Override
+    protected DashboardHolder getFooterView(View view) {
+        return null;
     }
+
+    @Override
+    protected DashboardHolder getItemView(View view) {
+        return new DashboardHolder(view);
+    }
+
+    @Override
+    protected List getListData() {
+        return listData;
+    }
+
+    @Override
+    public void onBindViewHolder(DashboardHolder holder, int position) {
+        holder.bind(listData.get(position));
+    }
+
+//    Context context;
+//    LayoutInflater layoutinflater;
+//
+//    public DashboardAdapter(Context context, List<DashboardEntity> listData) {
+//        this.context = context;
+//        layoutinflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        this.listData = listData;
+//    }
+//
+//    @Override
+//    public int getCount() {
+//        return listData.size();
+//    }
+//
+//    @Override
+//    public Object getItem(int position) {
+//        return listData.get(position);
+//    }
+//
+//    @Override
+//    public long getItemId(int position) {
+//        return position;
+//    }
+//
+//    @Override
+//    public View getView(int position, View convertView, ViewGroup parent) {
+//        HolderView holderView;
+//
+//        if (convertView == null) {
+//            holderView = new HolderView();
+//            convertView = layoutinflater.inflate(R.layout.dashboard_item, parent, false);
+//            holderView.imgItem = (ImageView) convertView.findViewById(R.id.imgItem);
+//            holderView.tv = (TextView) convertView.findViewById(R.id.tvContent);
+//            convertView.setTag(holderView);
+//        }else{
+//            holderView = (HolderView)convertView.getTag();
+//        }
+//
+//        DashboardEntity entity = listData.get(position);
+//        holderView.imgItem.setImageResource(entity.img);
+//        holderView.tv.setText(entity.text);
+//        return convertView;
+//    }
+//
+//    static class HolderView {
+//        ImageView imgItem;
+//        TextView tv;
+//    }
 }

@@ -40,7 +40,6 @@ public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements 
     PhrasePresenter presenter;
     AudioPlayerManager audio;
 
-    public boolean isPurchased = false; //  true: user has already bought product
 
 
     @Override
