@@ -11,6 +11,7 @@
     <color name="darkgreen" type="color">#FF669900</color>
     <color name="darkorange" type="color">#FFFF8800</color>
     <color name="darkred" type="color">#FFCC0000</color>
+    <color name="darkred2" type="color">#CCCC0000</color>
 
     <color name="white">#FFFFFF</color>
     <color name="yellow">#FFFF00</color>
@@ -18,6 +19,8 @@
     <color name="red">#FF0000</color>
     <color name="silver">#C0C0C0</color>
     <color name="gray">#808080</color>
+    <color name="gray2">#CC000000</color>
+
     <color name="olive">#808000</color>
     <color name="purple">#800080</color>
     <color name="maroon">#800000</color>

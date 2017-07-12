@@ -21,8 +21,14 @@ public class PracticeListPresenter extends BasePresenter<PracticeListActivity> {
                 return PracticeDao.getGrammar(activity, activity.level, activity.kind);
             }
         });
+    }
+
+    public void updateData(int level, int num) {
 
     }
 
+    public void updateBookmark(int level, int num, int bookmark) {
+
+    }
 
 }

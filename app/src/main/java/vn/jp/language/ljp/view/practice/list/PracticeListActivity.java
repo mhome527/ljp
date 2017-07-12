@@ -13,6 +13,7 @@ import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
+import vn.jp.language.ljp.view.practice.dialog.PracticeDialog;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 /**
@@ -58,10 +59,11 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     }
     //    ========================== END PURCHASE ==============
 
-    //   ==============  IClickListener
+    //   ==============  IClickListener - item click
     @Override
     public void onClick(View view, int position) {
-
+        PracticeDialog dialog = new PracticeDialog(activity, items.get(position));
+        dialog.show();
     }
 
     @Override

@@ -44,4 +44,12 @@ public class PracticeDao extends BaseDao<PracticeEntity> {
         PracticeDao dao = new PracticeDao(context);
         return dao.getGrammar(level, kind);
     }
+
+    public void updateAnswer() {
+
+    }
+
+    public void updateBookmark() {
+
+    }
 }

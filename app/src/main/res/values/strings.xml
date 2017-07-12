@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Learn Japanese</string>
+    <string name="app_name">LJP</string>
     <string name="title_button_alphabet">Alphabet</string>
     <string name="title_button_number">Number</string>
     <string name="title_button_phrase">Phrases</string>
@@ -21,6 +21,7 @@
     <string name="install">Install</string>
     <string name="update">Update</string>
     <string name="cancel">Cancel</string>
+    <string name="close">Close</string>
     <string name="ok">Ok</string>
     <string name="speech_prompt">Say something…</string>
 
