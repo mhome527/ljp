@@ -1,5 +1,6 @@
 package vn.jp.language.ljp.view.practice.list;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -45,11 +46,30 @@ public class PracticeDao extends BaseDao<PracticeEntity> {
         return dao.getGrammar(level, kind);
     }
 
-    public void updateAnswer() {
-
+    private void updateAnswer(int level, int kind, int num, int review) {
+        ContentValues value = new ContentValues();
+        value.put(PracticeTable.COL_REVIEW, review);
+        String where = PracticeTable.COL_KIND + " = " + kind + " AND "
+                + PracticeTable.COL_NUM + " = " + num;
+        updateRow(PracticeTable.getTableName(level), value, where);
     }
 
-    public void updateBookmark() {
-
+    public static void updateAnswer(Context context, int level, int kind, int num, int review) {
+        PracticeDao dao = new PracticeDao(context);
+        dao.updateAnswer(level, kind, num, review);
     }
+
+    private void updateBookmark(int level, int kind, int num, int bookmark) {
+        ContentValues value = new ContentValues();
+        value.put(PracticeTable.COL_BOOKMARKS, bookmark);
+        String where = PracticeTable.COL_KIND + " = " + kind + " AND "
+                + PracticeTable.COL_NUM + " = " + num;
+        updateRow(PracticeTable.getTableName(level), value, where);
+    }
+
+    public static void updateBookmark(Context context, int level, int kind, int num, int bookmark) {
+        PracticeDao dao = new PracticeDao(context);
+        dao.updateBookmark(level, kind, num, bookmark);
+    }
+
 }

@@ -1,5 +1,6 @@
 package vn.jp.language.ljp.db.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -78,6 +79,10 @@ public abstract class BaseDao<T> {
         return listData;
     }
 
+    protected int updateRow(String tableName, ContentValues data, String where) {
+        Log.i(TAG, "update data: " + where);
+        return DatabaseHelper.updateData(context, tableName, data, where);
+    }
 //    protected SQLiteDatabase getDB(){
 //        return DatabaseHelper.getInstance(context).getDB();
 //    }

@@ -1,10 +1,13 @@
 package vn.jp.language.ljp.view.practice;
 
 import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
+import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.practice.list.PracticeListActivity;
 
@@ -24,24 +27,46 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
     }
     /////
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_practice_dashboard, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.menuBookmark:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @OnClick(R.id.tvN1Grammar)
     public void actionN1Grammar() {
-        startIntent(1, 1);
+        startIntent(PracticeTable.LEVEL_N1, PracticeTable.TYPE_GRAMMAR);
     }
 
     @OnClick(R.id.tvN1Reading)
     public void actionN1Reading() {
-        startIntent(1, 1);
+        startIntent(PracticeTable.LEVEL_N1, PracticeTable.TYPE_READING);
     }
 
     @OnClick(R.id.tvN1Vocabulary)
     public void actionN1Vocabulary() {
-        startIntent(1, 1);
+        startIntent(PracticeTable.LEVEL_N1, PracticeTable.TYPE_VOCABULARY);
     }
 
     @OnClick(R.id.tvN1Kanji)
     public void actionN1Kanji() {
-        startIntent(1, 1);
+        startIntent(PracticeTable.LEVEL_N1, PracticeTable.TYPE_KANJI);
     }
 
     private void startIntent(int level, int kind) {

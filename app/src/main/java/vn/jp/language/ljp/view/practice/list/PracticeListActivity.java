@@ -1,6 +1,8 @@
 package vn.jp.language.ljp.view.practice.list;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.List;
 import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
+import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
@@ -40,12 +43,39 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     @Override
     protected void initView() {
         Common.setupRecyclerView(activity, recyclerView, this);
-        kind = getIntent().getIntExtra(Constant.INTENT_KIND, 1);
-        level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 5);
+        kind = getIntent().getIntExtra(Constant.INTENT_KIND, PracticeTable.TYPE_GRAMMAR);
+        level = getIntent().getIntExtra(Constant.INTENT_LEVEL, PracticeTable.LEVEL_N5);
+
         presenter = new PracticeListPresenter(this);
+        setTitle(presenter.getTitle(kind));
+
         loadData();
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_practice_list, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            case R.id.menuBookmark:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     // ================= Purchase ====================
     @Override
@@ -62,7 +92,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     //   ==============  IClickListener - item click
     @Override
     public void onClick(View view, int position) {
-        PracticeDialog dialog = new PracticeDialog(activity, items.get(position));
+        PracticeDialog dialog = new PracticeDialog(activity, position, items.get(position), iPracticeInterface);
         dialog.show();
     }
 
@@ -71,6 +101,25 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
 
     }
 //   ============= END IClickListener
+
+    //    IPracticeInterface -- dialog clicked
+    IPracticeInterface iPracticeInterface = new IPracticeInterface() {
+
+        @Override
+        public void onBookmark(int pos, int value) {
+            PracticeEntity item = items.get(pos);
+            item.setBookmarks(value);
+            presenter.updateBookmark(item.getNum(), value);
+        }
+
+        @Override
+        public void onAns(int pos, int value) {
+            PracticeEntity item = items.get(pos);
+            presenter.updateAnswer(item.getNum(), value);
+
+        }
+    };
+
 
     private void loadData() {
         presenter.getItems(new ICallback<List<PracticeEntity>>() {
@@ -87,5 +136,6 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             }
         });
     }
+
 
 }

@@ -1,5 +1,6 @@
 package vn.jp.language.ljp.view.dashboard;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.DashboardEntity;
@@ -23,6 +25,7 @@ import vn.jp.language.ljp.view.kanji.KanjiActivity;
 import vn.jp.language.ljp.view.number.NumberActivity;
 import vn.jp.language.ljp.view.phrases.PhraseActivity;
 import vn.jp.language.ljp.view.practice.PracticeDashboardActivity;
+import vn.jp.language.ljp.view.test.AndroidDatabaseManager;
 import vn.jp.language.ljp.view.words.WordActivity;
 
 public class DashboardActivity extends BaseActivity<DashboardActivity> {
@@ -96,7 +99,11 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
 
     @OnClick(R.id.llOtherApp)
     public void actionOtherApp() {
-        Utility.installVnApp(activity);
+        if (BuildConfig.DEBUG) {
+            Intent i = new Intent(activity, AndroidDatabaseManager.class);
+            startActivity(i);
+        } else
+            Utility.installVnApp(activity);
     }
 
     private void createData() {

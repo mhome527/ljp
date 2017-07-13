@@ -23,6 +23,17 @@ public class PracticeTable {
     public static final String COL_Q4 = "q4";
     public static final String COL_ANS = "ans";
 
+    public static final int TYPE_GRAMMAR = 1;
+    public static final int TYPE_READING = 2;
+    public static final int TYPE_KANJI = 3;
+    public static final int TYPE_VOCABULARY = 5;
+
+    public static final int LEVEL_N5 = 5;
+    public static final int LEVEL_N4 = 4;
+    public static final int LEVEL_N3 = 3;
+    public static final int LEVEL_N2 = 2;
+    public static final int LEVEL_N1 = 1;
+
 
     public static String getTableName(int level) {
         String table;
