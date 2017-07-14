@@ -1,9 +1,6 @@
 package vn.jp.language.ljp.view.practice.list;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import java.util.List;
@@ -24,7 +21,7 @@ import vn.jp.language.ljp.view.purchase.PurchaseActivity;
  * Created by Administrator on 7/7/2017.
  */
 
-public class PracticeListActivity extends PurchaseActivity<PracticeListActivity> implements IClickListener {
+public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkActivity> implements IClickListener {
     private final String TAG = "PracticeDetailActivity";
 
     @BindView(R.id.recyclerView)
@@ -35,7 +32,6 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     PracticeListPresenter presenter;
     int level;
     int kind;
-    boolean isSort = true;
 
     @Override
     protected int getLayout() {
@@ -55,36 +51,28 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_practice_list, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-
-            case R.id.menuBookmark:
-                Intent i = new Intent(activity, PracticeBookmarkActivity.class);
-                i.putExtra(Constant.INTENT_KIND, kind);
-                i.putExtra(Constant.INTENT_LEVEL, level);
-                startActivity(i);
-                return true;
-
-            case R.id.menuSort:
-                isSort = !isSort;
-                loadData();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_practice_list, menu);
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                onBackPressed();
+//                return true;
+//
+//            case R.id.menuBookmark:
+//                onBackPressed();
+//                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
 
     // ================= Purchase ====================
@@ -126,18 +114,22 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         public void onAns(int pos, int value) {
             PracticeEntity item = items.get(pos);
             presenter.updateAnswer(item.getNum(), value);
-
         }
     };
 
 
     private void loadData() {
-        presenter.getItems(isSort, new ICallback<List<PracticeEntity>>() {
+        presenter.getBookmark(true, new ICallback<List<PracticeEntity>>() {
             @Override
             public void onCallback(List<PracticeEntity> data) {
+                if(data == null || data.size() == 0){
+                    Log.i(TAG, "data bookmark not found");
+                    return;
+                }
                 items = data;
                 adapter = new PracticeListAdapter(data);
                 recyclerView.setAdapter(adapter);
+
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

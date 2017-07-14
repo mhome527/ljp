@@ -111,7 +111,7 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         listData.add(new DashboardEntity(R.drawable.ic_alphabet, getString(R.string.title_alphabet)));
         listData.add(new DashboardEntity(R.drawable.ic_animal, getString(R.string.title_word)));
         listData.add(new DashboardEntity(R.drawable.ic_grammar, getString(R.string.title_grammar)));
-        listData.add(new DashboardEntity(R.drawable.ic_num1, getString(R.string.title_test)));
+        listData.add(new DashboardEntity(R.drawable.ic_jplt, getString(R.string.title_test)));
         listData.add(new DashboardEntity(R.drawable.ic_phrase, getString(R.string.title_phrase)));
         listData.add(new DashboardEntity(R.drawable.ic_number, getString(R.string.title_counter)));
         listData.add(new DashboardEntity(R.drawable.ic_kanji, getString(R.string.title_kanji)));

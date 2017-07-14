@@ -15,8 +15,17 @@ import vn.jp.language.ljp.entity.PracticeEntity;
  */
 
 public class PracticeDao extends BaseDao<PracticeEntity> {
-    public PracticeDao(Context context) {
+    private final String TAG = "PracticeDao";
+
+    int level;
+    int kind;
+    String table;
+
+    public PracticeDao(Context context, int level, int kind) {
         super(context);
+        this.level = level;
+        this.kind = kind;
+        table = PracticeTable.getTableName(level);
     }
 
     @Override
@@ -35,41 +44,53 @@ public class PracticeDao extends BaseDao<PracticeEntity> {
         return entity;
     }
 
-    public List<PracticeEntity> getGrammar(int level, int kind) {
-        String sql = "Select * from " + PracticeTable.getTableName(level) + " where kind =" + kind
-                + " Order by " + PracticeTable.COL_REVIEW + " desc, " + PracticeTable.COL_NUM + " asc ";
+//    public List<PracticeEntity> getItems() {
+//        return getItems(true);
+//    }
+
+    public List<PracticeEntity> getItems(boolean isSort) {
+        String sort;
+        if (isSort)
+            sort = " Order by " + PracticeTable.COL_REVIEW + " desc, " + PracticeTable.COL_NUM + " asc ";
+        else
+            sort = " Order by " + PracticeTable.COL_NUM + " asc ";
+
+
+        String sql = "Select * from " + table + " where "
+                + PracticeTable.COL_KIND + " = " + kind + " " + sort;
+
         return fetchAll(sql);
     }
 
-    public static List<PracticeEntity> getGrammar(Context context, int level, int kind) {
-        PracticeDao dao = new PracticeDao(context);
-        return dao.getGrammar(level, kind);
+    public List<PracticeEntity> getBookmark(boolean isSort) {
+        String sort;
+        if (isSort)
+            sort = " Order by " + PracticeTable.COL_REVIEW + " desc, " + PracticeTable.COL_NUM + " asc ";
+        else
+            sort = " Order by " + PracticeTable.COL_NUM + " asc ";
+
+
+        String sql = "Select * from " + table + " where "
+                + PracticeTable.COL_KIND + " = " + kind + " And "
+                + PracticeTable.COL_BOOKMARKS + " = 1" + sort;
+        return fetchAll(sql);
     }
 
-    private void updateAnswer(int level, int kind, int num, int review) {
+
+    public void updateAnswer(int num, int review) {
         ContentValues value = new ContentValues();
         value.put(PracticeTable.COL_REVIEW, review);
         String where = PracticeTable.COL_KIND + " = " + kind + " AND "
                 + PracticeTable.COL_NUM + " = " + num;
-        updateRow(PracticeTable.getTableName(level), value, where);
+        updateRow(table, value, where);
     }
 
-    public static void updateAnswer(Context context, int level, int kind, int num, int review) {
-        PracticeDao dao = new PracticeDao(context);
-        dao.updateAnswer(level, kind, num, review);
-    }
-
-    private void updateBookmark(int level, int kind, int num, int bookmark) {
+    public void updateBookmark(int num, int bookmark) {
         ContentValues value = new ContentValues();
         value.put(PracticeTable.COL_BOOKMARKS, bookmark);
         String where = PracticeTable.COL_KIND + " = " + kind + " AND "
                 + PracticeTable.COL_NUM + " = " + num;
-        updateRow(PracticeTable.getTableName(level), value, where);
-    }
-
-    public static void updateBookmark(Context context, int level, int kind, int num, int bookmark) {
-        PracticeDao dao = new PracticeDao(context);
-        dao.updateBookmark(level, kind, num, bookmark);
+        updateRow(table, value, where);
     }
 
 }

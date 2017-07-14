@@ -1,7 +1,6 @@
 package vn.jp.language.ljp.view.practice;
 
 import android.content.Intent;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import butterknife.OnClick;
@@ -27,12 +26,12 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
     }
     /////
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_practice_dashboard, menu);
-
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_practice_dashboard, menu);
+//
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -40,9 +39,9 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.menuBookmark:
-                onBackPressed();
-                return true;
+//            case R.id.menuBookmark:
+//                onBackPressed();
+//                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
