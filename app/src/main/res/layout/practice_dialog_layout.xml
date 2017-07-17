@@ -2,139 +2,156 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
-    <ImageButton
-        android:id="@+id/imgBookmark"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_gravity="right"
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/heart_off" />
+        <TextView
+            android:id="@+id/tvNum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:text="@string/close" />
+
+        <ImageButton
+            android:id="@+id/imgBookmark"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/heart_off" />
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray" />
 
-    <TextView
-        android:id="@+id/tvQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        tools:text="@string/speech_not_supported" />
+    <include layout="@layout/practice_question_item" />
+    <!--<TextView-->
+    <!--android:id="@+id/tvQuestion"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="10dp"-->
+    <!--android:padding="10dp"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:textSize="18sp"-->
+    <!--tools:text="@string/speech_not_supported" />-->
 
-    <LinearLayout
-        android:id="@+id/llQ1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="10dp">
+    <!--<LinearLayout-->
+    <!--android:id="@+id/llQ1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:padding="10dp">-->
 
-        <ImageView
-            android:id="@+id/imgQ1"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/circle" />
+    <!--<ImageView-->
+    <!--android:id="@+id/imgQ1"-->
+    <!--android:layout_width="20dp"-->
+    <!--android:layout_height="20dp"-->
+    <!--android:background="@drawable/circle" />-->
 
-        <TextView
-            android:id="@+id/tvQ1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:textColor="@color/gray2"
-            android:textSize="16sp"
-            tools:text="@string/speech_not_supported" />
+    <!--<TextView-->
+    <!--android:id="@+id/tvQ1"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:paddingLeft="10dp"-->
+    <!--android:textColor="@color/gray2"-->
+    <!--android:textSize="16sp"-->
+    <!--tools:text="@string/speech_not_supported" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
-    <LinearLayout
-        android:id="@+id/llQ2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="15dp">
+    <!--<LinearLayout-->
+    <!--android:id="@+id/llQ2"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:padding="10dp">-->
 
-        <ImageView
-            android:id="@+id/imgQ2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/circle" />
+    <!--<ImageView-->
+    <!--android:id="@+id/imgQ2"-->
+    <!--android:layout_width="20dp"-->
+    <!--android:layout_height="20dp"-->
+    <!--android:background="@drawable/circle" />-->
 
-        <TextView
-            android:id="@+id/tvQ2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:textColor="@color/gray2"
-            android:textSize="16sp"
-            tools:text="@string/speech_not_supported" />
+    <!--<TextView-->
+    <!--android:id="@+id/tvQ2"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:paddingLeft="10dp"-->
+    <!--android:textColor="@color/gray2"-->
+    <!--android:textSize="16sp"-->
+    <!--tools:text="@string/speech_not_supported" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
-    <LinearLayout
-        android:id="@+id/llQ3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="10dp">
+    <!--<LinearLayout-->
+    <!--android:id="@+id/llQ3"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:padding="10dp">-->
 
-        <ImageView
-            android:id="@+id/imgQ3"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/circle" />
+    <!--<ImageView-->
+    <!--android:id="@+id/imgQ3"-->
+    <!--android:layout_width="20dp"-->
+    <!--android:layout_height="20dp"-->
+    <!--android:background="@drawable/circle" />-->
 
-        <TextView
-            android:id="@+id/tvQ3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:textColor="@color/gray2"
-            android:textSize="16sp"
-            tools:text="@string/speech_not_supported" />
+    <!--<TextView-->
+    <!--android:id="@+id/tvQ3"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:paddingLeft="10dp"-->
+    <!--android:textColor="@color/gray2"-->
+    <!--android:textSize="16sp"-->
+    <!--tools:text="@string/speech_not_supported" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
-    <LinearLayout
-        android:id="@+id/llQ4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="10dp">
+    <!--<LinearLayout-->
+    <!--android:id="@+id/llQ4"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:padding="10dp">-->
 
-        <ImageView
-            android:id="@+id/imgQ4"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/circle" />
+    <!--<ImageView-->
+    <!--android:id="@+id/imgQ4"-->
+    <!--android:layout_width="20dp"-->
+    <!--android:layout_height="20dp"-->
+    <!--android:background="@drawable/circle" />-->
 
-        <TextView
-            android:id="@+id/tvQ4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:textColor="@color/gray2"
-            android:textSize="16sp"
-            tools:text="@string/speech_not_supported" />
+    <!--<TextView-->
+    <!--android:id="@+id/tvQ4"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:paddingLeft="10dp"-->
+    <!--android:textColor="@color/gray2"-->
+    <!--android:textSize="16sp"-->
+    <!--tools:text="@string/speech_not_supported" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <View
         android:layout_width="match_parent"
@@ -143,7 +160,7 @@
 
     <TextView
         android:id="@+id/tvClose"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="0dp"

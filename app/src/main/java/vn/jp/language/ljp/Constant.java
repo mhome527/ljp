@@ -16,6 +16,7 @@ public class Constant {
 
     public static final int TRIAL = 4;
     public static final int TRIAL_GRAMMAR = 5;
+    public static final int TRIAL_READING = 2;
     /////
 
     ////
@@ -37,6 +38,7 @@ public class Constant {
 //	// /////////
     public static final String INTENT_KIND = "intent_kind";
     public static final String INTENT_LEVEL = "intent_level";
+    public static final String INTENT_TITLE_Q = "intent_title_q";
 
     public static final String INTENT_DETAIL_LEVEL = "intent_detail_level";
     public static final String INTENT_DETAIL_NUM = "intent_detail_num";

@@ -16,7 +16,7 @@ public class PracticeEntity {
     String q4;
     int ans;
     int review; //0:read; 1: unread; 2: wrong answer
-
+    int ref;
     ///////
 
 
@@ -30,6 +30,18 @@ public class PracticeEntity {
 
     public String getQuestion() {
         return question;
+    }
+
+    public String getQuestion2() {
+        if (question == null) //temp
+            question = "";
+
+        if (review == -1) //answer wrong
+            return "<font color='red'>" + question + "</font>";
+        else if (review == 1)
+            return "<font color='gray'>" + question + "</font>";
+        else
+            return "<font color='black'>" + question + "</font>";
     }
 
     public void setQuestion(String question) {
@@ -106,5 +118,13 @@ public class PracticeEntity {
 
     public void setReview(int review) {
         this.review = review;
+    }
+
+    public int getRef() {
+        return ref;
+    }
+
+    public void setRef(int ref) {
+        this.ref = ref;
     }
 }

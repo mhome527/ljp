@@ -57,7 +57,7 @@ public class PracticeListAdapter extends BaseAdapterView<PracticeListHolder> {
     }
 
     @Override
-    public void onBindViewHolder(PracticeListHolder holder, int position) {
+    public void onViewHolder(PracticeListHolder holder, int position) {
         holder.bind(items.get(position), isPurchased);
     }
 

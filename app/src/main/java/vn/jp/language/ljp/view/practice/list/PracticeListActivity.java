@@ -18,6 +18,7 @@ import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
 import vn.jp.language.ljp.view.practice.dialog.PracticeDialog;
+import vn.jp.language.ljp.view.practice.reading.PracticeReadingActivity;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 /**
@@ -102,8 +103,16 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     //   ==============  IClickListener - item click
     @Override
     public void onClick(View view, int position) {
-        PracticeDialog dialog = new PracticeDialog(activity, position, items.get(position), iPracticeInterface);
-        dialog.show();
+        if (kind == PracticeTable.TYPE_READING) {
+            Intent i = new Intent(activity, PracticeReadingActivity.class);
+            i.putExtra(Constant.INTENT_LEVEL, level);
+            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNum());
+            i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
+            startActivity(i);
+        } else {
+            PracticeDialog dialog = new PracticeDialog(activity, position, items.get(position), iPracticeInterface);
+            dialog.show();
+        }
     }
 
     @Override

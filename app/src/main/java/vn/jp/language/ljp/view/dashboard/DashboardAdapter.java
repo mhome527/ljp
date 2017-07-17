@@ -57,7 +57,7 @@ public class DashboardAdapter extends BaseAdapterView<DashboardHolder> {
     }
 
     @Override
-    public void onBindViewHolder(DashboardHolder holder, int position) {
+    public void onViewHolder(DashboardHolder holder, int position) {
         holder.bind(listData.get(position));
     }
 

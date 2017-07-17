@@ -1,5 +1,6 @@
 package vn.jp.language.ljp.view.practice.list;
 
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
+import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.view.BaseViewHolder;
 
@@ -32,16 +34,28 @@ public class PracticeListHolder extends BaseViewHolder {
     }
 
     public void bind(PracticeEntity item, boolean isPurchased) {
-        if (isPurchased || item.getNum() < Constant.TRIAL_GRAMMAR) {
-//            imgLike.setBackgroundResource(R.drawable.btn_star_off);
-            imgLike.setVisibility(View.GONE);
-        } else {
-//            imgLike.setBackgroundResource(R.drawable.ic_lock);
-            imgLike.setVisibility(View.VISIBLE);
+        if (item.getKind() == PracticeTable.TYPE_READING) {
+            if (isPurchased || item.getBookmarks() < Constant.TRIAL_READING)
+                imgLike.setVisibility(View.GONE);
+            else
+                imgLike.setVisibility(View.VISIBLE);
+            tvNum.setText(item.getBookmarks() + "");
 
+
+        } else {
+            if (isPurchased || item.getNum() < Constant.TRIAL_GRAMMAR)
+                imgLike.setVisibility(View.GONE);
+            else
+                imgLike.setVisibility(View.VISIBLE);
+            tvNum.setText(item.getNum() + "");
         }
 
-        tvNum.setText(item.getNum() + "");
-        tvContent.setText(item.getQuestion());
+//        tvContent.setText(item.getQuestion());
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            tvContent.setText(Html.fromHtml(item.getQuestion2(), Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            tvContent.setText(Html.fromHtml(item.getQuestion2()));
+        }
     }
 }

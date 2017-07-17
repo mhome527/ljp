@@ -1,31 +1,40 @@
 package vn.jp.language.ljp.view.practice.list;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
 import java.util.List;
 
-import vn.jp.language.ljp.db.dao.BaseDao;
 import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.PracticeEntity;
+import vn.jp.language.ljp.view.practice.BasePracticeDao;
 
 /**
  * Created by Administrator on 7/10/2017.
  */
 
-public class PracticeDao extends BaseDao<PracticeEntity> {
+public class PracticeDao extends BasePracticeDao {
     private final String TAG = "PracticeDao";
 
     int level;
     int kind;
-    String table;
+//    String table;
+
+    @Override
+    protected int getLevel() {
+        return level;
+    }
+
+    @Override
+    protected int getKind() {
+        return kind;
+    }
+
 
     public PracticeDao(Context context, int level, int kind) {
         super(context);
         this.level = level;
         this.kind = kind;
-        table = PracticeTable.getTableName(level);
     }
 
     @Override
@@ -50,14 +59,21 @@ public class PracticeDao extends BaseDao<PracticeEntity> {
 
     public List<PracticeEntity> getItems(boolean isSort) {
         String sort;
+        String where;
         if (isSort)
-            sort = " Order by " + PracticeTable.COL_REVIEW + " desc, " + PracticeTable.COL_NUM + " asc ";
+            sort = " Order by " + PracticeTable.COL_REVIEW + " asc, " + PracticeTable.COL_NUM + " asc ";
         else
             sort = " Order by " + PracticeTable.COL_NUM + " asc ";
 
+        if (kind == PracticeTable.TYPE_READING)
+            where = " " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_READING
+                    + " And " + PracticeTable.COL_NUM + " > 200";
+        else
+            where = PracticeTable.COL_KIND + " = " + kind;
 
-        String sql = "Select * from " + table + " where "
-                + PracticeTable.COL_KIND + " = " + kind + " " + sort;
+        String sql = "Select * From " + getTableName()
+                + " where " + where + " "
+                + sort;
 
         return fetchAll(sql);
     }
@@ -65,32 +81,32 @@ public class PracticeDao extends BaseDao<PracticeEntity> {
     public List<PracticeEntity> getBookmark(boolean isSort) {
         String sort;
         if (isSort)
-            sort = " Order by " + PracticeTable.COL_REVIEW + " desc, " + PracticeTable.COL_NUM + " asc ";
+            sort = " Order by " + PracticeTable.COL_REVIEW + " asc, " + PracticeTable.COL_NUM + " asc ";
         else
             sort = " Order by " + PracticeTable.COL_NUM + " asc ";
 
 
-        String sql = "Select * from " + table + " where "
+        String sql = "Select * from " + getTableName() + " where "
                 + PracticeTable.COL_KIND + " = " + kind + " And "
                 + PracticeTable.COL_BOOKMARKS + " = 1" + sort;
         return fetchAll(sql);
     }
 
 
-    public void updateAnswer(int num, int review) {
-        ContentValues value = new ContentValues();
-        value.put(PracticeTable.COL_REVIEW, review);
-        String where = PracticeTable.COL_KIND + " = " + kind + " AND "
-                + PracticeTable.COL_NUM + " = " + num;
-        updateRow(table, value, where);
-    }
-
-    public void updateBookmark(int num, int bookmark) {
-        ContentValues value = new ContentValues();
-        value.put(PracticeTable.COL_BOOKMARKS, bookmark);
-        String where = PracticeTable.COL_KIND + " = " + kind + " AND "
-                + PracticeTable.COL_NUM + " = " + num;
-        updateRow(table, value, where);
-    }
+//    public void updateAnswer(int num, int review) {
+//        ContentValues value = new ContentValues();
+//        value.put(PracticeTable.COL_REVIEW, review);
+//        String where = PracticeTable.COL_KIND + " = " + kind + " AND "
+//                + PracticeTable.COL_NUM + " = " + num;
+//        updateRow(table, value, where);
+//    }
+//
+//    public void updateBookmark(int num, int bookmark) {
+//        ContentValues value = new ContentValues();
+//        value.put(PracticeTable.COL_BOOKMARKS, bookmark);
+//        String where = PracticeTable.COL_KIND + " = " + kind + " AND "
+//                + PracticeTable.COL_NUM + " = " + num;
+//        updateRow(table, value, where);
+//    }
 
 }
