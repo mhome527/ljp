@@ -28,6 +28,7 @@ public class PracticeTable {
     public static final int TYPE_READING = 3;
     public static final int TYPE_KANJI = 2;
     public static final int TYPE_VOCABULARY = 5;
+    public static final int TYPE_LISTENING = 6;
 
     public static final int LEVEL_N5 = 5;
     public static final int LEVEL_N4 = 4;

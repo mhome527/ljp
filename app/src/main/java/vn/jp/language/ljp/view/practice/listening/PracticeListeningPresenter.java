@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.practice.reading;
+package vn.jp.language.ljp.view.practice.listening;
 
 import vn.jp.language.ljp.view.BasePresenter;
 import vn.jp.language.ljp.view.ICallback;
@@ -7,18 +7,18 @@ import vn.jp.language.ljp.view.ICallback;
  * Created by Administrator on 7/17/2017.
  */
 
-public class PracticeReadingPresenter extends BasePresenter<PracticeReadingActivity> {
+public class PracticeListeningPresenter extends BasePresenter<PracticeListeningActivity> {
 
     int level;
     int idRef;
 
-    PracticeReadingDao dao;
+    PracticeListeningDao dao;
 
-    public PracticeReadingPresenter(PracticeReadingActivity activity, int level, int idRef) {
+    public PracticeListeningPresenter(PracticeListeningActivity activity, int level, int idRef) {
         super(activity);
         this.level = level;
         this.idRef = idRef;
-        dao = new PracticeReadingDao(activity, level);
+        dao = new PracticeListeningDao(activity, level);
     }
 
     public void load(ICallback iCallback) {
@@ -34,6 +34,5 @@ public class PracticeReadingPresenter extends BasePresenter<PracticeReadingActiv
     public void updateAns(int num, int review) {
         dao.updateAnswer(num, review);
         dao.updateStatus(idRef);
-
     }
 }

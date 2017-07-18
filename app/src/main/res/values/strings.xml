@@ -76,6 +76,8 @@
     <string name="title_n_grammar">Grammar</string>
     <string name="title_n_reading">Reading</string>
     <string name="title_n_vocabulary">Vocabulary</string>
+    <string name="title_n_listening">Listening</string>
     <string name="title_n_kanji">Kanji</string>
+    <string name="title_view">View</string>
 
 </resources>

@@ -48,6 +48,11 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
         }
     }
 
+    @OnClick(R.id.tvN1Listening)
+    public void actionN1Listening() {
+        startIntent(PracticeTable.LEVEL_N1, PracticeTable.TYPE_LISTENING);
+    }
+
     @OnClick(R.id.tvN1Grammar)
     public void actionN1Grammar() {
         startIntent(PracticeTable.LEVEL_N1, PracticeTable.TYPE_GRAMMAR);

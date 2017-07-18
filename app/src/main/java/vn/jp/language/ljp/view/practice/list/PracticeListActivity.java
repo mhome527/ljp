@@ -18,6 +18,7 @@ import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
 import vn.jp.language.ljp.view.practice.dialog.PracticeDialog;
+import vn.jp.language.ljp.view.practice.listening.PracticeListeningActivity;
 import vn.jp.language.ljp.view.practice.reading.PracticeReadingActivity;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
@@ -107,6 +108,13 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             Intent i = new Intent(activity, PracticeReadingActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
             i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNum());
+            i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
+            startActivity(i);
+        } else if (kind == PracticeTable.TYPE_LISTENING) {
+            Intent i = new Intent(activity, PracticeListeningActivity.class);
+            i.putExtra(Constant.INTENT_LEVEL, level);
+            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNum());
+            i.putExtra(Constant.INTENT_FILE_NAME, items.get(position).getQ1()); //file name
             i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
             startActivity(i);
         } else {

@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.practice.reading;
+package vn.jp.language.ljp.view.practice.listening;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -13,7 +13,7 @@ import vn.jp.language.ljp.view.practice.BasePracticeDao;
  * Created by Administrator on 7/17/2017.
  */
 
-public class PracticeReadingDao extends BasePracticeDao {
+public class PracticeListeningDao extends BasePracticeDao {
 
     int level;
 
@@ -24,10 +24,10 @@ public class PracticeReadingDao extends BasePracticeDao {
 
     @Override
     protected int getKind() {
-        return PracticeTable.TYPE_READING;
+        return PracticeTable.TYPE_LISTENING;
     }
 
-    public PracticeReadingDao(Context context, int level) {
+    public PracticeListeningDao(Context context, int level) {
         super(context);
         this.level = level;
     }
@@ -51,13 +51,13 @@ public class PracticeReadingDao extends BasePracticeDao {
 
     public List<PracticeEntity> getItems(int idRef) {
         String sql = "Select * From " + getTableName() + " where "
-                + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_READING
+                + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
                 + " And " + PracticeTable.COL_REF + "=" + idRef;
         return fetchAll(sql);
     }
 
     public void updateStatus(int num) {
-        updateReview(PracticeTable.TYPE_READING, num);
+        updateReview(PracticeTable.TYPE_LISTENING, num);
     }
 
 }

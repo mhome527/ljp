@@ -286,6 +286,19 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvN2Listening"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:text="@string/title_n_listening"
+                        android:textColor="@drawable/button_text_blue"
+                        android:textSize="17sp" />
+
+
+                    <TextView
                         android:id="@+id/tvN2Grammar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -370,6 +383,18 @@
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvN1Listening"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:text="@string/title_n_listening"
+                        android:textColor="@drawable/button_text_blue"
+                        android:textSize="17sp" />
 
                     <TextView
                         android:id="@+id/tvN1Grammar"

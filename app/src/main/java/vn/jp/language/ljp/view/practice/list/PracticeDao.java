@@ -68,6 +68,9 @@ public class PracticeDao extends BasePracticeDao {
         if (kind == PracticeTable.TYPE_READING)
             where = " " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_READING
                     + " And " + PracticeTable.COL_NUM + " > 200";
+        else if (kind == PracticeTable.TYPE_LISTENING)
+            where = " " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_LISTENING
+                    + " And " + PracticeTable.COL_NUM + " > 600";
         else
             where = PracticeTable.COL_KIND + " = " + kind;
 

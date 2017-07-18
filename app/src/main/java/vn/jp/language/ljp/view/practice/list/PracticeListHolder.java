@@ -41,6 +41,13 @@ public class PracticeListHolder extends BaseViewHolder {
                 imgLike.setVisibility(View.VISIBLE);
             tvNum.setText(item.getBookmarks() + "");
 
+        } else if (item.getKind() == PracticeTable.TYPE_LISTENING) {
+            if (isPurchased || item.getBookmarks() < Constant.TRIAL_LISTENING)
+                imgLike.setVisibility(View.GONE);
+            else
+                imgLike.setVisibility(View.VISIBLE);
+            tvNum.setText(item.getBookmarks() + "");
+
 
         } else {
             if (isPurchased || item.getNum() < Constant.TRIAL_GRAMMAR)

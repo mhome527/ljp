@@ -34,6 +34,10 @@ public class PracticeListPresenter extends BasePresenter<BaseActivity> {
                 return activity.getString(R.string.title_n_reading);
             case PracticeTable.TYPE_KANJI:
                 return activity.getString(R.string.title_n_kanji);
+            case PracticeTable.TYPE_VOCABULARY:
+                return activity.getString(R.string.title_n_vocabulary);
+            case PracticeTable.TYPE_LISTENING:
+                return activity.getString(R.string.title_n_listening);
             default:
                 return activity.getString(R.string.title_n_vocabulary);
         }

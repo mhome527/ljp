@@ -17,6 +17,7 @@ public class Constant {
     public static final int TRIAL = 4;
     public static final int TRIAL_GRAMMAR = 5;
     public static final int TRIAL_READING = 2;
+    public static final int TRIAL_LISTENING = 3;
     /////
 
     ////
@@ -42,6 +43,7 @@ public class Constant {
 
     public static final String INTENT_DETAIL_LEVEL = "intent_detail_level";
     public static final String INTENT_DETAIL_NUM = "intent_detail_num";
+    public static final String INTENT_FILE_NAME = "intent_filename";
 
     public enum TYPE_ALPHABET {
         HIRAGANA, KATAKANA

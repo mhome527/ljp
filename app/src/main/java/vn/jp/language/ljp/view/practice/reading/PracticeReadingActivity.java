@@ -1,6 +1,8 @@
 package vn.jp.language.ljp.view.practice.reading;
 
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
 import java.util.List;
 
@@ -44,6 +46,18 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
         Common.setupRecyclerView(activity, recyclerView, null);
         presenter = new PracticeReadingPresenter(activity, level, idRef);
         presenter.load(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                activity.setResult(AppCompatActivity.RESULT_OK);
+                activity.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     // IPracticeInterface

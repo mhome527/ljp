@@ -83,6 +83,10 @@ public abstract class BaseDao<T> {
         Log.i(TAG, "update data: " + where);
         return DatabaseHelper.updateData(context, tableName, data, where);
     }
+
+    protected void executeQuery(String sql){
+        DatabaseHelper.getInstance(context).executeDMLQuery(sql);
+    }
 //    protected SQLiteDatabase getDB(){
 //        return DatabaseHelper.getInstance(context).getDB();
 //    }
