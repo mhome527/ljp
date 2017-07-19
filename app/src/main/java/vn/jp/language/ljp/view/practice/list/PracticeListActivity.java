@@ -53,8 +53,14 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         presenter = new PracticeListPresenter(this, level, kind);
         setTitle(presenter.getTitle());
 
-        loadData();
+//        loadData();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
     }
 
     @Override

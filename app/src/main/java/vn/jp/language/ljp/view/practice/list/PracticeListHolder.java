@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import vn.jp.language.ljp.BaseApplication;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
@@ -60,9 +61,17 @@ public class PracticeListHolder extends BaseViewHolder {
 //        tvContent.setText(item.getQuestion());
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            tvContent.setText(Html.fromHtml(item.getQuestion2(), Html.FROM_HTML_MODE_LEGACY));
+            tvContent.setText(Html.fromHtml(item.getQuestion(), Html.FROM_HTML_MODE_LEGACY));
         } else {
-            tvContent.setText(Html.fromHtml(item.getQuestion2()));
+            tvContent.setText(Html.fromHtml(item.getQuestion()));
         }
+
+        if (item.getReview() == -1) //answer wrong
+            tvContent.setTextColor(BaseApplication.getInstance().getResources().getColor(R.color.red));
+        else if (item.getReview() == 1)
+            tvContent.setTextColor(BaseApplication.getInstance().getResources().getColor(R.color.gray));
+        else
+            tvContent.setTextColor(BaseApplication.getInstance().getResources().getColor(R.color.black));
+
     }
 }

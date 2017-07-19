@@ -36,7 +36,7 @@ public class PracticeListeningDao extends BasePracticeDao {
     protected PracticeEntity fetch(Cursor cursor) {
         PracticeEntity entity = new PracticeEntity();
         entity.setNum(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_NUM)));
-//        entity.setBookmarks(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_BOOKMARKS)));
+        entity.setBookmarks(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_BOOKMARKS)));
         entity.setKind(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_KIND)));
         entity.setQuestion(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_QUESTION)));
         entity.setQ1(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q1)));

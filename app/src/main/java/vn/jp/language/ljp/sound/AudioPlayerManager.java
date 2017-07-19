@@ -60,4 +60,15 @@ public class AudioPlayerManager {
             e.printStackTrace();
         }
     }
+
+    public void stop() {
+        try {
+            if (m != null && m.isPlaying()) {
+                m.stop();
+                m.release();
+            }
+        } catch (Exception e) {
+            Log.trace(e);
+        }
+    }
 }
