@@ -42,7 +42,9 @@ public class Constant {
     public static final String INTENT_TITLE_Q = "intent_title_q";
 
     public static final String INTENT_DETAIL_LEVEL = "intent_detail_level";
-    public static final String INTENT_DETAIL_NUM = "intent_detail_num";
+    public static final String INTENT_NUM = "intent_detail_num";
+    public static final String INTENT_BOOKMARK = "intent_bookmark";
+    public static final String INTENT_DETAIL_NUM = "intent_num";
     public static final String INTENT_FILE_NAME = "intent_filename";
 
     public enum TYPE_ALPHABET {

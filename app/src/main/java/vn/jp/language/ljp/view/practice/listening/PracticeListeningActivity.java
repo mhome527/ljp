@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,6 +28,12 @@ import vn.jp.language.ljp.view.ICallback;
 public class PracticeListeningActivity extends BaseActivity<PracticeListeningActivity> implements ICallback<List<PracticeEntity>> {
     private final String TAG = "PracticeListeningActivity";
     private final String FOLDER = "n/";
+
+    @BindView(R.id.tvNum)
+    TextView tvNum;
+
+    @BindView(R.id.imgBookmark)
+    ImageButton imgBookmark;
 
     @BindView(R.id.tvQuestion)
     TextView tvQuestion;
@@ -63,6 +70,9 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
 
     AudioPlayerManager audio;
     PracticeEntity item;
+    int num;
+    int idRef;
+    int bookmark;
     int ansType = 0; //0: don't choice; 1: choice true; -1: choice wrong
     PracticeListeningPresenter presenter;
 
@@ -74,13 +84,20 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
 
     @Override
     protected void initView() {
+        setTitle(getString(R.string.title_n_listening));
+
         int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
-        int idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
+        num = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
+        idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
+        bookmark = getIntent().getIntExtra(Constant.INTENT_BOOKMARK, 0);
         titleQ = getIntent().getStringExtra(Constant.INTENT_TITLE_Q);
         filename = getIntent().getStringExtra(Constant.INTENT_FILE_NAME);
         presenter = new PracticeListeningPresenter(activity, level, idRef);
+
+        tvNum.setText(num + "");
         presenter.load(this);
         audio = new AudioPlayerManager(activity);
+        setBookmark();
     }
 
     @Override
@@ -118,7 +135,6 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
             tvQ3.setText("3." + item.getQ3());
             if (item.getQ4() != null && !item.getQ4().equals(""))
                 tvQ4.setText("4." + item.getQ4());
-
         }
 
         if (item.getQ4() != null && !item.getQ4().equals("")) {
@@ -140,6 +156,13 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
 
     }
     /////////
+
+    @OnClick(R.id.imgBookmark)
+    public void actionBookmark() {
+        bookmark = bookmark == 0 ? 1 : 0;
+        setBookmark();
+        presenter.updateBookmark(num, bookmark, idRef);
+    }
 
     @OnClick(R.id.imgSpeak)
     public void actionSpeak() {
@@ -224,4 +247,10 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
         presenter.updateAns(item.getNum(), ansType);
     }
 
+    private void setBookmark() {
+        if (bookmark == 0)
+            imgBookmark.setImageResource(R.drawable.heart_off);
+        else
+            imgBookmark.setImageResource(R.drawable.heart_on);
+    }
 }

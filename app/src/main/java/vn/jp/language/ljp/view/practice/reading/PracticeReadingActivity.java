@@ -1,12 +1,19 @@
 package vn.jp.language.ljp.view.practice.reading;
 
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.PracticeEntity;
@@ -23,6 +30,21 @@ import vn.jp.language.ljp.view.practice.list.IPracticeInterface;
 public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivity> implements IPracticeInterface, ICallback<List<PracticeEntity>> {
     private final String TAG = "PracticeReadingActivity";
 
+    @BindView(R.id.coordinator)
+    CoordinatorLayout coordinator;
+
+    @BindView(R.id.appBar)
+    AppBarLayout appBar;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.tvNum)
+    TextView tvNum;
+
+    @BindView(R.id.imgBookmark)
+    ImageButton imgBookmark;
+
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
@@ -32,6 +54,10 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
 
     String titleQ;
 
+    int num;
+    int idRef;
+    int bookmark;
+
     @Override
     protected int getLayout() {
         return R.layout.practice_reading_layout;
@@ -40,12 +66,32 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
     @Override
     protected void initView() {
         int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
-        int idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
+        idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
+        num = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
+        bookmark = getIntent().getIntExtra(Constant.INTENT_BOOKMARK, 0);
+
         titleQ = getIntent().getStringExtra(Constant.INTENT_TITLE_Q);
+
+        ///////////////
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true); // disable the button
+            actionBar.setDisplayHomeAsUpEnabled(true); // remove the left caret
+            actionBar.setDisplayShowHomeEnabled(true); // remove the icon
+            actionBar.setDisplayShowTitleEnabled(true); // remove title
+//            toolbarTitle.setText(getString(R.string.title_alphabet));
+            actionBar.setTitle(getString(R.string.title_n_reading));
+        }
+
+        tvNum.setText(num + "");
 
         Common.setupRecyclerView(activity, recyclerView, null);
         presenter = new PracticeReadingPresenter(activity, level, idRef);
         presenter.load(this);
+
+        setBookmark();
+
     }
 
     @Override
@@ -60,6 +106,14 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
         }
     }
 
+    @OnClick(R.id.imgBookmark)
+    public void actionBookmark() {
+        bookmark = bookmark == 0 ? 1 : 0;
+        setBookmark();
+        presenter.updateBookmark(num, bookmark, idRef);
+    }
+
+
     // IPracticeInterface
     @Override
     public void onBookmark(int pos, int value) {
@@ -67,7 +121,7 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
 
     @Override
     public void onAns(int pos, int value) {
-        Log.i(TAG, "onAns pos, value" + pos + "," + value);
+        Log.i(TAG, "onAns num, value" + items.get(pos).getNum() + "," + value);
         presenter.updateAns(items.get(pos).getNum(), value);
     }
 //  end  IPracticeInterface
@@ -85,4 +139,11 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
 
     }
 //  end  ICallback
+
+    private void setBookmark() {
+        if (bookmark == 0)
+            imgBookmark.setImageResource(R.drawable.heart_off);
+        else
+            imgBookmark.setImageResource(R.drawable.heart_on);
+    }
 }

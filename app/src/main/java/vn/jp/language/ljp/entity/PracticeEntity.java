@@ -6,6 +6,7 @@ package vn.jp.language.ljp.entity;
 
 public class PracticeEntity {
     int num;
+    int numId;
     int kind;
     int bookmarks; //1:checked
     String title;
@@ -19,6 +20,14 @@ public class PracticeEntity {
     int ref;
     ///////
 
+
+    public int getNumId() {
+        return numId;
+    }
+
+    public void setNumId(int numId) {
+        this.numId = numId;
+    }
 
     public int getNum() {
         return num;

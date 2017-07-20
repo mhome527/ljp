@@ -41,6 +41,7 @@ public class PracticeDao extends BasePracticeDao {
     protected PracticeEntity fetch(Cursor cursor) {
         PracticeEntity entity = new PracticeEntity();
         entity.setNum(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_NUM)));
+        entity.setNumId(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_NUM_ID)));
         entity.setBookmarks(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_BOOKMARKS)));
         entity.setKind(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_KIND)));
         entity.setQuestion(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_QUESTION)));
@@ -67,10 +68,10 @@ public class PracticeDao extends BasePracticeDao {
 
         if (kind == PracticeTable.TYPE_READING)
             where = " " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_READING
-                    + " And " + PracticeTable.COL_NUM + " > 200";
+                    + " And " + PracticeTable.COL_NUM_ID + " > 200";
         else if (kind == PracticeTable.TYPE_LISTENING)
             where = " " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_LISTENING
-                    + " And " + PracticeTable.COL_NUM + " > 600";
+                    + " And " + PracticeTable.COL_NUM_ID + " > 600";
         else
             where = PracticeTable.COL_KIND + " = " + kind;
 
@@ -83,15 +84,26 @@ public class PracticeDao extends BasePracticeDao {
 
     public List<PracticeEntity> getBookmark(boolean isSort) {
         String sort;
+        String where;
         if (isSort)
             sort = " Order by " + PracticeTable.COL_REVIEW + " asc, " + PracticeTable.COL_NUM + " asc ";
         else
             sort = " Order by " + PracticeTable.COL_NUM + " asc ";
 
+        if (kind == PracticeTable.TYPE_READING)
+            where = " " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_READING
+                    + " And " + PracticeTable.COL_NUM_ID + " > 200";
+        else if (kind == PracticeTable.TYPE_LISTENING)
+            where = " " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_LISTENING
+                    + " And " + PracticeTable.COL_NUM_ID + " > 600";
+        else
+            where = PracticeTable.COL_KIND + " = " + kind;
 
-        String sql = "Select * from " + getTableName() + " where "
-                + PracticeTable.COL_KIND + " = " + kind + " And "
-                + PracticeTable.COL_BOOKMARKS + " = 1" + sort;
+        String sql = "Select * From " + getTableName()
+                + " Where " + where
+                + " And " + PracticeTable.COL_BOOKMARKS + " = 1 "
+                + sort;
+
         return fetchAll(sql);
     }
 

@@ -52,9 +52,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
 
         presenter = new PracticeListPresenter(this, level, kind);
         setTitle(presenter.getTitle());
-
 //        loadData();
-
     }
 
     @Override
@@ -113,13 +111,17 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         if (kind == PracticeTable.TYPE_READING) {
             Intent i = new Intent(activity, PracticeReadingActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
-            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNum());
+            i.putExtra(Constant.INTENT_NUM, items.get(position).getNum());
+            i.putExtra(Constant.INTENT_BOOKMARK, items.get(position).getBookmarks());
+            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNumId());
             i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
             startActivity(i);
         } else if (kind == PracticeTable.TYPE_LISTENING) {
             Intent i = new Intent(activity, PracticeListeningActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
-            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNum());
+            i.putExtra(Constant.INTENT_NUM, items.get(position).getNum());
+            i.putExtra(Constant.INTENT_BOOKMARK, items.get(position).getBookmarks());
+            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNumId());
             i.putExtra(Constant.INTENT_FILE_NAME, items.get(position).getQ1()); //file name
             i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
             startActivity(i);

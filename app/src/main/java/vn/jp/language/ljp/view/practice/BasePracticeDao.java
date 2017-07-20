@@ -14,6 +14,7 @@ import vn.jp.language.ljp.utils.Log;
 
 abstract public class BasePracticeDao extends BaseDao<PracticeEntity> {
     abstract protected int getLevel();
+
     abstract protected int getKind();
 
     public BasePracticeDao(Context context) {
@@ -25,30 +26,67 @@ abstract public class BasePracticeDao extends BaseDao<PracticeEntity> {
     }
 
     public void updateAnswer(int num, int review) {
+//        ContentValues value = new ContentValues();
+//        value.put(PracticeTable.COL_REVIEW, review);
+//        String where = PracticeTable.COL_KIND + " = " + getKind() + " AND "
+//                + PracticeTable.COL_NUM + " = " + num;
+//        updateRow(getTableName(), value, where);
+        updateAnswer(num, review, 0);
+    }
+
+    public void updateAnswer(int num, int review, int refId) {
         ContentValues value = new ContentValues();
-        value.put(PracticeTable.COL_REVIEW, review);
         String where = PracticeTable.COL_KIND + " = " + getKind() + " AND "
                 + PracticeTable.COL_NUM + " = " + num;
+
+        value.put(PracticeTable.COL_REVIEW, review);
+
+        if (refId > 0)
+            where += " And " + PracticeTable.COL_REF + " = " + refId;
+
         updateRow(getTableName(), value, where);
     }
 
     public void updateBookmark(int num, int bookmark) {
+        updateBookmark(num, bookmark, 0);
+    }
+
+    public void updateBookmark(int num, int bookmark, int numId) {
         ContentValues value = new ContentValues();
         value.put(PracticeTable.COL_BOOKMARKS, bookmark);
         String where = PracticeTable.COL_KIND + " = " + getKind() + " AND "
                 + PracticeTable.COL_NUM + " = " + num;
+
+        if (numId > 0)
+            where += " And " + PracticeTable.COL_NUM_ID + " = " + numId;
+
         updateRow(getTableName(), value, where);
     }
 
-    protected void updateReview(int kind, int num) {
+//    protected void updateReview(int kind, int num) {
+//        String minReview = "(Select min(" + PracticeTable.COL_REVIEW + ") " +
+//                " From " + getTableName() + " Where " + PracticeTable.COL_KIND + " = " + kind +
+//                " And " + PracticeTable.COL_REF + " = " + num + " ) ";
+//
+//        String sql = "Update " + getTableName()
+//                + " Set " + PracticeTable.COL_REVIEW + " = " + minReview
+//                + " Where  " + PracticeTable.COL_KIND + " = " + kind
+//                + " And " + PracticeTable.COL_NUM + " = " + num;
+//
+//        Log.i(TAG, "update status:" + sql);
+//        executeQuery(sql);
+//
+//    }
+
+    protected void updateReview(int kind, int numId) {
         String minReview = "(Select min(" + PracticeTable.COL_REVIEW + ") " +
                 " From " + getTableName() + " Where " + PracticeTable.COL_KIND + " = " + kind +
-                " And " + PracticeTable.COL_REF + " = " + num + " ) ";
+                " And " + PracticeTable.COL_REF + " = " + numId + " ) ";
 
         String sql = "Update " + getTableName()
                 + " Set " + PracticeTable.COL_REVIEW + " = " + minReview
                 + " Where  " + PracticeTable.COL_KIND + " = " + kind
-                + " And " + PracticeTable.COL_NUM + " = " + num;
+                + " And " + PracticeTable.COL_NUM_ID + " = " + numId;
 
         Log.i(TAG, "update status:" + sql);
         executeQuery(sql);

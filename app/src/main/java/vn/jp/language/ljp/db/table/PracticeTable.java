@@ -13,6 +13,7 @@ public class PracticeTable {
     private static final String N5 = "TblPracticeN5";
 
     public static final String COL_NUM = "num";
+    public static final String COL_NUM_ID = "num_id";
     public static final String COL_KIND = "kind";
     public static final String COL_BOOKMARKS = "bookmarks";
     public static final String COL_REVIEW = "review"; //0: don't choice; 1: choice true; -1: choice wrong

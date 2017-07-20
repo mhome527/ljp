@@ -1,6 +1,9 @@
 package vn.jp.language.ljp.view.practice.list;
 
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 
 import java.util.List;
@@ -15,6 +18,7 @@ import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
 import vn.jp.language.ljp.view.practice.dialog.PracticeDialog;
+import vn.jp.language.ljp.view.practice.listening.PracticeListeningActivity;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 /**
@@ -47,33 +51,25 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
         presenter = new PracticeListPresenter(this, level, kind);
         setTitle(presenter.getTitle());
 
-        loadData();
-
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_practice_list, menu);
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                onBackPressed();
-//                return true;
-//
-//            case R.id.menuBookmark:
-//                onBackPressed();
-//                return true;
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                activity.setResult(AppCompatActivity.RESULT_OK);
+                activity.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     // ================= Purchase ====================
     @Override
@@ -90,8 +86,20 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
     //   ==============  IClickListener - item click
     @Override
     public void onClick(View view, int position) {
-        PracticeDialog dialog = new PracticeDialog(activity, position, items.get(position), iPracticeInterface);
-        dialog.show();
+        if (kind == PracticeTable.TYPE_LISTENING) {
+            Intent i = new Intent(activity, PracticeListeningActivity.class);
+            i.putExtra(Constant.INTENT_LEVEL, level);
+            i.putExtra(Constant.INTENT_NUM, items.get(position).getNum());
+            i.putExtra(Constant.INTENT_BOOKMARK, items.get(position).getBookmarks());
+            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNumId());
+            i.putExtra(Constant.INTENT_FILE_NAME, items.get(position).getQ1()); //file name
+            i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
+            startActivity(i);
+        } else {
+            PracticeDialog dialog = new PracticeDialog(activity, position, items.get(position), iPracticeInterface);
+            dialog.show();
+        }
+
     }
 
     @Override
@@ -100,7 +108,7 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
     }
 //   ============= END IClickListener
 
-    //    IPracticeInterface -- dialog clicked
+    //  IPracticeInterface -- dialog clicked
     IPracticeInterface iPracticeInterface = new IPracticeInterface() {
 
         @Override
