@@ -26,20 +26,20 @@ public class PracticeListPresenter extends BasePresenter<BaseActivity> {
         dao = new PracticeDao(activity, level, kind);
     }
 
-    public String getTitle() {
+    public String getTitle(int v1, int v2) {
         switch (kind) {
             case PracticeTable.TYPE_GRAMMAR:
-                return activity.getString(R.string.title_n_grammar);
+                return activity.getString(R.string.title_n_grammar, v1, v2);
             case PracticeTable.TYPE_READING:
-                return activity.getString(R.string.title_n_reading);
+                return activity.getString(R.string.title_n_reading, v1, v2);
             case PracticeTable.TYPE_KANJI:
-                return activity.getString(R.string.title_n_kanji);
+                return activity.getString(R.string.title_n_kanji, v1, v2);
             case PracticeTable.TYPE_VOCABULARY:
-                return activity.getString(R.string.title_n_vocabulary);
+                return activity.getString(R.string.title_n_vocabulary, v1, v2);
             case PracticeTable.TYPE_LISTENING:
-                return activity.getString(R.string.title_n_listening);
+                return activity.getString(R.string.title_n_listening, v1, v2);
             default:
-                return activity.getString(R.string.title_n_vocabulary);
+                return activity.getString(R.string.title_n_vocabulary, v1, v2);
         }
     }
 

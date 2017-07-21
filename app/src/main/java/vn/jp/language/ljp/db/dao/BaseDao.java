@@ -24,7 +24,7 @@ public abstract class BaseDao<T> {
 
     protected abstract T fetch(Cursor cursor);
 
-//    protected List<T> fetchAll(Cursor cursor) {
+    //    protected List<T> fetchAll(Cursor cursor) {
 //        List<T> listData = new ArrayList<>();
 //
 //        if (cursor != null) {
@@ -38,6 +38,10 @@ public abstract class BaseDao<T> {
 //        }
 //        return listData;
 //    }
+    protected Cursor query(String sql) {
+        return DatabaseHelper.getInstance(context).executeQuery(sql);
+
+    }
 
     protected T fetch(String sql) {
         Log.i(TAG, "fetchAll sql:" + sql);
@@ -84,7 +88,7 @@ public abstract class BaseDao<T> {
         return DatabaseHelper.updateData(context, tableName, data, where);
     }
 
-    protected void executeQuery(String sql){
+    protected void executeQuery(String sql) {
         DatabaseHelper.getInstance(context).executeDMLQuery(sql);
     }
 //    protected SQLiteDatabase getDB(){

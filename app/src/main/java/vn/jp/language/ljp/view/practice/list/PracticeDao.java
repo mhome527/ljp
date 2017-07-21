@@ -5,8 +5,10 @@ import android.database.Cursor;
 
 import java.util.List;
 
+import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.PracticeEntity;
+import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.practice.BasePracticeDao;
 
 /**
@@ -58,6 +60,10 @@ public class PracticeDao extends BasePracticeDao {
 //        return getItems(true);
 //    }
 
+    public void setKind(int kind) {
+        this.kind = kind;
+    }
+
     public List<PracticeEntity> getItems(boolean isSort) {
         String sort;
         String where;
@@ -105,6 +111,39 @@ public class PracticeDao extends BasePracticeDao {
                 + sort;
 
         return fetchAll(sql);
+    }
+
+    public int countCorrect() {
+        String sql = "SELECT Count(*) FROM " + getTableName()
+                + " Where " + PracticeTable.COL_KIND + " = " + kind
+                + " And " + PracticeTable.COL_REVIEW + " = 1 "
+                + " And " + PracticeTable.COL_NUM_ID + " < 200";
+        return countItem(sql);
+    }
+
+    public int countAll() {
+        String sql = "SELECT Count(*) FROM " + getTableName()
+                + " Where " + PracticeTable.COL_KIND + " = " + kind
+                + " And " + PracticeTable.COL_NUM_ID + "< 200";
+        return countItem(sql);
+    }
+
+    protected int countItem(String sql) {
+        int count = -1;
+        try {
+            Cursor cursor = query(sql);
+            if (cursor != null) {
+                Log.i(TAG, "list " + this.getClass() + " size:" + cursor.getCount());
+                if (cursor.moveToFirst()) {
+                    count = cursor.getInt(0);
+                }
+                cursor.close();
+            }
+        } catch (Exception e) {
+            if (BuildConfig.DEBUG)
+                e.printStackTrace();
+        }
+        return count;
     }
 
 

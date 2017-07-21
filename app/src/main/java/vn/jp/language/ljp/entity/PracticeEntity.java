@@ -38,6 +38,8 @@ public class PracticeEntity {
     }
 
     public String getQuestion() {
+        if (question == null)
+            return "";
         return question;
     }
 

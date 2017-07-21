@@ -24,7 +24,7 @@ import vn.jp.language.ljp.view.grammar.GrammarActivity;
 import vn.jp.language.ljp.view.kanji.KanjiActivity;
 import vn.jp.language.ljp.view.number.NumberActivity;
 import vn.jp.language.ljp.view.phrases.PhraseActivity;
-import vn.jp.language.ljp.view.practice.PracticeDashboardActivity;
+import vn.jp.language.ljp.view.practice.dashboard.PracticeDashboardActivity;
 import vn.jp.language.ljp.view.test.AndroidDatabaseManager;
 import vn.jp.language.ljp.view.words.WordActivity;
 

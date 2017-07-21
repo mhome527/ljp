@@ -9,7 +9,7 @@ public class Constant {
     // ========== Purchase ===========
     public static final String BASE_64_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxUMxIhJ+tM1Ljj9x6eqL52tUVOpKsihGfgSD0GJ2tB5vTiS5E2+xA0iqfsFgTX3atsSNKefIY8gET//T0czPNCdF7bmnQJC0xDYPRXzebh0KbxAWqkRWr7eUb0fGafOc68v9YcjgCpM4q/S0T1lkvDJlax4CBLgEd4N/GEKaxHospLyxVbzoQ4yn0b2K4XZUGB5Dvo6XwHxI6w+D668uZPW/oz/zZW7KgoXpvtNYVwTFUBCMvSPhqFu8Ek4+OBo7feYIsPUyXf1fk4M8b+6nMybBxUnyzr3osM8kDltGg64ZqVD8BXVxvbJ7RWCZPIL8hL/IV+WFesso/MLktXPpSQIDAQAB";
     public static final String SKU = "study.vn.jp";
-//    public static final String SKU = "android.test.purchased";
+    //    public static final String SKU = "android.test.purchased";
     public static final int PURCHASE_REQUEST_CODE = 1080;
     public static final boolean ITEM_PURCHASED = true;
     /// ===========
@@ -40,6 +40,8 @@ public class Constant {
     public static final String INTENT_KIND = "intent_kind";
     public static final String INTENT_LEVEL = "intent_level";
     public static final String INTENT_TITLE_Q = "intent_title_q";
+    public static final String INTENT_V1 = "intent_v1";
+    public static final String INTENT_V2 = "intent_v2";
 
     public static final String INTENT_DETAIL_LEVEL = "intent_detail_level";
     public static final String INTENT_NUM = "intent_detail_num";

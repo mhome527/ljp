@@ -33,6 +33,7 @@
     <string name="title_date_day">DAY</string>
     <string name="title_date_month">MONTH</string>
 
+    <string name="title_jlpt">JLPT</string>
     <string name="title_N1">N1</string>
     <string name="title_N2">N2</string>
     <string name="title_N3">N3</string>
@@ -73,11 +74,28 @@
     <string name="title_date">Dates</string>
 
     <string name="title_lvn">Learn Vietnamese Pronunciation</string>
-    <string name="title_n_grammar">Grammar</string>
-    <string name="title_n_reading">Reading</string>
-    <string name="title_n_vocabulary">Vocabulary</string>
-    <string name="title_n_listening">Listening</string>
-    <string name="title_n_kanji">Kanji</string>
+    <string name="title_n_grammar">Grammar %1$d/%2$d</string>
+    <string name="title_n_reading">Reading %1$d/%2$d</string>
+    <string name="title_n_vocabulary">Vocabulary %1$d/%2$d</string>
+    <string name="title_n_listening">Listening %1$d/%2$d</string>
+    <string name="title_n_kanji">Kanji %1$d/%2$d</string>
+
+    <string name="title_n_grammar2">
+        &lt;font color="blue"&gt;GRAMMAR&lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt; (%1$d/%2$d)&lt;/font&gt;
+    </string>
+    <string name="title_n_reading2">
+        &lt;font color="blue"&gt;READING &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+    </string>
+    <string name="title_n_vocabulary2">
+        &lt;font color="blue"&gt;VOCABULARY &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+    </string>
+    <string name="title_n_listening2">
+        &lt;font color="blue"&gt;LISTENING &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+    </string>
+    <string name="title_n_kanji2">
+        &lt;font color="blue"&gt;KANJI &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+    </string>
+
     <string name="title_view">View</string>
 
 </resources>

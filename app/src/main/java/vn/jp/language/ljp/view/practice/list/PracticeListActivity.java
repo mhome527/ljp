@@ -38,6 +38,8 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     int level;
     int kind;
     boolean isSort = true;
+    int v1;
+    int v2;
 
     @Override
     protected int getLayout() {
@@ -50,8 +52,12 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         kind = getIntent().getIntExtra(Constant.INTENT_KIND, PracticeTable.TYPE_GRAMMAR);
         level = getIntent().getIntExtra(Constant.INTENT_LEVEL, PracticeTable.LEVEL_N5);
 
+         v1 = getIntent().getIntExtra(Constant.INTENT_V1, 0);
+         v2 = getIntent().getIntExtra(Constant.INTENT_V2, 0);
+
+
         presenter = new PracticeListPresenter(this, level, kind);
-        setTitle(presenter.getTitle());
+        setTitle(presenter.getTitle(v1, v2));
 //        loadData();
     }
 
@@ -79,6 +85,8 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
                 Intent i = new Intent(activity, PracticeBookmarkActivity.class);
                 i.putExtra(Constant.INTENT_KIND, kind);
                 i.putExtra(Constant.INTENT_LEVEL, level);
+                i.putExtra(Constant.INTENT_V1, v1);
+                i.putExtra(Constant.INTENT_V2, v2);
                 startActivity(i);
                 return true;
 

@@ -48,8 +48,11 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
         kind = getIntent().getIntExtra(Constant.INTENT_KIND, PracticeTable.TYPE_GRAMMAR);
         level = getIntent().getIntExtra(Constant.INTENT_LEVEL, PracticeTable.LEVEL_N5);
 
+        int v1 = getIntent().getIntExtra(Constant.INTENT_V1, 0);
+        int v2 = getIntent().getIntExtra(Constant.INTENT_V2, 0);
+
         presenter = new PracticeListPresenter(this, level, kind);
-        setTitle(presenter.getTitle());
+        setTitle(presenter.getTitle(v1, v2));
 
     }
 
@@ -130,7 +133,7 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
         presenter.getBookmark(true, new ICallback<List<PracticeEntity>>() {
             @Override
             public void onCallback(List<PracticeEntity> data) {
-                if(data == null || data.size() == 0){
+                if (data == null || data.size() == 0) {
                     Log.i(TAG, "data bookmark not found");
                     return;
                 }
