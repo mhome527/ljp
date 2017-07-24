@@ -1,14 +1,13 @@
 package vn.jp.language.ljp.view.practice.listening;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,42 +34,21 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     @BindView(R.id.imgBookmark)
     ImageButton imgBookmark;
 
-    @BindView(R.id.tvQuestion)
-    TextView tvQuestion;
+    @BindView(R.id.imgPre)
+    ImageButton imgPre;
 
-    @BindView(R.id.imgQ1)
-    ImageView imgQ1;
+    @BindView(R.id.imgNext)
+    ImageButton imgNext;
 
-    @BindView(R.id.tvQ1)
-    TextView tvQ1;
-
-    @BindView(R.id.imgQ2)
-    ImageView imgQ2;
-
-    @BindView(R.id.tvQ2)
-    TextView tvQ2;
-
-    @BindView(R.id.imgQ3)
-    ImageView imgQ3;
-
-    @BindView(R.id.tvQ3)
-    TextView tvQ3;
-
-    @BindView(R.id.imgQ4)
-    ImageView imgQ4;
-
-    @BindView(R.id.tvQ4)
-    TextView tvQ4;
-
-    @BindView(R.id.llQ4)
-    LinearLayout llQ4;
+    @BindView(R.id.viewpager)
+    ViewPager viewpager;
 
     String titleQ;
     String filename;
 
     AudioPlayerManager audio;
-    PracticeEntity item;
-    int num;
+    List<PracticeEntity> items = new ArrayList<>();
+    int pos;
     int idRef;
     int bookmark;
     int ansType = 0; //0: don't choice; 1: choice true; -1: choice wrong
@@ -79,7 +57,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
 
     @Override
     protected int getLayout() {
-        return R.layout.practice_listening_layout;
+        return R.layout.practice_listening_main_layout;
     }
 
     @Override
@@ -87,17 +65,20 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
         setTitle(getString(R.string.title_n_listening));
 
         int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
-        num = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
-        idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
-        bookmark = getIntent().getIntExtra(Constant.INTENT_BOOKMARK, 0);
-        titleQ = getIntent().getStringExtra(Constant.INTENT_TITLE_Q);
-        filename = getIntent().getStringExtra(Constant.INTENT_FILE_NAME);
-        presenter = new PracticeListeningPresenter(activity, level, idRef);
+        pos = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
+        Log.i(TAG, "initView pos:" + pos);
 
-        tvNum.setText(num + "");
+//        idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
+//        bookmark = getIntent().getIntExtra(Constant.INTENT_BOOKMARK, 0);
+//        titleQ = getIntent().getStringExtra(Constant.INTENT_TITLE_Q);
+//        filename = getIntent().getStringExtra(Constant.INTENT_FILE_NAME);
+        presenter = new PracticeListeningPresenter(activity, level);
+        setPageView();
+        hideButton();
+//        tvNum.setText(num + "");
         presenter.load(this);
         audio = new AudioPlayerManager(activity);
-        setBookmark();
+
     }
 
     @Override
@@ -119,132 +100,55 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
         audio.stop();
     }
 
-    @Override
-    public void onCallback(List<PracticeEntity> data) {
-        item = data.get(0);
-        if (item.getBookmarks() != 0) {
-            tvQ1.setText("1.");
-            tvQ2.setText("2.");
-            tvQ3.setText("3.");
-            if (item.getQ4() != null && !item.getQ4().equals(""))
-                tvQ4.setText("4.");
-
-        } else {
-            tvQ1.setText("1." + item.getQ1());
-            tvQ2.setText("2." + item.getQ2());
-            tvQ3.setText("3." + item.getQ3());
-            if (item.getQ4() != null && !item.getQ4().equals(""))
-                tvQ4.setText("4." + item.getQ4());
-        }
-
-        if (item.getQ4() != null && !item.getQ4().equals("")) {
-            llQ4.setVisibility(View.VISIBLE);
-        } else {
-            llQ4.setVisibility(View.GONE);
-        }
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            tvQuestion.setText(Html.fromHtml(item.getQuestion(), Html.FROM_HTML_MODE_LEGACY));
-        } else {
-            tvQuestion.setText(Html.fromHtml(item.getQuestion()));
-        }
-
-    }
-
-    @Override
-    public void onFail(String err) {
-
-    }
     /////////
 
     @OnClick(R.id.imgBookmark)
     public void actionBookmark() {
         bookmark = bookmark == 0 ? 1 : 0;
         setBookmark();
-        presenter.updateBookmark(num, bookmark, idRef);
+        activity.presenter.updateBookmark(items.get(pos).getNum(), bookmark, items.get(pos).getRef());
     }
 
     @OnClick(R.id.imgSpeak)
     public void actionSpeak() {
-        Log.i(TAG, "speak filename:" + filename);
+        Log.i(TAG, "speak filename:" + items.get(pos).getQ1());
 //        audio.stop();
 //        audio.play(FOLDER + filename);
     }
 
-    @OnClick(R.id.imgQ1)
-    public void actionQ1() {
-        setView(1, imgQ1);
+    @OnClick(R.id.imgPre)
+    public void actionPre() {
+        if (pos == 0)
+            return;
+        pos--;
+        hideButton();
+        viewpager.setCurrentItem(pos);
     }
 
-    @OnClick(R.id.tvQ1)
-    public void actionTvQ1() {
-        setView(1, imgQ1);
+    @OnClick(R.id.imgNext)
+    public void actionNext() {
+        if (pos >= items.size() - 1)
+            return;
+        pos++;
+        hideButton();
+        viewpager.setCurrentItem(pos);
     }
 
-    @OnClick(R.id.imgQ2)
-    public void actionQ2() {
-        setView(2, imgQ2);
+    //    =====
+    @Override
+    public void onCallback(List<PracticeEntity> data) {
+        Log.i(TAG, "onCallback data");
+        items = data;
+        tvNum.setText(items.get(pos).getNum() + "");
+
+        PracticeListeningAdapter adapter = new PracticeListeningAdapter(getSupportFragmentManager(), items.size());
+        viewpager.setAdapter(adapter);
+        viewpager.setCurrentItem(pos);
     }
 
-    @OnClick(R.id.tvQ2)
-    public void actionTvQ2() {
-        setView(2, imgQ2);
-    }
+    @Override
+    public void onFail(String err) {
 
-
-    @OnClick(R.id.imgQ3)
-    public void actionQ3() {
-        setView(3, imgQ3);
-    }
-
-    @OnClick(R.id.tvQ3)
-    public void actionTvQ3() {
-        setView(3, imgQ3);
-    }
-
-
-    @OnClick(R.id.imgQ4)
-    public void actionQ4() {
-        setView(4, imgQ4);
-    }
-
-    @OnClick(R.id.tvQ4)
-    public void actionTvQ4() {
-        setView(4, imgQ4);
-    }
-
-
-    @OnClick(R.id.btnView)
-    public void actionView() {
-        String ans = "";
-        if (item.getBookmarks() == 1) {
-            if (item.getQuestion() != null && !item.getQuestion().trim().equals(""))
-                ans += "<br/><br/>" + item.getQuestion();
-            else
-                ans += "<br/>";
-            ans += "<br/> 1." + item.getQ1() + "<br/>"
-                    + " 2." + item.getQ2() + "<br/>"
-                    + " 3." + item.getQ3();
-            if (item.getQ4() != null && !item.getQ4().trim().equals(""))
-                ans += "<br/> 4." + item.getQ4();
-
-        }
-        PracticeListeningDialog dialog = new PracticeListeningDialog(activity, titleQ + ans);
-        dialog.show();
-//        finish();
-    }
-
-    private void setView(int ans, ImageView img) {
-        if (ans == item.getAns()) {
-            img.setImageResource(R.drawable.circle_true);
-            if (ansType == 0)
-                ansType = 1;
-        } else {
-            img.setImageResource(R.drawable.circle_wrong);
-            ansType = -1;
-        }
-
-        presenter.updateAns(item.getNum(), ansType);
     }
 
     private void setBookmark() {
@@ -253,4 +157,40 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
         else
             imgBookmark.setImageResource(R.drawable.heart_on);
     }
+
+    private void setPageView() {
+        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                pos = position;
+                hideButton();
+                PracticeEntity item = items.get(position);
+                bookmark = item.getBookmarks();
+                setBookmark();
+                tvNum.setText(item.getNum() + "");
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+    public void hideButton() {
+        if (pos == 0)
+            imgPre.setVisibility(View.GONE);
+        else if (pos >= items.size() - 1)
+            imgNext.setVisibility(View.VISIBLE);
+        else {
+            imgPre.setVisibility(View.VISIBLE);
+            imgNext.setVisibility(View.VISIBLE);
+        }
+    }
+
 }

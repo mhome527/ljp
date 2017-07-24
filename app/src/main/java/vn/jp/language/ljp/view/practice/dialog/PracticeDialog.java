@@ -7,10 +7,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.PracticeEntity;
+import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseDialog;
 import vn.jp.language.ljp.view.practice.list.IPracticeInterface;
 
@@ -19,6 +22,8 @@ import vn.jp.language.ljp.view.practice.list.IPracticeInterface;
  */
 
 public class PracticeDialog extends BaseDialog {
+
+    private final String TAG = "PracticeDialog";
 
     @BindView(R.id.imgBookmark)
     ImageButton imgBookmark;
@@ -53,17 +58,25 @@ public class PracticeDialog extends BaseDialog {
     @BindView(R.id.tvQ4)
     TextView tvQ4;
 
+    @BindView(R.id.imgPre)
+    ImageButton imgPre;
+
+    @BindView(R.id.imgNext)
+    ImageButton imgNext;
+
 //    PracticeDialogPresenter presenter;
 
     int ansType = 0; //0: don't choice; 1: choice true; -1: choice wrong
-    PracticeEntity item;
+    List<PracticeEntity> items;
 
     IPracticeInterface iPracticeInterface;
+    //    IActionDialog iActionDialog;
     int pos;
+//    int length;
 
-    public PracticeDialog(Context context, int pos, PracticeEntity item, IPracticeInterface iPracticeInterface) {
+    public PracticeDialog(Context context, int pos, List<PracticeEntity> items, IPracticeInterface iPracticeInterface) {
         super(context);
-        this.item = item;
+        this.items = items;
         this.pos = pos;
         this.iPracticeInterface = iPracticeInterface;
 //        presenter = new PracticeDialogPresenter(context, level, item.getKind(), item.getNum());
@@ -76,36 +89,18 @@ public class PracticeDialog extends BaseDialog {
 
     @Override
     public void initView(View view) {
-        if (item.getBookmarks() == 0)
-            imgBookmark.setImageResource(R.drawable.heart_off);
-        else
-            imgBookmark.setImageResource(R.drawable.heart_on);
-
-//        tvQuestion.setText(item.getQuestion());
-
-        tvNum.setText(item.getNum() + "");
-        tvQ1.setText(item.getQ1());
-        tvQ2.setText(item.getQ2());
-        tvQ3.setText(item.getQ3());
-        tvQ4.setText(item.getQ4());
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            tvQuestion.setText(Html.fromHtml(item.getQuestion(), Html.FROM_HTML_MODE_LEGACY));
-        } else {
-            tvQuestion.setText(Html.fromHtml(item.getQuestion()));
-        }
+        setData(items.get(pos));
+        hideButton();
     }
 
     @OnClick(R.id.imgBookmark)
     public void actionBookmark() {
 
-        if (item.getBookmarks() == 0) {
+        if (items.get(pos).getBookmarks() == 0) {
             imgBookmark.setImageResource(R.drawable.heart_on);
-//            presenter.updateBookmark(1);
             iPracticeInterface.onBookmark(pos, 1);
         } else {
             imgBookmark.setImageResource(R.drawable.heart_off);
-//            presenter.updateBookmark(0);
             iPracticeInterface.onBookmark(pos, 0);
         }
     }
@@ -158,8 +153,49 @@ public class PracticeDialog extends BaseDialog {
         this.dismiss();
     }
 
+    @OnClick(R.id.imgPre)
+    public void actionPre() {
+        Log.i(TAG, "actionPre ===============>");
+        if (pos == 0)
+            return;
+        pos--;
+        hideButton();
+        setData(items.get(pos));
+    }
+
+    @OnClick(R.id.imgNext)
+    public void actionNext() {
+        Log.i(TAG, "actionNext  =====>");
+        if (pos >= items.size() - 1)
+            return;
+        pos++;
+        hideButton();
+        setData(items.get(pos));
+    }
+
+    public void setData(PracticeEntity item) {
+        if (item.getBookmarks() == 0)
+            imgBookmark.setImageResource(R.drawable.heart_off);
+        else
+            imgBookmark.setImageResource(R.drawable.heart_on);
+
+//        tvQuestion.setText(item.getQuestion());
+
+        tvNum.setText(item.getNum() + "");
+        tvQ1.setText(item.getQ1());
+        tvQ2.setText(item.getQ2());
+        tvQ3.setText(item.getQ3());
+        tvQ4.setText(item.getQ4());
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            tvQuestion.setText(Html.fromHtml(item.getQuestion(), Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            tvQuestion.setText(Html.fromHtml(item.getQuestion()));
+        }
+    }
+
     private void setView(int ans, ImageView img) {
-        if (ans == item.getAns()) {
+        if (ans == items.get(pos).getAns()) {
             img.setImageResource(R.drawable.circle_true);
             if (ansType == 0)
                 ansType = 1;
@@ -172,5 +208,16 @@ public class PracticeDialog extends BaseDialog {
 //        presenter.updateAnswer(ansType);
     }
 
+
+    private void hideButton() {
+        if (pos == 0)
+            imgPre.setVisibility(View.GONE);
+        else if (pos == items.size() - 1)
+            imgNext.setVisibility(View.GONE);
+        else {
+            imgPre.setVisibility(View.VISIBLE);
+            imgNext.setVisibility(View.VISIBLE);
+        }
+    }
 
 }

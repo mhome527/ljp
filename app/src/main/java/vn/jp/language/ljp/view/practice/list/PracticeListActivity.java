@@ -52,12 +52,13 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         kind = getIntent().getIntExtra(Constant.INTENT_KIND, PracticeTable.TYPE_GRAMMAR);
         level = getIntent().getIntExtra(Constant.INTENT_LEVEL, PracticeTable.LEVEL_N5);
 
-         v1 = getIntent().getIntExtra(Constant.INTENT_V1, 0);
-         v2 = getIntent().getIntExtra(Constant.INTENT_V2, 0);
+        v1 = getIntent().getIntExtra(Constant.INTENT_V1, 0);
+        v2 = getIntent().getIntExtra(Constant.INTENT_V2, 0);
 
 
         presenter = new PracticeListPresenter(this, level, kind);
         setTitle(presenter.getTitle(v1, v2));
+
 //        loadData();
     }
 
@@ -127,14 +128,14 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         } else if (kind == PracticeTable.TYPE_LISTENING) {
             Intent i = new Intent(activity, PracticeListeningActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
-            i.putExtra(Constant.INTENT_NUM, items.get(position).getNum());
-            i.putExtra(Constant.INTENT_BOOKMARK, items.get(position).getBookmarks());
-            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNumId());
-            i.putExtra(Constant.INTENT_FILE_NAME, items.get(position).getQ1()); //file name
-            i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
+            i.putExtra(Constant.INTENT_NUM, position);
+//            i.putExtra(Constant.INTENT_BOOKMARK, items.get(position).getBookmarks());
+//            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNumId());
+//            i.putExtra(Constant.INTENT_FILE_NAME, items.get(position).getQ1()); //file name
+//            i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
             startActivity(i);
         } else {
-            PracticeDialog dialog = new PracticeDialog(activity, position, items.get(position), iPracticeInterface);
+            PracticeDialog dialog = new PracticeDialog(activity, position, items, iPracticeInterface);
             dialog.show();
         }
     }
@@ -185,6 +186,5 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             }
         });
     }
-
 
 }

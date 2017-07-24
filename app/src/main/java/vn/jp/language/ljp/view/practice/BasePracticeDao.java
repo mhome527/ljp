@@ -2,7 +2,9 @@ package vn.jp.language.ljp.view.practice;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
+import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.db.dao.BaseDao;
 import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.PracticeEntity;
@@ -90,7 +92,24 @@ abstract public class BasePracticeDao extends BaseDao<PracticeEntity> {
 
         Log.i(TAG, "update status:" + sql);
         executeQuery(sql);
+    }
 
+    protected int countItem(String sql) {
+        int count = -1;
+        try {
+            Cursor cursor = query(sql);
+            if (cursor != null) {
+                Log.i(TAG, "list " + this.getClass() + " size:" + cursor.getCount());
+                if (cursor.moveToFirst()) {
+                    count = cursor.getInt(0);
+                }
+                cursor.close();
+            }
+        } catch (Exception e) {
+            if (BuildConfig.DEBUG)
+                e.printStackTrace();
+        }
+        return count;
     }
 
 }

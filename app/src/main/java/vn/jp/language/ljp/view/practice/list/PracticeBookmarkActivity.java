@@ -17,7 +17,6 @@ import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
-import vn.jp.language.ljp.view.practice.dialog.PracticeDialog;
 import vn.jp.language.ljp.view.practice.listening.PracticeListeningActivity;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
@@ -99,8 +98,8 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
             i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
             startActivity(i);
         } else {
-            PracticeDialog dialog = new PracticeDialog(activity, position, items.get(position), iPracticeInterface);
-            dialog.show();
+//            PracticeDialog dialog = new PracticeDialog(activity, position, items, iPracticeInterface);
+//            dialog.show();
         }
 
     }

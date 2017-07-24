@@ -50,11 +50,33 @@ public class PracticeListeningDao extends BasePracticeDao {
         return entity;
     }
 
-    public List<PracticeEntity> getItems(int idRef) {
+    public List<PracticeEntity> getItems() {
         String sql = "Select * From " + getTableName() + " where "
                 + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
-                + " And " + PracticeTable.COL_REF + "=" + idRef;
+                + " And " + PracticeTable.COL_REF + ">600 "
+                + " Order by " + PracticeTable.COL_NUM + " asc ";
         return fetchAll(sql);
+    }
+
+    /*
+    select * from tblpracticeN3
+    where kind = 6
+    and num_id < 600 and num = 2
+    order by num asc
+     */
+    public PracticeEntity getItemDetail(int idRef) {
+        String sql = "Select * From " + getTableName() + " Where "
+                + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
+                + " And " + PracticeTable.COL_REF + "=" + idRef;
+        return fetch(sql);
+    }
+
+
+    public int coutListening() {
+        String sql = "SELECT Count(*) FROM " + getTableName()
+                + " Where " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_LISTENING
+                + " And " + PracticeTable.COL_NUM_ID + " > 600";
+        return countItem(sql);
     }
 
     public void updateStatus(int numId) {

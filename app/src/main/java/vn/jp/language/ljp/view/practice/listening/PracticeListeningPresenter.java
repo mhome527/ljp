@@ -10,28 +10,39 @@ import vn.jp.language.ljp.view.ICallback;
 public class PracticeListeningPresenter extends BasePresenter<PracticeListeningActivity> {
 
     int level;
-    int idRef;
+//    int idRef;
 
     PracticeListeningDao dao;
 
-    public PracticeListeningPresenter(PracticeListeningActivity activity, int level, int idRef) {
+    public PracticeListeningPresenter(PracticeListeningActivity activity, int level) {
         super(activity);
         this.level = level;
-        this.idRef = idRef;
+//        this.idRef = idRef;
         dao = new PracticeListeningDao(activity, level);
     }
+
 
     public void load(ICallback iCallback) {
 
         loadData(iCallback, new ILoadData() {
             @Override
             public Object onBackground() {
-                return dao.getItems(idRef);
+                return dao.getItems();
             }
         });
     }
 
-    public void updateAns(int num, int review) {
+    public void loadDetail(final int idRef, ICallback iCallback) {
+
+        loadData(iCallback, new ILoadData() {
+            @Override
+            public Object onBackground() {
+                return dao.getItemDetail(idRef);
+            }
+        });
+    }
+
+    public void updateAns(int num, int idRef, int review) {
         dao.updateAnswer(num, review, idRef);
         dao.updateStatus(idRef);
     }

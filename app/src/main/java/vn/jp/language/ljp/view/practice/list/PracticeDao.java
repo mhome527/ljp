@@ -5,10 +5,8 @@ import android.database.Cursor;
 
 import java.util.List;
 
-import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.PracticeEntity;
-import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.practice.BasePracticeDao;
 
 /**
@@ -128,23 +126,23 @@ public class PracticeDao extends BasePracticeDao {
         return countItem(sql);
     }
 
-    protected int countItem(String sql) {
-        int count = -1;
-        try {
-            Cursor cursor = query(sql);
-            if (cursor != null) {
-                Log.i(TAG, "list " + this.getClass() + " size:" + cursor.getCount());
-                if (cursor.moveToFirst()) {
-                    count = cursor.getInt(0);
-                }
-                cursor.close();
-            }
-        } catch (Exception e) {
-            if (BuildConfig.DEBUG)
-                e.printStackTrace();
-        }
-        return count;
-    }
+//    protected int countItem(String sql) {
+//        int count = -1;
+//        try {
+//            Cursor cursor = query(sql);
+//            if (cursor != null) {
+//                Log.i(TAG, "list " + this.getClass() + " size:" + cursor.getCount());
+//                if (cursor.moveToFirst()) {
+//                    count = cursor.getInt(0);
+//                }
+//                cursor.close();
+//            }
+//        } catch (Exception e) {
+//            if (BuildConfig.DEBUG)
+//                e.printStackTrace();
+//        }
+//        return count;
+//    }
 
 
 //    public void updateAnswer(int num, int review) {
