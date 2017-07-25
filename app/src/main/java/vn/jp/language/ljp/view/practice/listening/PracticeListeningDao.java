@@ -47,15 +47,50 @@ public class PracticeListeningDao extends BasePracticeDao {
         entity.setAns(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_ANS)));
         entity.setReview(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REVIEW)));
         entity.setRef(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REF)));
+        entity.setTitle(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_TITLE)));
+        entity.setSound(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_SOUND)));
         return entity;
     }
 
+    /*
+
+Select t.question title, t.q1 sound, n.* From (Select * From TblPracticeN3 Where kind=6 And num_id > 300) t,
+(Select * From  TblPracticeN3 Where kind=6 And num_id < 600)  n
+Where t.num_id = n.id_ref  Order by review asc, num asc
+     */
     public List<PracticeEntity> getItems() {
-        String sql = "Select * From " + getTableName() + " where "
-                + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
-                + " And " + PracticeTable.COL_REF + ">600 "
-                + " Order by " + PracticeTable.COL_NUM + " asc ";
+        String sql = "Select t.question " + PracticeTable.COL_TITLE
+                + ", t.q1 " + PracticeTable.COL_SOUND
+                + ", n.* From "
+                + "(Select * From " + getTableName()
+                + " Where " + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
+                + " And num_id > 300) t, "
+                + " (Select * From  " + getTableName()
+                + " Where " + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
+                + " And num_id < 600)  n "
+                + " Where t.num_id = n.id_ref "
+                + " Order by " + PracticeTable.COL_REVIEW + " asc, " + PracticeTable.COL_NUM + " asc ";
+
+        //        String sql = "Select * From " + getTableName() + " where "
+//                + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
+//                + " And " + PracticeTable.COL_REF + ">600 "
+//                + " Order by " + PracticeTable.COL_NUM + " asc ";
         return fetchAll(sql);
+    }
+
+    public int countCorrect() {
+        String sql = "SELECT Count(*) FROM " + getTableName()
+                + " Where " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_LISTENING
+                + " And " + PracticeTable.COL_REVIEW + " = 1 "
+                + " And " + PracticeTable.COL_NUM_ID + " < 600";
+        return countItem(sql);
+    }
+
+    public int countAll() {
+        String sql = "SELECT Count(*) FROM " + getTableName()
+                + " Where " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_LISTENING
+                + " And " + PracticeTable.COL_NUM_ID + "< 600";
+        return countItem(sql);
     }
 
     /*

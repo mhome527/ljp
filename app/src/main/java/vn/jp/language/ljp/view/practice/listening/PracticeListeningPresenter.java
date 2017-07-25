@@ -42,6 +42,14 @@ public class PracticeListeningPresenter extends BasePresenter<PracticeListeningA
         });
     }
 
+    public int countCorrect() {
+        return dao.countCorrect();
+    }
+
+    public int countAll() {
+        return dao.countAll();
+    }
+
     public void updateAns(int num, int idRef, int review) {
         dao.updateAnswer(num, review, idRef);
         dao.updateStatus(idRef);

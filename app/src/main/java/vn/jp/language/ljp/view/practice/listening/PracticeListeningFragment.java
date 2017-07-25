@@ -13,13 +13,12 @@ import butterknife.OnClick;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.view.BaseFragment;
-import vn.jp.language.ljp.view.ICallback;
 
 /**
  * Created by Administrator on 7/18/2017.
  */
 
-public class PracticeListeningFragment extends BaseFragment<PracticeListeningActivity> implements ICallback<PracticeEntity> {
+public class PracticeListeningFragment extends BaseFragment<PracticeListeningActivity> {
     private final String TAG = "PracticeListeningFragment";
     private final String FOLDER = "n/";
 
@@ -53,14 +52,14 @@ public class PracticeListeningFragment extends BaseFragment<PracticeListeningAct
     @BindView(R.id.llQ4)
     LinearLayout llQ4;
 
-    String titleQ;
-    String filename;
+//    String titleQ;
+//    String filename;
 
     //    AudioPlayerManager audio;
     PracticeEntity item;
     public int pos;
     //    int idRef;
-    int bookmark;
+//    int bookmark;
     int ansType = 0; //0: don't choice; 1: choice true; -1: choice wrong
 //    PracticeListeningPresenter presenter;
 
@@ -81,10 +80,11 @@ public class PracticeListeningFragment extends BaseFragment<PracticeListeningAct
 //        presenter = new PracticeListeningPresenter(activity, level, idRef);
 
 //        tvNum.setText(num + "");
-        activity.presenter.loadDetail(activity.items.get(pos).getRef(), this);
+//        activity.presenter.loadDetail(activity.items.get(pos).getRef(), this);
 //        audio = new AudioPlayerManager(activity);
 //        setBookmark();
-//        setData(activity.items.get(pos));
+        if (activity.items != null && activity.items.size() > 0)
+            setData(activity.items.get(pos));
     }
 
     @Override
@@ -149,25 +149,25 @@ public class PracticeListeningFragment extends BaseFragment<PracticeListeningAct
 ////        audio.play(FOLDER + filename);
 //    }
 
-    @OnClick(R.id.btnView)
-    public void actionView() {
-        String ans = "";
-        if (item.getBookmarks() == 1) {
-            if (item.getQuestion() != null && !item.getQuestion().trim().equals(""))
-                ans += "<br/><br/>" + item.getQuestion();
-            else
-                ans += "<br/>";
-            ans += "<br/> 1." + item.getQ1() + "<br/>"
-                    + " 2." + item.getQ2() + "<br/>"
-                    + " 3." + item.getQ3();
-            if (item.getQ4() != null && !item.getQ4().trim().equals(""))
-                ans += "<br/> 4." + item.getQ4();
-
-        }
-        PracticeListeningDialog dialog = new PracticeListeningDialog(activity, titleQ + ans);
-        dialog.show();
-//        finish();
-    }
+//    @OnClick(R.id.btnView)
+//    public void actionView() {
+//        String ans = "";
+//        if (item.getBookmarks() == 1) {
+//            if (item.getQuestion() != null && !item.getQuestion().trim().equals(""))
+//                ans += "<br/><br/>" + item.getQuestion();
+//            else
+//                ans += "<br/>";
+//            ans += "<br/> 1." + item.getQ1() + "<br/>"
+//                    + " 2." + item.getQ2() + "<br/>"
+//                    + " 3." + item.getQ3();
+//            if (item.getQ4() != null && !item.getQ4().trim().equals(""))
+//                ans += "<br/> 4." + item.getQ4();
+//
+//        }
+//        PracticeListeningDialog dialog = new PracticeListeningDialog(activity, titleQ + ans);
+//        dialog.show();
+////        finish();
+//    }
 
     public void setData(PracticeEntity item) {
         this.item = item;
@@ -179,9 +179,9 @@ public class PracticeListeningFragment extends BaseFragment<PracticeListeningAct
                 tvQ4.setText("4.");
 
         } else {
-            tvQ1.setText("1." + item.getQ1());
-            tvQ2.setText("2." + item.getQ2());
-            tvQ3.setText("3." + item.getQ3());
+            tvQ1.setText( item.getQ1());
+            tvQ2.setText( item.getQ2());
+            tvQ3.setText( item.getQ3());
             if (item.getQ4() != null && !item.getQ4().equals(""))
                 tvQ4.setText("4." + item.getQ4());
         }
@@ -190,7 +190,7 @@ public class PracticeListeningFragment extends BaseFragment<PracticeListeningAct
         if (item.getQ4() != null && !item.getQ4().equals("")) {
             llQ4.setVisibility(View.VISIBLE);
         } else {
-            llQ4.setVisibility(View.GONE);
+            llQ4.setVisibility(View.INVISIBLE);
         }
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -212,16 +212,17 @@ public class PracticeListeningFragment extends BaseFragment<PracticeListeningAct
         }
 
         activity.presenter.updateAns(item.getNum(), item.getRef(), ansType);
+        activity.setTitleQ(activity.presenter.countCorrect());
     }
 
-    @Override
-    public void onCallback(PracticeEntity item) {
-        this.item = item;
-        setData(item);
-    }
-
-    @Override
-    public void onFail(String err) {
-
-    }
+//    @Override
+//    public void onCallback(PracticeEntity item) {
+//        this.item = item;
+//        setData(item);
+//    }
+//
+//    @Override
+//    public void onFail(String err) {
+//
+//    }
 }

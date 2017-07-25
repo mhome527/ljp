@@ -89,6 +89,7 @@ public class PracticeDialog extends BaseDialog {
 
     @Override
     public void initView(View view) {
+        tvQuestion.setMinLines(3);
         setData(items.get(pos));
         hideButton();
     }
@@ -159,6 +160,7 @@ public class PracticeDialog extends BaseDialog {
         if (pos == 0)
             return;
         pos--;
+        resetView();
         hideButton();
         setData(items.get(pos));
     }
@@ -169,6 +171,7 @@ public class PracticeDialog extends BaseDialog {
         if (pos >= items.size() - 1)
             return;
         pos++;
+        resetView();
         hideButton();
         setData(items.get(pos));
     }
@@ -206,6 +209,15 @@ public class PracticeDialog extends BaseDialog {
 
         iPracticeInterface.onAns(pos, ansType);
 //        presenter.updateAnswer(ansType);
+    }
+
+    private void resetView() {
+        ansType = 0;
+
+        imgQ1.setImageResource(R.drawable.circle);
+        imgQ2.setImageResource(R.drawable.circle);
+        imgQ3.setImageResource(R.drawable.circle);
+        imgQ4.setImageResource(R.drawable.circle);
     }
 
 

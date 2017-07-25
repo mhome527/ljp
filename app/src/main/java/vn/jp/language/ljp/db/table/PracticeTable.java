@@ -24,6 +24,8 @@ public class PracticeTable {
     public static final String COL_Q4 = "q4";
     public static final String COL_ANS = "ans";
     public static final String COL_REF = "id_ref";
+    public static final String COL_TITLE = "title";
+    public static final String COL_SOUND = "sound";
 
     public static final int TYPE_GRAMMAR = 1;
     public static final int TYPE_READING = 3;

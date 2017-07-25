@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -19,6 +18,8 @@ import vn.jp.language.ljp.sound.AudioPlayerManager;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.ICallback;
+
+import static vn.jp.language.ljp.R.id.btnView;
 
 /**
  * Created by Administrator on 7/18/2017.
@@ -45,15 +46,18 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
 
     String titleQ;
     String filename;
+    PracticeListeningAdapter adapter;
 
     AudioPlayerManager audio;
-    List<PracticeEntity> items = new ArrayList<>();
+    List<PracticeEntity> items;
+
     int pos;
     int idRef;
     int bookmark;
     int ansType = 0; //0: don't choice; 1: choice true; -1: choice wrong
     PracticeListeningPresenter presenter;
-
+    //    int countAll;
+    int num;
 
     @Override
     protected int getLayout() {
@@ -62,10 +66,10 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
 
     @Override
     protected void initView() {
-        setTitle(getString(R.string.title_n_listening));
+//        setTitle(getString(R.string.title_n_listening));
 
         int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
-        pos = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
+        num = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
         Log.i(TAG, "initView pos:" + pos);
 
 //        idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
@@ -74,11 +78,12 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
 //        filename = getIntent().getStringExtra(Constant.INTENT_FILE_NAME);
         presenter = new PracticeListeningPresenter(activity, level);
         setPageView();
-        hideButton();
+
 //        tvNum.setText(num + "");
         presenter.load(this);
         audio = new AudioPlayerManager(activity);
-
+//        countAll = presenter.countAll();
+//        setTitleQ(presenter.countCorrect());
     }
 
     @Override
@@ -105,7 +110,9 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     @OnClick(R.id.imgBookmark)
     public void actionBookmark() {
         bookmark = bookmark == 0 ? 1 : 0;
+        Log.i(TAG, "actionBook " + bookmark);
         setBookmark();
+        items.get(pos).setBookmarks(bookmark);
         activity.presenter.updateBookmark(items.get(pos).getNum(), bookmark, items.get(pos).getRef());
     }
 
@@ -134,21 +141,67 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
         viewpager.setCurrentItem(pos);
     }
 
+    @OnClick(btnView)
+    public void actionView() {
+
+//        PracticeListeningFragment fragment = (PracticeListeningFragment) viewpager.getAdapter().instantiateItem(viewpager, viewpager.getCurrentItem());
+        PracticeListeningFragment fragment = (PracticeListeningFragment) viewpager.getAdapter().instantiateItem(viewpager, pos);
+
+        if (null != fragment && fragment.isVisible()) {
+//            Log.i(TAG, "actionView question: " + fragment.item.getQuestion());
+            String ans = "";
+            PracticeEntity item = fragment.item;
+//            if (item.getBookmarks() == 1) {
+//                if (item.getQuestion() != null && !item.getQuestion().trim().equals(""))
+//                    ans += "<br/><br/>" + item.getQuestion();
+//                else
+//                    ans += "<br/>";
+            if (item.getQuestion() != null && !item.getQuestion().equals(""))
+                ans += "<br/><br/><b>" + item.getQuestion() + "</b><br/><br/>";
+            else
+                ans += "<br/><br/>";
+
+            ans += " 1. " + item.getQ1() + "<br/>"
+                    + " 2. " + item.getQ2() + "<br/>"
+                    + " 3. " + item.getQ3();
+            if (item.getQ4() != null && !item.getQ4().trim().equals(""))
+                ans += "<br/> 4." + item.getQ4();
+
+//            }
+            PracticeListeningDialog dialog = new PracticeListeningDialog(activity, item.getTitle() + ans);
+            dialog.show();
+        }
+    }
+
     //    =====
     @Override
     public void onCallback(List<PracticeEntity> data) {
         Log.i(TAG, "onCallback data");
         items = data;
-        tvNum.setText(items.get(pos).getNum() + "");
 
-        PracticeListeningAdapter adapter = new PracticeListeningAdapter(getSupportFragmentManager(), items.size());
+        for (int i = 0; i < items.size(); i++) {
+            Log.i(TAG, "item " + items.get(i).getRef() + " ;" + num);
+            if (items.get(i).getRef() == num) {
+                pos = i;
+                break;
+            }
+        }
+
+        tvNum.setText(items.get(pos).getNum() + "");
+        hideButton();
+        adapter = new PracticeListeningAdapter(getSupportFragmentManager(), items.size());
         viewpager.setAdapter(adapter);
         viewpager.setCurrentItem(pos);
+        setTitleQ(presenter.countCorrect());
     }
 
     @Override
     public void onFail(String err) {
 
+    }
+
+    public void setTitleQ(int count) {
+        setTitle(getString(R.string.title_n_listening, count, items.size()));
     }
 
     private void setBookmark() {
@@ -186,7 +239,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
         if (pos == 0)
             imgPre.setVisibility(View.GONE);
         else if (pos >= items.size() - 1)
-            imgNext.setVisibility(View.VISIBLE);
+            imgNext.setVisibility(View.GONE);
         else {
             imgPre.setVisibility(View.VISIBLE);
             imgNext.setVisibility(View.VISIBLE);

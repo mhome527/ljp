@@ -128,7 +128,8 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         } else if (kind == PracticeTable.TYPE_LISTENING) {
             Intent i = new Intent(activity, PracticeListeningActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
-            i.putExtra(Constant.INTENT_NUM, position);
+            i.putExtra(Constant.INTENT_NUM, items.get(position).getNumId());
+            Log.i(TAG, "onClick numId:" + items.get(position).getNumId());
 //            i.putExtra(Constant.INTENT_BOOKMARK, items.get(position).getBookmarks());
 //            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNumId());
 //            i.putExtra(Constant.INTENT_FILE_NAME, items.get(position).getQ1()); //file name

@@ -6,7 +6,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
 import butterknife.BindView;
+import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
+import vn.jp.language.ljp.utils.Prefs;
 import vn.jp.language.ljp.view.BaseActivity;
 
 /**
@@ -41,6 +43,7 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
 //            toolbarTitle.setText(getString(R.string.title_alphabet));
             actionBar.setTitle(getString(R.string.title_jlpt));
         }
+        final Prefs pref = new Prefs(this.getApplicationContext());
 
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_N5));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_N4));
@@ -58,6 +61,7 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                pref.putIntValue(tab.getPosition(), Constant.PREF_LEVEL);
             }
 
             @Override
@@ -71,6 +75,8 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
             }
         });
 
+        int level = pref.getIntValue(0, Constant.PREF_LEVEL);
+        viewPager.setCurrentItem(level);
     }
 
 

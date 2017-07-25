@@ -55,8 +55,9 @@
             android:id="@+id/imgPre"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_pre"
-            android:padding="5dp" />
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:src="@drawable/ic_pre" />
 
         <TextView
             android:id="@+id/tvClose"
@@ -78,8 +79,9 @@
             android:id="@+id/imgNext"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_next"
-            android:padding="5dp" />
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:src="@drawable/ic_next" />
     </LinearLayout>
 
 </LinearLayout>

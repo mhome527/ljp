@@ -49,6 +49,8 @@ public class Constant {
     public static final String INTENT_DETAIL_NUM = "intent_num";
     public static final String INTENT_FILE_NAME = "intent_filename";
 
+    public static final String PREF_LEVEL = "pref_level";
+
     public enum TYPE_ALPHABET {
         HIRAGANA, KATAKANA
     }

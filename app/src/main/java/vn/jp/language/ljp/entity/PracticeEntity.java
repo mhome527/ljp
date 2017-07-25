@@ -18,8 +18,17 @@ public class PracticeEntity {
     int ans;
     int review; //0:read; 1: unread; 2: wrong answer
     int ref;
+    String sound;
     ///////
 
+
+    public String getSound() {
+        return sound;
+    }
+
+    public void setSound(String sound) {
+        this.sound = sound;
+    }
 
     public int getNumId() {
         return numId;
@@ -43,17 +52,17 @@ public class PracticeEntity {
         return question;
     }
 
-    public String getQuestion2() {
-        if (question == null) //temp
-            question = "";
-
-        if (review == -1) //answer wrong
-            return "<font color='red'>" + question + "</font>";
-        else if (review == 1)
-            return "<font color='gray'>" + question + "</font>";
-        else
-            return "<font color='black'>" + question + "</font>";
-    }
+//    public String getQuestion2() {
+//        if (question == null) //temp
+//            question = "";
+//
+//        if (review == -1) //answer wrong
+//            return "<font color='red'>" + question + "</font>";
+//        else if (review == 1)
+//            return "<font color='gray'>" + question + "</font>";
+//        else
+//            return "<font color='black'>" + question + "</font>";
+//    }
 
     public void setQuestion(String question) {
         this.question = question;
