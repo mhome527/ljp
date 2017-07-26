@@ -27,7 +27,7 @@ import vn.jp.language.ljp.view.purchase.PurchaseActivity;
  */
 
 public class PracticeListActivity extends PurchaseActivity<PracticeListActivity> implements IClickListener {
-    private final String TAG = "PracticeDetailActivity";
+    private final String TAG = "PracticeListActivity";
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -57,9 +57,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
 
 
         presenter = new PracticeListPresenter(this, level, kind);
-        setTitle(presenter.getTitle(v1, v2));
-
-//        loadData();
+        setTitleQ(v1, v2);
     }
 
     @Override
@@ -130,10 +128,6 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             i.putExtra(Constant.INTENT_LEVEL, level);
             i.putExtra(Constant.INTENT_NUM, items.get(position).getNumId());
             Log.i(TAG, "onClick numId:" + items.get(position).getNumId());
-//            i.putExtra(Constant.INTENT_BOOKMARK, items.get(position).getBookmarks());
-//            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNumId());
-//            i.putExtra(Constant.INTENT_FILE_NAME, items.get(position).getQ1()); //file name
-//            i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
             startActivity(i);
         } else {
             PracticeDialog dialog = new PracticeDialog(activity, position, items, iPracticeInterface);
@@ -161,7 +155,10 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         public void onAns(int pos, int value) {
             PracticeEntity item = items.get(pos);
             presenter.updateAnswer(item.getNum(), value);
-
+            item.setReview(value);
+            int correct = presenter.countCorrect();
+            setTitleQ(correct);
+            adapter.notifyItemChanged(pos);
         }
     };
 
@@ -179,6 +176,8 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
                         adapter.notifyDataSetChanged();
                     }
                 });
+                int correct = presenter.countCorrect();
+                setTitleQ(correct);
             }
 
             @Override
@@ -186,6 +185,14 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
                 Log.e(TAG, "onFail err:" + err);
             }
         });
+    }
+
+    private void setTitleQ(int value) {
+        setTitleQ(value, items.size());
+    }
+
+    private void setTitleQ(int v1, int v2) {
+        setTitle(presenter.getTitle(v1, v2));
     }
 
 }

@@ -86,13 +86,8 @@ public class PracticeDao extends BasePracticeDao {
         return fetchAll(sql);
     }
 
-    public List<PracticeEntity> getBookmark(boolean isSort) {
-        String sort;
+    public List<PracticeEntity> getBookmark() {
         String where;
-        if (isSort)
-            sort = " Order by " + PracticeTable.COL_REVIEW + " asc, " + PracticeTable.COL_NUM + " asc ";
-        else
-            sort = " Order by " + PracticeTable.COL_NUM + " asc ";
 
         if (kind == PracticeTable.TYPE_READING)
             where = " " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_READING
@@ -106,7 +101,7 @@ public class PracticeDao extends BasePracticeDao {
         String sql = "Select * From " + getTableName()
                 + " Where " + where
                 + " And " + PracticeTable.COL_BOOKMARKS + " = 1 "
-                + sort;
+                + " Order by " + PracticeTable.COL_REVIEW + " asc, " + PracticeTable.COL_NUM + " asc ";
 
         return fetchAll(sql);
     }

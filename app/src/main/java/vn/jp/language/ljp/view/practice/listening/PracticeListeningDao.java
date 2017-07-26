@@ -54,17 +54,21 @@ public class PracticeListeningDao extends BasePracticeDao {
 
     /*
 
-Select t.question title, t.q1 sound, n.* From (Select * From TblPracticeN3 Where kind=6 And num_id > 300) t,
+Select t.question title, t.q1 sound,  t.bookmarks bookmarks,
+n.question question, n.num num, n.num_id num_id, n.kind kind, n.review review,
+n.q1 q1, n.q2 q2, n.q3 q3, n.q4 q4, n.ans ans, n.id_ref id_ref
+From (Select * From TblPracticeN3 Where kind=6 And num_id > 600) t,
 (Select * From  TblPracticeN3 Where kind=6 And num_id < 600)  n
-Where t.num_id = n.id_ref  Order by review asc, num asc
+Where t.num_id = n.id_ref  Order by n.review asc, n.num asc
      */
     public List<PracticeEntity> getItems() {
-        String sql = "Select t.question " + PracticeTable.COL_TITLE
-                + ", t.q1 " + PracticeTable.COL_SOUND
-                + ", n.* From "
+        String sql = "Select t.question title, t.q1 sound,  t.bookmarks bookmarks, "
+                + " n.question question, n.num num, n.num_id num_id, n.kind kind, n.review review, "
+                + " n.q1 q1, n.q2 q2, n.q3 q3, n.q4 q4, n.ans ans, n.id_ref id_ref  "
+                + " From "
                 + "(Select * From " + getTableName()
                 + " Where " + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
-                + " And num_id > 300) t, "
+                + " And num_id > 600) t, "
                 + " (Select * From  " + getTableName()
                 + " Where " + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
                 + " And num_id < 600)  n "
@@ -107,12 +111,12 @@ Where t.num_id = n.id_ref  Order by review asc, num asc
     }
 
 
-    public int coutListening() {
-        String sql = "SELECT Count(*) FROM " + getTableName()
-                + " Where " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_LISTENING
-                + " And " + PracticeTable.COL_NUM_ID + " > 600";
-        return countItem(sql);
-    }
+//    public int coutListening() {
+//        String sql = "SELECT Count(*) FROM " + getTableName()
+//                + " Where " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_LISTENING
+//                + " And " + PracticeTable.COL_NUM_ID + " > 600";
+//        return countItem(sql);
+//    }
 
     public void updateStatus(int numId) {
         updateReview(PracticeTable.TYPE_LISTENING, numId);

@@ -44,17 +44,13 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     @BindView(R.id.viewpager)
     ViewPager viewpager;
 
-    String titleQ;
-    String filename;
     PracticeListeningAdapter adapter;
 
     AudioPlayerManager audio;
     List<PracticeEntity> items;
 
     int pos;
-    int idRef;
     int bookmark;
-    int ansType = 0; //0: don't choice; 1: choice true; -1: choice wrong
     PracticeListeningPresenter presenter;
     //    int countAll;
     int num;
@@ -66,24 +62,16 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
 
     @Override
     protected void initView() {
-//        setTitle(getString(R.string.title_n_listening));
 
         int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
         num = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
         Log.i(TAG, "initView pos:" + pos);
-
-//        idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
-//        bookmark = getIntent().getIntExtra(Constant.INTENT_BOOKMARK, 0);
-//        titleQ = getIntent().getStringExtra(Constant.INTENT_TITLE_Q);
-//        filename = getIntent().getStringExtra(Constant.INTENT_FILE_NAME);
         presenter = new PracticeListeningPresenter(activity, level);
         setPageView();
 
-//        tvNum.setText(num + "");
         presenter.load(this);
         audio = new AudioPlayerManager(activity);
-//        countAll = presenter.countAll();
-//        setTitleQ(presenter.countCorrect());
+
     }
 
     @Override
@@ -111,8 +99,8 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     public void actionBookmark() {
         bookmark = bookmark == 0 ? 1 : 0;
         Log.i(TAG, "actionBook " + bookmark);
-        setBookmark();
         items.get(pos).setBookmarks(bookmark);
+        setImageBookmark();
         activity.presenter.updateBookmark(items.get(pos).getNum(), bookmark, items.get(pos).getRef());
     }
 
@@ -148,14 +136,9 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
         PracticeListeningFragment fragment = (PracticeListeningFragment) viewpager.getAdapter().instantiateItem(viewpager, pos);
 
         if (null != fragment && fragment.isVisible()) {
-//            Log.i(TAG, "actionView question: " + fragment.item.getQuestion());
             String ans = "";
             PracticeEntity item = fragment.item;
-//            if (item.getBookmarks() == 1) {
-//                if (item.getQuestion() != null && !item.getQuestion().trim().equals(""))
-//                    ans += "<br/><br/>" + item.getQuestion();
-//                else
-//                    ans += "<br/>";
+
             if (item.getQuestion() != null && !item.getQuestion().equals(""))
                 ans += "<br/><br/><b>" + item.getQuestion() + "</b><br/><br/>";
             else
@@ -167,7 +150,6 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
             if (item.getQ4() != null && !item.getQ4().trim().equals(""))
                 ans += "<br/> 4." + item.getQ4();
 
-//            }
             PracticeListeningDialog dialog = new PracticeListeningDialog(activity, item.getTitle() + ans);
             dialog.show();
         }
@@ -186,8 +168,10 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
                 break;
             }
         }
-
-        tvNum.setText(items.get(pos).getNum() + "");
+        PracticeEntity item = items.get(pos);
+        bookmark = item.getBookmarks();
+        setImageBookmark();
+        tvNum.setText(item.getNum() + "");
         hideButton();
         adapter = new PracticeListeningAdapter(getSupportFragmentManager(), items.size());
         viewpager.setAdapter(adapter);
@@ -204,7 +188,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
         setTitle(getString(R.string.title_n_listening, count, items.size()));
     }
 
-    private void setBookmark() {
+    private void setImageBookmark() {
         if (bookmark == 0)
             imgBookmark.setImageResource(R.drawable.heart_off);
         else
@@ -224,7 +208,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
                 hideButton();
                 PracticeEntity item = items.get(position);
                 bookmark = item.getBookmarks();
-                setBookmark();
+                setImageBookmark();
                 tvNum.setText(item.getNum() + "");
             }
 

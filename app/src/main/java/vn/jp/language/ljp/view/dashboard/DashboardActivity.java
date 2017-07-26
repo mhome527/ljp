@@ -37,6 +37,9 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    DashboardAdapter adapter;
+    View llBg;
+
     @Override
     protected int getLayout() {
         return R.layout.dashboard_layout;
@@ -85,6 +88,9 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
                     default:
                         break;
                 }
+//
+                llBg = view.findViewById(R.id.llBg);
+                llBg.setSelected(true);
             }
 
             @Override
@@ -92,9 +98,18 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
 
             }
         });
+        adapter = new DashboardAdapter(listData);
+        recyclerView.setAdapter(adapter);
 
-        recyclerView.setAdapter(new DashboardAdapter(listData));
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume---------------------");
+        if (llBg != null)
+            llBg.setSelected(false);
+        adapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.llOtherApp)
@@ -117,6 +132,11 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         listData.add(new DashboardEntity(R.drawable.ic_kanji, getString(R.string.title_kanji)));
         listData.add(new DashboardEntity(R.drawable.ic_dates, getString(R.string.title_date)));
 //        listData.add(new DashboardEntity(R.drawable.button_word_on, getString(R.string.title_coming_soon)));
+    }
+
+    public void runActivity(Class<?> cls, View view) {
+
+        startActivity2(cls);
     }
 
 }

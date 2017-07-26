@@ -11,8 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
-        android:minLines="2"
-        android:padding="10dp" android:gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:minLines="3"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
         android:textColor="@color/black"
         android:textSize="18sp"
         tools:text="@string/tap_on_mic" />
@@ -23,7 +25,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingLeft="8dp"
+        android:paddingRight="2dp">
 
         <ImageView
             android:id="@+id/imgQ1"
@@ -36,6 +39,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minLines="2"
             android:paddingLeft="10dp"
             android:textColor="@color/gray2"
             android:textSize="16sp"
@@ -49,7 +54,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingLeft="8dp"
+        android:paddingRight="2dp">
 
         <ImageView
             android:id="@+id/imgQ2"
@@ -62,10 +68,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minLines="2"
             android:paddingLeft="10dp"
             android:textColor="@color/gray2"
             android:textSize="16sp"
-            tools:text="@string/speech_not_supported" />
+            tools:text="@string/msg_recognition_voice" />
 
     </LinearLayout>
 
@@ -75,7 +83,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingLeft="8dp"
+        android:paddingRight="2dp">
 
         <ImageView
             android:id="@+id/imgQ3"
@@ -88,10 +97,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minLines="2"
             android:paddingLeft="10dp"
             android:textColor="@color/gray2"
             android:textSize="16sp"
-            tools:text="@string/speech_not_supported" />
+            tools:text="@string/msg_recognition_voice" />
 
     </LinearLayout>
 
@@ -101,7 +112,9 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingBottom="5dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="2dp">
 
         <ImageView
             android:id="@+id/imgQ4"
@@ -114,6 +127,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minLines="2"
             android:paddingLeft="10dp"
             android:textColor="@color/gray2"
             android:textSize="16sp"

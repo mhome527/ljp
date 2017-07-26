@@ -179,11 +179,11 @@ public class PracticeListeningFragment extends BaseFragment<PracticeListeningAct
                 tvQ4.setText("4.");
 
         } else {
-            tvQ1.setText( item.getQ1());
-            tvQ2.setText( item.getQ2());
-            tvQ3.setText( item.getQ3());
+            tvQ1.setText(item.getQ1());
+            tvQ2.setText(item.getQ2());
+            tvQ3.setText(item.getQ3());
             if (item.getQ4() != null && !item.getQ4().equals(""))
-                tvQ4.setText("4." + item.getQ4());
+                tvQ4.setText(item.getQ4());
         }
 
 

@@ -13,14 +13,17 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:foreground="?android:attr/selectableItemBackground"
-        card_view:contentPadding="10dp">
+        card_view:contentPadding="0dp">
 
         <LinearLayout
+            android:id="@+id/llBg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/bg_item_selector"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/imgItem"

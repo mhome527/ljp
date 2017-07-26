@@ -43,6 +43,11 @@ public class PracticeListPresenter extends BasePresenter<BaseActivity> {
         }
     }
 
+    public int countCorrect() {
+        return dao.countCorrect();
+    }
+
+
     public void getItems(final boolean isSort, ICallback callback) {
         loadData(callback, new ILoadData() {
             @Override
@@ -52,11 +57,11 @@ public class PracticeListPresenter extends BasePresenter<BaseActivity> {
         });
     }
 
-    public void getBookmark(final boolean isSort, ICallback callback) {
+    public void getBookmark(ICallback callback) {
         loadData(callback, new ILoadData() {
             @Override
             public Object onBackground() {
-                return dao.getBookmark(isSort);
+                return dao.getBookmark();
             }
         });
     }
