@@ -122,6 +122,9 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             i.putExtra(Constant.INTENT_BOOKMARK, items.get(position).getBookmarks());
             i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNumId());
             i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
+            i.putExtra(Constant.INTENT_V1, v1);
+            i.putExtra(Constant.INTENT_V2, v2);
+
             startActivity(i);
         } else if (kind == PracticeTable.TYPE_LISTENING) {
             Intent i = new Intent(activity, PracticeListeningActivity.class);

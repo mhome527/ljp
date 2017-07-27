@@ -69,6 +69,8 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
         idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
         num = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
         bookmark = getIntent().getIntExtra(Constant.INTENT_BOOKMARK, 0);
+        int v1 = getIntent().getIntExtra(Constant.INTENT_V1, 0);
+        int v2 = getIntent().getIntExtra(Constant.INTENT_V2, 0);
 
         titleQ = getIntent().getStringExtra(Constant.INTENT_TITLE_Q);
 
@@ -81,7 +83,7 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
             actionBar.setDisplayShowHomeEnabled(true); // remove the icon
             actionBar.setDisplayShowTitleEnabled(true); // remove title
 //            toolbarTitle.setText(getString(R.string.title_alphabet));
-            actionBar.setTitle(getString(R.string.title_n_reading));
+            actionBar.setTitle(getString(R.string.title_n_reading, v1, v2));
         }
 
         tvNum.setText(num + "");

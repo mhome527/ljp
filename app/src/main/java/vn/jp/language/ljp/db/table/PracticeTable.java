@@ -5,8 +5,7 @@ package vn.jp.language.ljp.db.table;
  */
 public class PracticeTable {
 
-    private static final String TAG = "PracticeTable";
-    private static final String N1 = "TblPractice";
+    private static final String N1 = "TblPracticeN1";
     private static final String N2 = "TblPracticeN2";
     private static final String N3 = "TblPracticeN3";
     private static final String N4 = "TblPracticeN4";

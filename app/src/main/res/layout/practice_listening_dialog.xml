@@ -20,6 +20,10 @@
             android:id="@+id/tvContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="true"
+            android:focusable="true"
+            android:longClickable="true"
+            android:textIsSelectable="true"
             android:textSize="20sp"
             tools:text="@string/appbar_scrolling_view_behavior" />
 

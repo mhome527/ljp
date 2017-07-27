@@ -18,7 +18,7 @@
         <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
         <item name="colorPrimary">@color/darkred</item>
         <item name="colorPrimaryDark">@color/maroon</item>
-        <item name="colorAccent">@color/white</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowActionBarOverlay">true</item>
         <item name="windowNoTitle">true</item>
