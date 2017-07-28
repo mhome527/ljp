@@ -49,7 +49,13 @@ public class Constant {
     public static final String INTENT_DETAIL_NUM = "intent_num";
     public static final String INTENT_FILE_NAME = "intent_filename";
 
+    public static final String PREF_GRAMMAR_LEVEL = "pref_grammar_level";
     public static final String PREF_LEVEL = "pref_level";
+    public static final String PREF_READING = "pref_reading";
+    public static final String PREF_GRAMMAR = "pref_grammar";
+    public static final String PREF_VOCABULARY = "pref_vocabulary";
+    public static final String PREF_LISTENING = "pref_listening";
+    public static final String PREF_KANJI = "pref_kanji";
 
     public enum TYPE_ALPHABET {
         HIRAGANA, KATAKANA

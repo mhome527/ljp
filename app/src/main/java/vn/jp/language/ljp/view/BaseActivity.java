@@ -12,6 +12,7 @@ import butterknife.ButterKnife;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.utils.Log;
+import vn.jp.language.ljp.utils.Prefs;
 
 /**
  * Created by Administrator on 10/11/2016.
@@ -27,6 +28,8 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
 
     protected T activity;
 
+    public Prefs pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,7 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
         setContentView(getLayout());
         ButterKnife.bind(this);
         activity = (T) this;
+        pref = new Prefs(this.getApplicationContext());
         initView();
 
     }
@@ -62,7 +66,7 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
             TextView Title = (TextView) view.findViewById(R.id.tvTitle);
             Title.setText(title);
 
-            getSupportActionBar().setCustomView(view,params);
+            getSupportActionBar().setCustomView(view, params);
             getSupportActionBar().setDisplayShowCustomEnabled(true); //show custom title
             getSupportActionBar().setDisplayShowTitleEnabled(false); //hide the default title
 

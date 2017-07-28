@@ -1,6 +1,7 @@
 package vn.jp.language.ljp.view.grammar;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import butterknife.BindView;
+import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.grammar.search.GrammarSearchActivity;
@@ -96,6 +98,7 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                pref.putIntValue(tab.getPosition(), Constant.PREF_GRAMMAR_LEVEL);
                 viewPager.setCurrentItem(tab.getPosition());
 //                actionBar.setTitle(tab.getText());
                 resetScroll();
@@ -111,6 +114,15 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
 
             }
         });
+
+        final int level = pref.getIntValue(0, Constant.PREF_GRAMMAR_LEVEL);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                viewPager.setCurrentItem(level);
+            }
+        }, 100);
 
     }
 
