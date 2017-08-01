@@ -108,10 +108,17 @@ public class PracticeDao extends BasePracticeDao {
     }
 
     public int countCorrect() {
+        String where2;
+        if (kind == PracticeTable.TYPE_READING
+                || (kind == PracticeTable.TYPE_KANJI && level == PracticeTable.LEVEL_N5)) {
+            where2 = " And " + PracticeTable.COL_NUM_ID + " > 200";
+        } else
+            where2 = " And " + PracticeTable.COL_NUM_ID + " < 200";
+
         String sql = "SELECT Count(*) FROM " + getTableName()
                 + " Where " + PracticeTable.COL_KIND + " = " + kind
                 + " And " + PracticeTable.COL_REVIEW + " = 1 "
-                + " And " + PracticeTable.COL_NUM_ID + " < 200";
+                + where2;
         return countItem(sql);
     }
 
