@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.practice.reading;
+package vn.jp.language.ljp.view.practice.kanji;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -13,7 +13,7 @@ import vn.jp.language.ljp.view.practice.BasePracticeDao;
  * Created by Administrator on 7/17/2017.
  */
 
-public class PracticeReadingDao extends BasePracticeDao {
+public class PracticeKanJiDao extends BasePracticeDao {
 
     int level;
 
@@ -24,10 +24,10 @@ public class PracticeReadingDao extends BasePracticeDao {
 
     @Override
     protected int getKind() {
-        return PracticeTable.TYPE_READING;
+        return PracticeTable.TYPE_KANJI;
     }
 
-    public PracticeReadingDao(Context context, int level) {
+    public PracticeKanJiDao(Context context, int level) {
         super(context);
         this.level = level;
     }

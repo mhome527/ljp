@@ -19,6 +19,7 @@ import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
 import vn.jp.language.ljp.view.practice.dialog.PracticeDialog;
+import vn.jp.language.ljp.view.practice.kanji.PracticeKanJiActivity;
 import vn.jp.language.ljp.view.practice.listening.PracticeListeningActivity;
 import vn.jp.language.ljp.view.practice.reading.PracticeReadingActivity;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
@@ -124,14 +125,15 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     //   ==============  IClickListener - item click
     @Override
     public void onClick(View view, int position) {
+        PracticeEntity item = items.get(position);
         if (kind == PracticeTable.TYPE_READING) {
             setPositionScroll2();
             Intent i = new Intent(activity, PracticeReadingActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
-            i.putExtra(Constant.INTENT_NUM, items.get(position).getNum());
-            i.putExtra(Constant.INTENT_BOOKMARK, items.get(position).getBookmarks());
-            i.putExtra(Constant.INTENT_DETAIL_NUM, items.get(position).getNumId());
-            i.putExtra(Constant.INTENT_TITLE_Q, items.get(position).getQuestion());
+            i.putExtra(Constant.INTENT_NUM, item.getNum());
+            i.putExtra(Constant.INTENT_BOOKMARK, item.getBookmarks());
+            i.putExtra(Constant.INTENT_DETAIL_NUM, item.getNumId());
+            i.putExtra(Constant.INTENT_TITLE_Q, item.getQuestion());
             i.putExtra(Constant.INTENT_V1, v1);
             i.putExtra(Constant.INTENT_V2, v2);
 
@@ -140,13 +142,27 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             setPositionScroll2();
             Intent i = new Intent(activity, PracticeListeningActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
-            i.putExtra(Constant.INTENT_NUM, items.get(position).getNumId());
-            Log.i(TAG, "onClick numId:" + items.get(position).getNumId());
+            i.putExtra(Constant.INTENT_NUM, item.getNumId());
+            Log.i(TAG, "onClick numId:" + item.getNumId());
             startActivity(i);
         } else {
+            if (kind == PracticeTable.TYPE_KANJI
+                    && item.getNumId() > 200) {
+                setPositionScroll2();
+                Intent i = new Intent(activity, PracticeKanJiActivity.class);
+                i.putExtra(Constant.INTENT_LEVEL, level);
+                i.putExtra(Constant.INTENT_NUM, item.getNum());
+                i.putExtra(Constant.INTENT_BOOKMARK, item.getBookmarks());
+                i.putExtra(Constant.INTENT_DETAIL_NUM, item.getNumId());
+                i.putExtra(Constant.INTENT_TITLE_Q, item.getQuestion());
+                i.putExtra(Constant.INTENT_V1, v1);
+                i.putExtra(Constant.INTENT_V2, v2);
 
-            PracticeDialog dialog = new PracticeDialog(activity, position, items, iPracticeInterface);
-            dialog.show();
+                startActivity(i);
+            } else {
+                PracticeDialog dialog = new PracticeDialog(activity, position, items, iPracticeInterface);
+                dialog.show();
+            }
         }
     }
 

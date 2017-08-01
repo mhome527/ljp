@@ -43,14 +43,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:enabled="true"
-            android:focusable="true"
             android:gravity="center_vertical"
-            android:longClickable="true"
             android:minLines="2"
             android:paddingLeft="10dp"
             android:textColor="@color/gray2"
-            android:textIsSelectable="true"
             android:textSize="16sp"
             tools:text="@string/speech_not_supported" />
 
@@ -76,14 +72,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:enabled="true"
-            android:focusable="true"
             android:gravity="center_vertical"
-            android:longClickable="true"
             android:minLines="2"
             android:paddingLeft="10dp"
             android:textColor="@color/gray2"
-            android:textIsSelectable="true"
             android:textSize="16sp"
             tools:text="@string/msg_recognition_voice" />
 
@@ -109,14 +101,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:enabled="true"
-            android:focusable="true"
             android:gravity="center_vertical"
-            android:longClickable="true"
             android:minLines="2"
             android:paddingLeft="10dp"
             android:textColor="@color/gray2"
-            android:textIsSelectable="true"
             android:textSize="16sp"
             tools:text="@string/msg_recognition_voice" />
 
@@ -143,14 +131,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:enabled="true"
-            android:focusable="true"
             android:gravity="center_vertical"
-            android:longClickable="true"
             android:minLines="2"
             android:paddingLeft="10dp"
             android:textColor="@color/gray2"
-            android:textIsSelectable="true"
             android:textSize="16sp"
             tools:text="@string/speech_not_supported" />
 

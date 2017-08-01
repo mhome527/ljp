@@ -67,10 +67,10 @@ Where t.num_id = n.id_ref  Order by n.review asc, n.num asc
                 + " n.q1 q1, n.q2 q2, n.q3 q3, n.q4 q4, n.ans ans, n.id_ref id_ref  "
                 + " From "
                 + "(Select * From " + getTableName()
-                + " Where " + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
+                + " Where " + PracticeTable.COL_KIND + "=" + getKind()
                 + " And num_id > 600) t, "
                 + " (Select * From  " + getTableName()
-                + " Where " + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
+                + " Where " + PracticeTable.COL_KIND + "=" + getKind()
                 + " And num_id < 600)  n "
                 + " Where t.num_id = n.id_ref "
                 + " Order by " + PracticeTable.COL_REVIEW + " asc, " + PracticeTable.COL_NUM + " asc ";
@@ -84,7 +84,7 @@ Where t.num_id = n.id_ref  Order by n.review asc, n.num asc
 
     public int countCorrect() {
         String sql = "SELECT Count(*) FROM " + getTableName()
-                + " Where " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_LISTENING
+                + " Where " + PracticeTable.COL_KIND + " = " + getKind()
                 + " And " + PracticeTable.COL_REVIEW + " = 1 "
                 + " And " + PracticeTable.COL_NUM_ID + " < 600";
         return countItem(sql);
@@ -92,7 +92,7 @@ Where t.num_id = n.id_ref  Order by n.review asc, n.num asc
 
     public int countAll() {
         String sql = "SELECT Count(*) FROM " + getTableName()
-                + " Where " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_LISTENING
+                + " Where " + PracticeTable.COL_KIND + " = " + getKind()
                 + " And " + PracticeTable.COL_NUM_ID + "< 600";
         return countItem(sql);
     }
@@ -105,7 +105,7 @@ Where t.num_id = n.id_ref  Order by n.review asc, n.num asc
      */
     public PracticeEntity getItemDetail(int idRef) {
         String sql = "Select * From " + getTableName() + " Where "
-                + PracticeTable.COL_KIND + "=" + PracticeTable.TYPE_LISTENING
+                + PracticeTable.COL_KIND + "=" + getKind()
                 + " And " + PracticeTable.COL_REF + "=" + idRef;
         return fetch(sql);
     }
@@ -119,7 +119,7 @@ Where t.num_id = n.id_ref  Order by n.review asc, n.num asc
 //    }
 
     public void updateStatus(int numId) {
-        updateReview(PracticeTable.TYPE_LISTENING, numId);
+        updateReview(getKind(), numId);
     }
 
 }
