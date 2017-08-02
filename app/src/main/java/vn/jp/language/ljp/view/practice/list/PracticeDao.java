@@ -51,6 +51,7 @@ public class PracticeDao extends BasePracticeDao {
         entity.setQ4(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q4)));
         entity.setAns(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_ANS)));
         entity.setReview(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REVIEW)));
+        entity.setRef(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REF)));
         return entity;
     }
 
@@ -75,7 +76,7 @@ public class PracticeDao extends BasePracticeDao {
                     + " And " + PracticeTable.COL_NUM_ID + " > 200";
         else if (kind == PracticeTable.TYPE_LISTENING)
             where = " " + PracticeTable.COL_KIND + " = " + PracticeTable.TYPE_LISTENING
-                    + " And " + PracticeTable.COL_NUM_ID + " > 600";
+                    + " And " + PracticeTable.COL_NUM_ID + " < 100";
         else
             where = PracticeTable.COL_KIND + " = " + kind
                     + " And " + PracticeTable.COL_REF + " < 100";

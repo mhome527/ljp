@@ -53,7 +53,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     int bookmark;
     PracticeListeningPresenter presenter;
     //    int countAll;
-    int num;
+    int refId;
 
     @Override
     protected int getLayout() {
@@ -64,7 +64,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     protected void initView() {
 
         int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
-        num = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
+        refId = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
         Log.i(TAG, "initView pos:" + pos);
         presenter = new PracticeListeningPresenter(activity, level);
         setPageView();
@@ -148,7 +148,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
                     + " 2. " + item.getQ2() + "<br/>"
                     + " 3. " + item.getQ3();
             if (item.getQ4() != null && !item.getQ4().trim().equals(""))
-                ans += "<br/> 4." + item.getQ4();
+                ans += "<br/> 4. " + item.getQ4();
 
             PracticeListeningDialog dialog = new PracticeListeningDialog(activity, item.getTitle() + ans);
             dialog.show();
@@ -162,8 +162,8 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
         items = data;
 
         for (int i = 0; i < items.size(); i++) {
-            Log.i(TAG, "item " + items.get(i).getRef() + " ;" + num);
-            if (items.get(i).getRef() == num) {
+            Log.i(TAG, "item " + items.get(i).getRef() + " ;" + refId);
+            if (items.get(i).getRef() == refId) {
                 pos = i;
                 break;
             }

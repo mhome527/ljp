@@ -142,8 +142,8 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             setPositionScroll2();
             Intent i = new Intent(activity, PracticeListeningActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
-            i.putExtra(Constant.INTENT_NUM, item.getNumId());
-            Log.i(TAG, "onClick numId:" + item.getNumId());
+            i.putExtra(Constant.INTENT_NUM, item.getRef());
+            Log.i(TAG, "onClick numId:" + item.getNum());
             startActivity(i);
         } else {
             if (kind == PracticeTable.TYPE_KANJI

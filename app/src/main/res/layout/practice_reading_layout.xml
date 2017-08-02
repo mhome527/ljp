@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
@@ -22,9 +23,10 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <LinearLayout android:background="@color/white"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:minHeight="?attr/actionBarSize"
             android:orientation="horizontal"
             android:padding="5dp"
