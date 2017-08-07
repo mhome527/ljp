@@ -108,7 +108,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     public void actionSpeak() {
         Log.i(TAG, "speak filename:" + items.get(pos).getQ1());
 //        audio.stop();
-//        audio.play(FOLDER + filename);
+//        audio.play(FOLDER + items.get(pos).getQ1());
     }
 
     @OnClick(R.id.imgPre)
@@ -210,6 +210,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
                 bookmark = item.getBookmarks();
                 setImageBookmark();
                 tvNum.setText(item.getNum() + "");
+                actionSpeak();
             }
 
             @Override

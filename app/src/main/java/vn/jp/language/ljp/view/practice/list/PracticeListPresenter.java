@@ -1,5 +1,6 @@
 package vn.jp.language.ljp.view.practice.list;
 
+import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.view.BaseActivity;
@@ -87,5 +88,30 @@ public class PracticeListPresenter extends BasePresenter<BaseActivity> {
         dao.updateBookmark(num, bookmark);
     }
 
+    public String getPosKey() {
+        switch (kind) {
+            case PracticeTable.TYPE_GRAMMAR:
+                return Constant.PREF_GRAMMAR_N + level;
+            case PracticeTable.TYPE_READING:
+                return Constant.PREF_READING_N + level;
+            case PracticeTable.TYPE_VOCABULARY:
+                return Constant.PREF_VOCABULARY_N + level;
+            case PracticeTable.TYPE_LISTENING:
+                return Constant.PREF_LISTENING_N + level;
+            case PracticeTable.TYPE_KANJI:
+                return Constant.PREF_KANJI_N + level;
+            default:
+                return Constant.PREF_GRAMMAR_N + level;
+        }
+    }
+
+    public int getPosHistory() {
+        return activity.pref.getIntValue(0, getPosKey());
+
+    }
+
+    public void putPosHistory(int pos) {
+        activity.pref.putIntValue(pos, getPosKey());
+    }
 
 }

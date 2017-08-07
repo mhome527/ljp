@@ -36,21 +36,21 @@ public class PracticeListHolder extends BaseViewHolder {
 
     public void bind(PracticeEntity item, boolean isPurchased) {
         if (item.getKind() == PracticeTable.TYPE_READING) {
-            if (isPurchased || item.getNum() < Constant.TRIAL_READING)
+            if (isPurchased || item.getNum() <= Constant.TRIAL_READING)
                 imgLike.setVisibility(View.GONE);
             else
                 imgLike.setVisibility(View.VISIBLE);
             tvContent.setMaxLines(2);
 
         } else if (item.getKind() == PracticeTable.TYPE_LISTENING) {
-            if (isPurchased || item.getNum() < Constant.TRIAL_LISTENING)
+            if (isPurchased || item.getNum() <= Constant.TRIAL_LISTENING)
                 imgLike.setVisibility(View.GONE);
             else
                 imgLike.setVisibility(View.VISIBLE);
             tvContent.setMaxLines(1);
 
         } else {
-            if (isPurchased || item.getNum() < Constant.TRIAL_GRAMMAR)
+            if (isPurchased || item.getNum() <= Constant.TRIAL_GRAMMAR)
                 imgLike.setVisibility(View.GONE);
             else
                 imgLike.setVisibility(View.VISIBLE);

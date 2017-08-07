@@ -73,7 +73,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        setPositionScroll2();
+        presenter.putPosHistory(recyclerView.computeVerticalScrollOffset());
     }
 
     @Override
@@ -90,7 +90,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
                 return true;
 
             case R.id.menuBookmark:
-                setPositionScroll2();
+                presenter.putPosHistory(recyclerView.computeVerticalScrollOffset());
                 Intent i = new Intent(activity, PracticeBookmarkActivity.class);
                 i.putExtra(Constant.INTENT_KIND, kind);
                 i.putExtra(Constant.INTENT_LEVEL, level);
@@ -113,7 +113,25 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     // ================= Purchase ====================
     @Override
     protected void dealWithIabSetupSuccess() {
+        if (getItemPurchased() == Constant.ITEM_PURCHASED) {
+            Log.i(TAG, "WithIabSetupSuccess...item purchased");
+            isPurchased = true;
+            adapter.setPurchased(isPurchased);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    adapter.notifyDataSetChanged();
+                }
+            });
 
+            /// Test only
+//            if (BuildConfig.DEBUG)
+//                clearPurchaseTest();
+
+        } else {
+            Log.i(TAG, "WithIabSetupSuccess item not purchase");
+            isPurchased = false;
+        }
     }
 
     @Override
@@ -126,8 +144,28 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     @Override
     public void onClick(View view, int position) {
         PracticeEntity item = items.get(position);
+
+        if (!isPurchased && level != PracticeTable.LEVEL_N5) { //N5 FREE
+
+            if (kind == PracticeTable.TYPE_LISTENING && item.getNum() > Constant.TRIAL_LISTENING) {
+                Log.i(TAG, "===> buy TYPE_LISTENING!!!");
+                purchaseItem();
+                return;
+            } else if (kind == PracticeTable.TYPE_READING && item.getNum() > Constant.TRIAL_READING) {
+                Log.i(TAG, "===> buy TYPE_READING!!!");
+                purchaseItem();
+                return;
+
+            } else if (item.getNum() > Constant.TRIAL_GRAMMAR) {
+                Log.i(TAG, "===> buy TYPE OTHER!!!");
+                purchaseItem();
+                return;
+            }
+        }
+
         if (kind == PracticeTable.TYPE_READING) {
-            setPositionScroll2();
+            presenter.putPosHistory(recyclerView.computeVerticalScrollOffset());
+//            setPositionScroll2();
             Intent i = new Intent(activity, PracticeReadingActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
             i.putExtra(Constant.INTENT_NUM, item.getNum());
@@ -138,17 +176,21 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             i.putExtra(Constant.INTENT_V2, v2);
 
             startActivity(i);
-        } else if (kind == PracticeTable.TYPE_LISTENING) {
-            setPositionScroll2();
+        } else if (kind == PracticeTable.TYPE_LISTENING)
+
+        {
+            presenter.putPosHistory(recyclerView.computeVerticalScrollOffset());
             Intent i = new Intent(activity, PracticeListeningActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
             i.putExtra(Constant.INTENT_NUM, item.getRef());
             Log.i(TAG, "onClick numId:" + item.getNum());
             startActivity(i);
-        } else {
+        } else
+
+        {
             if (kind == PracticeTable.TYPE_KANJI
                     && item.getNumId() > 200) {
-                setPositionScroll2();
+                presenter.putPosHistory(recyclerView.computeVerticalScrollOffset());
                 Intent i = new Intent(activity, PracticeKanJiActivity.class);
                 i.putExtra(Constant.INTENT_LEVEL, level);
                 i.putExtra(Constant.INTENT_NUM, item.getNum());
@@ -164,6 +206,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
                 dialog.show();
             }
         }
+
     }
 
     @Override
@@ -212,7 +255,8 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
                 int correct = presenter.countCorrect();
                 setTitleQ(correct);
 
-                setPositionScroll();
+//                setPositionScroll();
+                mTotalScrolled = presenter.getPosHistory();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -238,41 +282,4 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         setTitle(presenter.getTitle(v1, v2));
     }
 
-    private void setPositionScroll2() {
-        if (kind == PracticeTable.TYPE_VOCABULARY)
-            pref.putIntValue(recyclerView.computeVerticalScrollOffset(), Constant.PREF_VOCABULARY);
-        else if (kind == PracticeTable.TYPE_GRAMMAR)
-            pref.putIntValue(recyclerView.computeVerticalScrollOffset(), Constant.PREF_GRAMMAR);
-        else if (kind == PracticeTable.TYPE_KANJI)
-            pref.putIntValue(recyclerView.computeVerticalScrollOffset(), Constant.PREF_KANJI);
-        else if (kind == PracticeTable.TYPE_READING)
-            pref.putIntValue(recyclerView.computeVerticalScrollOffset(), Constant.PREF_READING);
-        else if (kind == PracticeTable.TYPE_LISTENING)
-            pref.putIntValue(recyclerView.computeVerticalScrollOffset(), Constant.PREF_LISTENING);
-
-    }
-
-    private void setPositionScroll() {
-        switch (kind) {
-            case PracticeTable.TYPE_VOCABULARY:
-                mTotalScrolled = pref.getIntValue(0, Constant.PREF_VOCABULARY);
-                break;
-            case PracticeTable.TYPE_GRAMMAR:
-                mTotalScrolled = pref.getIntValue(0, Constant.PREF_GRAMMAR);
-                break;
-            case PracticeTable.TYPE_KANJI:
-                mTotalScrolled = pref.getIntValue(0, Constant.PREF_KANJI);
-                break;
-            case PracticeTable.TYPE_READING:
-                mTotalScrolled = pref.getIntValue(0, Constant.PREF_READING);
-                break;
-            case PracticeTable.TYPE_LISTENING:
-                mTotalScrolled = pref.getIntValue(0, Constant.PREF_LISTENING);
-                break;
-            default:
-                mTotalScrolled = 0;
-                break;
-        }
-
-    }
 }

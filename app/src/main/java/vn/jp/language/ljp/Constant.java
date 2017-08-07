@@ -16,8 +16,10 @@ public class Constant {
 
     public static final int TRIAL = 4;
     public static final int TRIAL_GRAMMAR = 5;
-    public static final int TRIAL_READING = 2;
-    public static final int TRIAL_LISTENING = 3;
+    public static final int TRIAL_READING = 5;
+    public static final int TRIAL_LISTENING = 5;
+//    public static final int TRIAL_VOCABULARY = 3;
+//    public static final int TRIAL_KANJI = 3;
     /////
 
     ////
@@ -51,11 +53,43 @@ public class Constant {
 
     public static final String PREF_GRAMMAR_LEVEL = "pref_grammar_level";
     public static final String PREF_LEVEL = "pref_level";
-    public static final String PREF_READING = "pref_reading";
-    public static final String PREF_GRAMMAR = "pref_grammar";
-    public static final String PREF_VOCABULARY = "pref_vocabulary";
-    public static final String PREF_LISTENING = "pref_listening";
-    public static final String PREF_KANJI = "pref_kanji";
+
+    public static final String PREF_READING_N = "pref_reading_";
+    public static final String PREF_GRAMMAR_N = "pref_grammar_";
+    public static final String PREF_VOCABULARY_N = "pref_vocabulary_";
+    public static final String PREF_LISTENING_N = "pref_listening_";
+    public static final String PREF_KANJI_N = "pref_kanji_";
+
+//   public static final String PREF_READING_N1 = "pref_reading_1";
+//    public static final String PREF_GRAMMAR_N1 = "pref_grammar_1";
+//    public static final String PREF_VOCABULARY_N1 = "pref_vocabulary_1";
+//    public static final String PREF_LISTENING_N1 = "pref_listening_1";
+//    public static final String PREF_KANJI_N1 = "pref_kanji_1";
+//
+//    public static final String PREF_READING_N2 = "pref_reading_2";
+//    public static final String PREF_GRAMMAR_N2 = "pref_grammar_2";
+//    public static final String PREF_VOCABULARY_N2 = "pref_vocabulary_2";
+//    public static final String PREF_LISTENING_N2 = "pref_listening_2";
+//    public static final String PREF_KANJI_N2 = "pref_kanji_2";
+//
+//    public static final String PREF_READING_N3 = "pref_reading_3";
+//    public static final String PREF_GRAMMAR_N3 = "pref_grammar_3";
+//    public static final String PREF_VOCABULARY_N3 = "pref_vocabulary_3";
+//    public static final String PREF_LISTENING_N3 = "pref_listening_3";
+//    public static final String PREF_KANJI_N3 = "pref_kanji_3";
+//
+//    public static final String PREF_READING_N4 = "pref_reading_4";
+//    public static final String PREF_GRAMMAR_N4 = "pref_grammar_4";
+//    public static final String PREF_VOCABULARY_N4 = "pref_vocabulary_4";
+//    public static final String PREF_LISTENING_N4 = "pref_listening_4";
+//    public static final String PREF_KANJI_N4 = "pref_kanji_4";
+//
+//    public static final String PREF_READING_N5 = "pref_reading_5";
+//    public static final String PREF_GRAMMAR_N5 = "pref_grammar_5";
+//    public static final String PREF_VOCABULARY_N5 = "pref_vocabulary_5";
+//    public static final String PREF_LISTENING_N5 = "pref_listening_5";
+//    public static final String PREF_KANJI_N5 = "pref_kanji_5";
+
 
     public enum TYPE_ALPHABET {
         HIRAGANA, KATAKANA
