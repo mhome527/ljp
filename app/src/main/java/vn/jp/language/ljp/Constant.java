@@ -13,11 +13,11 @@ public class Constant {
     public static final int PURCHASE_REQUEST_CODE = 1080;
     public static final boolean ITEM_PURCHASED = true;
     /// ===========
-
+    public static final int TEST_P = 300;
     public static final int TRIAL = 4;
-    public static final int TRIAL_GRAMMAR = 5;
-    public static final int TRIAL_READING = 5;
-    public static final int TRIAL_LISTENING = 5;
+    public static final int TRIAL_GRAMMAR = 30 + TEST_P;
+    public static final int TRIAL_READING = 5 + TEST_P;
+    public static final int TRIAL_LISTENING = 4 + TEST_P;
 //    public static final int TRIAL_VOCABULARY = 3;
 //    public static final int TRIAL_KANJI = 3;
     /////

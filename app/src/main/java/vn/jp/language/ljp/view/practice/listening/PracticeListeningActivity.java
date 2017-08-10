@@ -106,9 +106,9 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
 
     @OnClick(R.id.imgSpeak)
     public void actionSpeak() {
-        Log.i(TAG, "speak filename:" + items.get(pos).getQ1());
-//        audio.stop();
-//        audio.play(FOLDER + items.get(pos).getQ1());
+        Log.i(TAG, "speak filename:" + items.get(pos).getSound());
+        audio.stop();
+        audio.play(FOLDER + items.get(pos).getSound());
     }
 
     @OnClick(R.id.imgPre)
@@ -176,6 +176,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
         adapter = new PracticeListeningAdapter(getSupportFragmentManager(), items.size());
         viewpager.setAdapter(adapter);
         viewpager.setCurrentItem(pos);
+        actionSpeak();
         setTitleQ(presenter.countCorrect());
     }
 

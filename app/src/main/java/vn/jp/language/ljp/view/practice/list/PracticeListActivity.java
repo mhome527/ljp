@@ -145,7 +145,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     public void onClick(View view, int position) {
         PracticeEntity item = items.get(position);
 
-        if (!isPurchased && level != PracticeTable.LEVEL_N5) { //N5 FREE
+        if (!isPurchased && level != PracticeTable.LEVEL_N5 && kind != PracticeTable.TYPE_KANJI) { //N5 FREE
 
             if (kind == PracticeTable.TYPE_LISTENING && item.getNum() > Constant.TRIAL_LISTENING) {
                 Log.i(TAG, "===> buy TYPE_LISTENING!!!");
@@ -176,20 +176,16 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             i.putExtra(Constant.INTENT_V2, v2);
 
             startActivity(i);
-        } else if (kind == PracticeTable.TYPE_LISTENING)
-
-        {
+        } else if (kind == PracticeTable.TYPE_LISTENING) {
             presenter.putPosHistory(recyclerView.computeVerticalScrollOffset());
             Intent i = new Intent(activity, PracticeListeningActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
             i.putExtra(Constant.INTENT_NUM, item.getRef());
             Log.i(TAG, "onClick numId:" + item.getNum());
             startActivity(i);
-        } else
-
-        {
+        } else {
             if (kind == PracticeTable.TYPE_KANJI
-                    && item.getNumId() > 200) {
+                    && item.getNumId() > 200) { //truong hop ngoai le la kanji co man hinh rieng
                 presenter.putPosHistory(recyclerView.computeVerticalScrollOffset());
                 Intent i = new Intent(activity, PracticeKanJiActivity.class);
                 i.putExtra(Constant.INTENT_LEVEL, level);
@@ -243,6 +239,9 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             public void onCallback(List<PracticeEntity> data) {
                 items = data;
                 adapter = new PracticeListAdapter(data);
+                if(level == PracticeTable.LEVEL_N5)
+                    adapter.setPurchased(true);
+
                 recyclerView.setAdapter(adapter);
                 activity.runOnUiThread(new Runnable() {
                     @Override

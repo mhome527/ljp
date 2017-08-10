@@ -124,9 +124,16 @@ public class PracticeDao extends BasePracticeDao {
     }
 
     public int countAll() {
+        String where2;
+        if (kind == PracticeTable.TYPE_READING
+                || (kind == PracticeTable.TYPE_KANJI && level != PracticeTable.LEVEL_N3 && level != PracticeTable.LEVEL_N1)) {
+            where2 = " And " + PracticeTable.COL_NUM_ID + " > 200";
+        } else
+            where2 = " And " + PracticeTable.COL_NUM_ID + " < 200";
+
         String sql = "SELECT Count(*) FROM " + getTableName()
                 + " Where " + PracticeTable.COL_KIND + " = " + kind
-                + " And " + PracticeTable.COL_NUM_ID + "< 200";
+                + where2;
         return countItem(sql);
     }
 
