@@ -223,9 +223,9 @@ public class PracticeDialog extends BaseDialog {
 
     private void hideButton() {
         if (pos == 0)
-            imgPre.setVisibility(View.GONE);
+            imgPre.setVisibility(View.INVISIBLE);
         else if (pos == items.size() - 1)
-            imgNext.setVisibility(View.GONE);
+            imgNext.setVisibility(View.INVISIBLE);
         else {
             imgPre.setVisibility(View.VISIBLE);
             imgNext.setVisibility(View.VISIBLE);

@@ -3,6 +3,7 @@ package vn.jp.language.ljp.entity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import vn.jp.language.ljp.utils.Log;
@@ -26,14 +27,18 @@ public class GrammarEntity {
     }
 
     ///////////
-    public void formatData(){
+    public void formatData() {
         Gson gson = new Gson();
         Log.i("GrammarEntity", "formatData json:" + example);
-        details = gson.fromJson(example, new TypeToken<List<GrammarDetailEntity>>(){}.getType());
-        Log.i("GrammarEntity", "formatData size: " + details.size()+ "; item jp:" + details.get(0).getJp());
+        details = gson.fromJson(example, new TypeToken<List<GrammarDetailEntity>>() {
+        }.getType());
+        if (details != null)
+            Log.i("GrammarEntity", "formatData size: " + details.size() + "; item jp:" + details.get(0).getJp());
+        else
+            details = new ArrayList<>();
     }
 
-    public List<GrammarDetailEntity> getDetails(){
+    public List<GrammarDetailEntity> getDetails() {
         return details;
     }
 

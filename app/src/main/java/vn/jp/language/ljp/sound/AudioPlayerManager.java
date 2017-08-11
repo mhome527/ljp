@@ -22,11 +22,12 @@ public class AudioPlayerManager {
     }
 
     public void play(String filename) {
+        //test only
+        if(true)
+            return;
+
         try {
-//            if (m != null && m.isPlaying()) {
-//                m.stop();
-//                m.release();
-//            }
+
             m = new MediaPlayer();
             m.reset();
 //            AssetFileDescriptor descriptor = getAssets().openFd("beepbeep.mp3");
@@ -37,8 +38,7 @@ public class AudioPlayerManager {
 
             m.prepare();
             m.setVolume(1f, 1f);
-//            m.setLooping(true);
-//            m.start();
+
 
             m.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
