@@ -23,8 +23,8 @@ public class AudioPlayerManager {
 
     public void play(String filename) {
         //test only
-        if(true)
-            return;
+//        if(true)
+//            return;
 
         try {
 

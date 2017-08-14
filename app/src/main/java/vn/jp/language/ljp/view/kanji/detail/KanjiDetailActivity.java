@@ -33,6 +33,9 @@ public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
     @BindView(R.id.tvJp1)
     TextView tvJp1;
 
+    @BindView(R.id.tvMean)
+    TextView tvMean;
+
     @BindView(R.id.tvJp2)
     TextView tvJp2;
 
@@ -85,8 +88,9 @@ public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
 
     private void setData(KanjiEntity entity) {
         String fullPath;
-        setTitleCenter(entity.getOt());
+        setTitleCenter(getString(R.string.title_kanji));
 
+        tvMean.setText(entity.getOt());
         tvJp1.setText(entity.getJp1());
         tvJp2.setText(entity.getJp2());
         tvExample.setText(entity.getExample());

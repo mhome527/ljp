@@ -29,6 +29,13 @@
                     android:layout_height="150dp"
                     android:layout_gravity="center_horizontal" />
 
+                <TextView
+                    android:id="@+id/tvMean"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    tools:text="@string/appbar_scrolling_view_behavior" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -44,9 +51,10 @@
                     android:paddingBottom="5dp">
 
                     <ImageView
-                        android:id="@+id/img1" android:layout_marginRight="5dp"
+                        android:id="@+id/img1"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
                         android:background="@drawable/ic_num1" />
 
                     <TextView
@@ -64,8 +72,9 @@
 
                     <ImageView
                         android:id="@+id/img2"
-                        android:layout_width="20dp" android:layout_marginRight="5dp"
+                        android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
                         android:background="@drawable/ic_num2" />
 
                     <TextView
