@@ -247,7 +247,6 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
                     @Override
                     public void run() {
                         adapter.notifyDataSetChanged();
-//                        recyclerView.scrollBy(0, mTotalScrolled);
 
                     }
                 });

@@ -13,7 +13,7 @@ public class Constant {
     public static final int PURCHASE_REQUEST_CODE = 1080;
     public static final boolean ITEM_PURCHASED = true;
     /// ===========
-    public static final int TEST_P = 300;
+    public static final int TEST_P = 0;
     public static final int TRIAL = 4;
     public static final int TRIAL_GRAMMAR = 30 + TEST_P;
     public static final int TRIAL_READING = 5 + TEST_P;
@@ -34,9 +34,9 @@ public class Constant {
 
     //    public static final String DB_NAME = "ljp2.sqlite";
     public static final String DB_NAME = "ljp3.sqlite";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
-    public static final String KEY_UPDATE = "db_update_1"; // gia tri khac se delete database cu
+    public static final String KEY_UPDATE = "db_update_2"; // gia tri khac se delete database cu
     //
 //	// /////////
     public static final String INTENT_KIND = "intent_kind";
