@@ -1,6 +1,5 @@
 package vn.jp.language.ljp.view.practice.dialog;
 
-import android.content.Context;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
@@ -11,11 +10,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
+import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseDialog;
 import vn.jp.language.ljp.view.practice.list.IPracticeInterface;
+import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 /**
  * Created by Administrator on 7/12/2017.
@@ -72,10 +74,13 @@ public class PracticeDialog extends BaseDialog {
     IPracticeInterface iPracticeInterface;
     //    IActionDialog iActionDialog;
     int pos;
-//    int length;
+    //    int length;
+    PurchaseActivity activity;
 
-    public PracticeDialog(Context context, int pos, List<PracticeEntity> items, IPracticeInterface iPracticeInterface) {
-        super(context);
+    public PracticeDialog(PurchaseActivity activity, int pos, List<PracticeEntity> items, IPracticeInterface iPracticeInterface) {
+        super(activity);
+        this.activity = activity;
+
         this.items = items;
         this.pos = pos;
         this.iPracticeInterface = iPracticeInterface;
@@ -168,12 +173,21 @@ public class PracticeDialog extends BaseDialog {
     @OnClick(R.id.imgNext)
     public void actionNext() {
         Log.i(TAG, "actionNext  =====>");
+
+
         if (pos >= items.size() - 1)
             return;
-        pos++;
-        resetView();
-        hideButton();
-        setData(items.get(pos));
+
+        if (activity.isPurchased || items.get(pos + 1).getKind() == PracticeTable.TYPE_KANJI
+                || items.get(pos + 1).getNum() <= Constant.TRIAL_GRAMMAR) {
+            pos++;
+            resetView();
+            hideButton();
+            setData(items.get(pos));
+        } else {
+            activity.purchaseItem();
+        }
+
     }
 
     public void setData(PracticeEntity item) {
@@ -222,11 +236,16 @@ public class PracticeDialog extends BaseDialog {
 
 
     private void hideButton() {
-        if (pos == 0)
+        if (items.size() == 1) {
             imgPre.setVisibility(View.INVISIBLE);
-        else if (pos == items.size() - 1)
             imgNext.setVisibility(View.INVISIBLE);
-        else {
+        } else if (pos == 0) {
+            imgPre.setVisibility(View.INVISIBLE);
+            imgNext.setVisibility(View.VISIBLE);
+        } else if (pos == items.size() - 1) {
+            imgPre.setVisibility(View.VISIBLE);
+            imgNext.setVisibility(View.INVISIBLE);
+        } else {
             imgPre.setVisibility(View.VISIBLE);
             imgNext.setVisibility(View.VISIBLE);
         }

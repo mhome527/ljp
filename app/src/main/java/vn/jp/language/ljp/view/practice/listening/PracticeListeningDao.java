@@ -62,7 +62,7 @@ From (Select * From TblPracticeN3 Where kind=6 And num_id > 600) t,
 Where t.num_id = n.id_ref  Order by n.review asc, n.num asc
      */
     public List<PracticeEntity> getItems() {
-        String sql = "Select t.question title, t.q1 sound,  t.bookmarks bookmarks, "
+        String sql = "Select t.question title, t.q1 sound,  n.bookmarks bookmarks, "
                 + " n.question question, n.num num, n.num_id num_id, n.kind kind, n.review review, "
                 + " n.q1 q1, n.q2 q2, n.q3 q3, n.q4 q4, n.ans ans, n.id_ref id_ref  "
                 + " From "

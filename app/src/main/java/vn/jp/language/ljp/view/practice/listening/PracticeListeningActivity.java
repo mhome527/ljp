@@ -16,8 +16,8 @@ import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.sound.AudioPlayerManager;
 import vn.jp.language.ljp.utils.Log;
-import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.ICallback;
+import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 import static vn.jp.language.ljp.R.id.btnView;
 
@@ -25,7 +25,7 @@ import static vn.jp.language.ljp.R.id.btnView;
  * Created by Administrator on 7/18/2017.
  */
 
-public class PracticeListeningActivity extends BaseActivity<PracticeListeningActivity> implements ICallback<List<PracticeEntity>> {
+public class PracticeListeningActivity extends PurchaseActivity<PracticeListeningActivity> implements ICallback<List<PracticeEntity>> {
     private final String TAG = "PracticeListeningActivity";
     private final String FOLDER = "n/";
 
@@ -34,6 +34,9 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
 
     @BindView(R.id.imgBookmark)
     ImageButton imgBookmark;
+
+    @BindView(R.id.imgSpeak)
+    ImageButton imgSpeak;
 
     @BindView(R.id.imgPre)
     ImageButton imgPre;
@@ -69,6 +72,8 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
         presenter = new PracticeListeningPresenter(activity, level);
         setPageView();
 
+        imgSpeak.setBackgroundResource(R.drawable.ic_speaker);
+
         presenter.load(this);
         audio = new AudioPlayerManager(activity);
 
@@ -85,6 +90,36 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    // ================= Purchase ====================
+    @Override
+    protected void dealWithIabSetupSuccess() {
+        if (getItemPurchased() == Constant.ITEM_PURCHASED) {
+            Log.i(TAG, "WithIabSetupSuccess...item purchased");
+            isPurchased = true;
+//            adapter.setPurchased(isPurchased);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    adapter.notifyDataSetChanged();
+                }
+            });
+
+            /// Test only
+//            if (BuildConfig.DEBUG)
+//                clearPurchaseTest();
+
+        } else {
+            Log.i(TAG, "WithIabSetupSuccess item not purchase");
+            isPurchased = false;
+        }
+    }
+
+    @Override
+    protected void dealWithIabSetupFailure() {
+
+    }
+    //    ========================== END PURCHASE ==============
 
 
     @Override
@@ -108,7 +143,14 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     public void actionSpeak() {
         Log.i(TAG, "speak filename:" + items.get(pos).getSound());
         audio.stop();
-        audio.play(FOLDER + items.get(pos).getSound());
+        if (isPurchased || items.get(pos).getNum() <= Constant.TRIAL_LISTENING) {
+            imgSpeak.setBackgroundResource(R.drawable.ic_speaker);
+//            audio.stop();
+            audio.play(FOLDER + items.get(pos).getSound());
+        } else {
+            imgSpeak.setBackgroundResource(R.drawable.ic_lock);
+            purchaseItem();
+        }
     }
 
     @OnClick(R.id.imgPre)
@@ -158,7 +200,6 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     //    =====
     @Override
     public void onCallback(List<PracticeEntity> data) {
-        Log.i(TAG, "onCallback data");
         items = data;
 
         for (int i = 0; i < items.size(); i++) {
@@ -168,7 +209,17 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
                 break;
             }
         }
+        Log.i(TAG, "onCallback data pos:" + pos );
+
         PracticeEntity item = items.get(pos);
+
+        if (isPurchased || items.get(pos).getNum() <= Constant.TRIAL_LISTENING) {
+            imgSpeak.setBackgroundResource(R.drawable.ic_speaker);
+        } else {
+            imgSpeak.setBackgroundResource(R.drawable.ic_lock);
+        }
+
+
         bookmark = item.getBookmarks();
         setImageBookmark();
         tvNum.setText(item.getNum() + "");

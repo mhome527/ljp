@@ -58,9 +58,10 @@ abstract public class BasePracticeDao extends BaseDao<PracticeEntity> {
         value.put(PracticeTable.COL_BOOKMARKS, bookmark);
         String where = PracticeTable.COL_KIND + " = " + getKind() + " AND "
                 + PracticeTable.COL_NUM + " = " + num;
-
         if (numId > 0)
-            where += " And " + PracticeTable.COL_NUM_ID + " = " + numId;
+            where += " And " + PracticeTable.COL_REF + " = " + numId;
+        else
+            where += " And " + PracticeTable.COL_REF + " < 100 ";
 
         updateRow(getTableName(), value, where);
     }

@@ -36,7 +36,7 @@ public class PracticeReadingPresenter extends BasePresenter<PracticeReadingActiv
         dao.updateStatus(idRef);
     }
 
-    public void updateBookmark(int num, int bookmark, int numId) {
-        dao.updateBookmark(num, bookmark, numId);
+    public void updateBookmark(int num, int bookmark) {
+        dao.updateBookmark(num, bookmark);
     }
 }

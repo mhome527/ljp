@@ -112,7 +112,7 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
     public void actionBookmark() {
         bookmark = bookmark == 0 ? 1 : 0;
         setBookmark();
-        presenter.updateBookmark(num, bookmark, idRef);
+        presenter.updateBookmark(num, bookmark);
     }
 
 
