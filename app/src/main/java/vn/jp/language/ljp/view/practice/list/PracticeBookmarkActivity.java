@@ -1,6 +1,9 @@
 package vn.jp.language.ljp.view.practice.list;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
@@ -9,6 +12,7 @@ import android.view.View;
 import java.util.List;
 
 import butterknife.BindView;
+import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
@@ -22,6 +26,8 @@ import vn.jp.language.ljp.view.practice.kanji.PracticeKanJiActivity;
 import vn.jp.language.ljp.view.practice.listening.PracticeListeningActivity;
 import vn.jp.language.ljp.view.practice.reading.PracticeReadingActivity;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
+
+import static vn.jp.language.ljp.BaseApplication.mFirebaseAnalytics;
 
 /**
  * Created by Administrator on 7/7/2017.
@@ -55,9 +61,28 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
         v1 = getIntent().getIntExtra(Constant.INTENT_V1, 0);
         v2 = getIntent().getIntExtra(Constant.INTENT_V2, 0);
 
+        if (level == PracticeTable.LEVEL_N5) // N5 is free
+            isPurchased = true;
+
         presenter = new PracticeListPresenter(this, level, kind);
         setTitleQ(v1, v2);
 
+        if (!BuildConfig.DEBUG) {
+            Bundle params = new Bundle();
+
+            if (kind == PracticeTable.TYPE_GRAMMAR)
+                params.putString("PracticeBookmark", "GRAMMAR level: " + level);
+            else if (kind == PracticeTable.TYPE_READING)
+                params.putString("PracticeBookmark", "READING level: " + level);
+            else if (kind == PracticeTable.TYPE_LISTENING)
+                params.putString("PracticeBookmark", "LISTENING level: " + level);
+            else if (kind == PracticeTable.TYPE_KANJI)
+                params.putString("PracticeBookmark", "KANJI level: " + level);
+            else
+                params.putString("PracticeBookmark", "VOCABULARY level: " + level);
+
+            mFirebaseAnalytics.logEvent("SCREEN", params);
+        }
     }
 
     @Override
@@ -81,7 +106,25 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
     // ================= Purchase ====================
     @Override
     protected void dealWithIabSetupSuccess() {
+        if (getItemPurchased() == Constant.ITEM_PURCHASED) {
+            Log.i(TAG, "WithIabSetupSuccess...item purchased");
+            isPurchased = true;
+            Handler mHandler = new Handler(Looper.getMainLooper());
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (adapter == null)
+                        return;
 
+                    adapter.setPurchased(isPurchased);
+                    adapter.notifyDataSetChanged();
+                }
+            }, 500);
+
+        } else {
+            Log.i(TAG, "WithIabSetupSuccess item not purchase");
+            isPurchased = false;
+        }
     }
 
     @Override
@@ -192,7 +235,7 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
                 }
                 items = data;
                 adapter = new PracticeListAdapter(data);
-//                if(level == PracticeTable.LEVEL_N5)
+                if (level == PracticeTable.LEVEL_N5)
                     adapter.setPurchased(true);
                 recyclerView.setAdapter(adapter);
 

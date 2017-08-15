@@ -179,7 +179,7 @@ public class PracticeDialog extends BaseDialog {
             return;
 
         if (activity.isPurchased || items.get(pos + 1).getKind() == PracticeTable.TYPE_KANJI
-                || items.get(pos + 1).getNum() <= Constant.TRIAL_GRAMMAR) {
+                || items.get(pos + 1).getNum() <= Constant.TRIAL_GRAMMAR ) {
             pos++;
             resetView();
             hideButton();

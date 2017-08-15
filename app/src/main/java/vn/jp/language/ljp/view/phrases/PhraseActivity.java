@@ -1,5 +1,7 @@
 package vn.jp.language.ljp.view.phrases;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,7 +41,6 @@ public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements 
     PhraseAdapter adapter;
     PhrasePresenter presenter;
     AudioPlayerManager audio;
-
 
 
     @Override
@@ -111,13 +112,18 @@ public class PhraseActivity extends PurchaseActivity<PhraseActivity> implements 
         if (getItemPurchased() == Constant.ITEM_PURCHASED) {
             Log.i(TAG, "WithIabSetupSuccess...item purchased");
             isPurchased = true;
-            adapter.setPurchased(isPurchased);
-            activity.runOnUiThread(new Runnable() {
+
+            Handler mHandler = new Handler(Looper.getMainLooper());
+            mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    if (adapter == null)
+                        return;
+
+                    adapter.setPurchased(isPurchased);
                     adapter.notifyDataSetChanged();
                 }
-            });
+            }, 500);
 
             /// Test only
 //            if (BuildConfig.DEBUG)

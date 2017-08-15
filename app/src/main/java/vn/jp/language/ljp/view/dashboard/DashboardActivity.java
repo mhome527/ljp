@@ -1,6 +1,7 @@
 package vn.jp.language.ljp.view.dashboard;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -27,6 +28,8 @@ import vn.jp.language.ljp.view.phrases.PhraseActivity;
 import vn.jp.language.ljp.view.practice.dashboard.PracticeDashboardActivity;
 import vn.jp.language.ljp.view.test.AndroidDatabaseManager;
 import vn.jp.language.ljp.view.words.WordActivity;
+
+import static vn.jp.language.ljp.BaseApplication.mFirebaseAnalytics;
 
 public class DashboardActivity extends BaseActivity<DashboardActivity> {
 
@@ -60,37 +63,57 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         Common.setupRecyclerViewGrid(activity, recyclerView, column, new IClickListener() {
             @Override
             public void onClick(View view, int position) {
+                String screen;
+
                 switch (position) {
                     case 0:
                         startActivity2(AlphabetActivity.class);
+                        screen = "AlphabetActivity";
                         break;
                     case 1:
                         startActivity2(WordActivity.class);
+                        screen = "WordActivity";
                         break;
                     case 2:
                         startActivity2(GrammarActivity.class);
+                        screen = "GrammarActivity";
                         break;
                     case 3:
                         startActivity2(PracticeDashboardActivity.class);
+                        screen = "PracticeDashboardActivity";
                         break;
                     case 4:
                         startActivity2(PhraseActivity.class);
+                        screen = "PhraseActivity";
                         break;
                     case 5:
                         startActivity2(NumberActivity.class);
+                        screen = "NumberActivity";
                         break;
                     case 6:
                         startActivity2(KanjiActivity.class);
+                        screen = "KanjiActivity";
                         break;
                     case 7:
                         startActivity2(DateActivity.class);
+                        screen = "DateActivity";
                         break;
                     default:
+                        screen = "Nothing!!!!!!";
                         break;
                 }
 //
                 llBg = view.findViewById(R.id.llBg);
                 llBg.setSelected(true);
+
+                //////////
+                if (!BuildConfig.DEBUG) {
+                    // [START custom_event]
+                    Bundle params = new Bundle();
+                    params.putString("Name", screen);
+//                    params.putString("Language", );
+                    mFirebaseAnalytics.logEvent("SCREEN", params);
+                }
             }
 
             @Override
