@@ -6,6 +6,7 @@ import android.database.Cursor;
 import java.util.List;
 
 import vn.jp.language.ljp.db.dao.BaseDao;
+import vn.jp.language.ljp.db.table.BaseTable;
 import vn.jp.language.ljp.db.table.WordTable;
 import vn.jp.language.ljp.entity.WordEntity;
 
@@ -34,7 +35,7 @@ public class WordDao extends BaseDao<WordEntity> {
     }
 
     public static List<WordEntity> getListData(Context context, int[] kind) {
-        String where = " WHERE " + WordTable.COL_KIND + " ";
+        String where =  WordTable.COL_KIND + " ";
         String tmp;
         if (kind.length > 1) {
             tmp = kind[0] + "";
@@ -47,9 +48,11 @@ public class WordDao extends BaseDao<WordEntity> {
         }
 
 
-        String sql = "SELECT * FROM " + WordTable.TABLE_NAME + where
-                + " ORDER BY " + WordTable.COL_JP1;
         WordDao dao = new WordDao(context);
+        String sql = "SELECT * FROM " + WordTable.getTableName(dao.lang)
+                + " Where " + BaseTable.appendCond()
+                + " And " + where
+                + " ORDER BY " + WordTable.COL_JP1;
         return dao.fetchAll(sql);
     }
 

@@ -18,6 +18,7 @@ public class BaseApplication extends Application {
     private static String TAG = "BaseApplication";
     private static BaseApplication mInstance;
     public static FirebaseAnalytics mFirebaseAnalytics;
+    public Prefs pref;
 
     @Override
     public void onCreate() {
@@ -27,7 +28,7 @@ public class BaseApplication extends Application {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         /////////////// Import DB
-        Prefs pref = new Prefs(this.getApplicationContext());
+        pref = new Prefs(this.getApplicationContext());
         String strDB = pref.getStringValue("", Constant.KEY_UPDATE);
         if(strDB.equals("") || !strDB.equals(Constant.KEY_UPDATE) ) {
             Log.i(TAG, "Delete database....");

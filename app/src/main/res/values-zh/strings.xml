@@ -1,14 +1,14 @@
 <resources>
-    <string name="language">en</string>
+    <string name="language">zh</string>
 
-    <string name="app_name">Japanese And JLPT</string>
-    <!--<string name="title_button_alphabet">Alphabet</string>-->
-    <!--<string name="title_button_number">Number</string>-->
-    <!--<string name="title_button_phrase">Phrases</string>-->
-    <!--<string name="title_button_word">Animal</string>-->
-    <!--<string name="title_button_house">House</string>-->
-    <!--<string name="title_button_kanji">Kanji</string>-->
-    <!--<string name="title_button_grammar">Grammar</string>-->
+    <string name="app_name">日本和JLPT</string>
+    <!--<string name="title_button_alphabet">字母</string>-->
+    <!--<string name="title_button_number">數</string>-->
+    <!--<string name="title_button_phrase">短語</string>-->
+    <!--<string name="title_button_word">動物</string>-->
+    <!--&lt;!&ndash;<string name="title_button_house">House</string>&ndash;&gt;-->
+    <!--<string name="title_button_kanji">漢字</string>-->
+    <!--<string name="title_button_grammar">語法</string>-->
     <string name="title_button_date">Date</string>
 
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
@@ -17,13 +17,13 @@
     <string name="msg_title_recognition">Install Voice Search from Google Play?</string>
     <!--<string name="msg_premium_app">Please install the Professional version from Google Play</string>-->
     <string name="msg_update_app">Please update new version from Google Play</string>
-    <string name="msg_title_vn">Learn Vietnamese Pronunciation App</string>
-    <string name="msg_content_vn">Do you want to install this application?</string>
+    <string name="msg_title_vn">學越南語發音</string>
+    <string name="msg_content_vn">要安裝此應用程序嗎？</string>
     <string name="msg_title_update">Update</string>
-    <string name="install">Install</string>
+    <string name="install">安裝</string>
     <string name="update">Update</string>
-    <string name="cancel">Cancel</string>
-    <string name="close">Close</string>
+    <string name="cancel">取消</string>
+    <string name="close">關</string>
     <string name="ok">Ok</string>
     <string name="speech_prompt">Say something…</string>
 
@@ -59,13 +59,13 @@
     <string name="menu_search_hint">ひらがな, Romaji, Mean</string>
     <string name="coming_soon">Coming Soon!</string>
 
-    <string name="title_dashboard">Learn Japanese</string>
+    <string name="title_dashboard">學習日語</string>
     <string name="title_kanji">漢字</string>
-    <string name="title_alphabet">Alphabet</string>
-    <string name="title_grammar">Grammar</string>
-    <string name="title_test">Test</string>
-    <string name="title_word">Words</string>
-    <string name="title_phrase">Phrase</string>
+    <string name="title_alphabet">字母</string>
+    <string name="title_grammar">語法</string>
+    <string name="title_test">測試</string>
+    <string name="title_word">話</string>
+    <string name="title_phrase">短語</string>
     <string name="title_coming_soon">Coming soon</string>
 
 
@@ -75,12 +75,12 @@
     <string name="title_counter">Counters</string>
     <string name="title_date">Dates</string>
 
-    <string name="title_lvn">Learn Vietnamese Pronunciation</string>
-    <string name="title_n_grammar">Grammar %1$d/%2$d</string>
-    <string name="title_n_reading">Reading %1$d/%2$d</string>
-    <string name="title_n_vocabulary">Vocabulary %1$d/%2$d</string>
-    <string name="title_n_listening">Listening %1$d/%2$d</string>
-    <string name="title_n_kanji">Kanji %1$d/%2$d</string>
+    <string name="title_lvn">學越南語發音</string>
+    <string name="title_n_grammar">語法 %1$d/%2$d</string>
+    <string name="title_n_reading">閱讀理解 %1$d/%2$d</string>
+    <string name="title_n_vocabulary">詞彙 %1$d/%2$d</string>
+    <string name="title_n_listening">聽 %1$d/%2$d</string>
+    <string name="title_n_kanji">漢字 %1$d/%2$d</string>
 
     <string name="title_n_grammar2">
         &lt;font color="blue"&gt;GRAMMAR&lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt; (%1$d/%2$d)&lt;/font&gt;
@@ -99,12 +99,5 @@
     </string>
 
     <string name="title_view">View</string>
-
-
-    <string name="korea">한국어</string>
-    <string name="france">français</string>
-    <string name="english">English</string>
-    <string name="chinese">中文</string>
-    <string name="spanish">Español</string>
 
 </resources>

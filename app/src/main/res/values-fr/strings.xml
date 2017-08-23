@@ -1,14 +1,14 @@
 <resources>
-    <string name="language">en</string>
+    <string name="language">fr</string>
 
-    <string name="app_name">Japanese And JLPT</string>
+    <string name="app_name">Japonais et JLPT</string>
     <!--<string name="title_button_alphabet">Alphabet</string>-->
     <!--<string name="title_button_number">Number</string>-->
     <!--<string name="title_button_phrase">Phrases</string>-->
     <!--<string name="title_button_word">Animal</string>-->
     <!--<string name="title_button_house">House</string>-->
     <!--<string name="title_button_kanji">Kanji</string>-->
-    <!--<string name="title_button_grammar">Grammar</string>-->
+    <!--<string name="title_button_grammar">Grammaire</string>-->
     <string name="title_button_date">Date</string>
 
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
@@ -17,18 +17,18 @@
     <string name="msg_title_recognition">Install Voice Search from Google Play?</string>
     <!--<string name="msg_premium_app">Please install the Professional version from Google Play</string>-->
     <string name="msg_update_app">Please update new version from Google Play</string>
-    <string name="msg_title_vn">Learn Vietnamese Pronunciation App</string>
-    <string name="msg_content_vn">Do you want to install this application?</string>
-    <string name="msg_title_update">Update</string>
-    <string name="install">Install</string>
-    <string name="update">Update</string>
-    <string name="cancel">Cancel</string>
-    <string name="close">Close</string>
+    <string name="msg_title_vn">Apprendre la prononciation du Vietnam</string>
+    <string name="msg_content_vn">Voulez-vous installer cette application?</string>
+    <string name="msg_title_update">Mettre à jour</string>
+    <string name="install">Installer</string>
+    <string name="update">Mettre à jour</string>
+    <string name="cancel">Annuler</string>
+    <string name="close">Fermer</string>
     <string name="ok">Ok</string>
     <string name="speech_prompt">Say something…</string>
 
 
-    <string name="configm_replay">Are you want to quit application?</string>
+    <!--<string name="configm_replay">Are you want to quit application?</string>-->
     <string name="title_hiragana">Hiragana</string>
     <string name="title_katakana">Katakana</string>
 
@@ -59,28 +59,28 @@
     <string name="menu_search_hint">ひらがな, Romaji, Mean</string>
     <string name="coming_soon">Coming Soon!</string>
 
-    <string name="title_dashboard">Learn Japanese</string>
+    <string name="title_dashboard">Apprendre le japonais</string>
     <string name="title_kanji">漢字</string>
     <string name="title_alphabet">Alphabet</string>
-    <string name="title_grammar">Grammar</string>
+    <string name="title_grammar">Grammaire</string>
     <string name="title_test">Test</string>
-    <string name="title_word">Words</string>
+    <string name="title_word">Mots</string>
     <string name="title_phrase">Phrase</string>
     <string name="title_coming_soon">Coming soon</string>
 
 
     <string name="title_animal">ANIMAL</string>
     <string name="title_fruit">FRUITS</string>
-    <string name="title_other">OTHER</string>
+    <string name="title_other">AUTRE</string>
     <string name="title_counter">Counters</string>
     <string name="title_date">Dates</string>
 
-    <string name="title_lvn">Learn Vietnamese Pronunciation</string>
-    <string name="title_n_grammar">Grammar %1$d/%2$d</string>
-    <string name="title_n_reading">Reading %1$d/%2$d</string>
-    <string name="title_n_vocabulary">Vocabulary %1$d/%2$d</string>
-    <string name="title_n_listening">Listening %1$d/%2$d</string>
-    <string name="title_n_kanji">Kanji %1$d/%2$d</string>
+    <string name="title_lvn">Apprendre la prononciation du Vietnam</string>
+    <string name="title_n_grammar">Grammaire %1$d/%2$d</string>
+    <string name="title_n_reading">En train de lire %1$d/%2$d</string>
+    <string name="title_n_vocabulary">Vocabulaire %1$d/%2$d</string>
+    <string name="title_n_listening">Écoute %1$d/%2$d</string>
+    <string name="title_n_kanji">漢字 %1$d/%2$d</string>
 
     <string name="title_n_grammar2">
         &lt;font color="blue"&gt;GRAMMAR&lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt; (%1$d/%2$d)&lt;/font&gt;
@@ -101,10 +101,10 @@
     <string name="title_view">View</string>
 
 
-    <string name="korea">한국어</string>
-    <string name="france">français</string>
-    <string name="english">English</string>
-    <string name="chinese">中文</string>
-    <string name="spanish">Español</string>
+    <!--<string name="korea">한국어</string>-->
+    <!--<string name="france">français</string>-->
+    <!--<string name="english">English</string>-->
+    <!--<string name="chinese">中文</string>-->
+    <!--<string name="spanish">Español</string>-->
 
 </resources>

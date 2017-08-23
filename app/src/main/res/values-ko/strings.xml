@@ -1,8 +1,8 @@
 <resources>
-    <string name="language">en</string>
+    <string name="language">ko</string>
 
-    <string name="app_name">Japanese And JLPT</string>
-    <!--<string name="title_button_alphabet">Alphabet</string>-->
+    <string name="app_name">일본인과 JLPT</string>
+    <!--<string name="title_button_alphabet">알파벳</string>-->
     <!--<string name="title_button_number">Number</string>-->
     <!--<string name="title_button_phrase">Phrases</string>-->
     <!--<string name="title_button_word">Animal</string>-->
@@ -17,18 +17,18 @@
     <string name="msg_title_recognition">Install Voice Search from Google Play?</string>
     <!--<string name="msg_premium_app">Please install the Professional version from Google Play</string>-->
     <string name="msg_update_app">Please update new version from Google Play</string>
-    <string name="msg_title_vn">Learn Vietnamese Pronunciation App</string>
-    <string name="msg_content_vn">Do you want to install this application?</string>
+    <string name="msg_title_vn">베트남 발음 배우기</string>
+    <string name="msg_content_vn">이 응용 프로그램을 설치 하시겠습니까?</string>
     <string name="msg_title_update">Update</string>
-    <string name="install">Install</string>
+    <string name="install">설치하다</string>
     <string name="update">Update</string>
-    <string name="cancel">Cancel</string>
-    <string name="close">Close</string>
+    <string name="cancel">취소</string>
+    <string name="close">닫기</string>
     <string name="ok">Ok</string>
     <string name="speech_prompt">Say something…</string>
 
 
-    <string name="configm_replay">Are you want to quit application?</string>
+    <!--<string name="configm_replay">Are you want to quit application?</string>-->
     <string name="title_hiragana">Hiragana</string>
     <string name="title_katakana">Katakana</string>
 
@@ -59,28 +59,28 @@
     <string name="menu_search_hint">ひらがな, Romaji, Mean</string>
     <string name="coming_soon">Coming Soon!</string>
 
-    <string name="title_dashboard">Learn Japanese</string>
-    <string name="title_kanji">漢字</string>
-    <string name="title_alphabet">Alphabet</string>
-    <string name="title_grammar">Grammar</string>
-    <string name="title_test">Test</string>
-    <string name="title_word">Words</string>
-    <string name="title_phrase">Phrase</string>
+    <string name="title_dashboard">일본어 배우기</string>
+    <string name="title_kanji">한자</string>
+    <string name="title_alphabet">알파벳</string>
+    <string name="title_grammar">문법</string>
+    <string name="title_test">테스트</string>
+    <string name="title_word">말</string>
+    <string name="title_phrase">구</string>
     <string name="title_coming_soon">Coming soon</string>
 
 
-    <string name="title_animal">ANIMAL</string>
-    <string name="title_fruit">FRUITS</string>
-    <string name="title_other">OTHER</string>
-    <string name="title_counter">Counters</string>
-    <string name="title_date">Dates</string>
+    <string name="title_animal">동물</string>
+    <string name="title_fruit">과일</string>
+    <string name="title_other">다른</string>
+    <string name="title_counter">카운터</string>
+    <string name="title_date">날짜</string>
 
-    <string name="title_lvn">Learn Vietnamese Pronunciation</string>
-    <string name="title_n_grammar">Grammar %1$d/%2$d</string>
-    <string name="title_n_reading">Reading %1$d/%2$d</string>
-    <string name="title_n_vocabulary">Vocabulary %1$d/%2$d</string>
-    <string name="title_n_listening">Listening %1$d/%2$d</string>
-    <string name="title_n_kanji">Kanji %1$d/%2$d</string>
+    <string name="title_lvn">베트남 발음 배우기</string>
+    <string name="title_n_grammar">문법 %1$d/%2$d</string>
+    <string name="title_n_reading">독서 %1$d/%2$d</string>
+    <string name="title_n_vocabulary">어휘 %1$d/%2$d</string>
+    <string name="title_n_listening">청취 %1$d/%2$d</string>
+    <string name="title_n_kanji">한자 %1$d/%2$d</string>
 
     <string name="title_n_grammar2">
         &lt;font color="blue"&gt;GRAMMAR&lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt; (%1$d/%2$d)&lt;/font&gt;
@@ -99,12 +99,5 @@
     </string>
 
     <string name="title_view">View</string>
-
-
-    <string name="korea">한국어</string>
-    <string name="france">français</string>
-    <string name="english">English</string>
-    <string name="chinese">中文</string>
-    <string name="spanish">Español</string>
 
 </resources>

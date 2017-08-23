@@ -29,6 +29,7 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
     protected T activity;
 
     public Prefs pref;
+    public String lang = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,27 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
         setContentView(getLayout());
         ButterKnife.bind(this);
         activity = (T) this;
-        pref = new Prefs(this.getApplicationContext());
+
+        if (pref == null)
+            pref = new Prefs(getApplicationContext());
+        lang = pref.getStringValue("", Constant.TYPE_LANGUAGE);
+
+        if (lang.equals("")) {
+            if (getString(R.string.language).equals(Constant.EN))
+                lang = Constant.EN;
+            else if (getString(R.string.language).equals(Constant.KO))
+                lang = Constant.KO;
+            else if (getString(R.string.language).equals(Constant.FR))
+                lang = Constant.FR;
+            else if (getString(R.string.language).equals(Constant.ZH))
+                lang = Constant.ZH;
+            else if (getString(R.string.language).equals(Constant.ES))
+                lang = Constant.ES;
+            else
+                lang = Constant.EN;
+
+        }
+
         initView();
 
     }

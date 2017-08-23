@@ -1,9 +1,15 @@
 package vn.jp.language.ljp.view.dashboard;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +26,8 @@ import vn.jp.language.ljp.utils.Utility;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.IClickListener;
 import vn.jp.language.ljp.view.alphabet.AlphabetActivity;
+import vn.jp.language.ljp.view.dashboard.language.LanguageAdapter;
+import vn.jp.language.ljp.view.dashboard.language.OnItemClickListener;
 import vn.jp.language.ljp.view.date.DateActivity;
 import vn.jp.language.ljp.view.grammar.GrammarActivity;
 import vn.jp.language.ljp.view.kanji.KanjiActivity;
@@ -40,8 +48,12 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    MenuItem itemLanguage;
     DashboardAdapter adapter;
     View llBg;
+    LanguageAdapter adapterLanguage;
+    Dialog dialogLanguage;
+
 
     @Override
     protected int getLayout() {
@@ -53,7 +65,13 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         int column;
         Log.i(TAG, "initView text: " + Constant.MY_TEXT);
         setTitle(getString(R.string.title_dashboard));
+
+        Utility.setLanguage(activity);
         createData();
+
+        dialogLanguage = new Dialog(this);
+        dialogLanguage.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogLanguage.setContentView(R.layout.dialog_language2_layout);
 
         if (Common.isTablet(activity))
             column = 3;
@@ -135,6 +153,28 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
+        itemLanguage = menu.findItem(R.id.menuLang);
+
+        setIconLanguage();
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.menuLang:
+                showDialogLanguage();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @OnClick(R.id.llOtherApp)
     public void actionOtherApp() {
         if (BuildConfig.DEBUG) {
@@ -142,6 +182,40 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
             startActivity(i);
         } else
             Utility.installVnApp(activity);
+    }
+
+    OnItemClickListener onItemClickListener = new OnItemClickListener() {
+        @Override
+        public void onItemClick(String lang) {
+            activity.lang = lang;
+            activity.pref.putStringValue(lang, Constant.TYPE_LANGUAGE);
+//            adapterLanguage.setLang(lang);
+            setIconLanguage();
+            Utility.setLanguage(activity);
+            ///
+
+            ///
+            createData();
+
+            adapter.notifyDataSetChanged();
+
+            dialogLanguage.dismiss();
+        }
+    };
+
+    private void setIconLanguage() {
+        if (lang.equals(Constant.EN))
+            itemLanguage.setIcon(getResources().getDrawable(R.drawable.english));
+        else if (lang.equals(Constant.KO))
+            itemLanguage.setIcon(getResources().getDrawable(R.drawable.korea));
+        else if (lang.equals(Constant.FR))
+            itemLanguage.setIcon(getResources().getDrawable(R.drawable.france));
+         else if (lang.equals(Constant.ZH))
+            itemLanguage.setIcon(getResources().getDrawable(R.drawable.china));
+        else if (lang.equals(Constant.ES))
+            itemLanguage.setIcon(getResources().getDrawable(R.drawable.spanish));
+        else
+            itemLanguage.setIcon(getResources().getDrawable(R.drawable.english));
     }
 
     private void createData() {
@@ -157,9 +231,32 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
 //        listData.add(new DashboardEntity(R.drawable.button_word_on, getString(R.string.title_coming_soon)));
     }
 
-    public void runActivity(Class<?> cls, View view) {
+    private void showDialogLanguage() {
+        // custom dialog
 
-        startActivity2(cls);
+
+//        dialog.setCancelable(false);
+//        dialog.setTitle("Language");
+
+        Button dialogButton = (Button) dialogLanguage.findViewById(R.id.btnChangeLang);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogLanguage.dismiss();
+            }
+        });
+        RecyclerView recyclerView = (RecyclerView) dialogLanguage.findViewById(R.id.recyclerView);
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(activity);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(mLayoutManager);
+
+        // Disabled nested scrolling since Parent scrollview will scroll the content.
+        recyclerView.setNestedScrollingEnabled(false);
+
+        adapterLanguage = new LanguageAdapter(activity, lang, onItemClickListener);
+        recyclerView.setAdapter(adapterLanguage);
+
+        dialogLanguage.show();
     }
-
 }

@@ -45,7 +45,7 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
 
     @Override
     protected void initView() {
-        setTitle(getString(R.string.title_button_grammar));
+        setTitle(getString(R.string.title_grammar));
 
         presenter = new GrammarPresenter(activity);
 
