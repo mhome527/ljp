@@ -22,7 +22,7 @@ public class Constant {
             TEST_P = 0;
     }
 
-    public static final int TRIAL = 4;
+    public static final int TRIAL = 4 + TEST_P;
     public static final int TRIAL_GRAMMAR = 30 + TEST_P;
     public static final int TRIAL_READING = 5 + TEST_P;
     public static final int TRIAL_LISTENING = 4 + TEST_P;

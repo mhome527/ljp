@@ -123,7 +123,7 @@ public class WordFragment extends BaseFragment<WordActivity> {
                 return new int[]{1};
 
             case OTHER:
-                return new int[]{2, 5, 6, 7, 12, 13};
+                return new int[]{2, 5, 7, 12, 13};
 
             default:
                 return new int[]{1};

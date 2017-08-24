@@ -50,6 +50,10 @@ public class WordTable {
 //        onCreate(database);
     }
 
+    public static String getTableName(){
+        return TABLE_NAME;
+    }
+
     public static String getTableName(String lang) {
         String table;
         if (lang.equals(Constant.KO))

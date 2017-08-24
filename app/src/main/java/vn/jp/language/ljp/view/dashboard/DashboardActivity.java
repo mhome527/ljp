@@ -29,6 +29,7 @@ import vn.jp.language.ljp.view.alphabet.AlphabetActivity;
 import vn.jp.language.ljp.view.dashboard.language.LanguageAdapter;
 import vn.jp.language.ljp.view.dashboard.language.OnItemClickListener;
 import vn.jp.language.ljp.view.date.DateActivity;
+import vn.jp.language.ljp.view.food.FoodActivity;
 import vn.jp.language.ljp.view.grammar.GrammarActivity;
 import vn.jp.language.ljp.view.kanji.KanjiActivity;
 import vn.jp.language.ljp.view.number.NumberActivity;
@@ -105,14 +106,18 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
                         screen = "PhraseActivity";
                         break;
                     case 5:
+                        startActivity2(FoodActivity.class);
+                        screen = "FoodActivity";
+                        break;
+                    case 6:
                         startActivity2(NumberActivity.class);
                         screen = "NumberActivity";
                         break;
-                    case 6:
+                    case 7:
                         startActivity2(KanjiActivity.class);
                         screen = "KanjiActivity";
                         break;
-                    case 7:
+                    case 8:
                         startActivity2(DateActivity.class);
                         screen = "DateActivity";
                         break;
@@ -210,7 +215,7 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
             itemLanguage.setIcon(getResources().getDrawable(R.drawable.korea));
         else if (lang.equals(Constant.FR))
             itemLanguage.setIcon(getResources().getDrawable(R.drawable.france));
-         else if (lang.equals(Constant.ZH))
+        else if (lang.equals(Constant.ZH))
             itemLanguage.setIcon(getResources().getDrawable(R.drawable.china));
         else if (lang.equals(Constant.ES))
             itemLanguage.setIcon(getResources().getDrawable(R.drawable.spanish));
@@ -225,6 +230,7 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         listData.add(new DashboardEntity(R.drawable.ic_grammar, getString(R.string.title_grammar)));
         listData.add(new DashboardEntity(R.drawable.ic_jplt, getString(R.string.title_test)));
         listData.add(new DashboardEntity(R.drawable.ic_phrase, getString(R.string.title_phrase)));
+        listData.add(new DashboardEntity(R.drawable.ic_food, getString(R.string.title_food)));
         listData.add(new DashboardEntity(R.drawable.ic_number, getString(R.string.title_counter)));
         listData.add(new DashboardEntity(R.drawable.ic_kanji, getString(R.string.title_kanji)));
         listData.add(new DashboardEntity(R.drawable.ic_dates, getString(R.string.title_date)));
@@ -232,11 +238,6 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
     }
 
     private void showDialogLanguage() {
-        // custom dialog
-
-
-//        dialog.setCancelable(false);
-//        dialog.setTitle("Language");
 
         Button dialogButton = (Button) dialogLanguage.findViewById(R.id.btnChangeLang);
         dialogButton.setOnClickListener(new View.OnClickListener() {
