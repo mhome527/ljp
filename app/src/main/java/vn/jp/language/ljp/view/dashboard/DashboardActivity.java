@@ -68,6 +68,8 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         setTitle(getString(R.string.title_dashboard));
 
         Utility.setLanguage(activity);
+        listData = new ArrayList<>();
+
         createData();
 
         dialogLanguage = new Dialog(this);
@@ -200,6 +202,7 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
             ///
 
             ///
+            setTitle(getString(R.string.title_dashboard));
             createData();
 
             adapter.notifyDataSetChanged();
@@ -224,7 +227,8 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
     }
 
     private void createData() {
-        listData = new ArrayList<>();
+        listData.clear();
+//        listData = new ArrayList<>();
         listData.add(new DashboardEntity(R.drawable.ic_alphabet, getString(R.string.title_alphabet)));
         listData.add(new DashboardEntity(R.drawable.ic_animal, getString(R.string.title_word)));
         listData.add(new DashboardEntity(R.drawable.ic_grammar, getString(R.string.title_grammar)));
@@ -234,7 +238,6 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         listData.add(new DashboardEntity(R.drawable.ic_number, getString(R.string.title_counter)));
         listData.add(new DashboardEntity(R.drawable.ic_kanji, getString(R.string.title_kanji)));
         listData.add(new DashboardEntity(R.drawable.ic_dates, getString(R.string.title_date)));
-//        listData.add(new DashboardEntity(R.drawable.button_word_on, getString(R.string.title_coming_soon)));
     }
 
     private void showDialogLanguage() {

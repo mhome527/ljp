@@ -42,7 +42,7 @@ public class KanjiDao extends BaseDao<KanjiEntity> {
         String sql = "SELECT * "
                 + " FROM " + KanjiTable.getTableName(dao.lang)
                 + " WHERE " + BaseTable.appendCond()
-                + " And " + KanjiTable.COL_NUM + " =" + num;
+                + " And t1." + KanjiTable.COL_NUM + " =" + num;
 
         Log.i(TAG, "kanji: sql=" + sql);
         return dao.fetch(sql);

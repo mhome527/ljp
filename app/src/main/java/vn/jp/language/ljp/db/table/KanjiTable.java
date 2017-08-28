@@ -18,9 +18,9 @@ public class KanjiTable {
     public static final String COL_ROMAJI = "romaji";
     public static final String COL_IMG_PATH = "imgpath";
     public static final String COL_OT = "ot";
-    public static final String COL_EX = "ex";
+    public static final String COL_EX = "ex_temp";
     public static final String COL_OT_2 = "ot_temp";
-    public static final String COL_EX_2 = "ex_temp";
+    public static final String COL_EX_2 = "ex";
     public static final String CLEAR_TABLE = "delete from " + TABLE_NAME;
 
 //    private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( "
