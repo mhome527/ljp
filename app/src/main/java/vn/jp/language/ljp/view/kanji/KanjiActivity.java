@@ -156,11 +156,7 @@ public class KanjiActivity extends BaseActivity<KanjiActivity> implements IClick
     /// ========= end OnQueryTextListener ===============
 
     public void filter(final String text) {
-//        if (text.trim().equals("")) {
-//            adapter.clearData();
-//            adapter.notifyDataSetChanged();
-//            return;
-//        }
+
         presenter.searchData(text, new ICallback() {
             @Override
             public void onCallback(Object data) {

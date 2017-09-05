@@ -57,6 +57,15 @@ public class PracticeReadingDao extends BasePracticeDao {
         return fetchAll(sql);
     }
 
+    public PracticeEntity getItemTitle(int num) {
+        String sql = "Select * From " + getTableName() + " where "
+                + PracticeTable.COL_KIND + "=" + getKind()
+                + " And " + PracticeTable.COL_NUM + " = " + num
+                + " And " + PracticeTable.COL_REF + "< 100";
+        return fetch(sql);
+    }
+
+
     public void updateStatus(int numId) {
         updateReview(getKind(), numId);
     }

@@ -50,7 +50,7 @@ public class WordTable {
 //        onCreate(database);
     }
 
-    public static String getTableName(){
+    public static String getTableName() {
         return TABLE_NAME;
     }
 
@@ -64,6 +64,8 @@ public class WordTable {
             table = TABLE_NAME + " t1, TblJpWordCn t2 ";
         else if (lang.equals(Constant.ES))
             table = TABLE_NAME + " t1, TblJpWordEs t2 ";
+        else if (lang.equals(Constant.VN))
+            table = TABLE_NAME + " t1, TblJpWordVn t2 ";
         else
             table = TABLE_NAME + " t1, TblJpWordEn t2 ";
         return table;

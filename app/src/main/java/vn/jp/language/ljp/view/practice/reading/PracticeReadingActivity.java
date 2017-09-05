@@ -1,12 +1,15 @@
 package vn.jp.language.ljp.view.practice.reading;
 
+import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.ICallback;
+import vn.jp.language.ljp.view.grammar.search.GrammarSearchActivity;
 import vn.jp.language.ljp.view.practice.list.IPracticeInterface;
 
 /**
@@ -44,6 +48,9 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
 
     @BindView(R.id.imgBookmark)
     ImageButton imgBookmark;
+
+    @BindView(R.id.imgNext)
+    ImageButton imgNext;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -97,11 +104,22 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_grammar, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 activity.setResult(AppCompatActivity.RESULT_OK);
                 activity.finish();
+                return true;
+
+            case R.id.menu_search:
+                Intent iSearch = new Intent(activity, GrammarSearchActivity.class);
+                startActivity(iSearch);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -113,6 +131,11 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
         bookmark = bookmark == 0 ? 1 : 0;
         setBookmark();
         presenter.updateBookmark(num, bookmark);
+    }
+
+    @OnClick(R.id.imgNext)
+    public void actionNext() {
+        presenter.loadNext(++num, this);
     }
 
 
@@ -131,7 +154,15 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
     //    ICallback
     @Override
     public void onCallback(List<PracticeEntity> data) {
+        if (data == null || data.size() == 0) {
+            --num;
+            imgNext.setVisibility(View.INVISIBLE);
+            return;
+        }
         items = data;
+        tvNum.setText(num + "");
+        setBookmark();
+
         adapter = new PracticeReadingAdapter(activity, titleQ, data);
         recyclerView.setAdapter(adapter);
     }

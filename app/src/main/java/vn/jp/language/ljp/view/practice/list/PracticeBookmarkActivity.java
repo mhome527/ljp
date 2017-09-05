@@ -65,7 +65,7 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
             isPurchased = true;
 
         presenter = new PracticeListPresenter(this, level, kind);
-        setTitleQ(v1, v2);
+        setTitleQ();
 
         if (!BuildConfig.DEBUG) {
             Bundle params = new Bundle();
@@ -218,8 +218,6 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
             PracticeEntity item = items.get(pos);
             presenter.updateAnswer(item.getNum(), value);
             item.setReview(value);
-            int correct = presenter.countCorrect();
-            setTitleQ(correct);
             adapter.notifyItemChanged(pos);
         }
     };
@@ -245,8 +243,7 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
                         adapter.notifyDataSetChanged();
                     }
                 });
-                int correct = presenter.countCorrect();
-                setTitleQ(correct);
+
             }
 
             @Override
@@ -256,12 +253,9 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
         });
     }
 
-    private void setTitleQ(int value) {
-        setTitleQ(value, items.size());
-    }
 
-    private void setTitleQ(int v1, int v2) {
-        setTitle(presenter.getTitle(v1, v2));
+    private void setTitleQ() {
+        setTitle(presenter.getTitle());
     }
 
 }

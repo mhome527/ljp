@@ -222,6 +222,8 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
             itemLanguage.setIcon(getResources().getDrawable(R.drawable.china));
         else if (lang.equals(Constant.ES))
             itemLanguage.setIcon(getResources().getDrawable(R.drawable.spanish));
+        else if (lang.equals(Constant.VN))
+            itemLanguage.setIcon(getResources().getDrawable(R.drawable.vietnam));
         else
             itemLanguage.setIcon(getResources().getDrawable(R.drawable.english));
     }

@@ -43,9 +43,9 @@ public class Constant {
 
     //    public static final String DB_NAME = "ljp2.sqlite";
     public static final String DB_NAME = "ljp3.sqlite";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
 
-    public static final String KEY_UPDATE = "db_update_2"; // gia tri khac se delete database cu
+    public static final String KEY_UPDATE = "db_update_3"; // gia tri khac se delete database cu
     //
 //	// /////////
     public static final String INTENT_KIND = "intent_kind";
@@ -74,6 +74,7 @@ public class Constant {
     public static final String EN = "en";
     public static final String ZH = "zh";
     public static final String ES = "es";
+    public static final String VN = "vi";
 
 
     public enum TYPE_ALPHABET {

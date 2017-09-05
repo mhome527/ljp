@@ -34,23 +34,36 @@
 
             <TextView
                 android:id="@+id/tvNum"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:text="@string/close" />
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/imgBookmark"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/heart_off" />
+            </LinearLayout>
+
             <ImageButton
-                android:id="@+id/imgBookmark"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:id="@+id/imgNext"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="5dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/heart_off" />
+                android:background="@drawable/ic_next" />
         </LinearLayout>
         <!--<android.support.design.widget.TabLayout-->
         <!--android:id="@+id/tab_layout"-->

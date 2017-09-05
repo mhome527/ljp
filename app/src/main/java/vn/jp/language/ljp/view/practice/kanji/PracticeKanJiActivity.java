@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -45,6 +46,9 @@ public class PracticeKanJiActivity extends BaseActivity<PracticeKanJiActivity> i
 
     @BindView(R.id.imgBookmark)
     ImageButton imgBookmark;
+
+    @BindView(R.id.imgNext)
+    ImageButton imgNext;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -113,7 +117,12 @@ public class PracticeKanJiActivity extends BaseActivity<PracticeKanJiActivity> i
     public void actionBookmark() {
         bookmark = bookmark == 0 ? 1 : 0;
         setBookmark();
-        presenter.updateBookmark(num, bookmark, idRef);
+        presenter.updateBookmark(num, bookmark, 0);
+    }
+
+    @OnClick(R.id.imgNext)
+    public void actionNext() {
+        presenter.loadNext(++num, this);
     }
 
 
@@ -132,7 +141,15 @@ public class PracticeKanJiActivity extends BaseActivity<PracticeKanJiActivity> i
     //    ICallback
     @Override
     public void onCallback(List<PracticeEntity> data) {
+        if (data == null || data.size() == 0) {
+            --num;
+            imgNext.setVisibility(View.INVISIBLE);
+            return;
+        }
         items = data;
+        tvNum.setText(num + "");
+        setBookmark();
+
         adapter = new PracticeReadingAdapter(activity, titleQ, data);
         recyclerView.setAdapter(adapter);
     }

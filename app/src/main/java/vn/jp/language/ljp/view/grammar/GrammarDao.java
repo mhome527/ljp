@@ -5,6 +5,7 @@ import android.database.Cursor;
 
 import java.util.List;
 
+import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.db.dao.BaseDao;
 import vn.jp.language.ljp.db.table.GrammarTable;
 import vn.jp.language.ljp.entity.GrammarEntity;
@@ -48,10 +49,27 @@ public class GrammarDao extends BaseDao<GrammarEntity> {
 //        return fetchAll(sql);
 //    }
 
+    /*
+    select * from TblGrammar g1, TblGrammarVn g2
+where g1.num = g2.num and g1.level = g2.level
+and g1.level = 1
+     */
+
     public List<GrammarEntity> getListData(int level) {
-        String sql = "SELECT * FROM " + GrammarTable.TABLE_NAME
-                + " WHERE " + GrammarTable.COL_LEVEL + " = " + level
-                + " ORDER BY " + GrammarTable.COL_NUM;
+        String sql;
+        if (lang.equals(Constant.VN)) {
+            sql = "SELECT g1.num, g1.jp, g1.level, g1.romaji, g2.formation, g2.mean, g2.example "
+                    + " FROM " + GrammarTable.TABLE_NAME + " g1, " + GrammarTable.TABLE_NAME_VN + " g2 "
+                    + " WHERE g1." + GrammarTable.COL_NUM + " = " + " g2." + GrammarTable.COL_NUM
+                    + " AND g1." + GrammarTable.COL_LEVEL + " = " + " g2." + GrammarTable.COL_LEVEL
+                    + " AND g1." + GrammarTable.COL_LEVEL + " = " + level
+                    + " ORDER BY g1." + GrammarTable.COL_NUM;
+        } else {
+            sql = "SELECT * FROM " + GrammarTable.TABLE_NAME
+                    + " WHERE " + GrammarTable.COL_LEVEL + " = " + level
+                    + " ORDER BY " + GrammarTable.COL_NUM;
+        }
+
         Log.i(TAG, "grammar: sql=" + sql);
         return fetchAll(sql);
     }
@@ -68,7 +86,7 @@ public class GrammarDao extends BaseDao<GrammarEntity> {
     public static List<GrammarEntity> searchData(Context context, String text) {
         String sql = "SELECT * FROM " + GrammarTable.TABLE_NAME
                 + " WHERE " + GrammarTable.COL_JP + " like '%" + text + "%'"
-                + " OR " + GrammarTable.COL_ROMAJI + " like '%" + text + "%'"
+                + " OR Replace(" + GrammarTable.COL_ROMAJI + " , ' ', '') like '%" + text + "%'"
                 + " OR " + GrammarTable.COL_MEAN + " like '%" + text + "%'";
         Log.i(TAG, "grammar: sql=" + sql);
         GrammarDao dao = new GrammarDao(context);

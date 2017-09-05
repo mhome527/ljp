@@ -21,6 +21,7 @@ import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
+import vn.jp.language.ljp.view.grammar.search.GrammarSearchActivity;
 import vn.jp.language.ljp.view.practice.dialog.PracticeDialog;
 import vn.jp.language.ljp.view.practice.kanji.PracticeKanJiActivity;
 import vn.jp.language.ljp.view.practice.listening.PracticeListeningActivity;
@@ -65,7 +66,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
 
 
         presenter = new PracticeListPresenter(this, level, kind);
-        setTitleQ(v1, v2);
+        setTitleQ();
 
         ///////
         if (!BuildConfig.DEBUG) {
@@ -110,6 +111,11 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
+                return true;
+
+            case R.id.menu_search:
+                Intent iSearch = new Intent(activity, GrammarSearchActivity.class);
+                startActivity(iSearch);
                 return true;
 
             case R.id.menuBookmark:
@@ -253,8 +259,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             PracticeEntity item = items.get(pos);
             presenter.updateAnswer(item.getNum(), value);
             item.setReview(value);
-            int correct = presenter.countCorrect();
-            setTitleQ(correct);
+
             adapter.notifyItemChanged(pos);
         }
     };
@@ -279,8 +284,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
 
                     }
                 });
-                int correct = presenter.countCorrect();
-                setTitleQ(correct);
+
 
 //                setPositionScroll();
                 mTotalScrolled = presenter.getPosHistory();
@@ -301,12 +305,8 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         });
     }
 
-    private void setTitleQ(int value) {
-        setTitleQ(value, items.size());
-    }
-
-    private void setTitleQ(int v1, int v2) {
-        setTitle(presenter.getTitle(v1, v2));
+    private void setTitleQ() {
+        setTitle(presenter.getTitle());
     }
 
 }
