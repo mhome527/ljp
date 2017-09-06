@@ -19,6 +19,12 @@ public class GrammarDetailEntity {
     public GrammarDetailEntity() {
     }
 
+    public GrammarDetailEntity(String jp) {
+        this.jp = jp;
+        romaji = "";
+        ot = "";
+    }
+
     public GrammarDetailEntity(String jp, String romaji, String ot) {
         this.jp = jp;
         this.romaji = romaji;

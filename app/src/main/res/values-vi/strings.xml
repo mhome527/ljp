@@ -56,12 +56,12 @@
     <string name="number_count_generic">COUNT ANY GENERIC OBJECT</string>
 
     <string name="menu_search">Tìm kiếm</string>
-    <string name="menu_search_hint">ひらがな, Romaji, nghĩa</string>
+    <string name="menu_search_hint">ひらがな, Romaji</string>
     <string name="coming_soon">Coming Soon!</string>
 
     <string name="title_dashboard">Học Tiếng Nhật</string>
     <string name="title_kanji">漢字</string>
-    <string name="title_alphabet">Bản chữ cái</string>
+    <string name="title_alphabet">Bảng chữ cái</string>
     <string name="title_grammar">Ngữ Pháp</string>
     <string name="title_test">Test</string>
     <string name="title_word">Từ</string>

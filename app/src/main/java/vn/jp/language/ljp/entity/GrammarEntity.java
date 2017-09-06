@@ -30,12 +30,24 @@ public class GrammarEntity {
     public void formatData() {
         Gson gson = new Gson();
         Log.i("GrammarEntity", "formatData json:" + example);
-        details = gson.fromJson(example, new TypeToken<List<GrammarDetailEntity>>() {
-        }.getType());
+        try {
+            details = gson.fromJson(example, new TypeToken<List<GrammarDetailEntity>>() {
+            }.getType());
+        } catch (Exception e) {
+
+        }
+
         if (details != null)
             Log.i("GrammarEntity", "formatData size: " + details.size() + "; item jp:" + details.get(0).getJp());
-        else
+        else {
             details = new ArrayList<>();
+            details.add(new GrammarDetailEntity(example));
+        }
+    }
+
+    public void formatData2() {
+        details = new ArrayList<>();
+
     }
 
     public List<GrammarDetailEntity> getDetails() {
