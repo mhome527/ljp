@@ -15,6 +15,7 @@ public class GrammarTable {
     public static final String COL_MEAN = "mean";
     public static final String COL_FORMATION = "formation";
     public static final String COL_EXAMPLE = "example";
+    public static final String COL_EXAMPLE1 = "example1";
     public static final String CLEAR_TABLE = "delete from " + TABLE_NAME;
 
 //    private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( "

@@ -24,13 +24,17 @@ public class GrammarDao extends BaseDao<GrammarEntity> {
 
     @Override
     public GrammarEntity fetch(Cursor cursor) {
+        String ex;
         GrammarEntity entity = new GrammarEntity();
         entity.setNum(cursor.getInt(cursor.getColumnIndex(GrammarTable.COL_NUM)));
         entity.setJp(cursor.getString(cursor.getColumnIndex(GrammarTable.COL_JP)));
         entity.setLevel(cursor.getInt(cursor.getColumnIndex(GrammarTable.COL_LEVEL)));
         entity.setRomaji(cursor.getString(cursor.getColumnIndex(GrammarTable.COL_ROMAJI)));
         entity.setMean(cursor.getString(cursor.getColumnIndex(GrammarTable.COL_MEAN)));
-        entity.setExample(cursor.getString(cursor.getColumnIndex(GrammarTable.COL_EXAMPLE)));
+        ex = cursor.getString(cursor.getColumnIndex(GrammarTable.COL_EXAMPLE));
+        if (ex == null || ex.trim().equals(""))
+            ex = cursor.getString(cursor.getColumnIndex(GrammarTable.COL_EXAMPLE1));
+        entity.setExample(ex);
         entity.setFormation(cursor.getString(cursor.getColumnIndex(GrammarTable.COL_FORMATION)));
         return entity;
     }
@@ -58,7 +62,7 @@ and g1.level = 1
     public List<GrammarEntity> getListData(int level) {
         String sql;
         if (lang.equals(Constant.VN)) {
-            sql = "SELECT g1.num, g1.jp, g1.level, g1.romaji, g2.formation, g2.mean, g2.example "
+            sql = "SELECT g1.num, g1.jp, g1.level, g1.romaji, g2.formation, g2.mean, g2.example, g1.example " + GrammarTable.COL_EXAMPLE1
                     + " FROM " + GrammarTable.TABLE_NAME + " g1, " + GrammarTable.TABLE_NAME_VN + " g2 "
                     + " WHERE g1." + GrammarTable.COL_NUM + " = " + " g2." + GrammarTable.COL_NUM
                     + " AND g1." + GrammarTable.COL_LEVEL + " = " + " g2." + GrammarTable.COL_LEVEL
@@ -79,7 +83,7 @@ and g1.level = 1
         GrammarDao dao = new GrammarDao(context);
 
         if (dao.lang.equals(Constant.VN)) {
-            sql = "SELECT g1.num, g1.jp, g1.level, g1.romaji, g2.formation, g2.mean, g2.example "
+            sql = "SELECT g1.num, g1.jp, g1.level, g1.romaji, g2.formation, g2.mean, g2.example, g1.example " + GrammarTable.COL_EXAMPLE1
                     + " FROM " + GrammarTable.TABLE_NAME + " g1, " + GrammarTable.TABLE_NAME_VN + " g2 "
                     + " WHERE g1." + GrammarTable.COL_NUM + " = " + " g2." + GrammarTable.COL_NUM
                     + " AND g1." + GrammarTable.COL_LEVEL + " = " + " g2." + GrammarTable.COL_LEVEL
@@ -100,7 +104,7 @@ and g1.level = 1
         GrammarDao dao = new GrammarDao(context);
 
         if (dao.lang.equals(Constant.VN)) {
-            sql = "SELECT g1.num, g1.jp, g1.level, g1.romaji, g2.formation, g2.mean, g2.example "
+            sql = "SELECT g1.num, g1.jp, g1.level, g1.romaji, g2.formation, g2.mean, g2.example, g1.example " + GrammarTable.COL_EXAMPLE1
                     + " FROM " + GrammarTable.TABLE_NAME + " g1, " + GrammarTable.TABLE_NAME_VN + " g2 "
                     + " WHERE g1." + GrammarTable.COL_NUM + " = " + " g2." + GrammarTable.COL_NUM
                     + " AND g1." + GrammarTable.COL_LEVEL + " = " + " g2." + GrammarTable.COL_LEVEL
