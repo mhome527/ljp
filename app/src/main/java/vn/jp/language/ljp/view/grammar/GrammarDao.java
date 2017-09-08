@@ -33,6 +33,7 @@ public class GrammarDao extends BaseDao<GrammarEntity> {
         entity.setMean(cursor.getString(cursor.getColumnIndex(GrammarTable.COL_MEAN)));
         ex = cursor.getString(cursor.getColumnIndex(GrammarTable.COL_EXAMPLE));
         if (ex == null || ex.trim().equals(""))
+            if(cursor.getColumnIndex(GrammarTable.COL_EXAMPLE1) != -1)
             ex = cursor.getString(cursor.getColumnIndex(GrammarTable.COL_EXAMPLE1));
         entity.setExample(ex);
         entity.setFormation(cursor.getString(cursor.getColumnIndex(GrammarTable.COL_FORMATION)));
@@ -88,11 +89,13 @@ and g1.level = 1
                     + " WHERE g1." + GrammarTable.COL_NUM + " = " + " g2." + GrammarTable.COL_NUM
                     + " AND g1." + GrammarTable.COL_LEVEL + " = " + " g2." + GrammarTable.COL_LEVEL
                     + " AND g1." + GrammarTable.COL_LEVEL + " = " + level
-                    + " AND g1." + GrammarTable.COL_NUM + " = " + num;
+                    + " AND g1." + GrammarTable.COL_NUM + " = " + num
+                    + " ORDER BY " + GrammarTable.COL_JP;
         } else {
             sql = "SELECT * FROM " + GrammarTable.TABLE_NAME
                     + " WHERE " + GrammarTable.COL_LEVEL + " = " + level
-                    + " AND " + GrammarTable.COL_NUM + " = " + num;
+                    + " AND " + GrammarTable.COL_NUM + " = " + num
+                    + " ORDER BY " + GrammarTable.COL_JP;
         }
 
 //        Log.i(TAG, "grammar: sql=" + sql);
@@ -109,11 +112,13 @@ and g1.level = 1
                     + " WHERE g1." + GrammarTable.COL_NUM + " = " + " g2." + GrammarTable.COL_NUM
                     + " AND g1." + GrammarTable.COL_LEVEL + " = " + " g2." + GrammarTable.COL_LEVEL
                     + " AND (g1." + GrammarTable.COL_JP + " like '%" + text + "%'"
-                    + " OR Replace(g1." + GrammarTable.COL_ROMAJI + " , ' ', '') like '%" + text + "%')";
+                    + " OR Replace(g1." + GrammarTable.COL_ROMAJI + " , ' ', '') like '%" + text + "%')"
+                    + " ORDER BY " + GrammarTable.COL_JP;
         } else {
             sql = "SELECT * FROM " + GrammarTable.TABLE_NAME
                     + " WHERE " + GrammarTable.COL_JP + " like '%" + text + "%'"
-                    + " OR Replace(" + GrammarTable.COL_ROMAJI + " , ' ', '') like '%" + text + "%'";
+                    + " OR Replace(" + GrammarTable.COL_ROMAJI + " , ' ', '') like '%" + text + "%'"
+                    + " ORDER BY " + GrammarTable.COL_JP;
 //                + " OR " + GrammarTable.COL_MEAN + " like '%" + text + "%'";
         }
         Log.i(TAG, "grammar: sql=" + sql);

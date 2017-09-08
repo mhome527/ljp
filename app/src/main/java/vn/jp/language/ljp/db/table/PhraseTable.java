@@ -53,6 +53,8 @@ public class PhraseTable {
             table = TABLE_NAME + " t1, TblPhraseCn t2 ";
         else if (lang.equals(Constant.ES))
             table = TABLE_NAME + " t1, TblPhraseEs t2 ";
+        else if (lang.equals(Constant.VN))
+            table = TABLE_NAME + " t1, TblPhraseVn t2 ";
         else
             table = TABLE_NAME + " t1, TblPhraseEn t2 ";
         return table;

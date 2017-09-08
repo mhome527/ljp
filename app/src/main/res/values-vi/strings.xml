@@ -90,16 +90,16 @@
     <string name="title_n_kanji">Kanji %1$d/%2$d</string>
 
     <string name="title_n_grammar2">
-        &lt;font color="blue"&gt;GRAMMAR&lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt; (%1$d/%2$d)&lt;/font&gt;
+        &lt;font color="blue"&gt;NGỮ PHÁP&lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt; (%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_reading2">
-        &lt;font color="blue"&gt;READING &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+        &lt;font color="blue"&gt;ĐỌC HIỂU &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_vocabulary2">
-        &lt;font color="blue"&gt;VOCABULARY &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+        &lt;font color="blue"&gt;TỪ VỰNG &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_listening2">
-        &lt;font color="blue"&gt;LISTENING &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+        &lt;font color="blue"&gt;NGHE &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_kanji2">
         &lt;font color="blue"&gt;KANJI &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
