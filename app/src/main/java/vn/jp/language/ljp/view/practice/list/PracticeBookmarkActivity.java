@@ -42,7 +42,6 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
     List<PracticeEntity> items;
     PracticeListAdapter adapter;
     PracticeListPresenter presenter;
-    int level;
     int kind;
     int v1;
     int v2;
@@ -165,6 +164,7 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
             i.putExtra(Constant.INTENT_BOOKMARK, item.getBookmarks());
             i.putExtra(Constant.INTENT_DETAIL_NUM, item.getNumId());
             i.putExtra(Constant.INTENT_TITLE_Q, item.getQuestion());
+            i.putExtra(Constant.INTENT_HINT, item.getHint());
             i.putExtra(Constant.INTENT_V1, v1);
             i.putExtra(Constant.INTENT_V2, v2);
 

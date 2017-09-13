@@ -15,8 +15,6 @@ import vn.jp.language.ljp.view.practice.BasePracticeDao;
 
 public class PracticeReadingDao extends BasePracticeDao {
 
-    int level;
-
     @Override
     protected int getLevel() {
         return level;
@@ -32,21 +30,26 @@ public class PracticeReadingDao extends BasePracticeDao {
         this.level = level;
     }
 
+//    @Override
+//    protected PracticeEntity fetch(Cursor cursor) {
+//        PracticeEntity entity = new PracticeEntity();
+//        entity.setNum(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_NUM)));
+//        entity.setNumId(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_NUM_ID)));
+//        entity.setBookmarks(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_BOOKMARKS)));
+//        entity.setKind(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_KIND)));
+//        entity.setQuestion(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_QUESTION)));
+//        entity.setQ1(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q1)));
+//        entity.setQ2(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q2)));
+//        entity.setQ3(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q3)));
+//        entity.setQ4(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q4)));
+//        entity.setAns(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_ANS)));
+//        entity.setReview(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REVIEW)));
+//        entity.setRef(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REF)));
+//        return entity;
+//    }
+
     @Override
-    protected PracticeEntity fetch(Cursor cursor) {
-        PracticeEntity entity = new PracticeEntity();
-        entity.setNum(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_NUM)));
-        entity.setNumId(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_NUM_ID)));
-        entity.setBookmarks(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_BOOKMARKS)));
-        entity.setKind(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_KIND)));
-        entity.setQuestion(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_QUESTION)));
-        entity.setQ1(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q1)));
-        entity.setQ2(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q2)));
-        entity.setQ3(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q3)));
-        entity.setQ4(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q4)));
-        entity.setAns(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_ANS)));
-        entity.setReview(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REVIEW)));
-        entity.setRef(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REF)));
+    protected PracticeEntity fetch(Cursor cursor, PracticeEntity entity) {
         return entity;
     }
 

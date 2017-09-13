@@ -52,7 +52,7 @@ public abstract class BaseDao<T> {
     }
 
     protected T fetch(String sql) {
-        Log.i(TAG, "fetchAll sql:" + sql);
+        Log.i(TAG, "fetch sql:" + sql);
         T entity = null;
         try {
             Cursor cursor = DatabaseHelper.getInstance(context).executeQuery(sql);

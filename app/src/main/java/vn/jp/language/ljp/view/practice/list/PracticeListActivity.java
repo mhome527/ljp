@@ -43,7 +43,6 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     List<PracticeEntity> items;
     PracticeListAdapter adapter;
     PracticeListPresenter presenter;
-    int level;
     int kind;
     boolean isSort = true;
     int v1;
@@ -193,7 +192,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         }
 
         if (kind == PracticeTable.TYPE_READING) {
-            presenter.putPosHistory(recyclerView.computeVerticalScrollOffset());
+            presenter.putPosHistory(recyclerView.computeVerticalScrollOffset()); //scroll lai vi tri truoc do
 //            setPositionScroll2();
             Intent i = new Intent(activity, PracticeReadingActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
@@ -201,6 +200,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             i.putExtra(Constant.INTENT_BOOKMARK, item.getBookmarks());
             i.putExtra(Constant.INTENT_DETAIL_NUM, item.getNumId());
             i.putExtra(Constant.INTENT_TITLE_Q, item.getQuestion());
+            i.putExtra(Constant.INTENT_HINT, item.getHint());
             i.putExtra(Constant.INTENT_V1, v1);
             i.putExtra(Constant.INTENT_V2, v2);
 

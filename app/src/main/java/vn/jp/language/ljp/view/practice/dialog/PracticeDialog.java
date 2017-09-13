@@ -2,8 +2,10 @@ package vn.jp.language.ljp.view.practice.dialog;
 
 import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -17,6 +19,7 @@ import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseDialog;
 import vn.jp.language.ljp.view.practice.list.IPracticeInterface;
+import vn.jp.language.ljp.view.practice.reading.PracticeHintDialog;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 /**
@@ -26,6 +29,7 @@ import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 public class PracticeDialog extends BaseDialog {
 
     private final String TAG = "PracticeDialog";
+
 
     @BindView(R.id.imgBookmark)
     ImageButton imgBookmark;
@@ -66,6 +70,17 @@ public class PracticeDialog extends BaseDialog {
     @BindView(R.id.imgNext)
     ImageButton imgNext;
 
+    ///////////
+    @BindView(R.id.btnHint)
+    Button btnHint;
+
+    @BindView(R.id.llHint)
+    LinearLayout llHint;
+
+    @BindView(R.id.tvHint)
+    TextView tvHint;
+
+    /////////////
 //    PracticeDialogPresenter presenter;
 
     int ansType = 0; //0: don't choice; 1: choice true; -1: choice wrong
@@ -84,6 +99,8 @@ public class PracticeDialog extends BaseDialog {
         this.items = items;
         this.pos = pos;
         this.iPracticeInterface = iPracticeInterface;
+
+
 //        presenter = new PracticeDialogPresenter(context, level, item.getKind(), item.getNum());
     }
 
@@ -96,6 +113,8 @@ public class PracticeDialog extends BaseDialog {
     public void initView(View view) {
         tvQuestion.setMinLines(3);
         setData(items.get(pos));
+
+        llHint.setVisibility(View.GONE);
         hideButton();
     }
 
@@ -179,7 +198,7 @@ public class PracticeDialog extends BaseDialog {
             return;
 
         if (activity.isPurchased || items.get(pos + 1).getKind() == PracticeTable.TYPE_KANJI
-                || items.get(pos + 1).getNum() <= Constant.TRIAL_GRAMMAR ) {
+                || items.get(pos + 1).getNum() <= Constant.TRIAL_GRAMMAR) {
             pos++;
             resetView();
             hideButton();
@@ -190,11 +209,35 @@ public class PracticeDialog extends BaseDialog {
 
     }
 
+    /// hint
+    @OnClick(R.id.btnHint)
+    public void actionHint() {
+//        llHint.setVisibility(View.VISIBLE);
+        String hint = items.get(pos).getHint();
+        PracticeHintDialog dialog = new PracticeHintDialog(activity, hint);
+        dialog.show();
+
+    }
+
+    @OnClick(R.id.btnCloseHint)
+    public void actionCloseHint() {
+//        llHint.setVisibility(View.GONE);
+    }
+    ////////////////////
+
     public void setData(PracticeEntity item) {
+        String hint;
         if (item.getBookmarks() == 0)
             imgBookmark.setImageResource(R.drawable.heart_off);
         else
             imgBookmark.setImageResource(R.drawable.heart_on);
+
+        hint = item.getHint();
+        if (activity.lang.equals(Constant.VN) && activity.level == PracticeTable.LEVEL_N3
+                && hint != null && !hint.equals("")) {
+            btnHint.setVisibility(View.VISIBLE);
+        } else
+            btnHint.setVisibility(View.GONE);
 
 //        tvQuestion.setText(item.getQuestion());
 
@@ -209,6 +252,9 @@ public class PracticeDialog extends BaseDialog {
         } else {
             tvQuestion.setText(Html.fromHtml(item.getQuestion()));
         }
+
+//        if (item.getHint() != null && !item.getHint().equals(""))
+//            tvHint.setText(item.getHint());
     }
 
     private void setView(int ans, ImageView img) {

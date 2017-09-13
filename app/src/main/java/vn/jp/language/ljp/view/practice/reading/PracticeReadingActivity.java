@@ -3,6 +3,7 @@ package vn.jp.language.ljp.view.practice.reading;
 import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -55,6 +56,9 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    @BindView(R.id.fabButton)
+    FloatingActionButton fabButton;
+
     PracticeReadingPresenter presenter;
     PracticeReadingAdapter adapter;
     List<PracticeEntity> items;
@@ -64,6 +68,7 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
     int num;
     int idRef;
     int bookmark;
+    String hint;
 
     @Override
     protected int getLayout() {
@@ -72,7 +77,7 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
 
     @Override
     protected void initView() {
-        int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
+        level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
         idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
         num = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
         bookmark = getIntent().getIntExtra(Constant.INTENT_BOOKMARK, 0);
@@ -80,6 +85,7 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
         int v2 = getIntent().getIntExtra(Constant.INTENT_V2, 0);
 
         titleQ = getIntent().getStringExtra(Constant.INTENT_TITLE_Q);
+        hint = getIntent().getStringExtra(Constant.INTENT_HINT);
 
         ///////////////
         setSupportActionBar(toolbar);
@@ -94,6 +100,11 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
         }
 
         tvNum.setText(num + "");
+
+        if (hint == null || hint.equals(""))
+            fabButton.setVisibility(View.GONE);
+        else
+            fabButton.setVisibility(View.VISIBLE);
 
         Common.setupRecyclerView(activity, recyclerView, null);
         presenter = new PracticeReadingPresenter(activity, level, idRef);
@@ -139,6 +150,12 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
     }
 
 
+    @OnClick(R.id.fabButton)
+    public void actionHint() {
+        PracticeHintDialog dialog = new PracticeHintDialog(activity, hint);
+        dialog.show();
+    }
+
     // IPracticeInterface
     @Override
     public void onBookmark(int pos, int value) {
@@ -159,6 +176,13 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
             imgNext.setVisibility(View.INVISIBLE);
             return;
         }
+
+        if (hint == null || hint.equals(""))
+            fabButton.setVisibility(View.GONE);
+        else
+            fabButton.setVisibility(View.VISIBLE);
+
+
         items = data;
         tvNum.setText(num + "");
         setBookmark();

@@ -30,6 +30,7 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
 
     public Prefs pref;
     public String lang = "";
+    public int level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

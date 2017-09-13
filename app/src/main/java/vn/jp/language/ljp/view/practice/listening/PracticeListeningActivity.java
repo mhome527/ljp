@@ -60,7 +60,6 @@ public class PracticeListeningActivity extends PurchaseActivity<PracticeListenin
     PracticeListeningPresenter presenter;
     //    int countAll;
     int refId;
-    int level;
 
     @Override
     protected int getLayout() {

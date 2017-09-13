@@ -114,5 +114,6 @@
     <string name="chinese">中文</string>
     <string name="spanish">Español</string>
     <string name="vietnam">Vietnam</string>
+    <string name="title_hint">hint</string>
 
 </resources>

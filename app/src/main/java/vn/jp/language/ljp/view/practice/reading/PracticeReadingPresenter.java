@@ -36,6 +36,7 @@ public class PracticeReadingPresenter extends BasePresenter<PracticeReadingActiv
         if (entity != null && entity.getQuestion() != null && !entity.getQuestion().equals("")) {
             idRef = entity.getNumId();
             activity.titleQ = entity.getQuestion();
+            activity.hint = entity.getHint();
             activity.num = entity.getNum();
             activity.idRef = entity.getNumId();
             activity.bookmark = entity.getBookmarks();

@@ -20,10 +20,10 @@
     <string name="msg_title_vn">Learn Vietnamese Pronunciation App</string>
     <string name="msg_content_vn">Do you want to install this application?</string>
     <string name="msg_title_update">Update</string>
-    <string name="install">Install</string>
-    <string name="update">Update</string>
-    <string name="cancel">Cancel</string>
-    <string name="close">Close</string>
+    <string name="install">Cài đặt</string>
+    <string name="update">Cập nhật</string>
+    <string name="cancel">Hủy</string>
+    <string name="close">Đóng</string>
     <string name="ok">Ok</string>
     <string name="speech_prompt">Say something…</string>
 
@@ -114,5 +114,6 @@
     <string name="chinese">中文</string>
     <string name="spanish">Español</string>
     <string name="vietnam">Vietnam</string>
+    <string name="title_hint">gợi ý</string>
 
 </resources>
