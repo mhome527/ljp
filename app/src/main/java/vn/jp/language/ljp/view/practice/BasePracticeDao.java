@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import vn.jp.language.ljp.BuildConfig;
+import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.db.dao.BaseDao;
 import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.PracticeEntity;
@@ -40,7 +41,7 @@ abstract public class BasePracticeDao extends BaseDao<PracticeEntity> {
         entity.setReview(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REVIEW)));
         entity.setRef(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REF)));
 
-        if (cursor.getColumnIndex(PracticeTable.COL_HINT) >= 0)
+        if (lang.equals(Constant.VN) && cursor.getColumnIndex(PracticeTable.COL_HINT) >= 0)
             entity.setHint(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_HINT)));
 
 //        return entity;
