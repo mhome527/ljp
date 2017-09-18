@@ -72,17 +72,17 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             Bundle params = new Bundle();
 
             if (kind == PracticeTable.TYPE_GRAMMAR)
-                params.putString("Practice", "GRAMMAR level: " + level);
+                params.putString("GRAMMAR", "level: " + level);
             else if (kind == PracticeTable.TYPE_READING)
-                params.putString("Practice", "READING level: " + level);
+                params.putString("READING", "level: " + level);
             else if (kind == PracticeTable.TYPE_LISTENING)
-                params.putString("Practice", "LISTENING level: " + level);
+                params.putString("LISTENING", "level: " + level);
             else if (kind == PracticeTable.TYPE_KANJI)
-                params.putString("Practice", "KANJI level: " + level);
+                params.putString("KANJI", "level: " + level);
             else
-                params.putString("Practice", "VOCABULARY level: " + level);
+                params.putString("VOCABULARY", "level: " + level);
 
-            mFirebaseAnalytics.logEvent("SCREEN", params);
+            mFirebaseAnalytics.logEvent("Practice", params);
         }
 
     }

@@ -17,9 +17,9 @@ public class KanjiTable {
     public static final String COL_JP2 = "jp2";
     public static final String COL_ROMAJI = "romaji";
     public static final String COL_IMG_PATH = "imgpath";
-    public static final String COL_OT = "ot";
+    public static final String COL_OT = "ot_temp";
     public static final String COL_EX = "ex_temp";
-    public static final String COL_OT_2 = "ot_temp";
+    public static final String COL_OT_2 = "ot";
     public static final String COL_EX_2 = "ex";
     public static final String CLEAR_TABLE = "delete from " + TABLE_NAME;
 
@@ -47,6 +47,7 @@ public class KanjiTable {
 //        database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 //        onCreate(database);
     }
+
     public static String getTableName(String lang) {
         String table;
         if (lang.equals(Constant.KO))
@@ -57,6 +58,8 @@ public class KanjiTable {
             table = TABLE_NAME + " t1, TblkanjiCn t2 ";
         else if (lang.equals(Constant.ES))
             table = TABLE_NAME + " t1, TblkanjiEs t2 ";
+        else if (lang.equals(Constant.VN))
+            table = TABLE_NAME + " t1, TblKanjiVn t2 ";
         else
             table = TABLE_NAME + " t1, TblkanjiEn t2 ";
         return table;

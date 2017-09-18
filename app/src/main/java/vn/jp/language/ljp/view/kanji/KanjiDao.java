@@ -31,7 +31,7 @@ public class KanjiDao extends BaseDao<KanjiEntity> {
         entity.setJp2(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_JP2)));
         entity.setRomaji(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_ROMAJI)));
         entity.setImgPath(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_IMG_PATH)));
-        entity.setOt(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_OT)));
+        entity.setOt(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_OT_2)));
         entity.setExample(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_EX)));
         return entity;
     }
@@ -63,10 +63,11 @@ public class KanjiDao extends BaseDao<KanjiEntity> {
         KanjiDao dao = new KanjiDao(context);
         String sql = "SELECT * FROM " + KanjiTable.getTableName(dao.lang)
                 + " WHERE " + BaseTable.appendCond()
-                + " And (" + KanjiTable.COL_JP1 + " like '%" + text + "%'"
+                + " And ("
+                + " " + KanjiTable.COL_KANJI + " like '%" + text + "%'"
+                + " OR " + KanjiTable.COL_JP1 + " like '%" + text + "%'"
                 + " OR " + KanjiTable.COL_JP2 + " like '%" + text + "%'"
-                + " OR " + KanjiTable.COL_ROMAJI + " like '%" + text + "%'"
-                + " OR " + KanjiTable.COL_OT + " like '%" + text + "%')";
+                + " OR " + KanjiTable.COL_ROMAJI + " like '%" + text + "%')";
         Log.i(TAG, "searchData: sql=" + sql);
         return dao.fetchAll(sql);
     }

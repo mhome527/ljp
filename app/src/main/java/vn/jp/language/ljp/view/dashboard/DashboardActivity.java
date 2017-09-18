@@ -135,9 +135,9 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
                 if (!BuildConfig.DEBUG) {
                     // [START custom_event]
                     Bundle params = new Bundle();
-                    params.putString("Name", screen);
+                    params.putString("Lang", lang);
 //                    params.putString("Language", );
-                    mFirebaseAnalytics.logEvent("SCREEN", params);
+                    mFirebaseAnalytics.logEvent(screen, params);
                 }
             }
 

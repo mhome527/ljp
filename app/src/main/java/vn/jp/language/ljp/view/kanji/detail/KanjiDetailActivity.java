@@ -1,6 +1,7 @@
 package vn.jp.language.ljp.view.kanji.detail;
 
 import android.net.Uri;
+import android.text.Html;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -90,10 +91,14 @@ public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
         String fullPath;
         setTitleCenter(getString(R.string.title_kanji));
 
-        tvMean.setText(entity.getOt());
         tvJp1.setText(entity.getJp1());
         tvJp2.setText(entity.getJp2());
         tvExample.setText(entity.getExample());
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N)
+            tvMean.setText(Html.fromHtml(entity.getOt(), Html.FROM_HTML_MODE_LEGACY));
+        else
+            tvMean.setText(Html.fromHtml(entity.getOt()));
 
         fullPath = PATH + entity.getImgPath() + ".gif";
         Log.i(TAG, "path:" + fullPath);

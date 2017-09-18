@@ -83,19 +83,19 @@
     <string name="title_n_kanji">한자 %1$d/%2$d</string>
 
     <string name="title_n_grammar2">
-        &lt;font color="blue"&gt;GRAMMAR&lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt; (%1$d/%2$d)&lt;/font&gt;
+        &lt;font color="blue"&gt;문법&lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt; (%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_reading2">
-        &lt;font color="blue"&gt;READING &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+        &lt;font color="blue"&gt;독서 &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_vocabulary2">
-        &lt;font color="blue"&gt;VOCABULARY &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+        &lt;font color="blue"&gt;어휘 &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_listening2">
-        &lt;font color="blue"&gt;LISTENING &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+        &lt;font color="blue"&gt;청취 &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_kanji2">
-        &lt;font color="blue"&gt;KANJI &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+        &lt;font color="blue"&gt;한자 &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
 
     <string name="title_view">View</string>
