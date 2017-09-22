@@ -33,6 +33,7 @@ import vn.jp.language.ljp.view.food.FoodActivity;
 import vn.jp.language.ljp.view.grammar.GrammarActivity;
 import vn.jp.language.ljp.view.kanji.KanjiActivity;
 import vn.jp.language.ljp.view.number.NumberActivity;
+import vn.jp.language.ljp.view.ono.OnoActivity;
 import vn.jp.language.ljp.view.phrases.PhraseActivity;
 import vn.jp.language.ljp.view.practice.dashboard.PracticeDashboardActivity;
 import vn.jp.language.ljp.view.test.AndroidDatabaseManager;
@@ -121,6 +122,10 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
                         break;
                     case 8:
                         startActivity2(DateActivity.class);
+                        screen = "DateActivity";
+                        break;
+                    case 9:
+                        startActivity2(OnoActivity.class);
                         screen = "DateActivity";
                         break;
                     default:
@@ -240,6 +245,7 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         listData.add(new DashboardEntity(R.drawable.ic_number, getString(R.string.title_counter)));
         listData.add(new DashboardEntity(R.drawable.ic_kanji, getString(R.string.title_kanji)));
         listData.add(new DashboardEntity(R.drawable.ic_dates, getString(R.string.title_date)));
+        listData.add(new DashboardEntity(R.drawable.ic_ono, getString(R.string.title_ono)));
     }
 
     private void showDialogLanguage() {
