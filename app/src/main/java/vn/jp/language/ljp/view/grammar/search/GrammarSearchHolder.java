@@ -32,10 +32,8 @@ public class GrammarSearchHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(GrammarEntity entity, String text) {
-        String styledText ="";
+        String styledText;
         String textColor = "<font color='red'>" + text + "</font>";
-//        String styledText = "This is <font color='red'>simple</font>.";
-//        textView.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
         styledText = entity.getJp().replace(text, textColor);
         tvGrammar.setText(Html.fromHtml(styledText));
 

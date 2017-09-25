@@ -58,7 +58,7 @@ public class OnoDao extends BaseDao<OnoEntity> {
     public List<OnoEntity> getItems() {
 
         String sql = "Select * From " + OnoTable.TABLE_NAME +
-                " Order by " + OnoTable.COL_JP + " asc";
+                " Order by " + OnoTable.COL_ROMAJI + " asc";
 
         return fetchAll(sql);
     }
@@ -71,14 +71,14 @@ public class OnoDao extends BaseDao<OnoEntity> {
         return fetchAll(sql);
     }
 
-    public static List<OnoEntity> searchData(Context context, String text) {
+    public List<OnoEntity> searchData(Context context, String text) {
         String sql;
         OnoDao dao = new OnoDao(context);
 
         sql = "SELECT * FROM " + OnoTable.TABLE_NAME
                 + " WHERE " + OnoTable.COL_JP + " like '%" + text + "%'"
                 + " OR  " + OnoTable.COL_ROMAJI + " like '%" + text + "%'"
-                + " ORDER BY " + OnoTable.COL_JP;
+                + " ORDER BY " + OnoTable.COL_ROMAJI;
 
         Log.i(TAG, "grammar: sql=" + sql);
         return dao.fetchAll(sql);

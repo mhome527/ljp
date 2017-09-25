@@ -34,5 +34,14 @@ public class OnoPresenter extends BasePresenter<OnoActivity> {
         });
     }
 
+    public void searchData(final String text, ICallback callback) {
+        loadData(callback, new ILoadData() {
+                    @Override
+                    public Object onBackground() {
+                        return dao.searchData(activity, text);
+                    }
+                }
+        );
 
+    }
 }

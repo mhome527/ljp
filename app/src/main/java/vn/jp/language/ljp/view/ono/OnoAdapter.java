@@ -15,6 +15,7 @@ import vn.jp.language.ljp.view.BaseAdapterView;
 public class OnoAdapter extends BaseAdapterView<OnoHolder> {
 
     List<OnoEntity> items;
+    public String text = "";
 
     public OnoAdapter(List<OnoEntity> items) {
         this.items = items;
@@ -57,7 +58,16 @@ public class OnoAdapter extends BaseAdapterView<OnoHolder> {
 
     @Override
     public void onViewHolder(OnoHolder holder, int position) {
-        holder.bind(items.get(position));
+        if (text.equals(""))
+            holder.bind(items.get(position));
+        else
+            holder.bind(items.get(position), text);
+    }
+
+    //    =====================
+    public void setData(List<OnoEntity> items, String text) {
+        this.items = items;
+        this.text = text;
     }
 
 }

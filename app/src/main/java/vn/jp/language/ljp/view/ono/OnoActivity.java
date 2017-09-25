@@ -1,6 +1,8 @@
 package vn.jp.language.ljp.view.ono;
 
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +22,7 @@ import vn.jp.language.ljp.view.IClickListener;
  * Created by Administrator on 9/22/2017.
  */
 
-public class OnoActivity extends BaseActivity<OnoActivity> implements IClickListener {
+public class OnoActivity extends BaseActivity<OnoActivity> implements IClickListener, SearchView.OnQueryTextListener {
 
     private final String TAG = "OnoActivity";
 
@@ -31,6 +33,9 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
     OnoAdapter adapter;
     OnoPresenter presenter;
 
+    SearchView searchView;
+    String textSearch = "";
+    List<OnoEntity> items;
 
     @Override
     protected int getLayout() {
@@ -39,14 +44,22 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
 
     @Override
     protected void initView() {
+        setTitle(getString(R.string.title_ono));
         Common.setupRecyclerView(activity, recyclerView, this);
         presenter = new OnoPresenter(this);
         loadData();
     }
 
     @Override
-    public void onClick(View view, int position) {
+    protected void onResume() {
+        super.onResume();
+    }
 
+    @Override
+    public void onClick(View view, int position) {
+        OnoEntity item = items.get(position);
+        OnoDialog dialog = new OnoDialog(activity, item.getJp(), item.getEx());
+        dialog.show();
     }
 
     @Override
@@ -56,7 +69,21 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_practice_list, menu);
+        getMenuInflater().inflate(R.menu.menu_search_grammar, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.menu_search);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(this);
+        searchView.onActionViewExpanded();
+        if (android.os.Build.VERSION.SDK_INT >= 17)
+            searchView.setPaddingRelative(30, 0, 0, 0);
+        else
+            searchView.setPadding(15, 0, 0, 0);
+
+        searchView.setQueryHint(getString(R.string.menu_search_hint)); // fill in the search term by default
+
+        searchView.clearFocus();
+        searchView.onActionViewCollapsed();
         return true;
     }
 
@@ -64,7 +91,13 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                if (!textSearch.equals("")) {
+                    searchView.clearFocus();
+                    searchView.onActionViewCollapsed();
+                    textSearch = "";
+
+                } else
+                    onBackPressed();
                 return true;
 
 //            case R.id.menu_search:
@@ -92,8 +125,8 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
         presenter.getItems(new ICallback<List<OnoEntity>>() {
             @Override
             public void onCallback(List<OnoEntity> data) {
-//                items = data;
-                adapter = new OnoAdapter(data);
+                items = data;
+                adapter = new OnoAdapter(items);
 
                 recyclerView.setAdapter(adapter);
                 activity.runOnUiThread(new Runnable() {
@@ -103,7 +136,6 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
 
                     }
                 });
-
             }
 
             @Override
@@ -112,5 +144,47 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
             }
         });
     }
+
+    //// OnQueryTextListener
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        filter(query.trim());
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        filter(newText.trim());
+        return false;
+    }
+    //=============================
+
+    public void filter(String text) {
+//        if (text.trim().equals("")) {
+//            adapter.clearData();
+//            adapter.notifyDataSetChanged();
+//            return;
+//        }
+        textSearch = text;
+        presenter.searchData(text, new ICallback<List<OnoEntity>>() {
+            @Override
+            public void onCallback(List<OnoEntity> data) {
+                items = data;
+                adapter.setData(items, textSearch);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+            }
+
+            @Override
+            public void onFail(String err) {
+                Log.e(TAG, "fail err:" + err);
+            }
+        });
+    }
+
 
 }
