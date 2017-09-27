@@ -1,5 +1,6 @@
 package vn.jp.language.ljp.view.ono;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -25,29 +26,35 @@ public class OnoDao extends BaseDao<OnoEntity> {
 
     @Override
     protected OnoEntity fetch(Cursor cursor) {
+        String ex, ex2, ot;
+
         OnoEntity entity = new OnoEntity();
         entity.setNum(cursor.getInt(cursor.getColumnIndex(OnoTable.COL_NUM)));
         entity.setJp(cursor.getString(cursor.getColumnIndex(OnoTable.COL_JP)));
         entity.setRomaji(cursor.getString(cursor.getColumnIndex(OnoTable.COL_ROMAJI)));
         entity.setBookmarks(cursor.getInt(cursor.getColumnIndex(OnoTable.COL_BOOKMARKS)));
 
-        String ex, ot;
         if (lang.equals(Constant.VN)) {
             ex = cursor.getString(cursor.getColumnIndex(OnoTable.COL_EX_VN));
+            ex2 = cursor.getString(cursor.getColumnIndex(OnoTable.COL_EX_VN2));
+
             ot = cursor.getString(cursor.getColumnIndex(OnoTable.COL_OT_VN));
 
-            if (ex == null || ex.equals(""))
+            if (ex == null || ex.equals("")) {
                 ex = cursor.getString(cursor.getColumnIndex(OnoTable.COL_EX));
-
+                ex2 = cursor.getString(cursor.getColumnIndex(OnoTable.COL_EX2));
+            }
             if (ot == null || ot.equals(""))
                 ot = cursor.getString(cursor.getColumnIndex(OnoTable.COL_OT));
 
         } else {
             ex = cursor.getString(cursor.getColumnIndex(OnoTable.COL_EX));
+            ex2 = cursor.getString(cursor.getColumnIndex(OnoTable.COL_EX2));
             ot = cursor.getString(cursor.getColumnIndex(OnoTable.COL_OT));
         }
 
         entity.setEx(ex);
+        entity.setEx2(ex2);
         entity.setOt(ot);
 
 
@@ -84,5 +91,11 @@ public class OnoDao extends BaseDao<OnoEntity> {
         return dao.fetchAll(sql);
     }
 
+    public void updateBookmark(int num, int bookmark) {
+        ContentValues value = new ContentValues();
+        value.put(OnoTable.COL_BOOKMARKS, bookmark);
+        String where = OnoTable.COL_NUM + " = " + num;
+        updateRow(OnoTable.TABLE_NAME, value, where);
+    }
 
 }

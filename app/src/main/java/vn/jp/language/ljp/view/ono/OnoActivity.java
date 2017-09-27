@@ -1,5 +1,6 @@
 package vn.jp.language.ljp.view.ono;
 
+import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -36,6 +37,7 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
     SearchView searchView;
     String textSearch = "";
     List<OnoEntity> items;
+    ICallback iCallback;
 
     @Override
     protected int getLayout() {
@@ -58,7 +60,12 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
     @Override
     public void onClick(View view, int position) {
         OnoEntity item = items.get(position);
-        OnoDialog dialog = new OnoDialog(activity, item.getJp(), item.getEx());
+        OnoDialog dialog = new OnoDialog(activity, item, new OnoInterface() {
+            @Override
+            public void onBookmark(OnoEntity item) {
+                presenter.updateBookmark(item.getNum(), item.getBookmarks());
+            }
+        });
         dialog.show();
     }
 
@@ -69,7 +76,7 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_search_grammar, menu);
+        getMenuInflater().inflate(R.menu.menu_ono, menu);
 
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
@@ -96,25 +103,16 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
                     searchView.onActionViewCollapsed();
                     textSearch = "";
 
-                } else
+                } else {
+
                     onBackPressed();
+                }
                 return true;
 
-//            case R.id.menu_search:
-//                Intent iSearch = new Intent(activity, GrammarSearchActivity.class);
-//                startActivity(iSearch);
-//                return true;
-
-//            case R.id.menuBookmark:
-//                presenter.putPosHistory(recyclerView.computeVerticalScrollOffset());
-//                Intent i = new Intent(activity, PracticeBookmarkActivity.class);
-//                i.putExtra(Constant.INTENT_KIND, kind);
-//                i.putExtra(Constant.INTENT_LEVEL, level);
-//                i.putExtra(Constant.INTENT_V1, v1);
-//                i.putExtra(Constant.INTENT_V2, v2);
-//                startActivity(i);
-//                return true;
-
+            case R.id.menuBookmark:
+                Intent i = new Intent(activity, OnoBookmarkActivity.class);
+                startActivity(i);
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -122,7 +120,7 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
     }
 
     private void loadData() {
-        presenter.getItems(new ICallback<List<OnoEntity>>() {
+        iCallback = new ICallback<List<OnoEntity>>() {
             @Override
             public void onCallback(List<OnoEntity> data) {
                 items = data;
@@ -133,7 +131,6 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
                     @Override
                     public void run() {
                         adapter.notifyDataSetChanged();
-
                     }
                 });
             }
@@ -142,7 +139,9 @@ public class OnoActivity extends BaseActivity<OnoActivity> implements IClickList
             public void onFail(String err) {
                 Log.e(TAG, "onFail err:" + err);
             }
-        });
+        };
+
+        presenter.getItems(iCallback);
     }
 
     //// OnQueryTextListener

@@ -1,5 +1,6 @@
 package vn.jp.language.ljp.view.ono;
 
+import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.BasePresenter;
 import vn.jp.language.ljp.view.ICallback;
 
@@ -7,11 +8,11 @@ import vn.jp.language.ljp.view.ICallback;
  * Created by Administrator on 9/22/2017.
  */
 
-public class OnoPresenter extends BasePresenter<OnoActivity> {
+public class OnoPresenter extends BasePresenter<BaseActivity> {
 
     OnoDao dao;
 
-    public OnoPresenter(OnoActivity activity) {
+    public OnoPresenter(BaseActivity activity) {
         super(activity);
         dao = new OnoDao(activity);
     }
@@ -42,6 +43,10 @@ public class OnoPresenter extends BasePresenter<OnoActivity> {
                     }
                 }
         );
-
     }
+
+    public void updateBookmark(int num, int bookmark) {
+        dao.updateBookmark(num, bookmark);
+    }
+
 }

@@ -17,9 +17,11 @@ public class OnoTable {
     public static final String COL_ROMAJI = "romaji";
     public static final String COL_OT = "ot";
     public static final String COL_EX = "ex";
+    public static final String COL_EX2 = "ex2";
     public static final String COL_BOOKMARKS = "bookmarks";
     public static final String COL_OT_VN = "ot_vn";
     public static final String COL_EX_VN = "ex_vn";
+    public static final String COL_EX_VN2 = "ex_vn2";
 
     public static void onCreate(SQLiteDatabase database) {
 //        Log.i(TAG, "CREATE TABLE " + TABLE_NAME);

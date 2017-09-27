@@ -10,9 +10,18 @@ public class OnoEntity {
     String romaji;
     String ot;
     String ex;
+    String ex2;
 
     int bookmarks;
     //////////////
+
+    public String getEx2() {
+        return ex2;
+    }
+
+    public void setEx2(String ex2) {
+        this.ex2 = ex2;
+    }
 
     public int getNum() {
         return num;
