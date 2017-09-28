@@ -43,9 +43,9 @@ public class Constant {
 
     //    public static final String DB_NAME = "ljp2.sqlite";
     public static final String DB_NAME = "ljp3.sqlite";
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 7;
 
-    public static final String KEY_UPDATE = "db_update_6"; // gia tri khac se delete database cu
+    public static final String KEY_UPDATE = "db_update_7"; // gia tri khac se delete database cu
     //
 //	// /////////
     public static final String INTENT_KIND = "intent_kind";

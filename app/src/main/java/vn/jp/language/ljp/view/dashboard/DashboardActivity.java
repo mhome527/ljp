@@ -192,8 +192,13 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         if (BuildConfig.DEBUG) {
             Intent i = new Intent(activity, AndroidDatabaseManager.class);
             startActivity(i);
-        } else
+        } else {
             Utility.installVnApp(activity);
+
+            Bundle params = new Bundle();
+            params.putString("Lang", lang);
+            mFirebaseAnalytics.logEvent("vn_app", params);
+        }
     }
 
     OnItemClickListener onItemClickListener = new OnItemClickListener() {

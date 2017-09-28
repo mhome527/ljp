@@ -42,9 +42,11 @@ public class OnoDialog extends BaseDialog {
     OnoEntity item;
     OnoInterface onoInterface;
 
+    Context context;
 
     public OnoDialog(@NonNull Context context, OnoEntity item, OnoInterface onoInterface) {
         super(context);
+        this.context = context;
         this.item = item;
         this.onoInterface = onoInterface;
     }
@@ -67,6 +69,7 @@ public class OnoDialog extends BaseDialog {
 //        mPaintDetail.setTextSize(16 * metricScale);
 //        mPaintDetail.setAntiAlias(true);
             TextPaint tp = new TextPaint();
+            tp.setColor(context.getResources().getColor(R.color.gray));
             tp.setTextSize(45);
 
 //        String text = "{彼女;かのじょ}sdafdsa fdsa fdsaf dsafdsa は{寒気;さむけ}を{防;ふせ}ぐために{厚;あつ}いコートを{着;き}ていた。";
