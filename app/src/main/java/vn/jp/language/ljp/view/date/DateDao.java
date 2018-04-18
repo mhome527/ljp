@@ -15,7 +15,7 @@ import vn.jp.language.ljp.utils.Log;
  */
 public class DateDao extends BaseDao<WordEntity> {
 
-    private static final String TAG = "WardDao";
+    private static final String TAG = "DateDao";
 
     public DateDao(Context context) {
         super(context);
@@ -39,6 +39,7 @@ public class DateDao extends BaseDao<WordEntity> {
 
         String sql = "SELECT * FROM " + WordTable.getTableName(dao.lang)
                 + " WHERE " + WordTable.COL_KIND + " = " + kind
+                + " AND t1.num = t2.num "
                 + " ORDER BY " + WordTable.COL_NUM;
         Log.i(TAG, "word: sql=" + sql);
         return dao.fetchAll(sql);
