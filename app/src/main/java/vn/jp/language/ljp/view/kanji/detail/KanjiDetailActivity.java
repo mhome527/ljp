@@ -1,13 +1,16 @@
 package vn.jp.language.ljp.view.kanji.detail;
 
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.text.Html;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
@@ -25,7 +28,7 @@ import vn.jp.language.ljp.view.ICallback;
 
 public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
 
-    private static final String TAG = "GrammarDetailActivity";
+    private static final String TAG = "KanjiDetailActivity";
     private final String PATH = "file:///android_asset/kanji/";
 
     @BindView(R.id.imgKanji)
@@ -103,26 +106,41 @@ public class KanjiDetailActivity extends BaseActivity<KanjiDetailActivity> {
         fullPath = PATH + entity.getImgPath() + ".gif";
         Log.i(TAG, "path:" + fullPath);
 
-        RequestListener rq = new RequestListener<Uri, GlideDrawable>() {
+//        RequestListener rq = new RequestListener<Uri, GlideDrawable>() {
+//            @Override
+//            public boolean onException(Exception e, Uri uri, Target<GlideDrawable> target, boolean b) {
+//                Log.e(TAG, "Error!!!!");
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onResourceReady(GlideDrawable glideDrawable, Uri uri, Target<GlideDrawable> target, boolean b, boolean b1) {
+//                Log.i(TAG, "ready....");
+//                imgKanji.requestLayout();
+//                imgKanji.invalidate();
+//                return false;
+//            }
+//        };
+
+        RequestListener rq = new RequestListener<Drawable>() {
             @Override
-            public boolean onException(Exception e, Uri uri, Target<GlideDrawable> target, boolean b) {
-                Log.e(TAG, "Error!!!!");
-                return false;
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                // log exception
+                Log.e(TAG, "Error loading image: " + e.getMessage());
+                return false; // important to return false so the error placeholder can be placed
             }
 
             @Override
-            public boolean onResourceReady(GlideDrawable glideDrawable, Uri uri, Target<GlideDrawable> target, boolean b, boolean b1) {
-                Log.i(TAG, "ready....");
-                imgKanji.requestLayout();
-                imgKanji.invalidate();
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                 return false;
             }
         };
 
         Glide.with(activity).load(Uri.parse(fullPath))
                 .listener(rq)
-                .dontTransform()
                 .into(imgKanji);
+
+//                        .dontTransform()
 
     }
 

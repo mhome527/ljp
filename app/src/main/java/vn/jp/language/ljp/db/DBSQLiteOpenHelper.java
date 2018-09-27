@@ -1,13 +1,11 @@
 package vn.jp.language.ljp.db;
 
 import android.content.Context;
-
-import net.sqlcipher.Cursor;
-import net.sqlcipher.MatrixCursor;
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteException;
-import net.sqlcipher.database.SQLiteOpenHelper;
-
+import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import vn.jp.language.ljp.Constant;
@@ -52,7 +50,7 @@ public class DBSQLiteOpenHelper extends SQLiteOpenHelper {
     public ArrayList<Cursor> getData(String Query) {
         //get writable database
 //        SQLiteDatabase sqlDB = this.getWritableDatabase();
-        SQLiteDatabase sqlDB = this.getWritableDatabase(Constant.MY_TEXT);
+        SQLiteDatabase sqlDB = this.getWritableDatabase();
         String[] columns = new String[]{"mesage"};
         //an array list of cursor to save two cursors one has results from the query
         //other cursor stores error message if any errors are triggered

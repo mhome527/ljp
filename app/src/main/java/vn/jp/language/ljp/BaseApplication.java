@@ -4,8 +4,6 @@ import android.app.Application;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-import net.sqlcipher.database.SQLiteDatabase;
-
 import vn.jp.language.ljp.db.SqlLiteCopyDbHelper;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.utils.Prefs;
@@ -36,7 +34,7 @@ public class BaseApplication extends Application {
         }
 
         SqlLiteCopyDbHelper dbHelper = new SqlLiteCopyDbHelper(this);
-        SQLiteDatabase.loadLibs(this);
+//        SQLiteDatabase.loadLibs(this);
         if(dbHelper.openDataBase()) {
             pref.putStringValue(Constant.KEY_UPDATE, Constant.KEY_UPDATE);
         }

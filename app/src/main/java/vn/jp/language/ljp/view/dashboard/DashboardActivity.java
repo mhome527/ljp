@@ -65,7 +65,7 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
     @Override
     protected void initView() {
         int column;
-        Log.i(TAG, "initView text: " + Constant.MY_TEXT);
+        Log.i(TAG, "initView text: ");
         setTitle(getString(R.string.title_dashboard));
 
         Utility.setLanguage(activity);
