@@ -79,6 +79,7 @@
     <string name="title_other">OTHER</string>
     <string name="title_counter">Counters</string>
     <string name="title_date">Dates</string>
+    <string name="title_translate">TRANSLATE</string>
     <string name="title_ono">Onomatopoeia</string>
     <string name="title_menu_sort">Sort</string>
     <string name="title_menu_bookmark">Bookmark</string>
@@ -117,4 +118,6 @@
     <string name="vietnam">Vietnam</string>
     <string name="title_hint">hint</string>
 
+
+    <string name="title_privacy_policy">Privacy Policy</string>
 </resources>
