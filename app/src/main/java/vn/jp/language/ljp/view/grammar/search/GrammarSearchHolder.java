@@ -1,9 +1,10 @@
 package vn.jp.language.ljp.view.grammar.search;
 
-import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.GrammarEntity;

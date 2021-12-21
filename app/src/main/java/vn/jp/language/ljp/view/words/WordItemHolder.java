@@ -1,9 +1,10 @@
 package vn.jp.language.ljp.view.words;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import vn.jp.language.ljp.BaseApplication;
 import vn.jp.language.ljp.Constant;

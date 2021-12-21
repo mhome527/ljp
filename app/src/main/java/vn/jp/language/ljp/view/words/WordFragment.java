@@ -1,12 +1,12 @@
 package vn.jp.language.ljp.view.words;
 
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import java.util.List;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
 import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;

@@ -1,10 +1,12 @@
 package vn.jp.language.ljp.view.practice.dashboard;
 
 import android.os.Handler;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import butterknife.BindView;
 import vn.jp.language.ljp.Constant;

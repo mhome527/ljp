@@ -26,23 +26,25 @@ public class BaseApplication extends Application {
 
         mInstance = this;
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        try {
+            /////////////// Import DB
+            pref = new Prefs(this.getApplicationContext());
+            String strDB = pref.getStringValue("", Constant.KEY_UPDATE);
+            if (strDB.equals("") || !strDB.equals(Constant.KEY_UPDATE)) {
+                Log.i(TAG, "Delete database....");
+                this.deleteDatabase(Constant.DB_NAME);
+            }
 
-        /////////////// Import DB
-        pref = new Prefs(this.getApplicationContext());
-        String strDB = pref.getStringValue("", Constant.KEY_UPDATE);
-        if(strDB.equals("") || !strDB.equals(Constant.KEY_UPDATE) ) {
-            Log.i(TAG, "Delete database....");
-            this.deleteDatabase(Constant.DB_NAME);
+            SqlLiteCopyDbHelper dbHelper = new SqlLiteCopyDbHelper(this);
+            SQLiteDatabase.loadLibs(this);
+            if (dbHelper.openDataBase()) {
+                pref.putStringValue(Constant.KEY_UPDATE, Constant.KEY_UPDATE);
+            } else
+                Log.e(TAG, "Import Error!!!!!");
+        } catch (Exception e) {
+            Log.e(TAG, "Import Exception!!!!!");
+            e.printStackTrace();
         }
-
-        SqlLiteCopyDbHelper dbHelper = new SqlLiteCopyDbHelper(this);
-        SQLiteDatabase.loadLibs(this);
-        if(dbHelper.openDataBase()) {
-            pref.putStringValue(Constant.KEY_UPDATE, Constant.KEY_UPDATE);
-        }
-        else
-            Log.e(TAG, "Import Error!!!!!");
-
         ////
 
         androidDefaultUEH = Thread.getDefaultUncaughtExceptionHandler();

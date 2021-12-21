@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -28,6 +26,9 @@ import vn.jp.language.ljp.view.practice.reading.PracticeReadingActivity;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 import static vn.jp.language.ljp.BaseApplication.mFirebaseAnalytics;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Administrator on 7/7/2017.

@@ -1,12 +1,13 @@
 package vn.jp.language.ljp.view.practice.listening;
 
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

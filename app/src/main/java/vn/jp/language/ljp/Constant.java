@@ -32,14 +32,14 @@ public class Constant {
     public static final String TYPE_LANGUAGE = "type_language";
 
     ////
-    final static public String MY_TEXT;
+    final static public String MY_TEXT = "asdfqwer1234";
 
-    public static native String stringFromJNI();
-
-    static {
-        System.loadLibrary("native-lib");
-        MY_TEXT = stringFromJNI();
-    }
+//    public static native String stringFromJNI();
+//
+//    static {
+//        System.loadLibrary("native-lib");
+//        MY_TEXT = stringFromJNI();
+//    }
 
     //    public static final String DB_NAME = "ljp2.sqlite";
     public static final String DB_NAME = "ljp3.sqlite";

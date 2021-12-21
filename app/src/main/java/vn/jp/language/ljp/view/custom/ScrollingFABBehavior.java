@@ -1,11 +1,14 @@
 package vn.jp.language.ljp.view.custom;
 
 import android.content.Context;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
+
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import vn.jp.language.ljp.utils.Common;
 

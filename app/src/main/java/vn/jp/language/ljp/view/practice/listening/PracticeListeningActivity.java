@@ -2,8 +2,6 @@ package vn.jp.language.ljp.view.practice.listening;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -23,6 +21,9 @@ import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 import static vn.jp.language.ljp.R.id.btnView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by Administrator on 7/18/2017.

@@ -31,8 +31,8 @@
 -verbose
 
 -keepattributes *Annotation*
--keep public class com.google.vending.licensing.ILicensingService
--keep public class com.android.vending.licensing.ILicensingService
+#-keep public class com.google.vending.licensing.ILicensingService
+#-keep public class com.android.vending.licensing.ILicensingService
 
 # For native methods, see http://proguard.sourceforge.net/manual/examples.html#native
 -keepclasseswithmembernames class * {
@@ -50,9 +50,9 @@
 -keepclassmembers class * extends android.app.Activity {
    public void *(android.view.View);
 }
--keepclassmembers class * extends android.support.v7.app.AppCompatActivity {
-   public void *(android.view.View);
-}
+#-keepclassmembers class * extends android.support.v7.app.AppCompatActivity {
+#   public void *(android.view.View);
+#}
 # For enumeration classes, see http://proguard.sourceforge.net/manual/examples.html#enumerations
 -keepclassmembers enum * {
     public static **[] values();
@@ -194,7 +194,7 @@
 -dontwarn com.squareup.okhttp.**
 # Okio
 -dontwarn okio.*
--keep class sun.misc.Unsafe { *; }
+#-keep class sun.misc.Unsafe { *; }
 -dontwarn java.nio.file.*
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
@@ -207,27 +207,30 @@
 -dontwarn com.squareup.okhttp.**
 
 # rxjava
--keep class rx.schedulers.Schedulers {
-    public static <methods>;
-}
--keep class rx.schedulers.ImmediateScheduler {
-    public <methods>;
-}
--keep class rx.schedulers.TestScheduler {
-    public <methods>;
-}
--keep class rx.schedulers.Schedulers {
-    public static ** test();
-}
+#-keep class rx.schedulers.Schedulers {
+#    public static <methods>;
+#}
+#-keep class rx.schedulers.ImmediateScheduler {
+#    public <methods>;
+#}
+#-keep class rx.schedulers.TestScheduler {
+#    public <methods>;
+#}
+#-keep class rx.schedulers.Schedulers {
+#    public static ** test();
+#}
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
     long producerIndex;
     long consumerIndex;
 }
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-    long producerNode;
-    long consumerNode;
-}
+#-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+#    long producerNode;
+#    long consumerNode;
+#}
 
 -keep class vn.jp.language.ljp.db.SqlLiteCopyDbHelper
 #-keep class vn.jp.language.ljp.Constant
 #-keep class vn.jp.language.ljp.entity.GrammarDetailEntity
+-keep class net.sqlcipher.** { *; }
+-dontwarn net.sqlcipher.**
+-keepattributes InnerClasses

@@ -1,11 +1,12 @@
 package vn.jp.language.ljp.view.ono;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import butterknife.BindView;
 import butterknife.OnClick;

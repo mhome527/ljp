@@ -8,7 +8,7 @@
     android:paddingLeft="35dp"
     android:paddingRight="35dp">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -20,7 +20,7 @@
 
             <include layout="@layout/practice_question_item" />
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 </LinearLayout>

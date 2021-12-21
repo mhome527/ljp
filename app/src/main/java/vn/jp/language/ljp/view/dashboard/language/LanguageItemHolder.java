@@ -25,7 +25,6 @@ public class LanguageItemHolder extends BaseViewHolder {
     @BindView(R.id.tvLanguage)
     TextView tvLanguage;
 
-
     public LanguageItemHolder(View itemView) {
         super(itemView);
     }

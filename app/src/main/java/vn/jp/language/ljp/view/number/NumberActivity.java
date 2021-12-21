@@ -1,9 +1,10 @@
 package vn.jp.language.ljp.view.number;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.List;
 

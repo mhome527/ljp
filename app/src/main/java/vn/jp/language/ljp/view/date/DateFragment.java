@@ -1,7 +1,8 @@
 package vn.jp.language.ljp.view.date;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 

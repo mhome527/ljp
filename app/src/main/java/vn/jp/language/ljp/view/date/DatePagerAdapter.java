@@ -1,10 +1,9 @@
 package vn.jp.language.ljp.view.date;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 
-import vn.jp.language.ljp.view.alphabet.AlphabetFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 /**
  * Created by Administrator on 10/18/2016.

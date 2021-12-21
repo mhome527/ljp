@@ -1,10 +1,10 @@
 package vn.jp.language.ljp.view.ono;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import java.util.List;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
 import butterknife.BindView;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.OnoEntity;
