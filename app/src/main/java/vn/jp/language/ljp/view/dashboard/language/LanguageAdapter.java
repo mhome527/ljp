@@ -10,12 +10,13 @@ import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.LanguageEntity;
 import vn.jp.language.ljp.view.BaseAdapterView;
+import vn.jp.language.ljp.view.BaseViewHolder;
 
 /**
  * Created by HuynhTD on 5/31/2017.
  */
 
-public class LanguageAdapter extends BaseAdapterView<LanguageItemHolder> {
+public class LanguageAdapter extends BaseAdapterView<BaseViewHolder> {
 
     List<LanguageEntity> items;
     String currLang;
@@ -43,40 +44,27 @@ public class LanguageAdapter extends BaseAdapterView<LanguageItemHolder> {
         return items;
     }
 
+    @Override
+    protected int getItemLayout(int type) {
+        if (type == TYPE_ITEM)
+            return R.layout.dialog_language_item;
+        else
+            return 0;
+    }
+
 
     @Override
-    protected int getHeaderLayout() {
-        return 0;
+    protected BaseViewHolder getItemView(View view, int type) {
+        if (type == TYPE_ITEM)
+            return new LanguageItemHolder(view);
+        else
+            return new BaseViewHolder(view);
     }
 
     @Override
-    protected int getFooterLayout() {
-        return 0;
-    }
-
-    @Override
-    protected int getItemLayout() {
-        return R.layout.dialog_language_item;
-    }
-
-    @Override
-    protected LanguageItemHolder getHeaderView(View view) {
-        return null;
-    }
-
-    @Override
-    protected LanguageItemHolder getFooterView(View view) {
-        return null;
-    }
-
-    @Override
-    protected LanguageItemHolder getItemView(View view) {
-        return new LanguageItemHolder(view);
-    }
-
-    @Override
-    protected void onViewHolder(LanguageItemHolder holder, int position) {
-        holder.setData(items.get(position), currLang, onItemClickListener);
+    protected void onViewHolder(BaseViewHolder holder, int position) {
+        if (holder instanceof LanguageItemHolder)
+            ((LanguageItemHolder) holder).setData(items.get(position), currLang, onItemClickListener);
     }
 
     ////

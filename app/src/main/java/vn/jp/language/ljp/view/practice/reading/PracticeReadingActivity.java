@@ -1,6 +1,12 @@
 package vn.jp.language.ljp.view.practice.reading;
 
 import android.content.Intent;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,8 +63,8 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    @BindView(R.id.fabButton)
-    FloatingActionButton fabButton;
+//    @BindView(R.id.fabButton)
+//    FloatingActionButton fabButton;
 
     PracticeReadingPresenter presenter;
     PracticeReadingAdapter adapter;
@@ -102,10 +108,10 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
 
         tvNum.setText(num + "");
 
-        if (hint == null || hint.equals(""))
-            fabButton.setVisibility(View.GONE);
-        else
-            fabButton.setVisibility(View.VISIBLE);
+//        if (hint == null || hint.equals(""))
+//            fabButton.setVisibility(View.GONE);
+//        else
+//            fabButton.setVisibility(View.VISIBLE);
 
         Common.setupRecyclerView(activity, recyclerView, null);
         presenter = new PracticeReadingPresenter(activity, level, idRef);
@@ -151,11 +157,11 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
     }
 
 
-    @OnClick(R.id.fabButton)
-    public void actionHint() {
-        PracticeHintDialog dialog = new PracticeHintDialog(activity, hint);
-        dialog.show();
-    }
+//    @OnClick(R.id.fabButton)
+//    public void actionHint() {
+//        PracticeHintDialog dialog = new PracticeHintDialog(activity, hint);
+//        dialog.show();
+//    }
 
     // IPracticeInterface
     @Override
@@ -178,10 +184,10 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
             return;
         }
 
-        if (hint == null || hint.equals(""))
-            fabButton.setVisibility(View.GONE);
-        else
-            fabButton.setVisibility(View.VISIBLE);
+//        if (hint == null || hint.equals(""))
+//            fabButton.setVisibility(View.GONE);
+//        else
+//            fabButton.setVisibility(View.VISIBLE);
 
 
         items = data;

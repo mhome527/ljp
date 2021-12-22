@@ -7,12 +7,13 @@ import java.util.List;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.OnoEntity;
 import vn.jp.language.ljp.view.BaseAdapterView;
+import vn.jp.language.ljp.view.BaseViewHolder;
 
 /**
  * Created by Administrator on 7/10/2017.
  */
 
-public class OnoAdapter extends BaseAdapterView<OnoHolder> {
+public class OnoAdapter extends BaseAdapterView<BaseViewHolder> {
 
     List<OnoEntity> items;
     public String text = "";
@@ -22,33 +23,18 @@ public class OnoAdapter extends BaseAdapterView<OnoHolder> {
     }
 
     @Override
-    protected int getHeaderLayout() {
+    protected int getItemLayout(int type) {
+        if (type == TYPE_ITEM)
+            return R.layout.ono_item;
         return 0;
     }
 
     @Override
-    protected int getFooterLayout() {
-        return 0;
-    }
-
-    @Override
-    protected int getItemLayout() {
-        return R.layout.ono_item;
-    }
-
-    @Override
-    protected OnoHolder getHeaderView(View view) {
-        return null;
-    }
-
-    @Override
-    protected OnoHolder getFooterView(View view) {
-        return null;
-    }
-
-    @Override
-    protected OnoHolder getItemView(View view) {
-        return new OnoHolder(view);
+    protected BaseViewHolder getItemView(View view, int type) {
+        if (type == TYPE_ITEM)
+            return new OnoHolder(view);
+        else
+            return new BaseViewHolder(view);
     }
 
     @Override
@@ -57,11 +43,13 @@ public class OnoAdapter extends BaseAdapterView<OnoHolder> {
     }
 
     @Override
-    public void onViewHolder(OnoHolder holder, int position) {
-        if (text.equals(""))
-            holder.bind(items.get(position));
-        else
-            holder.bind(items.get(position), text);
+    public void onViewHolder(BaseViewHolder holder, int position) {
+        if (holder instanceof OnoHolder) {
+            if (text.equals(""))
+                ((OnoHolder) holder).bind(items.get(position));
+            else
+                ((OnoHolder) holder).bind(items.get(position), text);
+        }
     }
 
     //    =====================

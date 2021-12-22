@@ -27,33 +27,24 @@ public class PracticeReadingAdapter extends BaseAdapterView<BaseViewHolder> {
     }
 
     @Override
-    protected int getHeaderLayout() {
-        return R.layout.practice_reading_header_item;
+    protected int getItemLayout(int type) {
+        if (type == TYPE_HEADER)
+            return R.layout.practice_reading_header_item;
+        else if (type == TYPE_ITEM)
+            return R.layout.practice_reading_item;
+        else
+            return 0;
     }
 
-    @Override
-    protected int getFooterLayout() {
-        return 0;
-    }
 
     @Override
-    protected int getItemLayout() {
-        return R.layout.practice_reading_item;
-    }
-
-    @Override
-    protected PracticeReadingHeaderHolder getHeaderView(View view) {
-        return new PracticeReadingHeaderHolder(view);
-    }
-
-    @Override
-    protected PracticeReadingHolder getFooterView(View view) {
-        return null;
-    }
-
-    @Override
-    protected PracticeReadingHolder getItemView(View view) {
-        return new PracticeReadingHolder(view, iPracticeInterface);
+    protected BaseViewHolder getItemView(View view, int type) {
+        if (type == TYPE_HEADER)
+            return new PracticeReadingHeaderHolder(view);
+        else if (type == TYPE_ITEM)
+            return new PracticeReadingHolder(view, iPracticeInterface);
+        else
+            return new BaseViewHolder(view);
     }
 
     @Override
@@ -65,8 +56,8 @@ public class PracticeReadingAdapter extends BaseAdapterView<BaseViewHolder> {
     public void onViewHolder(BaseViewHolder holder, int position) {
         if (holder instanceof PracticeReadingHeaderHolder) {
             ((PracticeReadingHeaderHolder) holder).bind(title);
-        } else {
-            ((PracticeReadingHolder) holder).bind(position, items.get(position));
+        } else if (holder instanceof PracticeReadingHolder) {
+            ((PracticeReadingHolder) holder).bind(position - countHeaderLayout(), items.get(position - countHeaderLayout()));
         }
     }
 }

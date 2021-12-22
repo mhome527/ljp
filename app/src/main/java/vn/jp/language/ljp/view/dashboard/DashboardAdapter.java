@@ -7,12 +7,13 @@ import java.util.List;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.DashboardEntity;
 import vn.jp.language.ljp.view.BaseAdapterView;
+import vn.jp.language.ljp.view.BaseViewHolder;
 
 /**
  * Created by Administrator on 10/17/2016.
  */
 
-public class DashboardAdapter extends BaseAdapterView<DashboardHolder> {
+public class DashboardAdapter extends BaseAdapterView<BaseViewHolder> {
 
     private static String TAG = "DashboardAdapter";
     List<DashboardEntity> listData;
@@ -21,34 +22,25 @@ public class DashboardAdapter extends BaseAdapterView<DashboardHolder> {
         this.listData = listData;
     }
 
+
     @Override
-    protected int getHeaderLayout() {
+    protected int getItemLayout(int type) {
+        if (type == TYPE_FOOTER)
+            return R.layout.dashboard_footer_item1;
+        else if (type == TYPE_FOOTER2)
+            return R.layout.dashboard_footer_item2;
+        else if (type == TYPE_ITEM)
+            return R.layout.dashboard_item;
         return 0;
     }
 
     @Override
-    protected int getFooterLayout() {
-        return 0;
-    }
+    protected BaseViewHolder getItemView(View view, int type) {
+        if (type == TYPE_ITEM)
+            return new DashboardHolder(view);
+        else
+            return new BaseViewHolder(view);
 
-    @Override
-    protected int getItemLayout() {
-        return R.layout.dashboard_item;
-    }
-
-    @Override
-    protected DashboardHolder getHeaderView(View view) {
-        return null;
-    }
-
-    @Override
-    protected DashboardHolder getFooterView(View view) {
-        return null;
-    }
-
-    @Override
-    protected DashboardHolder getItemView(View view) {
-        return new DashboardHolder(view);
     }
 
     @Override
@@ -57,8 +49,9 @@ public class DashboardAdapter extends BaseAdapterView<DashboardHolder> {
     }
 
     @Override
-    public void onViewHolder(DashboardHolder holder, int position) {
-        holder.bind(listData.get(position));
+    public void onViewHolder(BaseViewHolder holder, int position) {
+        if (holder instanceof DashboardHolder)
+            ((DashboardHolder) holder).bind(listData.get(position - countHeaderLayout()));
     }
 
 }

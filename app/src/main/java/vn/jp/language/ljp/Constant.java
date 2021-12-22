@@ -17,7 +17,7 @@ public class Constant {
 
     static {
         if (BuildConfig.DEBUG)
-            TEST_P = 500;
+            TEST_P = 5;
         else
             TEST_P = 0;
     }
@@ -40,12 +40,20 @@ public class Constant {
 //        System.loadLibrary("native-lib");
 //        MY_TEXT = stringFromJNI();
 //    }
+//    final static public String MY_TEXT;
+//
+//    public static native String stringFromJNI();
+//
+//    static {
+//        System.loadLibrary("native-lib");
+//        MY_TEXT = stringFromJNI();
+//    }
 
     //    public static final String DB_NAME = "ljp2.sqlite";
     public static final String DB_NAME = "ljp3.sqlite";
-    public static final int DATABASE_VERSION = 7;
+    public static final int DATABASE_VERSION = 8;
 
-    public static final String KEY_UPDATE = "db_update_7"; // gia tri khac se delete database cu
+    public static final String KEY_UPDATE = "db_update_8"; // gia tri khac se delete database cu
     //
 //	// /////////
     public static final String INTENT_KIND = "intent_kind";
