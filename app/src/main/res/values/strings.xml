@@ -1,14 +1,12 @@
 <resources>
-    <string name="language">en</string>
-
-    <string name="app_name">Japanese(JLPT)</string>
-    <!--<string name="title_button_alphabet">Alphabet</string>-->
-    <!--<string name="title_button_number">Number</string>-->
-    <!--<string name="title_button_phrase">Phrases</string>-->
-    <!--<string name="title_button_word">Animal</string>-->
-    <!--<string name="title_button_house">House</string>-->
-    <!--<string name="title_button_kanji">Kanji</string>-->
-    <!--<string name="title_button_grammar">Grammar</string>-->
+    <string name="app_name">LJP</string>
+    <string name="title_button_alphabet">Alphabet</string>
+    <string name="title_button_number">Number</string>
+    <string name="title_button_phrase">Phrases</string>
+    <string name="title_button_word">Animal</string>
+    <string name="title_button_house">House</string>
+    <string name="title_button_kanji">Kanji</string>
+    <string name="title_button_grammar">Grammar</string>
     <string name="title_button_date">Date</string>
 
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
@@ -56,7 +54,7 @@
     <string name="number_count_generic">COUNT ANY GENERIC OBJECT</string>
 
     <string name="menu_search">search</string>
-    <string name="menu_search_hint">ひらがな, Romaji</string>
+    <string name="menu_search_hint">ひらがな, Romaji, Mean</string>
     <string name="coming_soon">Coming Soon!</string>
 
     <string name="title_dashboard">Learn Japanese</string>
@@ -66,12 +64,7 @@
     <string name="title_test">Test</string>
     <string name="title_word">Words</string>
     <string name="title_phrase">Phrase</string>
-    <string name="title_food">Food</string>
-
-    <string name="title_reading">Reading</string>
-    <string name="title_kanji_2">Kanji</string>
-    <string name="title_vocabulary">Vocabulary</string>
-    <string name="title_listening">Listening</string>
+    <string name="title_coming_soon">Coming soon</string>
 
 
     <string name="title_animal">ANIMAL</string>
@@ -79,10 +72,6 @@
     <string name="title_other">OTHER</string>
     <string name="title_counter">Counters</string>
     <string name="title_date">Dates</string>
-    <string name="title_translate">TRANSLATE</string>
-    <string name="title_ono">Onomatopoeia</string>
-    <string name="title_menu_sort">Sort</string>
-    <string name="title_menu_bookmark">Bookmark</string>
 
     <string name="title_lvn">Learn Vietnamese Pronunciation</string>
     <string name="title_n_grammar">Grammar %1$d/%2$d</string>
@@ -109,15 +98,4 @@
 
     <string name="title_view">View</string>
 
-
-    <string name="korea">한국어</string>
-    <string name="france">français</string>
-    <string name="english">English</string>
-    <string name="chinese">中文</string>
-    <string name="spanish">Español</string>
-    <string name="vietnam">Vietnam</string>
-    <string name="title_hint">hint</string>
-
-
-    <string name="title_privacy_policy">Privacy Policy</string>
 </resources>

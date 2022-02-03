@@ -7,13 +7,12 @@ import java.util.List;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.view.BaseAdapterView;
-import vn.jp.language.ljp.view.BaseViewHolder;
 
 /**
  * Created by Administrator on 7/10/2017.
  */
 
-public class PracticeListAdapter extends BaseAdapterView<BaseViewHolder> {
+public class PracticeListAdapter extends BaseAdapterView<PracticeListHolder> {
 
     List<PracticeEntity> items;
     boolean isPurchased = false;
@@ -23,18 +22,33 @@ public class PracticeListAdapter extends BaseAdapterView<BaseViewHolder> {
     }
 
     @Override
-    protected int getItemLayout(int type) {
-        if (type == TYPE_ITEM)
-            return R.layout.practice_list_item;
+    protected int getHeaderLayout() {
         return 0;
     }
 
     @Override
-    protected BaseViewHolder getItemView(View view, int type) {
-        if (type == TYPE_ITEM)
-            return new PracticeListHolder(view);
-        else
-            return new BaseViewHolder(view);
+    protected int getFooterLayout() {
+        return 0;
+    }
+
+    @Override
+    protected int getItemLayout() {
+        return R.layout.practice_list_item;
+    }
+
+    @Override
+    protected PracticeListHolder getHeaderView(View view) {
+        return null;
+    }
+
+    @Override
+    protected PracticeListHolder getFooterView(View view) {
+        return null;
+    }
+
+    @Override
+    protected PracticeListHolder getItemView(View view) {
+        return new PracticeListHolder(view);
     }
 
     @Override
@@ -43,9 +57,8 @@ public class PracticeListAdapter extends BaseAdapterView<BaseViewHolder> {
     }
 
     @Override
-    public void onViewHolder(BaseViewHolder holder, int position) {
-        if (holder instanceof PracticeListHolder)
-            ((PracticeListHolder) holder).bind(items.get(position), isPurchased);
+    public void onViewHolder(PracticeListHolder holder, int position) {
+        holder.bind(items.get(position), isPurchased);
     }
 
     public void setPurchased(boolean isPurchased) {

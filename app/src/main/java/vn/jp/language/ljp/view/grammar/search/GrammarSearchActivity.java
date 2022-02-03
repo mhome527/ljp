@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
@@ -103,6 +104,10 @@ public class GrammarSearchActivity extends BaseActivity<GrammarSearchActivity> i
 
     @Override
     public void onClick(View view, int position) {
+        if (adapter.getItem(position).getLevel() == 1) {
+            Toast.makeText(activity, R.string.coming_soon, Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent i = new Intent(activity, GrammarDetailActivity.class);
         i.putExtra(Constant.INTENT_DETAIL_LEVEL, adapter.getItem(position).getLevel());
         i.putExtra(Constant.INTENT_DETAIL_NUM, adapter.getItem(position).getNum());

@@ -27,10 +27,8 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
-
 import vn.jp.language.ljp.db.DBSQLiteOpenHelper;
 
 

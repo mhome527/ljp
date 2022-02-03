@@ -1,13 +1,10 @@
 package vn.jp.language.ljp.view.alphabet;
 
 import android.view.View;
-
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
-
 import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;

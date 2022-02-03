@@ -13,53 +13,35 @@ public class Constant {
     public static final int PURCHASE_REQUEST_CODE = 1080;
     public static final boolean ITEM_PURCHASED = true;
     /// ===========
-    public static final int TEST_P;
-
-    static {
-        if (BuildConfig.DEBUG)
-            TEST_P = 5;
-        else
-            TEST_P = 0;
-    }
-
-    public static final int TRIAL = 4 + TEST_P;
+    public static final int TEST_P = 300;
+    public static final int TRIAL = 4;
     public static final int TRIAL_GRAMMAR = 30 + TEST_P;
     public static final int TRIAL_READING = 5 + TEST_P;
     public static final int TRIAL_LISTENING = 4 + TEST_P;
-    //    public static final int TRIAL_VOCABULARY = 3;
+//    public static final int TRIAL_VOCABULARY = 3;
 //    public static final int TRIAL_KANJI = 3;
     /////
-    public static final String TYPE_LANGUAGE = "type_language";
 
     ////
-    final static public String MY_TEXT = "asdfqwer1234";
+//    final static public String MY_TEXT;
 
 //    public static native String stringFromJNI();
-//
-//    static {
-//        System.loadLibrary("native-lib");
-//        MY_TEXT = stringFromJNI();
-//    }
-//    final static public String MY_TEXT;
-//
-//    public static native String stringFromJNI();
-//
+
 //    static {
 //        System.loadLibrary("native-lib");
 //        MY_TEXT = stringFromJNI();
 //    }
 
     //    public static final String DB_NAME = "ljp2.sqlite";
-    public static final String DB_NAME = "ljp3.sqlite";
-    public static final int DATABASE_VERSION = 8;
+    public static final String DB_NAME = "ljp4.sqlite";
+    public static final int DATABASE_VERSION = 1;
 
-    public static final String KEY_UPDATE = "db_update_8"; // gia tri khac se delete database cu
+    public static final String KEY_UPDATE = "db_update_1"; // gia tri khac se delete database cu
     //
 //	// /////////
     public static final String INTENT_KIND = "intent_kind";
     public static final String INTENT_LEVEL = "intent_level";
     public static final String INTENT_TITLE_Q = "intent_title_q";
-    public static final String INTENT_HINT = "intent_hint";
     public static final String INTENT_V1 = "intent_v1";
     public static final String INTENT_V2 = "intent_v2";
 
@@ -78,12 +60,35 @@ public class Constant {
     public static final String PREF_LISTENING_N = "pref_listening_";
     public static final String PREF_KANJI_N = "pref_kanji_";
 
-    public static final String KO = "ko";
-    public static final String FR = "fr";
-    public static final String EN = "en";
-    public static final String ZH = "zh";
-    public static final String ES = "es";
-    public static final String VN = "vi";
+//   public static final String PREF_READING_N1 = "pref_reading_1";
+//    public static final String PREF_GRAMMAR_N1 = "pref_grammar_1";
+//    public static final String PREF_VOCABULARY_N1 = "pref_vocabulary_1";
+//    public static final String PREF_LISTENING_N1 = "pref_listening_1";
+//    public static final String PREF_KANJI_N1 = "pref_kanji_1";
+//
+//    public static final String PREF_READING_N2 = "pref_reading_2";
+//    public static final String PREF_GRAMMAR_N2 = "pref_grammar_2";
+//    public static final String PREF_VOCABULARY_N2 = "pref_vocabulary_2";
+//    public static final String PREF_LISTENING_N2 = "pref_listening_2";
+//    public static final String PREF_KANJI_N2 = "pref_kanji_2";
+//
+//    public static final String PREF_READING_N3 = "pref_reading_3";
+//    public static final String PREF_GRAMMAR_N3 = "pref_grammar_3";
+//    public static final String PREF_VOCABULARY_N3 = "pref_vocabulary_3";
+//    public static final String PREF_LISTENING_N3 = "pref_listening_3";
+//    public static final String PREF_KANJI_N3 = "pref_kanji_3";
+//
+//    public static final String PREF_READING_N4 = "pref_reading_4";
+//    public static final String PREF_GRAMMAR_N4 = "pref_grammar_4";
+//    public static final String PREF_VOCABULARY_N4 = "pref_vocabulary_4";
+//    public static final String PREF_LISTENING_N4 = "pref_listening_4";
+//    public static final String PREF_KANJI_N4 = "pref_kanji_4";
+//
+//    public static final String PREF_READING_N5 = "pref_reading_5";
+//    public static final String PREF_GRAMMAR_N5 = "pref_grammar_5";
+//    public static final String PREF_VOCABULARY_N5 = "pref_vocabulary_5";
+//    public static final String PREF_LISTENING_N5 = "pref_listening_5";
+//    public static final String PREF_KANJI_N5 = "pref_kanji_5";
 
 
     public enum TYPE_ALPHABET {

@@ -6,8 +6,8 @@ import android.database.MatrixCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.utils.Log;
 

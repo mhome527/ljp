@@ -1,5 +1,6 @@
 package vn.jp.language.ljp.view.practice.listening;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -14,6 +15,8 @@ import vn.jp.language.ljp.view.practice.BasePracticeDao;
  */
 
 public class PracticeListeningDao extends BasePracticeDao {
+
+    int level;
 
     @Override
     protected int getLevel() {
@@ -30,32 +33,26 @@ public class PracticeListeningDao extends BasePracticeDao {
         this.level = level;
     }
 
+    @SuppressLint("Range")
     @Override
-    protected PracticeEntity fetch(Cursor cursor, PracticeEntity entity) {
+    protected PracticeEntity fetch(Cursor cursor) {
+        PracticeEntity entity = new PracticeEntity();
+        entity.setNum(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_NUM)));
+        entity.setNumId(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_NUM_ID)));
+        entity.setBookmarks(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_BOOKMARKS)));
+        entity.setKind(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_KIND)));
+        entity.setQuestion(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_QUESTION)));
+        entity.setQ1(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q1)));
+        entity.setQ2(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q2)));
+        entity.setQ3(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q3)));
+        entity.setQ4(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q4)));
+        entity.setAns(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_ANS)));
+        entity.setReview(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REVIEW)));
+        entity.setRef(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REF)));
         entity.setTitle(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_TITLE)));
         entity.setSound(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_SOUND)));
         return entity;
     }
-
-//    @Override
-//    protected PracticeEntity fetch(Cursor cursor) {
-//        PracticeEntity entity = new PracticeEntity();
-//        entity.setNum(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_NUM)));
-//        entity.setNumId(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_NUM_ID)));
-//        entity.setBookmarks(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_BOOKMARKS)));
-//        entity.setKind(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_KIND)));
-//        entity.setQuestion(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_QUESTION)));
-//        entity.setQ1(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q1)));
-//        entity.setQ2(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q2)));
-//        entity.setQ3(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q3)));
-//        entity.setQ4(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_Q4)));
-//        entity.setAns(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_ANS)));
-//        entity.setReview(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REVIEW)));
-//        entity.setRef(cursor.getInt(cursor.getColumnIndex(PracticeTable.COL_REF)));
-//        entity.setTitle(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_TITLE)));
-//        entity.setSound(cursor.getString(cursor.getColumnIndex(PracticeTable.COL_SOUND)));
-//        return entity;
-//    }
 
     /*
 
@@ -67,7 +64,7 @@ From (Select * From TblPracticeN3 Where kind=6 And num_id > 600) t,
 Where t.num_id = n.id_ref  Order by n.review asc, n.num asc
      */
     public List<PracticeEntity> getItems() {
-        String sql = "Select t.question title, t.q1 sound,  n.bookmarks bookmarks, "
+        String sql = "Select t.question title, t.q1 sound,  t.bookmarks bookmarks, "
                 + " n.question question, n.num num, n.num_id num_id, n.kind kind, n.review review, "
                 + " n.q1 q1, n.q2 q2, n.q3 q3, n.q4 q4, n.ans ans, n.id_ref id_ref  "
                 + " From "

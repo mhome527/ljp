@@ -1,7 +1,6 @@
 package vn.jp.language.ljp.view.practice.kanji;
 
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -49,9 +48,6 @@ public class PracticeKanJiActivity extends BaseActivity<PracticeKanJiActivity> i
     @BindView(R.id.imgBookmark)
     ImageButton imgBookmark;
 
-    @BindView(R.id.imgNext)
-    ImageButton imgNext;
-
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
@@ -72,7 +68,7 @@ public class PracticeKanJiActivity extends BaseActivity<PracticeKanJiActivity> i
 
     @Override
     protected void initView() {
-        level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
+        int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
         idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
         num = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
         bookmark = getIntent().getIntExtra(Constant.INTENT_BOOKMARK, 0);
@@ -90,7 +86,7 @@ public class PracticeKanJiActivity extends BaseActivity<PracticeKanJiActivity> i
             actionBar.setDisplayShowHomeEnabled(true); // remove the icon
             actionBar.setDisplayShowTitleEnabled(true); // remove title
 //            toolbarTitle.setText(getString(R.string.title_alphabet));
-            actionBar.setTitle(getString(R.string.title_n_kanji, v1, v2));
+            actionBar.setTitle(getString(R.string.title_n_reading, v1, v2));
         }
 
         tvNum.setText(num + "");
@@ -119,12 +115,7 @@ public class PracticeKanJiActivity extends BaseActivity<PracticeKanJiActivity> i
     public void actionBookmark() {
         bookmark = bookmark == 0 ? 1 : 0;
         setBookmark();
-        presenter.updateBookmark(num, bookmark, 0);
-    }
-
-    @OnClick(R.id.imgNext)
-    public void actionNext() {
-        presenter.loadNext(++num, this);
+        presenter.updateBookmark(num, bookmark, idRef);
     }
 
 
@@ -143,15 +134,7 @@ public class PracticeKanJiActivity extends BaseActivity<PracticeKanJiActivity> i
     //    ICallback
     @Override
     public void onCallback(List<PracticeEntity> data) {
-        if (data == null || data.size() == 0) {
-            --num;
-            imgNext.setVisibility(View.INVISIBLE);
-            return;
-        }
         items = data;
-        tvNum.setText(num + "");
-        setBookmark();
-
         adapter = new PracticeReadingAdapter(activity, titleQ, data);
         recyclerView.setAdapter(adapter);
     }

@@ -1,9 +1,8 @@
 package vn.jp.language.ljp.view.grammar;
 
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.view.IClickListener;

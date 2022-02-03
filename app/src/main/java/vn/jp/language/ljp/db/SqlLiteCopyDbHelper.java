@@ -95,11 +95,6 @@ public class SqlLiteCopyDbHelper extends SQLiteOpenHelper {
 
             }
         } catch (IOException e) {
-            Log.i("CopyDB", "openDataBase IOException:" + e.getMessage());
-            e.printStackTrace();
-        } catch (Exception e) {
-            Log.i("CopyDB", "openDataBase error:" + e.getMessage());
-            e.printStackTrace();
             return false;
         }
         return true;
@@ -107,6 +102,7 @@ public class SqlLiteCopyDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
 
     }
 

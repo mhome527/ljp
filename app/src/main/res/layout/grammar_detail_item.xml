@@ -11,11 +11,7 @@
         android:id="@+id/tvJp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:enabled="true"
-        android:focusable="true"
-        android:longClickable="true"
         android:textColor="@color/black"
-        android:textIsSelectable="true"
         tools:text="TextView" />
 
     <TextView

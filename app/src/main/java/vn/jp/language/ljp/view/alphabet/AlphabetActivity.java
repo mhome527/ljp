@@ -4,8 +4,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
+
 import butterknife.BindView;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.view.BaseActivity;

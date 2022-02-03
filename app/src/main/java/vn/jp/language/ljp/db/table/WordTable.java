@@ -2,8 +2,6 @@ package vn.jp.language.ljp.db.table;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import vn.jp.language.ljp.Constant;
-
 
 /**
  * Created by huynhtran on 5/12/16.
@@ -11,15 +9,14 @@ import vn.jp.language.ljp.Constant;
 public class WordTable {
 
     private static final String TAG = "WordTable";
-    private static final String TABLE_NAME = "tblJpWord";
+    public static final String TABLE_NAME = "tblJpWord";
 //    public static final String TABLE_NAME_EN = "tblJpWordEn";
 
     public static final String COL_NUM = "num";
     public static final String COL_KIND = "kind";
     public static final String COL_JP1 = "jp1";
     public static final String COL_JP2 = "jp2";
-    public static final String COL_OT = "ot";
-    public static final String COL_OT_2 = "ot_temp";
+    public static final String COL_OT = "ot_temp";
     public static final String COL_IMG = "imgpath";
     public static final String COL_SOUND = "sound";
     public static final String COL_ROMAJI = "romaji";
@@ -48,27 +45,6 @@ public class WordTable {
 //                + ", which will destroy all old data");
 //        database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 //        onCreate(database);
-    }
-
-    public static String getTableName() {
-        return TABLE_NAME;
-    }
-
-    public static String getTableName(String lang) {
-        String table;
-        if (lang.equals(Constant.KO))
-            table = TABLE_NAME + " t1, TblJpWordKo t2 ";
-        else if (lang.equals(Constant.FR))
-            table = TABLE_NAME + " t1, TblJpWordFr t2 ";
-        else if (lang.equals(Constant.ZH))
-            table = TABLE_NAME + " t1, TblJpWordCn t2 ";
-        else if (lang.equals(Constant.ES))
-            table = TABLE_NAME + " t1, TblJpWordEs t2 ";
-        else if (lang.equals(Constant.VN))
-            table = TABLE_NAME + " t1, TblJpWordVn t2 ";
-        else
-            table = TABLE_NAME + " t1, TblJpWordEn t2 ";
-        return table;
     }
 
 }

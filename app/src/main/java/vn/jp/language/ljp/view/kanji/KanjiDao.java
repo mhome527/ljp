@@ -6,7 +6,6 @@ import android.database.Cursor;
 import java.util.List;
 
 import vn.jp.language.ljp.db.dao.BaseDao;
-import vn.jp.language.ljp.db.table.BaseTable;
 import vn.jp.language.ljp.db.table.KanjiTable;
 import vn.jp.language.ljp.entity.KanjiEntity;
 import vn.jp.language.ljp.utils.Log;
@@ -31,44 +30,39 @@ public class KanjiDao extends BaseDao<KanjiEntity> {
         entity.setJp2(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_JP2)));
         entity.setRomaji(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_ROMAJI)));
         entity.setImgPath(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_IMG_PATH)));
-        entity.setOt(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_OT_2)));
+        entity.setOt(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_OT)));
         entity.setExample(cursor.getString(cursor.getColumnIndex(KanjiTable.COL_EX)));
         return entity;
     }
 
     public static KanjiEntity getData(Context context, int num) {
-        KanjiDao dao = new KanjiDao(context);
-
         String sql = "SELECT * "
-                + " FROM " + KanjiTable.getTableName(dao.lang)
-                + " WHERE " + BaseTable.appendCond()
-                + " And t1." + KanjiTable.COL_NUM + " =" + num;
+                + " FROM " + KanjiTable.TABLE_NAME
+                + " WHERE " + KanjiTable.COL_NUM + " =" + num;
 
         Log.i(TAG, "kanji: sql=" + sql);
+        KanjiDao dao = new KanjiDao(context);
         return dao.fetch(sql);
     }
 
     public static List<KanjiEntity> getListData(Context context) {
-        KanjiDao dao = new KanjiDao(context);
         String sql = "SELECT * "
-                + " FROM " + KanjiTable.getTableName(dao.lang)
-                + " Where" + BaseTable.appendCond()
+                + " FROM " + KanjiTable.TABLE_NAME
                 + " ORDER BY " + KanjiTable.COL_NUM;
         Log.i(TAG, "kanji: sql=" + sql);
+        KanjiDao dao = new KanjiDao(context);
         return dao.fetchAll(sql);
     }
 
 
     public static List<KanjiEntity> searchData(Context context, String text) {
-        KanjiDao dao = new KanjiDao(context);
-        String sql = "SELECT * FROM " + KanjiTable.getTableName(dao.lang)
-                + " WHERE " + BaseTable.appendCond()
-                + " And ("
-                + " " + KanjiTable.COL_KANJI + " like '%" + text + "%'"
-                + " OR " + KanjiTable.COL_JP1 + " like '%" + text + "%'"
+        String sql = "SELECT * FROM " + KanjiTable.TABLE_NAME
+                + " WHERE " + KanjiTable.COL_JP1 + " like '%" + text + "%'"
                 + " OR " + KanjiTable.COL_JP2 + " like '%" + text + "%'"
-                + " OR " + KanjiTable.COL_ROMAJI + " like '%" + text + "%')";
+                + " OR " + KanjiTable.COL_ROMAJI + " like '%" + text + "%'"
+                + " OR " + KanjiTable.COL_OT + " like '%" + text + "%'";
         Log.i(TAG, "searchData: sql=" + sql);
+        KanjiDao dao = new KanjiDao(context);
         return dao.fetchAll(sql);
     }
 

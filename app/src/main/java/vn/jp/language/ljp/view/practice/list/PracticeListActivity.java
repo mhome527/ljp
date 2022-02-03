@@ -1,9 +1,8 @@
 package vn.jp.language.ljp.view.practice.list;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.view.View;
 import java.util.List;
 
 import butterknife.BindView;
-import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
@@ -20,16 +18,11 @@ import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IClickListener;
-import vn.jp.language.ljp.view.grammar.search.GrammarSearchActivity;
 import vn.jp.language.ljp.view.practice.dialog.PracticeDialog;
 import vn.jp.language.ljp.view.practice.kanji.PracticeKanJiActivity;
 import vn.jp.language.ljp.view.practice.listening.PracticeListeningActivity;
 import vn.jp.language.ljp.view.practice.reading.PracticeReadingActivity;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
-
-import static vn.jp.language.ljp.BaseApplication.mFirebaseAnalytics;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Administrator on 7/7/2017.
@@ -44,6 +37,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
     List<PracticeEntity> items;
     PracticeListAdapter adapter;
     PracticeListPresenter presenter;
+    int level;
     int kind;
     boolean isSort = true;
     int v1;
@@ -66,25 +60,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
 
 
         presenter = new PracticeListPresenter(this, level, kind);
-        setTitleQ();
-
-        ///////
-        if (!BuildConfig.DEBUG) {
-            Bundle params = new Bundle();
-
-            if (kind == PracticeTable.TYPE_GRAMMAR)
-                params.putString("GRAMMAR", "level: " + level);
-            else if (kind == PracticeTable.TYPE_READING)
-                params.putString("READING", "level: " + level);
-            else if (kind == PracticeTable.TYPE_LISTENING)
-                params.putString("LISTENING", "level: " + level);
-            else if (kind == PracticeTable.TYPE_KANJI)
-                params.putString("KANJI", "level: " + level);
-            else
-                params.putString("VOCABULARY", "level: " + level);
-
-            mFirebaseAnalytics.logEvent("Practice", params);
-        }
+        setTitleQ(v1, v2);
 
     }
 
@@ -111,11 +87,6 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                return true;
-
-            case R.id.menu_search:
-                Intent iSearch = new Intent(activity, GrammarSearchActivity.class);
-                startActivity(iSearch);
                 return true;
 
             case R.id.menuBookmark:
@@ -145,17 +116,17 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         if (getItemPurchased() == Constant.ITEM_PURCHASED) {
             Log.i(TAG, "WithIabSetupSuccess...item purchased");
             isPurchased = true;
-            Handler mHandler = new Handler(Looper.getMainLooper());
-            mHandler.postDelayed(new Runnable() {
+            adapter.setPurchased(isPurchased);
+            activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (adapter == null)
-                        return;
-
-                    adapter.setPurchased(isPurchased);
                     adapter.notifyDataSetChanged();
                 }
-            }, 500);
+            });
+
+            /// Test only
+//            if (BuildConfig.DEBUG)
+//                clearPurchaseTest();
 
         } else {
             Log.i(TAG, "WithIabSetupSuccess item not purchase");
@@ -193,7 +164,7 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         }
 
         if (kind == PracticeTable.TYPE_READING) {
-            presenter.putPosHistory(recyclerView.computeVerticalScrollOffset()); //scroll lai vi tri truoc do
+            presenter.putPosHistory(recyclerView.computeVerticalScrollOffset());
 //            setPositionScroll2();
             Intent i = new Intent(activity, PracticeReadingActivity.class);
             i.putExtra(Constant.INTENT_LEVEL, level);
@@ -201,7 +172,6 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             i.putExtra(Constant.INTENT_BOOKMARK, item.getBookmarks());
             i.putExtra(Constant.INTENT_DETAIL_NUM, item.getNumId());
             i.putExtra(Constant.INTENT_TITLE_Q, item.getQuestion());
-            i.putExtra(Constant.INTENT_HINT, item.getHint());
             i.putExtra(Constant.INTENT_V1, v1);
             i.putExtra(Constant.INTENT_V2, v2);
 
@@ -228,10 +198,6 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
 
                 startActivity(i);
             } else {
-
-                if (level == PracticeTable.LEVEL_N5)
-                    isPurchased = true;
-
                 PracticeDialog dialog = new PracticeDialog(activity, position, items, iPracticeInterface);
                 dialog.show();
             }
@@ -260,7 +226,8 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             PracticeEntity item = items.get(pos);
             presenter.updateAnswer(item.getNum(), value);
             item.setReview(value);
-
+            int correct = presenter.countCorrect();
+            setTitleQ(correct);
             adapter.notifyItemChanged(pos);
         }
     };
@@ -272,20 +239,20 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
             public void onCallback(List<PracticeEntity> data) {
                 items = data;
                 adapter = new PracticeListAdapter(data);
-                if (level == PracticeTable.LEVEL_N5)
+                if(level == PracticeTable.LEVEL_N5)
                     adapter.setPurchased(true);
-                else
-                    adapter.setPurchased(isPurchased);
 
                 recyclerView.setAdapter(adapter);
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         adapter.notifyDataSetChanged();
+//                        recyclerView.scrollBy(0, mTotalScrolled);
 
                     }
                 });
-
+                int correct = presenter.countCorrect();
+                setTitleQ(correct);
 
 //                setPositionScroll();
                 mTotalScrolled = presenter.getPosHistory();
@@ -306,8 +273,12 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         });
     }
 
-    private void setTitleQ() {
-        setTitle(presenter.getTitle());
+    private void setTitleQ(int value) {
+        setTitleQ(value, items.size());
+    }
+
+    private void setTitleQ(int v1, int v2) {
+        setTitle(presenter.getTitle(v1, v2));
     }
 
 }

@@ -47,7 +47,7 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
 
     @Override
     protected void initView() {
-        setTitle(getString(R.string.title_grammar));
+        setTitle(getString(R.string.title_button_grammar));
 
         presenter = new GrammarPresenter(activity);
 
@@ -67,6 +67,7 @@ public class GrammarActivity extends BaseActivity<GrammarActivity> {
             case R.id.menu_search:
                 Intent iSearch = new Intent(activity, GrammarSearchActivity.class);
                 startActivity(iSearch);
+//                Toast.makeText(this, "You have selected Bookmark Menu", Toast.LENGTH_SHORT).show();
                 return true;
 
             case android.R.id.home:

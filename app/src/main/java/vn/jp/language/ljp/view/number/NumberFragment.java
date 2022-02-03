@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-
 import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;

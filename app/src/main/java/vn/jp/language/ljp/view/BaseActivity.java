@@ -2,12 +2,12 @@ package vn.jp.language.ljp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import vn.jp.language.ljp.Constant;
@@ -30,8 +30,6 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
     protected T activity;
 
     public Prefs pref;
-    public String lang = "";
-    public int level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,27 +38,7 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
         setContentView(getLayout());
         ButterKnife.bind(this);
         activity = (T) this;
-
-        if (pref == null)
-            pref = new Prefs(getApplicationContext());
-        lang = pref.getStringValue("", Constant.TYPE_LANGUAGE);
-
-        if (lang.equals("")) {
-            if (getString(R.string.language).equals(Constant.EN))
-                lang = Constant.EN;
-            else if (getString(R.string.language).equals(Constant.KO))
-                lang = Constant.KO;
-            else if (getString(R.string.language).equals(Constant.FR))
-                lang = Constant.FR;
-            else if (getString(R.string.language).equals(Constant.ZH))
-                lang = Constant.ZH;
-            else if (getString(R.string.language).equals(Constant.ES))
-                lang = Constant.ES;
-            else
-                lang = Constant.EN;
-
-        }
-
+        pref = new Prefs(this.getApplicationContext());
         initView();
 
     }

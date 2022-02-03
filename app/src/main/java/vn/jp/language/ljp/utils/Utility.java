@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.util.DisplayMetrics;
@@ -14,11 +13,8 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 
-import java.util.Locale;
-
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
-import vn.jp.language.ljp.view.BaseActivity;
 
 public class Utility {
 //    private static String TAG = "Utility";
@@ -317,14 +313,5 @@ public class Utility {
         ViewGroup.LayoutParams params = gridView.getLayoutParams();
         params.width = totalWidth;
         gridView.setLayoutParams(params);
-    }
-
-    public static void setLanguage(BaseActivity activity) {
-        Locale locale = new Locale(activity.lang);
-        Locale.setDefault(locale);
-
-        Configuration config = activity.getResources().getConfiguration();
-        config.locale = locale;
-        activity.getBaseContext().getResources().updateConfiguration(config, activity.getBaseContext().getResources().getDisplayMetrics());
     }
 }

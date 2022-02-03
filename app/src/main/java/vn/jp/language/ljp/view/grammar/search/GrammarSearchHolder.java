@@ -1,10 +1,9 @@
 package vn.jp.language.ljp.view.grammar.search;
 
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.GrammarEntity;
@@ -33,8 +32,10 @@ public class GrammarSearchHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(GrammarEntity entity, String text) {
-        String styledText;
+        String styledText ="";
         String textColor = "<font color='red'>" + text + "</font>";
+//        String styledText = "This is <font color='red'>simple</font>.";
+//        textView.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
         styledText = entity.getJp().replace(text, textColor);
         tvGrammar.setText(Html.fromHtml(styledText));
 

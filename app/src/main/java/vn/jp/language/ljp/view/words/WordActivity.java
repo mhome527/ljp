@@ -1,7 +1,5 @@
 package vn.jp.language.ljp.view.words;
 
-import android.os.Handler;
-import android.os.Looper;
 
 import androidx.viewpager.widget.ViewPager;
 
@@ -81,12 +79,9 @@ public class WordActivity extends PurchaseActivity<WordActivity> {
             Log.i(TAG, "WithIabSetupSuccess...item purchased");
             isPurchased = true;
 
-            Handler mHandler = new Handler(Looper.getMainLooper());
-            mHandler.postDelayed(new Runnable() {
+            activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (adapter == null)
-                        return;
                     if (currPage == 0) {
                         if (((WordFragment) adapter.getItem(0)).adapter != null)
                             ((WordFragment) adapter.getItem(0)).adapter.setPurchased(isPurchased);
@@ -106,7 +101,10 @@ public class WordActivity extends PurchaseActivity<WordActivity> {
                             ((WordFragment) adapter.getItem(1)).adapter.setPurchased(isPurchased);
                     }
                 }
-            }, 500);
+            });
+
+            /// Test only
+//            clearPurchaseTest();
 
         } else {
             Log.i(TAG, "WithIabSetupSuccess item not purchase");

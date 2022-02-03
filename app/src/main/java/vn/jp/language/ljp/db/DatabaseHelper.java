@@ -2,6 +2,10 @@ package vn.jp.language.ljp.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+
+//import net.sqlcipher.Cursor;
+//import net.sqlcipher.database.SQLiteDatabase;
+//import net.sqlcipher.database.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

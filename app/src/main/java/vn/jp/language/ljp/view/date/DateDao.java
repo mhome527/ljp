@@ -15,7 +15,7 @@ import vn.jp.language.ljp.utils.Log;
  */
 public class DateDao extends BaseDao<WordEntity> {
 
-    private static final String TAG = "DateDao";
+    private static final String TAG = "WardDao";
 
     public DateDao(Context context) {
         super(context);
@@ -35,13 +35,11 @@ public class DateDao extends BaseDao<WordEntity> {
     }
 
     public static List<WordEntity> getListData(Context context, int kind) {
-        DateDao dao = new DateDao(context);
-
-        String sql = "SELECT * FROM " + WordTable.getTableName(dao.lang)
+        String sql = "SELECT * FROM " + WordTable.TABLE_NAME
                 + " WHERE " + WordTable.COL_KIND + " = " + kind
-                + " AND t1.num = t2.num "
                 + " ORDER BY " + WordTable.COL_NUM;
         Log.i(TAG, "word: sql=" + sql);
+        DateDao dao = new DateDao(context);
         return dao.fetchAll(sql);
     }
 

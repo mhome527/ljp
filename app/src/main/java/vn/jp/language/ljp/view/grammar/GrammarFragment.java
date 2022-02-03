@@ -1,11 +1,12 @@
 package vn.jp.language.ljp.view.grammar;
 
 import android.content.Intent;
-import android.view.View;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.View;
 
 import java.util.List;
 
@@ -78,6 +79,10 @@ public class GrammarFragment extends BaseFragment<GrammarActivity> implements IC
 
     @Override
     public void onClick(View view, int position) {
+//        if (level == 1) {
+//            Toast.makeText(activity, R.string.coming_soon, Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         Intent i = new Intent(activity, GrammarDetailActivity.class);
         i.putExtra(Constant.INTENT_DETAIL_LEVEL, level);
         i.putExtra(Constant.INTENT_DETAIL_NUM, adapter.getItem(position).getNum());

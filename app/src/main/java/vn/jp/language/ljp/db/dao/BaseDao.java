@@ -7,10 +7,7 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.jp.language.ljp.BaseApplication;
 import vn.jp.language.ljp.BuildConfig;
-import vn.jp.language.ljp.Constant;
-import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.DatabaseHelper;
 import vn.jp.language.ljp.utils.Log;
 
@@ -19,13 +16,8 @@ public abstract class BaseDao<T> {
     public final static String TAG = BaseDao.class.getName();
     protected Context context;
 
-    public String lang = Constant.EN;
-
     public BaseDao(Context context) {
         this.context = context;
-        lang = BaseApplication.getInstance().pref.getStringValue("", Constant.TYPE_LANGUAGE);
-        if (lang.equals(""))
-            lang = context.getString(R.string.language);
     }
 
 //    protected abstract ContentValues getContentValues(T entity);
@@ -52,7 +44,7 @@ public abstract class BaseDao<T> {
     }
 
     protected T fetch(String sql) {
-        Log.i(TAG, "fetch sql:" + sql);
+        Log.i(TAG, "fetchAll sql:" + sql);
         T entity = null;
         try {
             Cursor cursor = DatabaseHelper.getInstance(context).executeQuery(sql);

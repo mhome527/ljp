@@ -19,8 +19,6 @@ public class PracticeEntity {
     int review; //0:read; 1: unread; 2: wrong answer
     int ref;
     String sound;
-
-    String hint;
     ///////
 
 
@@ -148,13 +146,5 @@ public class PracticeEntity {
 
     public void setRef(int ref) {
         this.ref = ref;
-    }
-
-    public String getHint() {
-        return hint;
-    }
-
-    public void setHint(String hint) {
-        this.hint = hint;
     }
 }

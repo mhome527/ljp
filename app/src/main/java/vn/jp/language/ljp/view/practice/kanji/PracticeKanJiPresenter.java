@@ -1,6 +1,5 @@
 package vn.jp.language.ljp.view.practice.kanji;
 
-import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.view.BasePresenter;
 import vn.jp.language.ljp.view.ICallback;
 
@@ -30,26 +29,6 @@ public class PracticeKanJiPresenter extends BasePresenter<PracticeKanJiActivity>
                 return dao.getItems(idRef);
             }
         });
-    }
-
-    public void loadNext(int num, ICallback iCallback) {
-        PracticeEntity entity = dao.getItemTitle(num);
-        if (entity != null && entity.getQuestion() != null && !entity.getQuestion().equals("")) {
-            idRef = entity.getNumId();
-            activity.titleQ = entity.getQuestion();
-            activity.num = entity.getNum();
-            activity.idRef = entity.getNumId();
-            activity.bookmark = entity.getBookmarks();
-
-            loadData(iCallback, new ILoadData() {
-                @Override
-                public Object onBackground() {
-                    return dao.getItems(idRef);
-                }
-            });
-        } else {
-            iCallback.onCallback(null);
-        }
     }
 
     public void updateAns(int num, int review) {

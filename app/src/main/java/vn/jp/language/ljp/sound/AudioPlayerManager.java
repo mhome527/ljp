@@ -27,7 +27,7 @@ public class AudioPlayerManager {
 //            return;
 
         try {
-            stop();
+
             m = new MediaPlayer();
             m.reset();
 //            AssetFileDescriptor descriptor = getAssets().openFd("beepbeep.mp3");

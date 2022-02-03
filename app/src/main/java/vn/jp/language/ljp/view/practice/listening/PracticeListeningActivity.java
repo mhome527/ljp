@@ -1,24 +1,19 @@
 package vn.jp.language.ljp.view.practice.listening;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
-import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.sound.AudioPlayerManager;
 import vn.jp.language.ljp.utils.Log;
+import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.ICallback;
-import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 import static vn.jp.language.ljp.R.id.btnView;
 
@@ -29,7 +24,7 @@ import androidx.viewpager.widget.ViewPager;
  * Created by Administrator on 7/18/2017.
  */
 
-public class PracticeListeningActivity extends PurchaseActivity<PracticeListeningActivity> implements ICallback<List<PracticeEntity>> {
+public class PracticeListeningActivity extends BaseActivity<PracticeListeningActivity> implements ICallback<List<PracticeEntity>> {
     private final String TAG = "PracticeListeningActivity";
     private final String FOLDER = "n/";
 
@@ -38,9 +33,6 @@ public class PracticeListeningActivity extends PurchaseActivity<PracticeListenin
 
     @BindView(R.id.imgBookmark)
     ImageButton imgBookmark;
-
-    @BindView(R.id.imgSpeak)
-    ImageButton imgSpeak;
 
     @BindView(R.id.imgPre)
     ImageButton imgPre;
@@ -70,18 +62,11 @@ public class PracticeListeningActivity extends PurchaseActivity<PracticeListenin
     @Override
     protected void initView() {
 
-        level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
+        int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
         refId = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
         Log.i(TAG, "initView pos:" + pos);
-
-        if (level == PracticeTable.LEVEL_N5) // N5 is free
-            isPurchased = true;
-
         presenter = new PracticeListeningPresenter(activity, level);
         setPageView();
-
-
-        imgSpeak.setBackgroundResource(R.drawable.ic_speaker);
 
         presenter.load(this);
         audio = new AudioPlayerManager(activity);
@@ -99,43 +84,6 @@ public class PracticeListeningActivity extends PurchaseActivity<PracticeListenin
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    // ================= Purchase ====================
-    @Override
-    protected void dealWithIabSetupSuccess() {
-        if (getItemPurchased() == Constant.ITEM_PURCHASED) {
-            Log.i(TAG, "WithIabSetupSuccess...item purchased");
-            isPurchased = true;
-
-//            adapter.setPurchased(isPurchased);
-
-            Handler mHandler = new Handler(Looper.getMainLooper());
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (adapter == null)
-                        return;
-                    adapter.notifyDataSetChanged();
-                }
-            }, 500);
-
-//            activity.runOnUiThread();
-
-            /// Test only
-//            if (BuildConfig.DEBUG)
-//                clearPurchaseTest();
-
-        } else {
-            Log.i(TAG, "WithIabSetupSuccess item not purchase");
-            isPurchased = false;
-        }
-    }
-
-    @Override
-    protected void dealWithIabSetupFailure() {
-
-    }
-    //    ========================== END PURCHASE ==============
 
 
     @Override
@@ -159,14 +107,7 @@ public class PracticeListeningActivity extends PurchaseActivity<PracticeListenin
     public void actionSpeak() {
         Log.i(TAG, "speak filename:" + items.get(pos).getSound());
         audio.stop();
-        if (isPurchased || items.get(pos).getNum() <= Constant.TRIAL_LISTENING || level == PracticeTable.LEVEL_N5) {
-            imgSpeak.setBackgroundResource(R.drawable.ic_speaker);
-//            audio.stop();
-            audio.play(FOLDER + items.get(pos).getSound());
-        } else {
-            imgSpeak.setBackgroundResource(R.drawable.ic_lock);
-            purchaseItem();
-        }
+        audio.play(FOLDER + items.get(pos).getSound());
     }
 
     @OnClick(R.id.imgPre)
@@ -216,6 +157,7 @@ public class PracticeListeningActivity extends PurchaseActivity<PracticeListenin
     //    =====
     @Override
     public void onCallback(List<PracticeEntity> data) {
+        Log.i(TAG, "onCallback data");
         items = data;
 
         for (int i = 0; i < items.size(); i++) {
@@ -225,17 +167,7 @@ public class PracticeListeningActivity extends PurchaseActivity<PracticeListenin
                 break;
             }
         }
-        Log.i(TAG, "onCallback data pos:" + pos);
-
         PracticeEntity item = items.get(pos);
-
-        if (isPurchased || items.get(pos).getNum() <= Constant.TRIAL_LISTENING) {
-            imgSpeak.setBackgroundResource(R.drawable.ic_speaker);
-        } else {
-            imgSpeak.setBackgroundResource(R.drawable.ic_lock);
-        }
-
-
         bookmark = item.getBookmarks();
         setImageBookmark();
         tvNum.setText(item.getNum() + "");
