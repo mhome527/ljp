@@ -34,10 +34,10 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate");
+        activity = (T) this;
+        Log.i(TAG, "onCreate: " + activity.getClass().getSimpleName());
         setContentView(getLayout());
         ButterKnife.bind(this);
-        activity = (T) this;
         pref = new Prefs(this.getApplicationContext());
         initView();
 

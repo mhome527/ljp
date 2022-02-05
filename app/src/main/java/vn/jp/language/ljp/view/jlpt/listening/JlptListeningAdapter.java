@@ -1,24 +1,27 @@
-package vn.jp.language.ljp.view.practice.dashboard;
+package vn.jp.language.ljp.view.jlpt.listening;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import vn.jp.language.ljp.view.practice.listening.PracticeListeningFragment;
+
 /**
  * Created by Administrator on 7/21/2017.
  */
 
-public class PracticeDashboardAdapter extends FragmentStatePagerAdapter {
+public class JlptListeningAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
 
-    public PracticeDashboardAdapter(FragmentManager fm, int NumOfTabs) {
+    public JlptListeningAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }
 
     @Override
     public Fragment getItem(int position) {
-        PracticeDashboardFragment tab = new PracticeDashboardFragment();
+        JlptListeningFragment tab = new JlptListeningFragment();
+        tab.pos = position;
         return tab;
     }
 

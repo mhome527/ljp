@@ -61,6 +61,9 @@
     <string name="title_kanji">漢字</string>
     <string name="title_alphabet">Alphabet</string>
     <string name="title_grammar">Grammar</string>
+    <string name="title_kanji2">Kanji</string>
+    <string name="title_reading">Reading</string>
+    <string name="title_vocabulary">Vocabulary</string>
     <string name="title_test">Test</string>
     <string name="title_word">Words</string>
     <string name="title_phrase">Phrase</string>
@@ -77,23 +80,24 @@
     <string name="title_n_grammar">Grammar %1$d/%2$d</string>
     <string name="title_n_reading">Reading %1$d/%2$d</string>
     <string name="title_n_vocabulary">Vocabulary %1$d/%2$d</string>
-    <string name="title_n_listening">Listening %1$d/%2$d</string>
+    <string name="title_n_listening">Listening</string>
+    <string name="title_n_training">Training %1$d/%2$d</string>
     <string name="title_n_kanji">Kanji %1$d/%2$d</string>
 
     <string name="title_n_grammar2">
-        &lt;font color="blue"&gt;GRAMMAR&lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt; (%1$d/%2$d)&lt;/font&gt;
+        &lt;font &gt;GRAMMAR&lt;/font&gt; &lt;font color="grey"&gt; (%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_reading2">
-        &lt;font color="blue"&gt;READING &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+        &lt;font &gt;READING &lt;/font&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_vocabulary2">
-        &lt;font color="blue"&gt;VOCABULARY &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+        &lt;font&gt;VOCABULARY &lt;/font&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_listening2">
-        &lt;font color="blue"&gt;LISTENING &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+        &lt;font&gt;LISTENING &lt;/font&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
     <string name="title_n_kanji2">
-        &lt;font color="blue"&gt;KANJI &lt;/font&gt; &lt;br/&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+        &lt;font&gt;KANJI &lt;/font&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
 
     <string name="title_view">View</string>

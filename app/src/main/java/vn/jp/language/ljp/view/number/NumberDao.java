@@ -1,5 +1,6 @@
 package vn.jp.language.ljp.view.number;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -21,6 +22,7 @@ public class NumberDao extends BaseDao<NumberEntity> {
         super(context);
     }
 
+    @SuppressLint("Range")
     @Override
     public NumberEntity fetch(Cursor cursor) {
         NumberEntity entity = new NumberEntity();

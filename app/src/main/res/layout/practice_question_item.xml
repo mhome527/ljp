@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/tvQuestion"
+        android:id="@+id/tvQuestion" android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"

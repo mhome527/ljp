@@ -18,6 +18,11 @@ public class Constant {
     public static final int TRIAL_GRAMMAR = 30 + TEST_P;
     public static final int TRIAL_READING = 5 + TEST_P;
     public static final int TRIAL_LISTENING = 4 + TEST_P;
+
+    public static final String FOLDER_JLPT  = "/learn_japanese";
+    public static final String LINK_JLPT  = "https://firebasestorage.googleapis.com/v0/b/learnjapanese-966af.appspot.com/o/";
+
+
 //    public static final int TRIAL_VOCABULARY = 3;
 //    public static final int TRIAL_KANJI = 3;
     /////
@@ -34,9 +39,9 @@ public class Constant {
 
     //    public static final String DB_NAME = "ljp2.sqlite";
     public static final String DB_NAME = "ljp4.sqlite";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
-    public static final String KEY_UPDATE = "db_update_1"; // gia tri khac se delete database cu
+    public static final String KEY_UPDATE = "db_update_2"; // gia tri khac se delete database cu
     //
 //	// /////////
     public static final String INTENT_KIND = "intent_kind";
@@ -44,6 +49,10 @@ public class Constant {
     public static final String INTENT_TITLE_Q = "intent_title_q";
     public static final String INTENT_V1 = "intent_v1";
     public static final String INTENT_V2 = "intent_v2";
+    public static final String INTENT_TEST_DATE = "intent_test_date";
+    public static final String INTENT_MONDAI = "intent_mondai";
+    public static final String INTENT_FILENAME = "intent_filename";
+
 
     public static final String INTENT_DETAIL_LEVEL = "intent_detail_level";
     public static final String INTENT_NUM = "intent_detail_num";

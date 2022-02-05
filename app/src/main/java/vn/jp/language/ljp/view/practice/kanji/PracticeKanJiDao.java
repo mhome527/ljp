@@ -1,5 +1,6 @@
 package vn.jp.language.ljp.view.practice.kanji;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -32,6 +33,7 @@ public class PracticeKanJiDao extends BasePracticeDao {
         this.level = level;
     }
 
+    @SuppressLint("Range")
     @Override
     protected PracticeEntity fetch(Cursor cursor) {
         PracticeEntity entity = new PracticeEntity();

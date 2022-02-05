@@ -3,6 +3,7 @@ package vn.jp.language.ljp.view.practice.dashboard;
 import android.content.Intent;
 import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -11,6 +12,7 @@ import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.view.BaseFragment;
+import vn.jp.language.ljp.view.jlpt.JlptListActivity;
 import vn.jp.language.ljp.view.practice.list.PracticeListActivity;
 
 /**
@@ -34,7 +36,7 @@ public class PracticeDashboardFragment extends BaseFragment<PracticeDashboardAct
     @BindView(R.id.btnKanji)
     TextView btnKanji;
 
-    public int level = 5;
+//    public int level = 5;
     PracticePresenter presenter;
 
     int listeningCorrect;
@@ -55,12 +57,14 @@ public class PracticeDashboardFragment extends BaseFragment<PracticeDashboardAct
 
     @Override
     public int getLayout() {
-        return R.layout.practice_dashboard_page;
+//        return R.layout.practice_dashboard_page;
+        return R.layout.practice_dashboard_page_new;
     }
 
     @Override
     public void initView(View root) {
-        presenter = new PracticePresenter(activity, level, -1);
+
+        presenter = new PracticePresenter(activity, activity.level, -1);
 
         listeningCorrect = presenter.countCorrect(PracticeTable.TYPE_LISTENING);
         listeningAll = presenter.countAll(PracticeTable.TYPE_LISTENING);
@@ -99,6 +103,13 @@ public class PracticeDashboardFragment extends BaseFragment<PracticeDashboardAct
         startIntent(PracticeTable.TYPE_LISTENING, listeningCorrect, listeningAll);
     }
 
+    @OnClick(R.id.btnListeningJ)
+    public void actionListeningJ() {
+        Intent i = new Intent(activity, JlptListActivity.class);
+        i.putExtra(Constant.INTENT_LEVEL, activity.level);
+        startActivity(i);
+    }
+
     @OnClick(R.id.btnGrammar)
     public void actionGrammar() {
         startIntent(PracticeTable.TYPE_GRAMMAR, grammarCorrect, grammarAll);
@@ -123,7 +134,7 @@ public class PracticeDashboardFragment extends BaseFragment<PracticeDashboardAct
     private void startIntent(int kind, int v1, int v2) {
         Intent i = new Intent(activity, PracticeListActivity.class);
         i.putExtra(Constant.INTENT_KIND, kind);
-        i.putExtra(Constant.INTENT_LEVEL, level);
+        i.putExtra(Constant.INTENT_LEVEL, activity.level);
         i.putExtra(Constant.INTENT_V1, v1);
         i.putExtra(Constant.INTENT_V2, v2);
         startActivity(i);

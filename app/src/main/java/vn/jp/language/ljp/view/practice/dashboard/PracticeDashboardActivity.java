@@ -28,6 +28,7 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
     @BindView(R.id.viewpager)
     ViewPager viewPager;
 
+    public int level = 5;
     @Override
     protected int getLayout() {
         return R.layout.practice_dashboard_layout;
@@ -63,6 +64,7 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
                 pref.putIntValue(tab.getPosition(), Constant.PREF_LEVEL);
+                level = 5 - tab.getPosition();
             }
 
             @Override
