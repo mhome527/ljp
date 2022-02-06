@@ -3,7 +3,6 @@ package vn.jp.language.ljp.view.practice.dashboard;
 import android.content.Intent;
 import android.text.Html;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -13,6 +12,7 @@ import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.view.BaseFragment;
 import vn.jp.language.ljp.view.jlpt.JlptListActivity;
+import vn.jp.language.ljp.view.jlpt.grammar.JlptGrammarListActivity;
 import vn.jp.language.ljp.view.practice.list.PracticeListActivity;
 
 /**
@@ -36,7 +36,7 @@ public class PracticeDashboardFragment extends BaseFragment<PracticeDashboardAct
     @BindView(R.id.btnKanji)
     TextView btnKanji;
 
-//    public int level = 5;
+    //    public int level = 5;
     PracticePresenter presenter;
 
     int listeningCorrect;
@@ -113,6 +113,13 @@ public class PracticeDashboardFragment extends BaseFragment<PracticeDashboardAct
     @OnClick(R.id.btnGrammar)
     public void actionGrammar() {
         startIntent(PracticeTable.TYPE_GRAMMAR, grammarCorrect, grammarAll);
+    }
+
+    @OnClick(R.id.btnGrammarJ)
+    public void actionGrammarJ() {
+        Intent i = new Intent(activity, JlptGrammarListActivity.class);
+        i.putExtra(Constant.INTENT_LEVEL, activity.level);
+        startActivity(i);
     }
 
     @OnClick(R.id.btnReading)
