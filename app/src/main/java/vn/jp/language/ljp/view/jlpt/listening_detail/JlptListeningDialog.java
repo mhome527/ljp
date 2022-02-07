@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.jlpt.listening;
+package vn.jp.language.ljp.view.jlpt.listening_detail;
 
 import android.content.Context;
 import android.text.Html;

@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.jlpt;
+package vn.jp.language.ljp.view.jlpt.listening;
 
 import android.os.AsyncTask;
 import android.os.Environment;

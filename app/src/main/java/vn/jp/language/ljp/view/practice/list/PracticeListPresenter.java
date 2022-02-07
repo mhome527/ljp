@@ -30,17 +30,17 @@ public class PracticeListPresenter extends BasePresenter<BaseActivity> {
     public String getTitle(int v1, int v2) {
         switch (kind) {
             case PracticeTable.TYPE_GRAMMAR:
-                return activity.getString(R.string.title_n_grammar, v1, v2);
+                return activity.getString(R.string.title_exercises, v1, v2);
             case PracticeTable.TYPE_READING:
-                return activity.getString(R.string.title_n_reading, v1, v2);
+                return activity.getString(R.string.title_exercises, v1, v2);
             case PracticeTable.TYPE_KANJI:
-                return activity.getString(R.string.title_n_kanji, v1, v2);
+                return activity.getString(R.string.title_exercises2, v1, v2);
             case PracticeTable.TYPE_VOCABULARY:
-                return activity.getString(R.string.title_n_vocabulary, v1, v2);
+                return activity.getString(R.string.title_exercises1, v1, v2);
             case PracticeTable.TYPE_LISTENING:
-                return activity.getString(R.string.title_n_listening, v1, v2);
+                return activity.getString(R.string.title_exercises, v1, v2);
             default:
-                return activity.getString(R.string.title_n_vocabulary, v1, v2);
+                return activity.getString(R.string.title_exercises, v1, v2);
         }
     }
 

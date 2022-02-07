@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.jlpt;
+package vn.jp.language.ljp.view.jlpt.listening;
 
 import android.view.View;
 
@@ -6,10 +6,8 @@ import java.util.List;
 
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.JlptEntity;
-import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.view.BaseAdapterView;
 import vn.jp.language.ljp.view.IJlptClickListener;
-import vn.jp.language.ljp.view.practice.list.PracticeListHolder;
 
 /**
  * Created by Administrator on 7/10/2017.

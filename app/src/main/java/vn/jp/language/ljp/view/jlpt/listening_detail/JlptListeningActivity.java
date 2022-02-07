@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.jlpt.listening;
+package vn.jp.language.ljp.view.jlpt.listening_detail;
 
 import static vn.jp.language.ljp.R.id.btnView;
 
@@ -194,13 +194,20 @@ public class JlptListeningActivity extends BaseActivity<JlptListeningActivity> i
     }
 
     public void hideButton() {
-        if (pos == 0)
+        if (items.size() <= 1) {
             imgPre.setVisibility(View.GONE);
-        else if (pos >= items.size() - 1)
             imgNext.setVisibility(View.GONE);
-        else {
-            imgPre.setVisibility(View.VISIBLE);
-            imgNext.setVisibility(View.VISIBLE);
+        } else {
+            if (pos == 0) {
+                imgPre.setVisibility(View.GONE);
+                imgNext.setVisibility(View.VISIBLE);
+            } else if (pos >= items.size() - 1) {
+                imgPre.setVisibility(View.VISIBLE);
+                imgNext.setVisibility(View.GONE);
+            } else {
+                imgPre.setVisibility(View.VISIBLE);
+                imgNext.setVisibility(View.VISIBLE);
+            }
         }
     }
 

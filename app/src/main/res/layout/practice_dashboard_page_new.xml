@@ -16,6 +16,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:background="?attr/selectableItemBackground"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardUseCompatPadding="true">
@@ -31,24 +32,37 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:padding="10dp"
-                    android:text="@string/title_n_listening"
+                    android:text="@string/title_vocabulary"
                     android:textColor="@color/blue"
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/btnListening"
+                    android:id="@+id/btnVocabulary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="@color/blue"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="@string/title_n_training"
+                    android:text="@string/title_n_vocabulary"
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
+                <TextView
+                    android:id="@+id/btnKanji"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/blue"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/title_n_kanji"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+
                 <Button
-                    android:id="@+id/btnListeningJ"
+                    android:id="@+id/btnVocabularyJ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -62,6 +76,8 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -168,7 +184,6 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:background="?attr/selectableItemBackground"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardUseCompatPadding="true">
@@ -184,75 +199,24 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:padding="10dp"
-                    android:text="@string/title_vocabulary"
+                    android:text="@string/title_n_listening"
                     android:textColor="@color/blue"
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/btnVocabulary"
+                    android:id="@+id/btnListening"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="@color/blue"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="@string/title_n_vocabulary"
+                    android:text="@string/title_n_training"
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
                 <Button
-                    android:id="@+id/btnVocabularyJ"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@color/blue"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/title_jlpt"
-                    android:textColor="@color/white"
-                    android:textSize="17sp" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="?attr/selectableItemBackground"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardUseCompatPadding="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:padding="10dp"
-                    android:text="@string/title_kanji2"
-                    android:textColor="@color/blue"
-                    android:textSize="17sp" />
-
-                <TextView
-                    android:id="@+id/btnKanji"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@color/blue"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/title_n_kanji"
-                    android:textColor="@color/white"
-                    android:textSize="17sp" />
-
-                <Button
-                    android:id="@+id/btnKanjiJ"
+                    android:id="@+id/btnListeningJ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -286,5 +250,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></TextView>
+
     </LinearLayout>
 </ScrollView>

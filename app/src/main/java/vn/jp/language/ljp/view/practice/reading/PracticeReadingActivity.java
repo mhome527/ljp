@@ -85,7 +85,7 @@ public class PracticeReadingActivity extends BaseActivity<PracticeReadingActivit
             actionBar.setDisplayShowHomeEnabled(true); // remove the icon
             actionBar.setDisplayShowTitleEnabled(true); // remove title
 //            toolbarTitle.setText(getString(R.string.title_alphabet));
-            actionBar.setTitle(getString(R.string.title_n_reading, v1, v2));
+            actionBar.setTitle(getString(R.string.title_exercises, v1, v2));
         }
 
         tvNum.setText(num + "");

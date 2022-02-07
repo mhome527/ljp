@@ -1,9 +1,7 @@
-package vn.jp.language.ljp.view.jlpt.listening;
+package vn.jp.language.ljp.view.jlpt.listening_detail;
 
 import vn.jp.language.ljp.view.BasePresenter;
 import vn.jp.language.ljp.view.ICallback;
-import vn.jp.language.ljp.view.practice.listening.PracticeListeningActivity;
-import vn.jp.language.ljp.view.practice.listening.PracticeListeningDao;
 
 /**
  * Created by Administrator on 7/17/2017.

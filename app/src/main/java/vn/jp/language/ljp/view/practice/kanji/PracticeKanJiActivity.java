@@ -78,7 +78,7 @@ public class PracticeKanJiActivity extends BaseActivity<PracticeKanJiActivity> i
         titleQ = getIntent().getStringExtra(Constant.INTENT_TITLE_Q);
 
         ///////////////
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setHomeButtonEnabled(true); // disable the button
@@ -86,7 +86,7 @@ public class PracticeKanJiActivity extends BaseActivity<PracticeKanJiActivity> i
             actionBar.setDisplayShowHomeEnabled(true); // remove the icon
             actionBar.setDisplayShowTitleEnabled(true); // remove title
 //            toolbarTitle.setText(getString(R.string.title_alphabet));
-            actionBar.setTitle(getString(R.string.title_n_reading, v1, v2));
+            actionBar.setTitle(getString(R.string.title_exercises, v1, v2));
         }
 
         tvNum.setText(num + "");

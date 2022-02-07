@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.jlpt;
+package vn.jp.language.ljp.view.jlpt.listening;
 
 import android.view.View;
 import android.widget.Button;

@@ -11,7 +11,7 @@ import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.view.BaseFragment;
-import vn.jp.language.ljp.view.jlpt.JlptListActivity;
+import vn.jp.language.ljp.view.jlpt.listening.JlptListActivity;
 import vn.jp.language.ljp.view.jlpt.grammar.JlptGrammarListActivity;
 import vn.jp.language.ljp.view.practice.list.PracticeListActivity;
 
@@ -81,20 +81,11 @@ public class PracticeDashboardFragment extends BaseFragment<PracticeDashboardAct
         kanjiCorrect = presenter.countCorrect(PracticeTable.TYPE_KANJI);
         kanjiAll = presenter.countAll(PracticeTable.TYPE_KANJI);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            btnListening.setText(Html.fromHtml(getString(R.string.title_n_listening2, listeningCorrect, listeningAll), Html.FROM_HTML_MODE_LEGACY));
-            btnGrammar.setText(Html.fromHtml(getString(R.string.title_n_grammar2, grammarCorrect, grammarAll), Html.FROM_HTML_MODE_LEGACY));
-            btnReading.setText(Html.fromHtml(getString(R.string.title_n_reading2, readingCorrect, readingAll), Html.FROM_HTML_MODE_LEGACY));
-            btnVocabulary.setText(Html.fromHtml(getString(R.string.title_n_vocabulary2, vocabularyCorrect, vocabularyAll), Html.FROM_HTML_MODE_LEGACY));
-            btnKanji.setText(Html.fromHtml(getString(R.string.title_n_kanji2, kanjiCorrect, kanjiAll), Html.FROM_HTML_MODE_LEGACY));
-        } else {
-            btnListening.setText(Html.fromHtml(getString(R.string.title_n_listening2, listeningCorrect, listeningAll)));
-            btnGrammar.setText(Html.fromHtml(getString(R.string.title_n_grammar2, grammarCorrect, grammarAll)));
-            btnReading.setText(Html.fromHtml(getString(R.string.title_n_reading2, readingCorrect, readingAll)));
-            btnVocabulary.setText(Html.fromHtml(getString(R.string.title_n_vocabulary2, vocabularyCorrect, vocabularyAll)));
-            btnKanji.setText(Html.fromHtml(getString(R.string.title_n_kanji2, kanjiCorrect, kanjiAll)));
-        }
-
+        btnListening.setText(Html.fromHtml(getString(R.string.title_dashboard_exercises, listeningCorrect, listeningAll), Html.FROM_HTML_MODE_LEGACY));
+        btnGrammar.setText(Html.fromHtml(getString(R.string.title_dashboard_exercises, grammarCorrect, grammarAll), Html.FROM_HTML_MODE_LEGACY));
+        btnReading.setText(Html.fromHtml(getString(R.string.title_dashboard_exercises, readingCorrect, readingAll), Html.FROM_HTML_MODE_LEGACY));
+        btnVocabulary.setText(Html.fromHtml(getString(R.string.title_dashboard_exercises_1, vocabularyCorrect, vocabularyAll), Html.FROM_HTML_MODE_LEGACY));
+        btnKanji.setText(Html.fromHtml(getString(R.string.title_dashboard_exercises_2, kanjiCorrect, kanjiAll), Html.FROM_HTML_MODE_LEGACY));
 
     }
 
@@ -119,12 +110,21 @@ public class PracticeDashboardFragment extends BaseFragment<PracticeDashboardAct
     public void actionGrammarJ() {
         Intent i = new Intent(activity, JlptGrammarListActivity.class);
         i.putExtra(Constant.INTENT_LEVEL, activity.level);
+        i.putExtra(Constant.INTENT_KIND, Constant.KIND_GRAMMAR);
         startActivity(i);
     }
 
     @OnClick(R.id.btnReading)
     public void actionReading() {
         startIntent(PracticeTable.TYPE_READING, readingCorrect, readingAll);
+    }
+
+    @OnClick(R.id.btnReadingJ)
+    public void actionReadingJ() {
+        Intent i = new Intent(activity, JlptGrammarListActivity.class);
+        i.putExtra(Constant.INTENT_LEVEL, activity.level);
+        i.putExtra(Constant.INTENT_KIND, Constant.KIND_READING);
+        startActivity(i);
     }
 
     @OnClick(R.id.btnVocabulary)
@@ -135,6 +135,14 @@ public class PracticeDashboardFragment extends BaseFragment<PracticeDashboardAct
     @OnClick(R.id.btnKanji)
     public void actionKanji() {
         startIntent(PracticeTable.TYPE_KANJI, kanjiCorrect, kanjiAll);
+    }
+
+    @OnClick(R.id.btnVocabularyJ)
+    public void actionVocabularyJ() {
+        Intent i = new Intent(activity, JlptGrammarListActivity.class);
+        i.putExtra(Constant.INTENT_LEVEL, activity.level);
+        i.putExtra(Constant.INTENT_KIND, Constant.KIND_VOCABULARY);
+        startActivity(i);
     }
 
 

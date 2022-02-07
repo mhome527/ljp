@@ -11,13 +11,12 @@ import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
-import vn.jp.language.ljp.entity.JlptEntity;
 import vn.jp.language.ljp.entity.JlptGrammarEntity;
 import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IJlptClickListener;
-import vn.jp.language.ljp.view.jlpt.listening.JlptListeningActivity;
+import vn.jp.language.ljp.view.jlpt.grammar_detail.JlpGrammarDetailActivity;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 /**
@@ -40,6 +39,7 @@ public class JlptGrammarListActivity extends PurchaseActivity<JlptGrammarListAct
     JlptGrammarListAdapter adapter;
     JlptGrammarListPresenter presenter;
     int level;
+    int kind;
 
     // declare the dialog as a member field of your activity
     ProgressDialog mProgressDialog;
@@ -53,8 +53,16 @@ public class JlptGrammarListActivity extends PurchaseActivity<JlptGrammarListAct
     protected void initView() {
         Common.setupRecyclerView(activity, recyclerView, null);
         level = getIntent().getIntExtra(Constant.INTENT_LEVEL, PracticeTable.LEVEL_N5);
-        presenter = new JlptGrammarListPresenter(activity, level);
-        setTitle("JLPT");
+        kind = getIntent().getIntExtra(Constant.INTENT_KIND, 1);
+        presenter = new JlptGrammarListPresenter(activity, level, kind);
+        if (kind == Constant.KIND_VOCABULARY)
+            setTitle("文字");
+        else if (kind == Constant.KIND_GRAMMAR)
+            setTitle("文法");
+        else if (kind == Constant.KIND_READING)
+            setTitle("読解");
+        else if (kind == Constant.KIND_LISTENING)
+            setTitle("聴解");
     }
 
     @Override
@@ -109,17 +117,15 @@ public class JlptGrammarListActivity extends PurchaseActivity<JlptGrammarListAct
     @Override
     public void onClick(int position, int mondai) {
         Log.i(TAG, "item click:" + position + "; mondai:" + mondai);
-
+        startJlptGrammar(items.get(position));
     }
 //   ============= END IJlptClickListener
 
-    public void startJlptListening(JlptEntity item){
-        Intent i = new Intent(activity, JlptListeningActivity.class);
+    public void startJlptGrammar(JlptGrammarEntity item){
+        Intent i = new Intent(activity, JlpGrammarDetailActivity.class);
         i.putExtra(Constant.INTENT_LEVEL, item.level);
         i.putExtra(Constant.INTENT_TEST_DATE, item.test_date);
-        i.putExtra(Constant.INTENT_MONDAI, item.mondai);
-        i.putExtra(Constant.INTENT_TITLE_Q, item.title);
-        i.putExtra(Constant.INTENT_FILENAME, item.filename);
+        i.putExtra(Constant.INTENT_KIND, kind);
         startActivity(i);
     }
 

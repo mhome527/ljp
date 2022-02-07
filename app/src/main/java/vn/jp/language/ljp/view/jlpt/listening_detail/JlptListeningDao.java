@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.jlpt.listening;
+package vn.jp.language.ljp.view.jlpt.listening_detail;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,7 +8,6 @@ import java.util.List;
 
 import vn.jp.language.ljp.db.dao.BaseDao;
 import vn.jp.language.ljp.db.table.JlptListeningDetailTable;
-import vn.jp.language.ljp.db.table.JlptListeningTable;
 import vn.jp.language.ljp.entity.JlptListeningEntity;
 
 /**

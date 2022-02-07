@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.jlpt;
+package vn.jp.language.ljp.view.jlpt.listening;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.utils.Toaster;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IJlptClickListener;
-import vn.jp.language.ljp.view.jlpt.listening.JlptListeningActivity;
+import vn.jp.language.ljp.view.jlpt.listening_detail.JlptListeningActivity;
 import vn.jp.language.ljp.view.practice.list.PracticeListAdapter;
 import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 

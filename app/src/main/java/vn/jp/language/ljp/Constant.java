@@ -51,6 +51,7 @@ public class Constant {
     public static final String INTENT_V2 = "intent_v2";
     public static final String INTENT_TEST_DATE = "intent_test_date";
     public static final String INTENT_MONDAI = "intent_mondai";
+    public static final String INTENT_QUESTION_ID = "intent_question_id";
     public static final String INTENT_FILENAME = "intent_filename";
 
 
@@ -112,4 +113,22 @@ public class Constant {
         NUMBER, PERSON, LONG, THING, BOOK, ANIMAL, AGE, SMALL_OBJECT, TIME, LOCATION, GENERIC, MONTH
     }
 
+    public static final int KIND_VOCABULARY = 1;
+    public static final int KIND_GRAMMAR = 2;
+    public static final int KIND_READING = 3;
+    public static final int KIND_LISTENING = 4;
+
+    public static String [] MONDAI_TEXT = {
+            "",
+            "問題1: ＿＿＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
+            "問題2: ＿＿＿の言葉を漢字で書く時、最もよいものを、1・2・3・4から一つ 選びなさい。",
+            "問題3: （　　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+            "問題4: （　　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+            "問題5: ＿＿＿の言葉に意味が最も近いものを、1・2・3・4から一つ選びなさい。",
+            "問題6: 次の言葉の使い方として最もよいものを、1・2・3・4から一つ選びなさい。",
+            "問題7: 次の文の（　　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+            "問題8: 次の文の_★_　に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+            "問題9: 次の文章を読んで、(48)から(52 )の中に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+            "問題10",
+    };
 }

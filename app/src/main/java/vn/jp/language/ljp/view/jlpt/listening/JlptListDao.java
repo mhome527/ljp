@@ -1,4 +1,4 @@
-package vn.jp.language.ljp.view.jlpt;
+package vn.jp.language.ljp.view.jlpt.listening;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

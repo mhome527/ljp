@@ -1,6 +1,5 @@
-package vn.jp.language.ljp.view.jlpt.listening;
+package vn.jp.language.ljp.view.jlpt.listening_detail;
 
-import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,9 +12,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.JlptListeningEntity;
-import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.view.BaseFragment;
-import vn.jp.language.ljp.view.practice.listening.PracticeListeningActivity;
 
 /**
  * Created by Administrator on 7/18/2017.

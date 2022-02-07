@@ -77,12 +77,15 @@
     <string name="title_date">Dates</string>
 
     <string name="title_lvn">Learn Vietnamese Pronunciation</string>
-    <string name="title_n_grammar">Grammar %1$d/%2$d</string>
+    <string name="title_n_grammar">Practice %1$d/%2$d</string>
     <string name="title_n_reading">Reading %1$d/%2$d</string>
     <string name="title_n_vocabulary">Vocabulary %1$d/%2$d</string>
     <string name="title_n_listening">Listening</string>
     <string name="title_n_training">Training %1$d/%2$d</string>
     <string name="title_n_kanji">Kanji %1$d/%2$d</string>
+    <string name="title_exercises">Exercises %1$d/%2$d</string>
+    <string name="title_exercises1">Exercises 1 (%1$d/%2$d)</string>
+    <string name="title_exercises2">Exercises 2 (%1$d/%2$d)</string>
 
     <string name="title_n_grammar2">
         &lt;font &gt;GRAMMAR&lt;/font&gt; &lt;font color="grey"&gt; (%1$d/%2$d)&lt;/font&gt;
@@ -98,6 +101,18 @@
     </string>
     <string name="title_n_kanji2">
         &lt;font&gt;KANJI &lt;/font&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+    </string>
+
+    <string name="title_dashboard_exercises">
+        &lt;font&gt;Exercises &lt;/font&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+    </string>
+
+    <string name="title_dashboard_exercises_1">
+        &lt;font&gt;Exercises 1 &lt;/font&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
+    </string>
+
+    <string name="title_dashboard_exercises_2">
+        &lt;font&gt;Exercises 2 &lt;/font&gt; &lt;font color="grey"&gt;(%1$d/%2$d)&lt;/font&gt;
     </string>
 
     <string name="title_view">View</string>

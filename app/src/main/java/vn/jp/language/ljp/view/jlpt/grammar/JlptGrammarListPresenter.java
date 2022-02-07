@@ -12,14 +12,16 @@ public class JlptGrammarListPresenter extends BasePresenter<JlptGrammarListActiv
 
     private static final String TAG = "JlptListPresenter";
     int level;
+    int kind;
 
     JlptGrammarListDao dao;
 
-    public JlptGrammarListPresenter(JlptGrammarListActivity activity, int level) {
+    public JlptGrammarListPresenter(JlptGrammarListActivity activity, int level, int kind) {
         super(activity);
         this.level = level;
+        this.kind = kind;
 //        this.idRef = idRef;
-        dao = new JlptGrammarListDao(activity, level);
+        dao = new JlptGrammarListDao(activity, level, kind);
     }
 
 
