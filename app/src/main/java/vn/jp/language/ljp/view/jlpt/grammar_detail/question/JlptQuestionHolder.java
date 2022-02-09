@@ -2,6 +2,8 @@ package vn.jp.language.ljp.view.jlpt.grammar_detail.question;
 
 import android.text.Html;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,7 +21,8 @@ import vn.jp.language.ljp.view.BaseViewHolder;
 public class JlptQuestionHolder extends BaseViewHolder {
 
     @BindView(R.id.tvQuestion)
-    TextView tvQuestion;
+    WebView tvQuestion;
+//    TextView tvQuestion;
 
     @BindView(R.id.imgQ1)
     ImageView imgQ1;
@@ -58,6 +61,8 @@ public class JlptQuestionHolder extends BaseViewHolder {
         super(itemView);
 //        this.iJlptClickListener = iJlptClickListener;
 //        itemView.setOnClickListener(v -> iJlptClickListener.onClick(getLayoutPosition(), 0));
+        WebSettings webSettings = tvQuestion.getSettings();
+        webSettings.setDefaultFontSize(14);
     }
 
     public void bind(JlptGrammarDetailEntity item) {
@@ -81,7 +86,8 @@ public class JlptQuestionHolder extends BaseViewHolder {
         }
 
         tvQuestion.setVisibility(View.VISIBLE);
-        tvQuestion.setText(Html.fromHtml(item.num + "番　" + item.title, Html.FROM_HTML_MODE_LEGACY));
+//        tvQuestion.setText(Html.fromHtml(item.num + "番　" + item.title, Html.FROM_HTML_MODE_LEGACY));
+        tvQuestion.loadData(item.num + "番　" + item.title, "text/html", "UTF-8");
 
     }
 

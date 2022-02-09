@@ -37,7 +37,8 @@ public class JlptQuestionAdapter extends BaseAdapterView<BaseViewHolder> {
 
     @Override
     protected int getItemLayout() {
-        return R.layout.jlpt_question_item;
+//        return R.layout.jlpt_question_item;
+        return R.layout.jlpt_grammar_question;
     }
 
     @Override

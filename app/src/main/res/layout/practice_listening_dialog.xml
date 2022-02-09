@@ -24,7 +24,7 @@
             android:focusable="true"
             android:longClickable="true"
             android:textIsSelectable="true"
-            android:textSize="20sp"
+            android:textSize="14sp"
             tools:text="@string/appbar_scrolling_view_behavior" />
 
     </ScrollView>

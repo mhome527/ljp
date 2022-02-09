@@ -1,8 +1,8 @@
 package vn.jp.language.ljp.view.jlpt.grammar_detail.question;
 
-import android.text.Html;
 import android.view.View;
-import android.widget.TextView;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 import butterknife.BindView;
 import vn.jp.language.ljp.R;
@@ -15,11 +15,15 @@ import vn.jp.language.ljp.view.BaseViewHolder;
 public class JlptQuestionHeaderHolder extends BaseViewHolder {
 
     @BindView(R.id.tvArticle)
-    TextView tvArticle;
+    WebView tvArticle;
+//    TextView tvArticle;
 
 
     public JlptQuestionHeaderHolder(View itemView) {
         super(itemView);
+        WebSettings webSettings = tvArticle.getSettings();
+        webSettings.setDefaultFontSize(14);
+
     }
 
     public void bind(String article) {
@@ -28,6 +32,9 @@ public class JlptQuestionHeaderHolder extends BaseViewHolder {
         }else{
             tvArticle.setVisibility(View.VISIBLE);
         }
-        tvArticle.setText(Html.fromHtml(article, Html.FROM_HTML_MODE_LEGACY));
+//        tvArticle.setText(Html.fromHtml(article, Html.FROM_HTML_MODE_LEGACY));
+
+        tvArticle.loadData(article, "text/html", "UTF-8");
+
     }
 }

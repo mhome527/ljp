@@ -20,7 +20,7 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             tools:text="@string/close" />
 
     </LinearLayout>
@@ -38,9 +38,10 @@
 
         <ImageButton
             android:id="@+id/imgSpeak"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_margin="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/pause"
             android:padding="15dp" />
 
@@ -61,7 +62,7 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/tvTitleQuestion"
+            android:id="@+id/tvTitleQuestion" android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

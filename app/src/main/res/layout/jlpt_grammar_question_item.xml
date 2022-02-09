@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <WebView
+        android:id="@+id/tvQuestion" android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:longClickable="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:textSize="14sp"
+        tools:text="@string/tap_on_mic"
+        tools:ignore="WebViewLayout" />
+
+    <LinearLayout
+        android:id="@+id/llQ1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="2dp">
+
+        <ImageView
+            android:id="@+id/imgQ1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/circle" />
+
+        <TextView
+            android:id="@+id/tvQ1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minLines="2"
+            android:paddingLeft="10dp"
+            android:textColor="@color/gray2"
+            android:textSize="14sp"
+            tools:text="@string/speech_not_supported" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llQ2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="2dp">
+
+        <ImageView
+            android:id="@+id/imgQ2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/circle" />
+
+        <TextView
+            android:id="@+id/tvQ2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minLines="2"
+            android:paddingLeft="10dp"
+            android:textColor="@color/gray2"
+            android:textSize="14sp"
+            tools:text="@string/msg_recognition_voice" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llQ3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="2dp">
+
+        <ImageView
+            android:id="@+id/imgQ3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/circle" />
+
+        <TextView
+            android:id="@+id/tvQ3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minLines="2"
+            android:paddingLeft="10dp"
+            android:textColor="@color/gray2"
+            android:textSize="14sp"
+            tools:text="@string/msg_recognition_voice" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llQ4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="2dp">
+
+        <ImageView
+            android:id="@+id/imgQ4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/circle" />
+
+        <TextView
+            android:id="@+id/tvQ4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minLines="2"
+            android:paddingLeft="10dp"
+            android:textColor="@color/gray2"
+            android:textSize="14sp"
+            tools:text="@string/speech_not_supported" />
+
+    </LinearLayout>
+
+</LinearLayout>
