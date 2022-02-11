@@ -1,7 +1,6 @@
 package vn.jp.language.ljp.view.jlpt.listening;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -20,8 +19,11 @@ public class JlptListHolder extends BaseViewHolder {
     @BindView(R.id.tvTextDate)
     TextView tvTextDate;
 
-    @BindView(R.id.btnMondai1)
-    Button btnMondai1;
+    @BindView(R.id.tvSoon)
+    TextView tvSoon;
+
+    @BindView(R.id.llMondai)
+    View llMondai;
 
     IJlptClickListener iJlptClickListener;
 
@@ -32,6 +34,13 @@ public class JlptListHolder extends BaseViewHolder {
 
     public void bind(JlptEntity item, boolean isPurchased) {
         tvTextDate.setText(item.test_date);
+        if (item.isInserted == 1) {
+            tvSoon.setVisibility(View.GONE);
+            llMondai.setVisibility(View.VISIBLE);
+        } else {
+            tvSoon.setVisibility(View.VISIBLE);
+            llMondai.setVisibility(View.GONE);
+        }
     }
 
     @OnClick(R.id.btnMondai1)

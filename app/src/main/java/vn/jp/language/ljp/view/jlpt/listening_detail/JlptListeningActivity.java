@@ -40,7 +40,7 @@ public class JlptListeningActivity extends BaseActivity<JlptListeningActivity> i
     @BindView(R.id.imgPre)
     ImageButton imgPre;
 
-   @BindView(R.id.imgSpeak)
+    @BindView(R.id.imgSpeak)
     ImageButton imgSpeak;
 
     @BindView(R.id.imgNext)
@@ -70,11 +70,11 @@ public class JlptListeningActivity extends BaseActivity<JlptListeningActivity> i
         int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
         String test_date = getIntent().getStringExtra(Constant.INTENT_TEST_DATE);
         int mondai = getIntent().getIntExtra(Constant.INTENT_MONDAI, 0);
-         filename = getIntent().getStringExtra(Constant.INTENT_FILENAME);
+        filename = getIntent().getStringExtra(Constant.INTENT_FILENAME);
 
         String mondai_title = getIntent().getStringExtra(Constant.INTENT_TITLE_Q);
         tvMondai.setText(Html.fromHtml(mondai_title, Html.FROM_HTML_MODE_LEGACY));
-        setTitle(test_date);
+        setTitle("N" + level + " (" + test_date + ")");
         Log.i(TAG, "initView pos:" + pos);
         presenter = new JlptListeningPresenter(activity, level, test_date, mondai);
         setPageView();
@@ -108,10 +108,10 @@ public class JlptListeningActivity extends BaseActivity<JlptListeningActivity> i
     @OnClick(R.id.imgSpeak)
     public void actionSpeak() {
         Log.i(TAG, "speak filename:" + filename);
-        if(audio.isPlaying()){
+        if (audio.isPlaying()) {
             audio.pause();
             imgSpeak.setBackgroundResource(R.drawable.play);
-        }else{
+        } else {
             audio.start();
             imgSpeak.setBackgroundResource(R.drawable.pause);
         }

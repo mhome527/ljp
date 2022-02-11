@@ -32,77 +32,93 @@
                 android:textSize="18sp"
                 tools:text="12-2020" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <Button
-                    android:id="@+id/btnMondai1"
-                    android:layout_width="wrap_content"
+                <LinearLayout android:id="@+id/llMondai"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:gravity="center"
-                    android:text="問題１"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btnMondai2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:gravity="center"
-                    android:text="問題2"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    <Button
+                        android:id="@+id/btnMondai1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="問題１"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
-                <Button
-                    android:id="@+id/btnMondai3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:gravity="center"
-                    android:text="問題3"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    <Button
+                        android:id="@+id/btnMondai2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="問題2"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
-                <Button
-                    android:id="@+id/btnMondai4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:gravity="center"
-                    android:text="問題4"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    <Button
+                        android:id="@+id/btnMondai3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="問題3"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
-                <Button
-                    android:id="@+id/btnMondai5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="0dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:gravity="center"
-                    android:text="問題5"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    <Button
+                        android:id="@+id/btnMondai4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="問題4"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
-            </LinearLayout>
+                    <Button
+                        android:id="@+id/btnMondai5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="0dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="問題5"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvSoon"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/maroon"
+                    android:gravity="center"
+                    android:text="Coming soon!!!"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
         </LinearLayout>
 
 

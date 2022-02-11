@@ -56,7 +56,7 @@ public class JlptListActivity extends PurchaseActivity<JlptListActivity> impleme
         Common.setupRecyclerView(activity, recyclerView, null);
         level = getIntent().getIntExtra(Constant.INTENT_LEVEL, PracticeTable.LEVEL_N5);
         presenter = new JlptListPresenter(activity, level);
-        setTitle("JLPT");
+        setTitle("N" + level);
 
         Common.verifyStoragePermissions(activity);
     }
@@ -122,6 +122,8 @@ public class JlptListActivity extends PurchaseActivity<JlptListActivity> impleme
                     new Toaster(activity).popToast("Permission denied!!!");
                     Common.verifyStoragePermissions(activity);
                 } else {
+                    if(item.filename == null || item.filename.equals(""))
+                        return;
                     String path_file = Environment.getExternalStorageDirectory().toString() + Constant.FOLDER_JLPT + "/" + item.filename;
                     if (Common.isExistFile(path_file)) {
                         startJlptListening(item);
@@ -148,7 +150,7 @@ public class JlptListActivity extends PurchaseActivity<JlptListActivity> impleme
     }
 //   ============= END IJlptClickListener
 
-    public void startJlptListening(JlptEntity item){
+    public void startJlptListening(JlptEntity item) {
         Intent i = new Intent(activity, JlptListeningActivity.class);
         i.putExtra(Constant.INTENT_LEVEL, item.level);
         i.putExtra(Constant.INTENT_TEST_DATE, item.test_date);

@@ -37,15 +37,17 @@ public class JlptListDao extends BaseDao<JlptEntity> {
             entity.filename = cursor.getString(cursor.getColumnIndex(JlptListeningTable.COL_FILENAME));
         if (cursor.getColumnIndex(JlptListeningTable.COL_LINK_DOWNLOAD) != -1)
             entity.link_download = cursor.getString(cursor.getColumnIndex(JlptListeningTable.COL_LINK_DOWNLOAD));
+        if (cursor.getColumnIndex(JlptListeningTable.COL_INSERTED) != -1)
+            entity.isInserted = cursor.getInt(cursor.getColumnIndex(JlptListeningTable.COL_INSERTED));
 
         return entity;
     }
 
     public List<JlptEntity> getItems() {
-        String sql = "SELECT distinct Level, Test_date"
+        String sql = "SELECT distinct Level, Test_date, Inserted"
                 + " From " + JlptListeningTable.TABLE_NAME
                 + " Where Level = " + level
-                + " Order by substr(Test_date, 4,4), substr(Test_date, 1,2) asc";
+                + " Order by substr(Test_date, 4,4) desc, substr(Test_date, 1,2) desc";
         return fetchAll(sql);
     }
 

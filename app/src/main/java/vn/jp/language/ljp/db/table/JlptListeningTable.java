@@ -15,6 +15,7 @@ public class JlptListeningTable {
     public static final String COL_TITLE = "Title";
     public static final String COL_FILENAME = "Filename";
     public static final String COL_LINK_DOWNLOAD = "Link_Download";
+    public static final String COL_INSERTED = "Inserted";
     public static final String CLEAR_TABLE = "delete from " + TABLE_NAME;
 
 

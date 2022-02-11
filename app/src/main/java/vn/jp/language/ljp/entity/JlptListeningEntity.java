@@ -13,6 +13,7 @@ public class JlptListeningEntity {
    public String q4;
    public int ans;
    public String explain;
+   public int isInserted;
 
     public JlptListeningEntity(){
 

@@ -60,7 +60,10 @@ public class JlptListPresenter extends BasePresenter<JlptListActivity> {
 
     public void downloadFile(JlptEntity item) {
 //        String file_url = "https://firebasestorage.googleapis.com/v0/b/learnjapanese-966af.appspot.com/o/n2%2F12_2013_N2.mp3?alt=media&token=5d2b437b-d9bd-4dea-81e1-60aa6e0f9d14";
-        new DownloadFileFromURL(item).execute(Constant.LINK_JLPT + item.link_download);
+       String link = Constant.LINK_JLPT + item.link_download;
+        Log.i(TAG, "url:" + link);
+
+        new DownloadFileFromURL(item).execute(link);
     }
 
     /**
@@ -135,6 +138,7 @@ public class JlptListPresenter extends BasePresenter<JlptListActivity> {
 
             } catch (Exception e) {
                 Log.e("Error: ", e.getMessage());
+                e.printStackTrace();
             }
 
             return null;

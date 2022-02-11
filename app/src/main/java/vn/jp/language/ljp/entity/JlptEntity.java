@@ -11,6 +11,7 @@ public class JlptEntity {
     public String title;
     public String filename;
     public String link_download;
+    public int isInserted;
 
     public JlptEntity(int level, String test_date) {
         this.level = level;
