@@ -13,6 +13,7 @@ import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.JlptEntity;
+import vn.jp.language.ljp.entity.JlptMstEntity;
 import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.utils.Toaster;
@@ -38,10 +39,11 @@ public class JlptListActivity extends PurchaseActivity<JlptListActivity> impleme
 //            Manifest.permission.WRITE_EXTERNAL_STORAGE
 //    };
 
-    List<JlptEntity> items;
+    List<JlptMstEntity> items;
     PracticeListAdapter adapter;
     JlptListPresenter presenter;
     int level;
+    int kind;
 
     // declare the dialog as a member field of your activity
     ProgressDialog mProgressDialog;
@@ -55,8 +57,9 @@ public class JlptListActivity extends PurchaseActivity<JlptListActivity> impleme
     protected void initView() {
         Common.setupRecyclerView(activity, recyclerView, null);
         level = getIntent().getIntExtra(Constant.INTENT_LEVEL, PracticeTable.LEVEL_N5);
-        presenter = new JlptListPresenter(activity, level);
-        setTitle("N" + level);
+        kind = getIntent().getIntExtra(Constant.INTENT_KIND, 1);
+        presenter = new JlptListPresenter(activity, level, kind);
+        setTitle("聴解ーN" + level);
 
         Common.verifyStoragePermissions(activity);
     }
@@ -164,7 +167,7 @@ public class JlptListActivity extends PurchaseActivity<JlptListActivity> impleme
         presenter.loadData(new ICallback() {
             @Override
             public void onCallback(Object data) {
-                items = (List<JlptEntity>) data;
+                items = (List<JlptMstEntity>) data;
                 JlptListAdapter adapter = new JlptListAdapter(items, activity);
                 recyclerView.setAdapter(adapter);
             }

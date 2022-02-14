@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         app:cardUseCompatPadding="true">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -28,11 +28,22 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:textColor="@color/blue"
+                android:textColor="@color/gray"
                 android:textSize="18sp"
                 tools:text="12-2020" />
 
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvSoon" android:layout_below="@+id/tvTextDate"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/maroon"
+                android:gravity="center"
+                android:text="Coming soon!!!"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
 
 
     </androidx.cardview.widget.CardView>

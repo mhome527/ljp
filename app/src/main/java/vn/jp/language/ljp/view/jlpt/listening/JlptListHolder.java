@@ -1,12 +1,13 @@
 package vn.jp.language.ljp.view.jlpt.listening;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import vn.jp.language.ljp.R;
-import vn.jp.language.ljp.entity.JlptEntity;
+import vn.jp.language.ljp.entity.JlptMstEntity;
 import vn.jp.language.ljp.view.BaseViewHolder;
 import vn.jp.language.ljp.view.IJlptClickListener;
 
@@ -32,12 +33,14 @@ public class JlptListHolder extends BaseViewHolder {
         this.iJlptClickListener = iJlptClickListener;
     }
 
-    public void bind(JlptEntity item, boolean isPurchased) {
+    public void bind(JlptMstEntity item, boolean isPurchased) {
         tvTextDate.setText(item.test_date);
         if (item.isInserted == 1) {
+            tvTextDate.setTextColor(Color.BLUE);
             tvSoon.setVisibility(View.GONE);
             llMondai.setVisibility(View.VISIBLE);
         } else {
+            tvTextDate.setTextColor(Color.GRAY);
             tvSoon.setVisibility(View.VISIBLE);
             llMondai.setVisibility(View.GONE);
         }

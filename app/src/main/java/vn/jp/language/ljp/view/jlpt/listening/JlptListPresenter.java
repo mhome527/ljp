@@ -30,12 +30,14 @@ public class JlptListPresenter extends BasePresenter<JlptListActivity> {
     int level;
 
     JlptListDao dao;
+    JlptMstDao mstDao;
 
-    public JlptListPresenter(JlptListActivity activity, int level) {
+    public JlptListPresenter(JlptListActivity activity, int level, int kind) {
         super(activity);
         this.level = level;
 //        this.idRef = idRef;
         dao = new JlptListDao(activity, level);
+        mstDao = new JlptMstDao(activity, level, kind);
     }
 
 
@@ -44,7 +46,7 @@ public class JlptListPresenter extends BasePresenter<JlptListActivity> {
         loadData(iCallback, new ILoadData() {
             @Override
             public Object onBackground() {
-                return dao.getItems();
+                return mstDao.getItems();
             }
         });
     }

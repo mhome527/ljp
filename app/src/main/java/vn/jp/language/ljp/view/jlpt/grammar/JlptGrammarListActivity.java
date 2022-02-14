@@ -11,7 +11,7 @@ import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
-import vn.jp.language.ljp.entity.JlptGrammarEntity;
+import vn.jp.language.ljp.entity.JlptMstEntity;
 import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.ICallback;
@@ -35,7 +35,7 @@ public class JlptGrammarListActivity extends PurchaseActivity<JlptGrammarListAct
 //            Manifest.permission.WRITE_EXTERNAL_STORAGE
 //    };
 
-    List<JlptGrammarEntity> items;
+    List<JlptMstEntity> items;
     JlptGrammarListAdapter adapter;
     JlptGrammarListPresenter presenter;
     int level;
@@ -56,13 +56,13 @@ public class JlptGrammarListActivity extends PurchaseActivity<JlptGrammarListAct
         kind = getIntent().getIntExtra(Constant.INTENT_KIND, 1);
         presenter = new JlptGrammarListPresenter(activity, level, kind);
         if (kind == Constant.KIND_VOCABULARY)
-            setTitle("文字");
+            setTitle("文字 N" + level);
         else if (kind == Constant.KIND_GRAMMAR)
-            setTitle("文法");
+            setTitle("文法 N" + level);
         else if (kind == Constant.KIND_READING)
-            setTitle("読解");
+            setTitle("読解 N" + level);
         else if (kind == Constant.KIND_LISTENING)
-            setTitle("聴解");
+            setTitle("聴解 N" + level);
     }
 
     @Override
@@ -121,7 +121,7 @@ public class JlptGrammarListActivity extends PurchaseActivity<JlptGrammarListAct
     }
 //   ============= END IJlptClickListener
 
-    public void startJlptGrammar(JlptGrammarEntity item){
+    public void startJlptGrammar(JlptMstEntity item) {
         Intent i = new Intent(activity, JlpGrammarDetailActivity.class);
         i.putExtra(Constant.INTENT_LEVEL, item.level);
         i.putExtra(Constant.INTENT_TEST_DATE, item.test_date);
@@ -133,7 +133,7 @@ public class JlptGrammarListActivity extends PurchaseActivity<JlptGrammarListAct
         presenter.loadData(new ICallback() {
             @Override
             public void onCallback(Object data) {
-                items = (List<JlptGrammarEntity>) data;
+                items = (List<JlptMstEntity>) data;
                 JlptGrammarListAdapter adapter = new JlptGrammarListAdapter(items, activity);
                 recyclerView.setAdapter(adapter);
             }

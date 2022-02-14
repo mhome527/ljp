@@ -87,7 +87,7 @@ public class JlptQuestionHolder extends BaseViewHolder {
 
         tvQuestion.setVisibility(View.VISIBLE);
 //        tvQuestion.setText(Html.fromHtml(item.num + "番　" + item.title, Html.FROM_HTML_MODE_LEGACY));
-        tvQuestion.loadData(item.num + "番　" + item.title, "text/html", "UTF-8");
+        tvQuestion.loadData(item.num + "番<br/>" + item.title, "text/html", "UTF-8");
 
     }
 

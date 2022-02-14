@@ -2,6 +2,7 @@ package vn.jp.language.ljp.view.jlpt.grammar;
 
 import vn.jp.language.ljp.view.BasePresenter;
 import vn.jp.language.ljp.view.ICallback;
+import vn.jp.language.ljp.view.jlpt.listening.JlptMstDao;
 
 
 /**
@@ -15,6 +16,7 @@ public class JlptGrammarListPresenter extends BasePresenter<JlptGrammarListActiv
     int kind;
 
     JlptGrammarListDao dao;
+    JlptMstDao mstDao;
 
     public JlptGrammarListPresenter(JlptGrammarListActivity activity, int level, int kind) {
         super(activity);
@@ -22,6 +24,7 @@ public class JlptGrammarListPresenter extends BasePresenter<JlptGrammarListActiv
         this.kind = kind;
 //        this.idRef = idRef;
         dao = new JlptGrammarListDao(activity, level, kind);
+        mstDao = new JlptMstDao(activity, level, kind);
     }
 
 
@@ -30,7 +33,7 @@ public class JlptGrammarListPresenter extends BasePresenter<JlptGrammarListActiv
         loadData(iCallback, new ILoadData() {
             @Override
             public Object onBackground() {
-                return dao.getItems();
+                return mstDao.getItems();
             }
         });
     }

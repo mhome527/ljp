@@ -5,7 +5,7 @@ import android.view.View;
 import java.util.List;
 
 import vn.jp.language.ljp.R;
-import vn.jp.language.ljp.entity.JlptEntity;
+import vn.jp.language.ljp.entity.JlptMstEntity;
 import vn.jp.language.ljp.view.BaseAdapterView;
 import vn.jp.language.ljp.view.IJlptClickListener;
 
@@ -15,12 +15,12 @@ import vn.jp.language.ljp.view.IJlptClickListener;
 
 public class JlptListAdapter extends BaseAdapterView<JlptListHolder> {
 
-    List<JlptEntity> items;
+    List<JlptMstEntity> items;
     boolean isPurchased = false;
 
     private IJlptClickListener iJlptClickListener;
 
-    public JlptListAdapter(List<JlptEntity> items, IJlptClickListener iJlptClickListener) {
+    public JlptListAdapter(List<JlptMstEntity> items, IJlptClickListener iJlptClickListener) {
         this.items = items;
         this.iJlptClickListener = iJlptClickListener;
     }

@@ -1,5 +1,7 @@
 package vn.jp.language.ljp.view.practice.dashboard;
 
+import static vn.jp.language.ljp.Constant.KIND_LISTENING;
+
 import android.content.Intent;
 import android.text.Html;
 import android.view.View;
@@ -98,6 +100,7 @@ public class PracticeDashboardFragment extends BaseFragment<PracticeDashboardAct
     public void actionListeningJ() {
         Intent i = new Intent(activity, JlptListActivity.class);
         i.putExtra(Constant.INTENT_LEVEL, activity.level);
+        i.putExtra(Constant.INTENT_KIND, KIND_LISTENING);
         startActivity(i);
     }
 

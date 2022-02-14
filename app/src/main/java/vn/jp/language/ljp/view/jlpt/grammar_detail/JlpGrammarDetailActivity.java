@@ -65,14 +65,13 @@ public class JlpGrammarDetailActivity extends BaseActivity<JlpGrammarDetailActiv
 
         presenter.loadList(test_date, this);
         if (kind == Constant.KIND_VOCABULARY)
-            setTitle("文字 " + test_date);
+            setTitle("文字 N" + level + " (" + test_date + ")");
         else if (kind == Constant.KIND_GRAMMAR)
-            setTitle("文法 " + test_date);
+            setTitle("文法 N" + level + " (" + test_date + ")");
         else if (kind == Constant.KIND_READING)
-            setTitle("読解 " + test_date);
+            setTitle("読解 N" + level + " (" + test_date + ")");
         else if (kind == Constant.KIND_LISTENING)
-            setTitle("聴解 " + test_date);
-
+            setTitle("聴解 N" + level + " (" + test_date + ")");
     }
 
     @Override
