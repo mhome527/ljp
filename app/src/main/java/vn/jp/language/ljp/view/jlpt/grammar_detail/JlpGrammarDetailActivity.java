@@ -43,7 +43,7 @@ public class JlpGrammarDetailActivity extends BaseActivity<JlpGrammarDetailActiv
 
     List<JlptGrammarEntity> items;
 
-    int pos;
+    int pos = 0;
     JlptGrammarDetailPresenter presenter;
 
     public String test_date;
@@ -129,6 +129,8 @@ public class JlpGrammarDetailActivity extends BaseActivity<JlpGrammarDetailActiv
         viewpager.setAdapter(adapter);
         viewpager.setCurrentItem(pos);
         setPageView();
+        tvMondai.setText(Constant.getMondai(activity.level, activity.kind, items.get(pos).mondai));
+
     }
 
 
@@ -147,6 +149,8 @@ public class JlpGrammarDetailActivity extends BaseActivity<JlpGrammarDetailActiv
             @Override
             public void onPageSelected(int position) {
                 pos = position;
+                tvMondai.setText(Constant.getMondai(activity.level, activity.kind, items.get(pos).mondai));
+
                 hideButton();
 //                JlptListeningEntity item = items.get(position);
 //                tvNum.setText(item.num + "");
@@ -177,8 +181,8 @@ public class JlpGrammarDetailActivity extends BaseActivity<JlpGrammarDetailActiv
         }
     }
 
-    public void setMondai(String text){
-        tvMondai.setText(text);
-    }
+//    public void setMondai(String text){
+//        tvMondai.setText(text);
+//    }
 
 }

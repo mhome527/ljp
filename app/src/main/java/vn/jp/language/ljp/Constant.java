@@ -19,8 +19,8 @@ public class Constant {
     public static final int TRIAL_READING = 5 + TEST_P;
     public static final int TRIAL_LISTENING = 4 + TEST_P;
 
-    public static final String FOLDER_JLPT  = "/learn_japanese";
-    public static final String LINK_JLPT  = "https://firebasestorage.googleapis.com/v0/b/learnjapanese-966af.appspot.com/o/";
+    public static final String FOLDER_JLPT = "/learn_japanese";
+    public static final String LINK_JLPT = "https://firebasestorage.googleapis.com/v0/b/learnjapanese-966af.appspot.com/o/";
 
 
 //    public static final int TRIAL_VOCABULARY = 3;
@@ -118,7 +118,7 @@ public class Constant {
     public static final int KIND_READING = 3;
     public static final int KIND_LISTENING = 4;
 
-    public static String [] MONDAI_TEXT = {
+    public static String[] N2_MONDAI_TEXT = {
             "",
             "問題1: ＿＿＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
             "問題2: ＿＿＿の言葉を漢字で書く時、最もよいものを、1・2・3・4から一つ 選びなさい。",
@@ -135,4 +135,37 @@ public class Constant {
             "問題13 次の文章を読んで、後の問いに対する答えとして最もよいものを、1・2・3・4から一つ選びなさい。",
             "問題14右のページは、ある大学の国際センターのポスターである。下の問いに対する答えとして最もよいものを、1・2・3・4から一つ選びなさい。"
     };
+
+    public static String[] N3_MONDAI_GRAMMAR_TEXT = {
+            "",
+            "問題1: つぎの文の(　　)に入れるのに最もよいものを、1・2・3・4から一つえらびなさい。",
+            "問題2: つぎの文の_★_ に入る最もよいものを、1・2・3・4から一つえらびなさい。",
+            "問題3: つぎの文章を読んで、文章全体の内容を考えて、(19)から(23)の中に入る最もよいものを、1・2・3・4から一つえらびなさい。",
+            "問題4: つぎの(1)から(4)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいもの を一つえらびなさい。",
+            "問題5: つぎの(1)と(2)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一 つえらびなさい。",
+            "問題6: つぎの文章を読んで、質問に答えなさい。答えは、1.2.3.4 から最もよいものを一つえらびなさい。",
+            "問題7: 右のページの A と B は、クリーニング店にはってある二つのお知らせである。これを読んで、下の質 問に答えなさい。答えは、1・2・3・4から最もよいものを一つえらびなさい。",
+    };
+
+    public static String[] N3_MONDAI_VOCABULARY_TEXT = {
+            "",
+            "問題 1__のことばの読み方として最もよいものを、1・2・3・4から一つえらびなさい。",
+            "問題 2__のことばを漢字で書くとき、最もよいものを、1・2・3・4から一つえらびなさい。",
+            "問題 3 (　　)に入れるのに最もよいものを、1・2・3・4から一つえらびなさい。",
+            "問題 4に意味が最も近いものを、1・2・3・4から一つえらびなさい。",
+            "問題 5 つぎのことばの使い方として最もよいものを、1・2・3・4から一つえらびなさい。"
+    };
+
+    public static String getMondai(int level, int kind, int mondai) {
+        if (level == 2) {
+            return N2_MONDAI_TEXT[mondai];
+        } else if (level == 3) {
+            if(kind == 1)
+                return N3_MONDAI_VOCABULARY_TEXT[mondai];
+            else
+                return N3_MONDAI_GRAMMAR_TEXT[mondai];
+        }
+        return "";
+    }
+
 }

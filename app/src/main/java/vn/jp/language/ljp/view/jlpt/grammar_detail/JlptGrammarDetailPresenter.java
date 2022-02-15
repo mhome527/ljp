@@ -22,7 +22,7 @@ public class JlptGrammarDetailPresenter extends BasePresenter<JlpGrammarDetailAc
         this.level = level;
         this.test_date = test_date;
         this.kind = kind;
-        dao = new JlptGrammarDetailDao(activity, level, test_date);
+        dao = new JlptGrammarDetailDao(activity, level, test_date, kind);
         listDao = new JlptGrammarListDao(activity, level, kind);
     }
 

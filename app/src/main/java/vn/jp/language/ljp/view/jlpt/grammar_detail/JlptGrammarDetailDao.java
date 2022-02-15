@@ -17,12 +17,14 @@ import vn.jp.language.ljp.entity.JlptGrammarDetailEntity;
 public class JlptGrammarDetailDao extends BaseDao<JlptGrammarDetailEntity> {
 
     int level;
+    int kind;
     String test_date;
 
-    public JlptGrammarDetailDao(Context context, int level, String test_date) {
+    public JlptGrammarDetailDao(Context context, int level, String test_date, int kind) {
         super(context);
         this.level = level;
         this.test_date = test_date;
+        this.kind = kind;
     }
 
     @SuppressLint("Range")
@@ -48,6 +50,7 @@ public class JlptGrammarDetailDao extends BaseDao<JlptGrammarDetailEntity> {
                 + " Where Level = " + level
                 + " AND Test_date = '" + test_date + "'"
                 + " AND Question_id = " + question_id
+                + " AND Kind = " + kind
                 + " Order by num asc";
         return fetchAll(sql);
     }

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import butterknife.BindView;
-import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.JlptGrammarDetailEntity;
 import vn.jp.language.ljp.utils.Common;
@@ -62,10 +61,11 @@ public class JlptGrammarDetailFragment extends BaseFragment<JlpGrammarDetailActi
     }
 
     public void setData() {
-        if(activity.items.get(pos).mondai != mondai){
-            mondai = activity.items.get(pos).mondai;
-            activity.setMondai(Constant.MONDAI_TEXT[activity.items.get(pos).mondai]);
-        }
+//        if (activity.items.get(pos).mondai != mondai) {
+//            mondai = activity.items.get(pos).mondai;
+//            activity.setMondai(Constant.N2_MONDAI_TEXT[activity.items.get(pos).mondai]);
+//            activity.setMondai(Constant.getMondai(activity.level, activity.kind, mondai));
+//        }
         presenter.loadItem(activity.items.get(pos).question_id, new ICallback() {
             @Override
             public void onCallback(Object data) {
