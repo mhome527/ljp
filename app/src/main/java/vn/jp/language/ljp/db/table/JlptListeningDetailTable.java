@@ -14,6 +14,7 @@ public class JlptListeningDetailTable {
     public static final String COL_MONDAI = "Mondai";
     public static final String COL_NUM = "Num";
     public static final String COL_TITLE = "Title";
+    public static final String COL_IMAGE_Q = "ImageQ";
     public static final String COL_Q1 = "Q1";
     public static final String COL_Q2 = "Q2";
     public static final String COL_Q3 = "Q3";

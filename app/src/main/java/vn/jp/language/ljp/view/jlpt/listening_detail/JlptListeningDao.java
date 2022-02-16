@@ -34,6 +34,7 @@ public class JlptListeningDao extends BaseDao<JlptListeningEntity> {
 //        entity.level = cursor.getInt(cursor.getColumnIndex(JlptListeningDetailTable.COL_LEVEL));
         entity.num = cursor.getInt(cursor.getColumnIndex(JlptListeningDetailTable.COL_NUM));
         entity.title = cursor.getString(cursor.getColumnIndex(JlptListeningDetailTable.COL_TITLE));
+        entity.imageQ = cursor.getString(cursor.getColumnIndex(JlptListeningDetailTable.COL_IMAGE_Q));
         entity.q1 = cursor.getString(cursor.getColumnIndex(JlptListeningDetailTable.COL_Q1));
         entity.q2 = cursor.getString(cursor.getColumnIndex(JlptListeningDetailTable.COL_Q2));
         entity.q3 = cursor.getString(cursor.getColumnIndex(JlptListeningDetailTable.COL_Q3));

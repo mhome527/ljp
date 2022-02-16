@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.JlptListeningEntity;
+import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.view.BaseFragment;
 
 /**
@@ -24,6 +25,9 @@ public class JlptListeningFragment extends BaseFragment<JlptListeningActivity> {
 
     @BindView(R.id.tvQuestion)
     TextView tvQuestion;
+
+    @BindView(R.id.imgTitle)
+    ImageView imgTitle;
 
     @BindView(R.id.imgQ1)
     ImageView imgQ1;
@@ -172,6 +176,12 @@ public class JlptListeningFragment extends BaseFragment<JlptListeningActivity> {
         this.item = item;
 
         tvNum.setText(item.num + "");
+        if (item.imageQ != null && !item.imageQ.equals("")) {
+            imgTitle.setVisibility(View.VISIBLE);
+            imgTitle.setImageBitmap(Common.getImage(item.imageQ));
+        } else {
+            imgTitle.setVisibility(View.GONE);
+        }
         tvQ1.setText(item.q1);
         tvQ2.setText(item.q2);
         tvQ3.setText(item.q3);

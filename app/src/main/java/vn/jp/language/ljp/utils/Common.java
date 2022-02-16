@@ -100,4 +100,9 @@ public class Common {
     public static Bitmap getImage(byte[] image) {
         return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
+
+    public static Bitmap getImage(String base64){
+        byte[] decodedString = android.util.Base64.decode(base64, android.util.Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+    }
 }
