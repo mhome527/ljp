@@ -2,6 +2,7 @@ package vn.jp.language.ljp.view.jlpt.listening;
 
 import android.graphics.Color;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -26,6 +27,9 @@ public class JlptListHolder extends BaseViewHolder {
     @BindView(R.id.llMondai)
     View llMondai;
 
+    @BindView(R.id.btnMondai5)
+    Button btnMondai5;
+
     IJlptClickListener iJlptClickListener;
 
     public JlptListHolder(View itemView, IJlptClickListener iJlptClickListener) {
@@ -43,6 +47,11 @@ public class JlptListHolder extends BaseViewHolder {
             tvTextDate.setTextColor(Color.GRAY);
             tvSoon.setVisibility(View.VISIBLE);
             llMondai.setVisibility(View.GONE);
+        }
+        if(item.level >= 4){
+            btnMondai5.setVisibility(View.GONE);
+        }else{
+            btnMondai5.setVisibility(View.VISIBLE);
         }
     }
 

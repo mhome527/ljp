@@ -21,4 +21,14 @@
         android:textIsSelectable="true"
         android:textSize="16sp"
         tools:text="@string/appbar_scrolling_view_behavior" />
+
+    <ImageView
+        android:id="@+id/imgTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/test"
+        android:visibility="gone" />
+
 </LinearLayout>

@@ -70,7 +70,7 @@ public class JlptGrammarDetailFragment extends BaseFragment<JlpGrammarDetailActi
             @Override
             public void onCallback(Object data) {
                 List<JlptGrammarDetailEntity> questions = (List<JlptGrammarDetailEntity>) data;
-                JlptQuestionAdapter adapter = new JlptQuestionAdapter(questions, activity.items.get(pos).article);
+                JlptQuestionAdapter adapter = new JlptQuestionAdapter(questions, activity.items.get(pos).article, activity.items.get(pos).imgBase64);
                 recyclerView.setAdapter(adapter);
 
             }

@@ -15,6 +15,7 @@ public class JlptGrammarTable {
     public static final String COL_KIND = "Kind";
     public static final String COL_MONDAI = "Mondai";
     public static final String COL_ARTICLE = "Article";
+    public static final String COL_IMAGE_T = "ImageT";
     public static final String CLEAR_TABLE = "delete from " + TABLE_NAME;
 
 

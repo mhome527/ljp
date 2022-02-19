@@ -9,6 +9,7 @@ public class JlptGrammarEntity {
     public String test_date;
     public int question_id;
     public String article;
+    public String imgBase64;
     public int mondai;
 
     public JlptGrammarEntity(){

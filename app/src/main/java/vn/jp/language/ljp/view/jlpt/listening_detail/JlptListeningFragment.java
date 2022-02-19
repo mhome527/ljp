@@ -189,10 +189,10 @@ public class JlptListeningFragment extends BaseFragment<JlptListeningActivity> {
             tvQ4.setText(item.q4);
 
 
-        if (item.q4 != null && !item.q4.equals("")) {
+        if (item.q4 != null && !item.q4.equals("") && !item.q4.equals("-")) {
             llQ4.setVisibility(View.VISIBLE);
         } else {
-            llQ4.setVisibility(View.INVISIBLE);
+            llQ4.setVisibility(View.GONE);
         }
 
 //        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {

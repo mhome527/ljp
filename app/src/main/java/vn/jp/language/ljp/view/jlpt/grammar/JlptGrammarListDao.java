@@ -37,6 +37,8 @@ public class JlptGrammarListDao extends BaseDao<JlptGrammarEntity> {
             entity.question_id = cursor.getInt(cursor.getColumnIndex(JlptGrammarTable.COL_QUESTION_ID));
         if (cursor.getColumnIndex(JlptGrammarTable.COL_ARTICLE) != -1)
             entity.article = cursor.getString(cursor.getColumnIndex(JlptGrammarTable.COL_ARTICLE));
+        if (cursor.getColumnIndex(JlptGrammarTable.COL_IMAGE_T) != -1)
+            entity.imgBase64 = cursor.getString(cursor.getColumnIndex(JlptGrammarTable.COL_IMAGE_T));
 
         return entity;
     }
@@ -51,7 +53,7 @@ public class JlptGrammarListDao extends BaseDao<JlptGrammarEntity> {
     }
 
     public List<JlptGrammarEntity> getItems(String test_date) {
-        String sql = "SELECT  Level, Test_date, Question_id, Article, Mondai"
+        String sql = "SELECT Level, Test_date, Question_id, Article, ImageT, Mondai"
                 + " From " + JlptGrammarTable.TABLE_NAME
                 + " Where Level = " + level
                 + " And kind = " + kind

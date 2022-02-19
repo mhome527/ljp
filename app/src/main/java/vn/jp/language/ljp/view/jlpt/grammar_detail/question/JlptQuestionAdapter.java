@@ -18,11 +18,13 @@ public class JlptQuestionAdapter extends BaseAdapterView<BaseViewHolder> {
     List<JlptGrammarDetailEntity> items;
     boolean isPurchased = false;
     String article;
+    String imgBase64;
 
 
-    public JlptQuestionAdapter(List<JlptGrammarDetailEntity> items, String article) {
+    public JlptQuestionAdapter(List<JlptGrammarDetailEntity> items, String article, String imgBase64) {
         this.items = items;
         this.article = article;
+        this.imgBase64 = imgBase64;
     }
 
     @Override
@@ -64,7 +66,7 @@ public class JlptQuestionAdapter extends BaseAdapterView<BaseViewHolder> {
     @Override
     protected void onViewHolder(BaseViewHolder holder, int position) {
         if (holder instanceof JlptQuestionHeaderHolder) {
-            ((JlptQuestionHeaderHolder) holder).bind(article);
+            ((JlptQuestionHeaderHolder) holder).bind(article, imgBase64);
         } else {
             ((JlptQuestionHolder) holder).bind(items.get(position));
         }

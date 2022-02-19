@@ -125,8 +125,10 @@ public class JlptListActivity extends PurchaseActivity<JlptListActivity> impleme
                     new Toaster(activity).popToast("Permission denied!!!");
                     Common.verifyStoragePermissions(activity);
                 } else {
-                    if(item.filename == null || item.filename.equals(""))
+                    if(item.filename == null || item.filename.equals("")) {
+                        Log.i(TAG, "File name is null");
                         return;
+                    }
                     String path_file = Environment.getExternalStorageDirectory().toString() + Constant.FOLDER_JLPT + "/" + item.filename;
                     if (Common.isExistFile(path_file)) {
                         startJlptListening(item);
