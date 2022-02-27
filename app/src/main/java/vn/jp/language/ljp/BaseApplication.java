@@ -36,6 +36,7 @@ public class BaseApplication extends Application {
             Log.e(TAG, "Import Error!!!!!");
 
         ////
+        pref.putIntValue(0, Constant.DB_DOWNLOADING);
 
         androidDefaultUEH = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(handler);

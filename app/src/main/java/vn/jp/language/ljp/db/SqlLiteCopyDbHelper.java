@@ -22,7 +22,7 @@ public class SqlLiteCopyDbHelper extends SQLiteOpenHelper {
     // Database Name
 //    private static final String DATABASE_NAME = "database.sqlite";
     // Contacts table name
-    private static final String DB_PATH_SUFFIX = "/databases/";
+    public static final String DB_PATH_SUFFIX = "/databases/";
     static Context ctx;
 
     public SqlLiteCopyDbHelper(Context context) {

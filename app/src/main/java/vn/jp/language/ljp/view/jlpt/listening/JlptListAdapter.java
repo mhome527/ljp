@@ -67,5 +67,6 @@ public class JlptListAdapter extends BaseAdapterView<JlptListHolder> {
 
     public void setPurchased(boolean isPurchased) {
         this.isPurchased = isPurchased;
+        notifyDataSetChanged();
     }
 }

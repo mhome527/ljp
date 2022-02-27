@@ -74,18 +74,6 @@ public class JlptListeningFragment extends BaseFragment<JlptListeningActivity> {
     @Override
     public void initView(View root) {
 
-//        int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
-//        num = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
-//        idRef = getIntent().getIntExtra(Constant.INTENT_DETAIL_NUM, 0);
-//        bookmark = getIntent().getIntExtra(Constant.INTENT_BOOKMARK, 0);
-//        titleQ = getIntent().getStringExtra(Constant.INTENT_TITLE_Q);
-//        filename = getIntent().getStringExtra(Constant.INTENT_FILE_NAME);
-//        presenter = new PracticeListeningPresenter(activity, level, idRef);
-
-//        tvNum.setText(num + "");
-//        activity.presenter.loadDetail(activity.items.get(pos).getRef(), this);
-//        audio = new AudioPlayerManager(activity);
-//        setBookmark();
         if (activity.items != null && activity.items.size() > 0)
             setData(activity.items.get(pos));
     }
@@ -144,33 +132,6 @@ public class JlptListeningFragment extends BaseFragment<JlptListeningActivity> {
     public void actionTvQ4() {
         setView(4, imgQ4);
     }
-
-//    @OnClick(R.id.imgSpeak)
-//    public void actionSpeak() {
-//        Log.i(TAG, "speak filename:" + filename);
-////        audio.stop();
-////        audio.play(FOLDER + filename);
-//    }
-
-//    @OnClick(R.id.btnView)
-//    public void actionView() {
-//        String ans = "";
-//        if (item.getBookmarks() == 1) {
-//            if (item.getQuestion() != null && !item.getQuestion().trim().equals(""))
-//                ans += "<br/><br/>" + item.getQuestion();
-//            else
-//                ans += "<br/>";
-//            ans += "<br/> 1." + item.getQ1() + "<br/>"
-//                    + " 2." + item.getQ2() + "<br/>"
-//                    + " 3." + item.getQ3();
-//            if (item.getQ4() != null && !item.getQ4().trim().equals(""))
-//                ans += "<br/> 4." + item.getQ4();
-//
-//        }
-//        PracticeListeningDialog dialog = new PracticeListeningDialog(activity, titleQ + ans);
-//        dialog.show();
-////        finish();
-//    }
 
     public void setData(JlptListeningEntity item) {
         this.item = item;

@@ -22,7 +22,8 @@ public class Constant {
     public static final String FOLDER_JLPT = "/learn_japanese";
     public static final String LINK_JLPT = "https://firebasestorage.googleapis.com/v0/b/learnjapanese-966af.appspot.com/o/";
 
-
+    public static final String DB_CURRENT = "20220225";
+    public static final String DB_DOWNLOADING = "DB_DOWNLOADING";
 //    public static final int TRIAL_VOCABULARY = 3;
 //    public static final int TRIAL_KANJI = 3;
     /////
@@ -118,6 +119,23 @@ public class Constant {
     public static final int KIND_READING = 3;
     public static final int KIND_LISTENING = 4;
 
+    public static String[] N1_MONDAI_TEXT = {
+            "",
+            "問題1: ＿＿＿の言葉の読み方として最もよいものを、1 から一つ選びなさい。",
+            "問題2: （　　　）に入れるのに最もよいものを、1・2・3・4 から一つ選びなさい。",
+            "問題3: ＿＿＿の言葉に意味が最も近いものを、1 · 2· 3 · 4 から一つ選びなさい。",
+            "問題4: 次の言葉の使い方と して最もよいものを、1 · 2 · 3 · 4から一つ選びなさい。",
+            "問題5: 次の文の(　　)に入れるのに最もよいものを、1 · 2· 3· 4 から一つ選びなさい。",
+            "問題6: 次の文の_★_ に入る最もよいものを、 1 · 2· 3· 4 から一つ選びなさい。",
+            "問題7: 次の文章を 読んで、文章全体の趣旨を踏まえて、41 から 44 の中に入る最もよいものを、1·2·3·4 からつ選びなさい。",
+            "問題8: 次の (1)から(4) の文章を読んで、後の問いに対する答えとして最もよいものを、1· 2· 3· 4 から一つ選びなさい。",
+            "問題9: 次の(1)から(3)の文章を読んで、後の問いに対する答えとして最もよいものを、1·2·3·4 から一つ選びなさい。",
+            "問題10 次の文章を読んで、 後の問いに対する答えとして最もよいものを、1·2·3·4 から一つ選びなさい。",
+            "問題11 次の A と B の文章を読んで、後の問いに対する答えとして最もよいものを、1·2·3·4 から一つ選びなさい。",
+            "問題12 次の文章を読んで、 後の問いに対する答えとして最もよいものを、1·2·3·4 から一つ選びなさい。",
+            "問題13 "
+    };
+
     public static String[] N2_MONDAI_TEXT = {
             "",
             "問題1: ＿＿＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
@@ -199,7 +217,9 @@ public class Constant {
     };
 
     public static String getMondai(int level, int kind, int mondai) {
-        if (level == 2) {
+        if (level == 1) {
+            return N1_MONDAI_TEXT[mondai];
+        }else if (level == 2) {
             return N2_MONDAI_TEXT[mondai];
         } else if (level == 3) {
             if (kind == 1)

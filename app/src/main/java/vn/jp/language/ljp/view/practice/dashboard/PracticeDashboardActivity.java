@@ -28,6 +28,8 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
     @BindView(R.id.viewpager)
     ViewPager viewPager;
 
+    PracticePresenter presenter;
+
     public int level = 5;
     @Override
     protected int getLayout() {
@@ -53,6 +55,9 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_N2));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.title_N1));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        presenter = new PracticePresenter(activity, activity.level, -1);
+
 
 //        final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         final PracticeDashboardAdapter adapter = new PracticeDashboardAdapter
@@ -88,4 +93,9 @@ public class PracticeDashboardActivity extends BaseActivity<PracticeDashboardAct
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.downloadVersion();
+    }
 }

@@ -30,6 +30,18 @@ public class JlptListHolder extends BaseViewHolder {
     @BindView(R.id.btnMondai5)
     Button btnMondai5;
 
+    @BindView(R.id.btnLock2)
+    Button btnLock2;
+
+    @BindView(R.id.btnLock3)
+    Button btnLock3;
+
+    @BindView(R.id.btnLock4)
+    Button btnLock4;
+
+    @BindView(R.id.btnLock5)
+    Button btnLock5;
+
     IJlptClickListener iJlptClickListener;
 
     public JlptListHolder(View itemView, IJlptClickListener iJlptClickListener) {
@@ -48,11 +60,13 @@ public class JlptListHolder extends BaseViewHolder {
             tvSoon.setVisibility(View.VISIBLE);
             llMondai.setVisibility(View.GONE);
         }
-        if(item.level >= 4){
+        if (item.level >= 4) {
             btnMondai5.setVisibility(View.GONE);
-        }else{
+        } else {
             btnMondai5.setVisibility(View.VISIBLE);
         }
+
+        showHideButton(isPurchased);
     }
 
     @OnClick(R.id.btnMondai1)
@@ -80,4 +94,18 @@ public class JlptListHolder extends BaseViewHolder {
         iJlptClickListener.onClick(getLayoutPosition(), 5);
     }
 
+    private void showHideButton(boolean isPurchased) {
+        if (!isPurchased) {
+            btnLock2.setVisibility(View.VISIBLE);
+            btnLock3.setVisibility(View.VISIBLE);
+            btnLock4.setVisibility(View.VISIBLE);
+            btnLock5.setVisibility(View.VISIBLE);
+        } else {
+            btnLock2.setVisibility(View.GONE);
+            btnLock3.setVisibility(View.GONE);
+            btnLock4.setVisibility(View.GONE);
+            btnLock5.setVisibility(View.GONE);
+
+        }
+    }
 }

@@ -66,7 +66,8 @@ public class PracticeDashboardFragment extends BaseFragment<PracticeDashboardAct
     @Override
     public void initView(View root) {
 
-        presenter = new PracticePresenter(activity, activity.level, -1);
+//        presenter = new PracticePresenter(activity, activity.level, -1);
+        presenter = activity.presenter;
 
         listeningCorrect = presenter.countCorrect(PracticeTable.TYPE_LISTENING);
         listeningAll = presenter.countAll(PracticeTable.TYPE_LISTENING);
