@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
+import android.os.Environment;
 
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -63,7 +65,7 @@ public class Common {
 
     /**
      * Checks if the app has permission to write to device storage
-     *
+     * <p>
      * If the app does not has permission then the user will be prompted to grant permissions
      *
      * @param activity
@@ -86,12 +88,12 @@ public class Common {
         }
     }
 
-    public static boolean isPermission(Activity activity){
+    public static boolean isPermission(Activity activity) {
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        return  permission == PackageManager.PERMISSION_GRANTED;
+        return permission == PackageManager.PERMISSION_GRANTED;
     }
 
-    public static boolean isExistFile(String path){
+    public static boolean isExistFile(String path) {
         File file = new File(path);
         return file.exists();
     }
@@ -101,8 +103,17 @@ public class Common {
         return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 
-    public static Bitmap getImage(String base64){
+    public static Bitmap getImage(String base64) {
         byte[] decodedString = android.util.Base64.decode(base64, android.util.Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+    }
+
+    public static String getPathFile(String folder) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + folder;
+        } else {
+            return Environment.getExternalStorageDirectory() + folder;
+        }
     }
 }

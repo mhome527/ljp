@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.os.Environment;
 
 import vn.jp.language.ljp.Constant;
+import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
 
 /**
@@ -76,7 +76,8 @@ public class AudioPlayerManager {
             Log.i(TAG, "sound:" + filename);
 //            AssetFileDescriptor descriptor = context.getAssets().openFd(filename + ".mp3");
 //            m.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
-            String path_file_name = Environment.getExternalStorageDirectory().toString() + Constant.FOLDER_JLPT + "/" + filename;
+//            String path_file_name = Environment.getExternalStorageDirectory().toString() + Constant.FOLDER_JLPT + "/" + filename;
+            String path_file_name = Common.getPathFile(Constant.FOLDER_JLPT) +  "/" + filename;
             m.setDataSource(path_file_name);
 //            descriptor.close();
 

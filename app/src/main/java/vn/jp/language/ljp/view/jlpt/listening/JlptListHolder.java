@@ -3,6 +3,7 @@ package vn.jp.language.ljp.view.jlpt.listening;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -42,6 +43,9 @@ public class JlptListHolder extends BaseViewHolder {
     @BindView(R.id.btnLock5)
     Button btnLock5;
 
+    @BindView(R.id.llMondai5)
+    RelativeLayout llMondai5;
+
     IJlptClickListener iJlptClickListener;
 
     public JlptListHolder(View itemView, IJlptClickListener iJlptClickListener) {
@@ -61,9 +65,9 @@ public class JlptListHolder extends BaseViewHolder {
             llMondai.setVisibility(View.GONE);
         }
         if (item.level >= 4) {
-            btnMondai5.setVisibility(View.GONE);
+            llMondai5.setVisibility(View.GONE);
         } else {
-            btnMondai5.setVisibility(View.VISIBLE);
+            llMondai5.setVisibility(View.VISIBLE);
         }
 
         showHideButton(isPurchased);

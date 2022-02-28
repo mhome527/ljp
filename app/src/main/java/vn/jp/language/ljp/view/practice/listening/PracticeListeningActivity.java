@@ -1,10 +1,17 @@
 package vn.jp.language.ljp.view.practice.listening;
 
+import static vn.jp.language.ljp.R.id.btnView;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
@@ -14,11 +21,6 @@ import vn.jp.language.ljp.sound.AudioPlayerManager;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.ICallback;
-
-import static vn.jp.language.ljp.R.id.btnView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by Administrator on 7/18/2017.
@@ -185,7 +187,8 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     }
 
     public void setTitleQ(int count) {
-        setTitle(getString(R.string.title_n_listening, count, items.size()));
+//        setTitle(getString(R.string.title_n_listening, count, items.size()));
+        setTitle(getString(R.string.title_n_listening));
     }
 
     private void setImageBookmark() {

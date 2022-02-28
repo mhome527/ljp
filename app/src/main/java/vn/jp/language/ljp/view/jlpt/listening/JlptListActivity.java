@@ -2,15 +2,12 @@ package vn.jp.language.ljp.view.jlpt.listening;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Environment;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.billingclient.api.BillingClient;
-import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.Purchase;
 
@@ -102,30 +99,31 @@ public class JlptListActivity extends PurchaseNewActivity<JlptListActivity> impl
         }
 
         if (!isPurchased && mondai != 1) {
-            //check if service is already connected
-            if (billingClient.isReady()) {
-                initiatePurchase();
-            }
-            //else reconnect service
-            else {
-                billingClient = BillingClient.newBuilder(this).enablePendingPurchases().setListener(this).build();
-                billingClient.startConnection(new BillingClientStateListener() {
-                    @Override
-                    public void onBillingSetupFinished(BillingResult billingResult) {
-                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                            initiatePurchase();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Error " + billingResult.getDebugMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                        isClicked = false;
-                    }
-
-                    @Override
-                    public void onBillingServiceDisconnected() {
-                        isClicked = false;
-                    }
-                });
-            }
+            setBillingClient();
+//            //check if service is already connected
+//            if (billingClient.isReady()) {
+//                initiatePurchase();
+//            }
+//            //else reconnect service
+//            else {
+//                billingClient = BillingClient.newBuilder(this).enablePendingPurchases().setListener(this).build();
+//                billingClient.startConnection(new BillingClientStateListener() {
+//                    @Override
+//                    public void onBillingSetupFinished(BillingResult billingResult) {
+//                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+//                            initiatePurchase();
+//                        } else {
+//                            Toast.makeText(getApplicationContext(), "Error " + billingResult.getDebugMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                        isClicked = false;
+//                    }
+//
+//                    @Override
+//                    public void onBillingServiceDisconnected() {
+//                        isClicked = false;
+//                    }
+//                });
+//            }
         } else {
             presenter.loadMondai(items.get(position).test_date, mondai, new ICallback() {
                 @Override
@@ -139,7 +137,7 @@ public class JlptListActivity extends PurchaseNewActivity<JlptListActivity> impl
                             Log.i(TAG, "File name is null");
                             return;
                         }
-                        String path_file = Environment.getExternalStorageDirectory().toString() + Constant.FOLDER_JLPT + "/" + item.filename;
+                        String path_file = Common.getPathFile(Constant.FOLDER_JLPT) + "/" + item.filename;
                         if (Common.isExistFile(path_file)) {
                             startJlptListening(item);
                         } else {
@@ -181,13 +179,15 @@ public class JlptListActivity extends PurchaseNewActivity<JlptListActivity> impl
             @Override
             public void onCallback(Object data) {
                 items = (List<JlptMstEntity>) data;
-                adapter = new JlptListAdapter(items, activity);
+                adapter = new JlptListAdapter(items, isPurchased, activity);
                 recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                isClicked = false;
             }
 
             @Override
             public void onFail(String err) {
-
+                isClicked = false;
             }
         });
     }
@@ -195,6 +195,7 @@ public class JlptListActivity extends PurchaseNewActivity<JlptListActivity> impl
     @Override
     public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> purchases) {
         Log.i(TAG, "onPurchasesUpdated....");
+        isClicked = false;
         //if item newly purchased
         if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
                 && purchases != null) {
@@ -219,10 +220,20 @@ public class JlptListActivity extends PurchaseNewActivity<JlptListActivity> impl
     //interface IPurchase
     @Override
     public void onCheckPurchase(boolean isPurchased) {
+        this.isPurchased = isPurchased;
+        isClicked = false;
         if (isPurchased) {
             Log.i(TAG, "onCheckPurchase isPurchased:" + isPurchased);
             if (adapter != null) {
-                adapter.setPurchased(isPurchased);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.setPurchased(isPurchased);
+                    }
+                });
+
+            }else{
+                Log.i(TAG, "onCheckPurchase, Adapter null; isPurchased:" + isPurchased);
             }
         } else {
             Log.i(TAG, "onCheckPurchase chua mua, isPurchased:" + isPurchased);

@@ -2,10 +2,17 @@ package vn.jp.language.ljp.view.practice.list;
 
 import android.content.Intent;
 import android.os.Handler;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
 
 import java.util.List;
 
@@ -22,13 +29,14 @@ import vn.jp.language.ljp.view.practice.dialog.PracticeDialog;
 import vn.jp.language.ljp.view.practice.kanji.PracticeKanJiActivity;
 import vn.jp.language.ljp.view.practice.listening.PracticeListeningActivity;
 import vn.jp.language.ljp.view.practice.reading.PracticeReadingActivity;
-import vn.jp.language.ljp.view.purchase.PurchaseActivity;
+import vn.jp.language.ljp.view.purchase.IPurchase;
+import vn.jp.language.ljp.view.purchase.PurchaseNewActivity;
 
 /**
  * Created by Administrator on 7/7/2017.
  */
 
-public class PracticeListActivity extends PurchaseActivity<PracticeListActivity> implements IClickListener {
+public class PracticeListActivity extends PurchaseNewActivity<PracticeListActivity> implements IClickListener, IPurchase {
     private final String TAG = "PracticeListActivity";
 
     @BindView(R.id.recyclerView)
@@ -109,37 +117,6 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         }
     }
 
-
-    // ================= Purchase ====================
-    @Override
-    protected void dealWithIabSetupSuccess() {
-        if (getItemPurchased() == Constant.ITEM_PURCHASED) {
-            Log.i(TAG, "WithIabSetupSuccess...item purchased");
-            isPurchased = true;
-            adapter.setPurchased(isPurchased);
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    adapter.notifyDataSetChanged();
-                }
-            });
-
-            /// Test only
-//            if (BuildConfig.DEBUG)
-//                clearPurchaseTest();
-
-        } else {
-            Log.i(TAG, "WithIabSetupSuccess item not purchase");
-            isPurchased = false;
-        }
-    }
-
-    @Override
-    protected void dealWithIabSetupFailure() {
-
-    }
-    //    ========================== END PURCHASE ==============
-
     //   ==============  IClickListener - item click
     @Override
     public void onClick(View view, int position) {
@@ -147,20 +124,44 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
 
         if (!isPurchased && level != PracticeTable.LEVEL_N5 && kind != PracticeTable.TYPE_KANJI) { //N5 FREE
 
-            if (kind == PracticeTable.TYPE_LISTENING && item.getNum() > Constant.TRIAL_LISTENING) {
+            if (kind == PracticeTable.TYPE_LISTENING && item.getNum() > Constant.TRIAL) {
                 Log.i(TAG, "===> buy TYPE_LISTENING!!!");
-                purchaseItem();
+                setBillingClient();
                 return;
             } else if (kind == PracticeTable.TYPE_READING && item.getNum() > Constant.TRIAL_READING) {
                 Log.i(TAG, "===> buy TYPE_READING!!!");
-                purchaseItem();
+                setBillingClient();
                 return;
 
             } else if (item.getNum() > Constant.TRIAL_GRAMMAR) {
                 Log.i(TAG, "===> buy TYPE OTHER!!!");
-                purchaseItem();
+                setBillingClient();
                 return;
             }
+
+//            if (billingClient.isReady()) {
+//                initiatePurchase();
+//            }
+//            //else reconnect service
+//            else {
+//                billingClient = BillingClient.newBuilder(this).enablePendingPurchases().setListener(this).build();
+//                billingClient.startConnection(new BillingClientStateListener() {
+//                    @Override
+//                    public void onBillingSetupFinished(BillingResult billingResult) {
+//                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+//                            initiatePurchase();
+//                        } else {
+//                            Toast.makeText(getApplicationContext(), "Error " + billingResult.getDebugMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+////                        isClicked = false;
+//                    }
+//
+//                    @Override
+//                    public void onBillingServiceDisconnected() {
+////                        isClicked = false;
+//                    }
+//                });
+//            }
         }
 
         if (kind == PracticeTable.TYPE_READING) {
@@ -281,4 +282,49 @@ public class PracticeListActivity extends PurchaseActivity<PracticeListActivity>
         setTitle(presenter.getTitle(v1, v2));
     }
 
+
+    @Override
+    public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> purchases) {
+        Log.i(TAG, "onPurchasesUpdated....");
+        //if item newly purchased
+        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
+                && purchases != null) {
+            Log.i(TAG, "onPurchasesUpdated....Da mua");
+
+            for (Purchase purchase : purchases) {
+                handlePurchase(purchase);
+            }
+        } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
+            // Handle an error caused by a user cancelling the purchase flow.
+            isPurchased = false;
+            Log.i(TAG, "onPurchasesUpdated....USER_CANCELED");
+        } else {
+            // Handle any other error codes.
+//            isPurchased = false;
+            Log.i(TAG, "onPurchasesUpdated....Error");
+
+        }
+    }
+
+
+    //interface IPurchase
+    @Override
+    public void onCheckPurchase(boolean isPurchased) {
+        this.isPurchased = isPurchased;
+        if (isPurchased) {
+            Log.i(TAG, "onCheckPurchase isPurchased:" + isPurchased);
+        } else {
+            Log.i(TAG, "onCheckPurchase chua mua, isPurchased:" + isPurchased);
+        }
+
+        if (adapter != null) {
+            adapter.setPurchased(isPurchased);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    adapter.notifyDataSetChanged();
+                }
+            });
+        }
+    }
 }

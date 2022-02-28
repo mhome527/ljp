@@ -14,16 +14,16 @@ import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.JlptMstEntity;
 import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
+import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IJlptClickListener;
 import vn.jp.language.ljp.view.jlpt.grammar_detail.JlpGrammarDetailActivity;
-import vn.jp.language.ljp.view.purchase.PurchaseActivity;
 
 /**
  * Created by Administrator on 7/7/2017.
  */
 
-public class JlptGrammarListActivity extends PurchaseActivity<JlptGrammarListActivity> implements IJlptClickListener {
+public class JlptGrammarListActivity extends BaseActivity<JlptGrammarListActivity> implements IJlptClickListener {
     private final String TAG = "JlptListActivity";
 
     @BindView(R.id.recyclerView)
@@ -76,42 +76,6 @@ public class JlptGrammarListActivity extends PurchaseActivity<JlptGrammarListAct
         super.onDestroy();
 //        presenter.putPosHistory(recyclerView.computeVerticalScrollOffset());
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_practice_list, menu);
-//        return true;
-//    }
-
-    // ================= Purchase ====================
-    @Override
-    protected void dealWithIabSetupSuccess() {
-        if (getItemPurchased() == Constant.ITEM_PURCHASED) {
-            Log.i(TAG, "WithIabSetupSuccess...item purchased");
-            isPurchased = true;
-            adapter.setPurchased(isPurchased);
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    adapter.notifyDataSetChanged();
-                }
-            });
-
-            /// Test only
-//            if (BuildConfig.DEBUG)
-//                clearPurchaseTest();
-
-        } else {
-            Log.i(TAG, "WithIabSetupSuccess item not purchase");
-            isPurchased = false;
-        }
-    }
-
-    @Override
-    protected void dealWithIabSetupFailure() {
-
-    }
-    //    ========================== END PURCHASE ==============
 
     //   ==============  IJlptClickListener - item click
     @Override

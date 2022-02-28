@@ -16,7 +16,6 @@ import vn.jp.language.ljp.view.IJlptClickListener;
 public class JlptGrammarListAdapter extends BaseAdapterView<JlptGrammarListHolder> {
 
     List<JlptMstEntity> items;
-    boolean isPurchased = false;
 
     private IJlptClickListener iJlptClickListener;
 
@@ -62,10 +61,7 @@ public class JlptGrammarListAdapter extends BaseAdapterView<JlptGrammarListHolde
 
     @Override
     public void onViewHolder(JlptGrammarListHolder holder, int position) {
-        holder.bind(items.get(position), isPurchased);
+        holder.bind(items.get(position));
     }
 
-    public void setPurchased(boolean isPurchased) {
-        this.isPurchased = isPurchased;
-    }
 }

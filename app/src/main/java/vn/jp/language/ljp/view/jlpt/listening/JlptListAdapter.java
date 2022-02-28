@@ -20,9 +20,10 @@ public class JlptListAdapter extends BaseAdapterView<JlptListHolder> {
 
     private IJlptClickListener iJlptClickListener;
 
-    public JlptListAdapter(List<JlptMstEntity> items, IJlptClickListener iJlptClickListener) {
+    public JlptListAdapter(List<JlptMstEntity> items, boolean isPurchased , IJlptClickListener iJlptClickListener) {
         this.items = items;
         this.iJlptClickListener = iJlptClickListener;
+        this.isPurchased = isPurchased;
     }
 
     @Override

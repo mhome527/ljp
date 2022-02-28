@@ -54,7 +54,7 @@ public abstract class PurchaseNewActivity<T extends Activity> extends BaseActivi
         Log.i(TAG, "onCreate");
 
         super.onCreate(savedInstanceState);
-        iPurchase = (IPurchase)activity;
+        iPurchase = (IPurchase) activity;
         // Establish connection to billing client
         //check purchase status from google play store cache
         //to check if item already Purchased previously or refunded
@@ -149,6 +149,32 @@ public abstract class PurchaseNewActivity<T extends Activity> extends BaseActivi
                     }
 
                 });
+    }
+
+    public void setBillingClient(){
+        if (billingClient.isReady()) {
+            initiatePurchase();
+        }
+        //else reconnect service
+        else {
+            billingClient = BillingClient.newBuilder(this).enablePendingPurchases().setListener(this).build();
+            billingClient.startConnection(new BillingClientStateListener() {
+                @Override
+                public void onBillingSetupFinished(BillingResult billingResult) {
+                    if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                        initiatePurchase();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Error " + billingResult.getDebugMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onBillingServiceDisconnected() {
+
+                }
+            });
+        }
     }
 
 

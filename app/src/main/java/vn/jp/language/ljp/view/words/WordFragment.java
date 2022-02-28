@@ -81,7 +81,7 @@ public class WordFragment extends BaseFragment<WordActivity> {
                     audio.play(FOLDER + listData.get(position).sound);
                 } else {
                     Log.i(TAG, "===> buy!!!");
-                    activity.purchaseItem();
+                    activity.setBillingClient();
                 }
             }
 

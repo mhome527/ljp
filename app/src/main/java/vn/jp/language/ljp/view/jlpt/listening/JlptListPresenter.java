@@ -1,7 +1,6 @@
 package vn.jp.language.ljp.view.jlpt.listening;
 
 import android.os.AsyncTask;
-import android.os.Environment;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -62,7 +61,7 @@ public class JlptListPresenter extends BasePresenter<JlptListActivity> {
 
     public void downloadFile(JlptEntity item) {
 //        String file_url = "https://firebasestorage.googleapis.com/v0/b/learnjapanese-966af.appspot.com/o/n2%2F12_2013_N2.mp3?alt=media&token=5d2b437b-d9bd-4dea-81e1-60aa6e0f9d14";
-       String link = Constant.LINK_JLPT + item.link_download;
+        String link = Constant.LINK_JLPT + item.link_download;
         Log.i(TAG, "url:" + link);
 
         new DownloadFileFromURL(item).execute(link);
@@ -100,22 +99,25 @@ public class JlptListPresenter extends BasePresenter<JlptListActivity> {
                 URLConnection connection = url.openConnection();
                 connection.connect();
 
-                // this will be useful so that you can show a tipical 0-100%
-                // progress bar
+                // this will be useful so that you can show a tipical 0-100% progress bar
                 int lenghtOfFile = connection.getContentLength();
 
                 // download the file
                 InputStream input = new BufferedInputStream(url.openStream(),
                         8192);
-                String path = Environment.getExternalStorageDirectory().toString();
-                String folder = Constant.FOLDER_JLPT;
-                File directory = new File(path + folder);
-                if (!directory.exists()) {
-                    directory.mkdir();
-                    Log.i(TAG, "craete folder");
+                String path = Common.getPathFile(Constant.FOLDER_JLPT);
+//                String folder = Constant.FOLDER_JLPT;
+                File dir = new File(path);
+                Log.i(TAG, "craete folder path:" + path);
+                if (!dir.exists()) {
+                    boolean success = dir.mkdirs();
+                    if (!success) {
+                        Log.i(TAG, "craete folder success");
+                    } else
+                        Log.i(TAG, "craete folder FAIL!!!!!");
                 }
                 // Output stream
-                OutputStream output = new FileOutputStream(path + Constant.FOLDER_JLPT + "/" + item.filename);
+                OutputStream output = new FileOutputStream(path + "/" + item.filename);
 
                 byte data[] = new byte[1024 * 30];
 
@@ -163,7 +165,7 @@ public class JlptListPresenter extends BasePresenter<JlptListActivity> {
         protected void onPostExecute(String file_url) {
             Log.i(TAG, "download DONE");
             activity.mProgressDialog.dismiss();
-            String path_file = Environment.getExternalStorageDirectory().toString() + Constant.FOLDER_JLPT + "/" + item.filename;
+            String path_file = Common.getPathFile(Constant.FOLDER_JLPT) + "/" + item.filename;
             if (Common.isExistFile(path_file)) {
                 activity.startJlptListening(item);
             } else {

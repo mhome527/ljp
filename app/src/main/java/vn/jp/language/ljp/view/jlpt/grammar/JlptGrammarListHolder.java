@@ -38,7 +38,7 @@ public class JlptGrammarListHolder extends BaseViewHolder {
         });
     }
 
-    public void bind(JlptMstEntity item, boolean isPurchased) {
+    public void bind(JlptMstEntity item) {
         this.item = item;
         if (item.isInserted == 1) {
             tvTextDate.setText(item.test_date);

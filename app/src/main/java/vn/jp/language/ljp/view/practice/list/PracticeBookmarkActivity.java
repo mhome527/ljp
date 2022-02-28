@@ -4,10 +4,17 @@ import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
+
 import java.util.List;
+
 import butterknife.BindView;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
@@ -20,13 +27,14 @@ import vn.jp.language.ljp.view.IClickListener;
 import vn.jp.language.ljp.view.practice.dialog.PracticeDialog;
 import vn.jp.language.ljp.view.practice.listening.PracticeListeningActivity;
 import vn.jp.language.ljp.view.practice.reading.PracticeReadingActivity;
-import vn.jp.language.ljp.view.purchase.PurchaseActivity;
+import vn.jp.language.ljp.view.purchase.IPurchase;
+import vn.jp.language.ljp.view.purchase.PurchaseNewActivity;
 
 /**
  * Created by Administrator on 7/7/2017.
  */
 
-public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkActivity> implements IClickListener {
+public class PracticeBookmarkActivity extends PurchaseNewActivity<PracticeBookmarkActivity> implements IClickListener, IPurchase {
     private final String TAG = "PracticeBookmarkActivity";
 
     @BindView(R.id.recyclerView)
@@ -77,16 +85,6 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
         }
     }
 
-    // ================= Purchase ====================
-    @Override
-    protected void dealWithIabSetupSuccess() {
-
-    }
-
-    @Override
-    protected void dealWithIabSetupFailure() {
-
-    }
     //    ========================== END PURCHASE ==============
 
     //   ==============  IClickListener - item click
@@ -176,5 +174,52 @@ public class PracticeBookmarkActivity extends PurchaseActivity<PracticeBookmarkA
 //    private void setTitleQ(int v1, int v2) {
 //        setTitle(presenter.getTitle(v1, v2));
 //    }
+
+    @Override
+    public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> purchases) {
+        Log.i(TAG, "onPurchasesUpdated....");
+        //if item newly purchased
+        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
+                && purchases != null) {
+            Log.i(TAG, "onPurchasesUpdated....Da mua");
+
+            for (Purchase purchase : purchases) {
+                handlePurchase(purchase);
+            }
+        } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
+            // Handle an error caused by a user cancelling the purchase flow.
+            isPurchased = false;
+            Log.i(TAG, "onPurchasesUpdated....USER_CANCELED");
+        } else {
+            // Handle any other error codes.
+//            isPurchased = false;
+            Log.i(TAG, "onPurchasesUpdated....Error");
+
+        }
+    }
+
+
+    //interface IPurchase
+    @Override
+    public void onCheckPurchase(boolean isPurchased) {
+        this.isPurchased = isPurchased;
+        if (isPurchased) {
+            Log.i(TAG, "onCheckPurchase isPurchased:" + isPurchased);
+            if (adapter != null) {
+                adapter.setPurchased(isPurchased);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+            }else{
+                Log.i(TAG, "onCheckPurchase, Adapter null; isPurchased:" + isPurchased);
+            }
+        } else {
+            Log.i(TAG, "onCheckPurchase chua mua, isPurchased:" + isPurchased);
+        }
+    }
 
 }

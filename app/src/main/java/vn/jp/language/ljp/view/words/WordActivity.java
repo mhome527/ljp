@@ -1,21 +1,28 @@
 package vn.jp.language.ljp.view.words;
 
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.List;
+
 import butterknife.BindView;
-import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.utils.Log;
-import vn.jp.language.ljp.view.purchase.PurchaseActivity;
+import vn.jp.language.ljp.view.purchase.IPurchase;
+import vn.jp.language.ljp.view.purchase.PurchaseNewActivity;
 
 /**
  * Created by huynhtd on 10/17/2016.
  */
 
-public class WordActivity extends PurchaseActivity<WordActivity> {
+public class WordActivity extends PurchaseNewActivity<WordActivity> implements IPurchase {
 
     private static String TAG = "WordActivity";
 
@@ -72,13 +79,36 @@ public class WordActivity extends PurchaseActivity<WordActivity> {
         });
     }
 
-    // ================= Purchase ====================
     @Override
-    protected void dealWithIabSetupSuccess() {
-        if (getItemPurchased() == Constant.ITEM_PURCHASED) {
-            Log.i(TAG, "WithIabSetupSuccess...item purchased");
-            isPurchased = true;
+    public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> purchases) {
+        Log.i(TAG, "onPurchasesUpdated....");
+        //if item newly purchased
+        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
+                && purchases != null) {
+            Log.i(TAG, "onPurchasesUpdated....Da mua");
 
+            for (Purchase purchase : purchases) {
+                handlePurchase(purchase);
+            }
+        } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
+            // Handle an error caused by a user cancelling the purchase flow.
+            isPurchased = false;
+            Log.i(TAG, "onPurchasesUpdated....USER_CANCELED");
+        } else {
+            // Handle any other error codes.
+//            isPurchased = false;
+            Log.i(TAG, "onPurchasesUpdated....Error");
+
+        }
+    }
+
+
+    //interface IPurchase
+    @Override
+    public void onCheckPurchase(boolean isPurchased) {
+        this.isPurchased = isPurchased;
+        if (isPurchased) {
+            Log.i(TAG, "onCheckPurchase isPurchased:" + isPurchased);
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -102,20 +132,8 @@ public class WordActivity extends PurchaseActivity<WordActivity> {
                     }
                 }
             });
-
-            /// Test only
-//            clearPurchaseTest();
-
         } else {
-            Log.i(TAG, "WithIabSetupSuccess item not purchase");
-            isPurchased = false;
+            Log.i(TAG, "onCheckPurchase chua mua, isPurchased:" + isPurchased);
         }
     }
-
-    @Override
-    protected void dealWithIabSetupFailure() {
-        Log.i(TAG, "dealWithIabSetupFailure...");
-    }
-    // ================ Purchase ===========
-
 }
