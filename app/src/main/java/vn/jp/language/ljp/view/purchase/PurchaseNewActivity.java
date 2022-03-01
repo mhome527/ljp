@@ -143,6 +143,7 @@ public abstract class PurchaseNewActivity<T extends Activity> extends BaseActivi
                             billingClient.launchBillingFlow(activity, flowParams);
 
                         } else {
+                            iPurchase.onCheckPurchase(false);
                             Toast.makeText(getApplicationContext(),
                                     " Error " + billingResult.getDebugMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -171,7 +172,7 @@ public abstract class PurchaseNewActivity<T extends Activity> extends BaseActivi
 
                 @Override
                 public void onBillingServiceDisconnected() {
-
+                    Log.i(TAG, "setBillingClient....onBillingServiceDisconnected");
                 }
             });
         }

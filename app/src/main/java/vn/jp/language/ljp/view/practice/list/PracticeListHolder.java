@@ -43,7 +43,7 @@ public class PracticeListHolder extends BaseViewHolder {
             tvContent.setMaxLines(2);
 
         } else if (item.getKind() == PracticeTable.TYPE_LISTENING) {
-            if (isPurchased || item.getNum() <= Constant.TRIAL_LISTENING)
+            if (isPurchased || item.getNum() <= Constant.TRIAL)
                 imgLike.setVisibility(View.GONE);
             else
                 imgLike.setVisibility(View.VISIBLE);
@@ -54,7 +54,7 @@ public class PracticeListHolder extends BaseViewHolder {
                 imgLike.setVisibility(View.GONE);
             else
                 imgLike.setVisibility(View.VISIBLE);
-            tvContent.setMaxLines(2);
+//            tvContent.setMaxLines(2);
         }
 
         tvNum.setText(item.getNum() + "");

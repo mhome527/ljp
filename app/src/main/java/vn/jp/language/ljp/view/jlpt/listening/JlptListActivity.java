@@ -91,12 +91,12 @@ public class JlptListActivity extends PurchaseNewActivity<JlptListActivity> impl
     public void onClick(int position, int mondai) {
         Log.i(TAG, "item click:" + position + "; mondai:" + mondai);
         this.position = position;
-        this.mondai = mondai;
-        if (!isClicked) {
+        if (!isClicked || this.mondai != mondai) {
             isClicked = true;
         } else {
             return;
         }
+        this.mondai = mondai;
 
         if (!isPurchased && mondai != 1) {
             setBillingClient();
@@ -238,6 +238,5 @@ public class JlptListActivity extends PurchaseNewActivity<JlptListActivity> impl
         } else {
             Log.i(TAG, "onCheckPurchase chua mua, isPurchased:" + isPurchased);
         }
-
     }
 }

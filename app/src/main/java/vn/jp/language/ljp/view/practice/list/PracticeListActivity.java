@@ -122,46 +122,13 @@ public class PracticeListActivity extends PurchaseNewActivity<PracticeListActivi
     public void onClick(View view, int position) {
         PracticeEntity item = items.get(position);
 
-        if (!isPurchased && level != PracticeTable.LEVEL_N5 && kind != PracticeTable.TYPE_KANJI) { //N5 FREE
+        if (!isPurchased && level != PracticeTable.LEVEL_N5 && kind == PracticeTable.TYPE_LISTENING) { //N5 FREE
 
             if (kind == PracticeTable.TYPE_LISTENING && item.getNum() > Constant.TRIAL) {
                 Log.i(TAG, "===> buy TYPE_LISTENING!!!");
                 setBillingClient();
                 return;
-            } else if (kind == PracticeTable.TYPE_READING && item.getNum() > Constant.TRIAL_READING) {
-                Log.i(TAG, "===> buy TYPE_READING!!!");
-                setBillingClient();
-                return;
-
-            } else if (item.getNum() > Constant.TRIAL_GRAMMAR) {
-                Log.i(TAG, "===> buy TYPE OTHER!!!");
-                setBillingClient();
-                return;
             }
-
-//            if (billingClient.isReady()) {
-//                initiatePurchase();
-//            }
-//            //else reconnect service
-//            else {
-//                billingClient = BillingClient.newBuilder(this).enablePendingPurchases().setListener(this).build();
-//                billingClient.startConnection(new BillingClientStateListener() {
-//                    @Override
-//                    public void onBillingSetupFinished(BillingResult billingResult) {
-//                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-//                            initiatePurchase();
-//                        } else {
-//                            Toast.makeText(getApplicationContext(), "Error " + billingResult.getDebugMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-////                        isClicked = false;
-//                    }
-//
-//                    @Override
-//                    public void onBillingServiceDisconnected() {
-////                        isClicked = false;
-//                    }
-//                });
-//            }
         }
 
         if (kind == PracticeTable.TYPE_READING) {
@@ -239,8 +206,8 @@ public class PracticeListActivity extends PurchaseNewActivity<PracticeListActivi
             @Override
             public void onCallback(List<PracticeEntity> data) {
                 items = data;
-                adapter = new PracticeListAdapter(data);
-                if(level == PracticeTable.LEVEL_N5)
+                adapter = new PracticeListAdapter(data, level);
+                if (level == PracticeTable.LEVEL_N5)
                     adapter.setPurchased(true);
 
                 recyclerView.setAdapter(adapter);
@@ -310,7 +277,10 @@ public class PracticeListActivity extends PurchaseNewActivity<PracticeListActivi
     //interface IPurchase
     @Override
     public void onCheckPurchase(boolean isPurchased) {
-        this.isPurchased = isPurchased;
+        if (level == PracticeTable.LEVEL_N5)
+            this.isPurchased = true;
+        else
+            this.isPurchased = isPurchased;
         if (isPurchased) {
             Log.i(TAG, "onCheckPurchase isPurchased:" + isPurchased);
         } else {
@@ -318,6 +288,7 @@ public class PracticeListActivity extends PurchaseNewActivity<PracticeListActivi
         }
 
         if (adapter != null) {
+
             adapter.setPurchased(isPurchased);
             activity.runOnUiThread(new Runnable() {
                 @Override

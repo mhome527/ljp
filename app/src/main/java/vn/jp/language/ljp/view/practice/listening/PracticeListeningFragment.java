@@ -199,7 +199,6 @@ public class PracticeListeningFragment extends BaseFragment<PracticeListeningAct
         } else {
             tvQuestion.setText(Html.fromHtml(item.getQuestion()));
         }
-
     }
 
     private void setView(int ans, ImageView img) {

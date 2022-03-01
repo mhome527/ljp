@@ -147,7 +147,7 @@ public class PracticeBookmarkActivity extends PurchaseNewActivity<PracticeBookma
                     return;
                 }
                 items = data;
-                adapter = new PracticeListAdapter(data);
+                adapter = new PracticeListAdapter(data, level);
                 recyclerView.setAdapter(adapter);
 
                 activity.runOnUiThread(new Runnable() {

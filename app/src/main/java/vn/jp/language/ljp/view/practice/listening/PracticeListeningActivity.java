@@ -7,8 +7,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
 
 import java.util.List;
 
@@ -16,17 +22,19 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
+import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.sound.AudioPlayerManager;
 import vn.jp.language.ljp.utils.Log;
-import vn.jp.language.ljp.view.BaseActivity;
 import vn.jp.language.ljp.view.ICallback;
+import vn.jp.language.ljp.view.purchase.IPurchase;
+import vn.jp.language.ljp.view.purchase.PurchaseNewActivity;
 
 /**
  * Created by Administrator on 7/18/2017.
  */
 
-public class PracticeListeningActivity extends BaseActivity<PracticeListeningActivity> implements ICallback<List<PracticeEntity>> {
+public class PracticeListeningActivity extends PurchaseNewActivity<PracticeListeningActivity> implements ICallback<List<PracticeEntity>>, IPurchase {
     private final String TAG = "PracticeListeningActivity";
     private final String FOLDER = "n/";
 
@@ -42,6 +50,9 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     @BindView(R.id.imgNext)
     ImageButton imgNext;
 
+    @BindView(R.id.imgSpeak)
+    ImageButton imgSpeak;
+
     @BindView(R.id.viewpager)
     ViewPager viewpager;
 
@@ -55,6 +66,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     PracticeListeningPresenter presenter;
     //    int countAll;
     int refId;
+    int level;
 
     @Override
     protected int getLayout() {
@@ -64,7 +76,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     @Override
     protected void initView() {
 
-        int level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
+        level = getIntent().getIntExtra(Constant.INTENT_LEVEL, 0);
         refId = getIntent().getIntExtra(Constant.INTENT_NUM, 0);
         Log.i(TAG, "initView pos:" + pos);
         presenter = new PracticeListeningPresenter(activity, level);
@@ -109,7 +121,12 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
     public void actionSpeak() {
         Log.i(TAG, "speak filename:" + items.get(pos).getSound());
         audio.stop();
-        audio.play(FOLDER + items.get(pos).getSound());
+        if (this.isPurchased || pos < Constant.TRIAL || level == PracticeTable.LEVEL_N5) {
+            imgSpeak.setBackgroundResource(R.drawable.ic_speaker);
+            audio.play(FOLDER + items.get(pos).getSound());
+        } else {
+            imgSpeak.setBackgroundResource(R.drawable.ic_lock);
+        }
     }
 
     @OnClick(R.id.imgPre)
@@ -214,6 +231,7 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
                 setImageBookmark();
                 tvNum.setText(item.getNum() + "");
                 actionSpeak();
+
             }
 
             @Override
@@ -232,6 +250,36 @@ public class PracticeListeningActivity extends BaseActivity<PracticeListeningAct
             imgPre.setVisibility(View.VISIBLE);
             imgNext.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> purchases) {
+        Log.i(TAG, "onPurchasesUpdated....");
+        //if item newly purchased
+        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
+                && purchases != null) {
+            Log.i(TAG, "onPurchasesUpdated....Da mua");
+
+            for (Purchase purchase : purchases) {
+                handlePurchase(purchase);
+            }
+        } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
+            // Handle an error caused by a user cancelling the purchase flow.
+            isPurchased = false;
+            Log.i(TAG, "onPurchasesUpdated....USER_CANCELED");
+        } else {
+            // Handle any other error codes.
+//            isPurchased = false;
+            Log.i(TAG, "onPurchasesUpdated....Error");
+
+        }
+    }
+
+
+    //interface IPurchase
+    @Override
+    public void onCheckPurchase(boolean isPurchased) {
+        this.isPurchased = isPurchased;
     }
 
 }

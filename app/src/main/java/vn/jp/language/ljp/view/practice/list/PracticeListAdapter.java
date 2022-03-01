@@ -5,6 +5,7 @@ import android.view.View;
 import java.util.List;
 
 import vn.jp.language.ljp.R;
+import vn.jp.language.ljp.db.table.PracticeTable;
 import vn.jp.language.ljp.entity.PracticeEntity;
 import vn.jp.language.ljp.view.BaseAdapterView;
 
@@ -17,8 +18,11 @@ public class PracticeListAdapter extends BaseAdapterView<PracticeListHolder> {
     List<PracticeEntity> items;
     boolean isPurchased = false;
 
-    public PracticeListAdapter(List<PracticeEntity> items) {
+    public PracticeListAdapter(List<PracticeEntity> items, int level) {
         this.items = items;
+        if(level == PracticeTable.LEVEL_N5){
+            isPurchased = true;
+        }
     }
 
     @Override
@@ -63,5 +67,6 @@ public class PracticeListAdapter extends BaseAdapterView<PracticeListHolder> {
 
     public void setPurchased(boolean isPurchased) {
         this.isPurchased = isPurchased;
+        this.notifyDataSetChanged();
     }
 }
