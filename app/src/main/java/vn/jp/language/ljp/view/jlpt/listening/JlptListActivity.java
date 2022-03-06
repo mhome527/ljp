@@ -2,6 +2,7 @@ package vn.jp.language.ljp.view.jlpt.listening;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import com.android.billingclient.api.Purchase;
 import java.util.List;
 
 import butterknife.BindView;
+import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
@@ -21,6 +23,7 @@ import vn.jp.language.ljp.entity.JlptEntity;
 import vn.jp.language.ljp.entity.JlptMstEntity;
 import vn.jp.language.ljp.utils.Common;
 import vn.jp.language.ljp.utils.Log;
+import vn.jp.language.ljp.utils.NetworkChecker;
 import vn.jp.language.ljp.utils.Toaster;
 import vn.jp.language.ljp.view.ICallback;
 import vn.jp.language.ljp.view.IJlptClickListener;
@@ -98,32 +101,8 @@ public class JlptListActivity extends PurchaseNewActivity<JlptListActivity> impl
         }
         this.mondai = mondai;
 
-        if (!isPurchased && mondai != 1) {
+        if (!isPurchased && mondai != 1 && !BuildConfig.DEBUG) {
             setBillingClient();
-//            //check if service is already connected
-//            if (billingClient.isReady()) {
-//                initiatePurchase();
-//            }
-//            //else reconnect service
-//            else {
-//                billingClient = BillingClient.newBuilder(this).enablePendingPurchases().setListener(this).build();
-//                billingClient.startConnection(new BillingClientStateListener() {
-//                    @Override
-//                    public void onBillingSetupFinished(BillingResult billingResult) {
-//                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-//                            initiatePurchase();
-//                        } else {
-//                            Toast.makeText(getApplicationContext(), "Error " + billingResult.getDebugMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//                        isClicked = false;
-//                    }
-//
-//                    @Override
-//                    public void onBillingServiceDisconnected() {
-//                        isClicked = false;
-//                    }
-//                });
-//            }
         } else {
             presenter.loadMondai(items.get(position).test_date, mondai, new ICallback() {
                 @Override
@@ -141,15 +120,19 @@ public class JlptListActivity extends PurchaseNewActivity<JlptListActivity> impl
                         if (Common.isExistFile(path_file)) {
                             startJlptListening(item);
                         } else {
-                            Log.i(TAG, "file not exist, ->download");
-                            // instantiate it within the onCreate method
-                            mProgressDialog = new ProgressDialog(activity);
+                            if(!NetworkChecker.isNetworkConnected(activity)){
+                                Toast.makeText(getApplicationContext(),"Please make sure your Network Connection is ON ", Toast.LENGTH_LONG).show();
+                            }else{
+                                Log.i(TAG, "file not exist, ->download");
+                                // instantiate it within the onCreate method
+                                mProgressDialog = new ProgressDialog(activity);
 //                mProgressDialog.setMessage("A message");
-                            mProgressDialog.setIndeterminate(true);
-                            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                            mProgressDialog.setCancelable(false);
-                            presenter.downloadFile(item);
-                            isClicked = false;
+                                mProgressDialog.setIndeterminate(true);
+                                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                                mProgressDialog.setCancelable(false);
+                                presenter.downloadFile(item);
+                                isClicked = false;
+                            }
                         }
                     }
                 }

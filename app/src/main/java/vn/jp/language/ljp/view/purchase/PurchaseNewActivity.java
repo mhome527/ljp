@@ -80,7 +80,10 @@ public abstract class PurchaseNewActivity<T extends Activity> extends BaseActivi
 //                        savePurchaseValueToPref(false);
                         isPurchased = false;
                         Log.i(TAG, "onBillingSetupFinished.... chua mua");
-                        iPurchase.onCheckPurchase(false);
+//                        if (BuildConfig.DEBUG)
+//                            iPurchase.onCheckPurchase(true);
+//                        else
+                            iPurchase.onCheckPurchase(false);
                     }
                 }
             }
@@ -152,7 +155,7 @@ public abstract class PurchaseNewActivity<T extends Activity> extends BaseActivi
                 });
     }
 
-    public void setBillingClient(){
+    public void setBillingClient() {
         if (billingClient.isReady()) {
             initiatePurchase();
         }
