@@ -11,7 +11,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.entity.DashboardEntity;
 import vn.jp.language.ljp.utils.Common;
@@ -27,6 +26,7 @@ import vn.jp.language.ljp.view.number.NumberActivity;
 import vn.jp.language.ljp.view.phrases.PhraseActivity;
 import vn.jp.language.ljp.view.practice.dashboard.PracticeDashboardActivity;
 import vn.jp.language.ljp.view.test.AndroidDatabaseManager;
+import vn.jp.language.ljp.view.translate.TranslateActivity;
 import vn.jp.language.ljp.view.words.WordActivity;
 
 public class DashboardActivity extends BaseActivity<DashboardActivity> {
@@ -86,6 +86,9 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
                     case 7:
                         startActivity2(DateActivity.class);
                         break;
+                    case 8:
+                        startActivity2(TranslateActivity.class);
+                        break;
                     default:
                         break;
                 }
@@ -132,6 +135,8 @@ public class DashboardActivity extends BaseActivity<DashboardActivity> {
         listData.add(new DashboardEntity(R.drawable.ic_number, getString(R.string.title_counter)));
         listData.add(new DashboardEntity(R.drawable.ic_kanji, getString(R.string.title_kanji)));
         listData.add(new DashboardEntity(R.drawable.ic_dates, getString(R.string.title_date)));
+        listData.add(new DashboardEntity(R.drawable.menu_translate, getString(R.string.title_translate)));
+
 //        listData.add(new DashboardEntity(R.drawable.button_word_on, getString(R.string.title_coming_soon)));
     }
 

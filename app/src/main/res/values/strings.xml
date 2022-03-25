@@ -75,6 +75,7 @@
     <string name="title_other">OTHER</string>
     <string name="title_counter">Counters</string>
     <string name="title_date">Dates</string>
+    <string name="title_translate">TRANSLATE</string>
 
     <string name="title_lvn">Learn Vietnamese Pronunciation</string>
     <string name="title_n_grammar">Practice %1$d/%2$d</string>

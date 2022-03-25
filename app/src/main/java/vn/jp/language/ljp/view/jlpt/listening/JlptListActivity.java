@@ -1,7 +1,10 @@
 package vn.jp.language.ljp.view.jlpt.listening;
 
+import static vn.jp.language.ljp.BaseApplication.mFirebaseAnalytics;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -74,6 +77,13 @@ public class JlptListActivity extends PurchaseNewActivity<JlptListActivity> impl
         setTitle("聴解ーN" + level);
 
         Common.verifyStoragePermissions(activity);
+
+        if (!BuildConfig.DEBUG) {
+            // [START custom_event]
+            Bundle params = new Bundle();
+            params.putString("Name", "Listening_" + level);
+            mFirebaseAnalytics.logEvent("JLPT", params);
+        }
     }
 
     @Override

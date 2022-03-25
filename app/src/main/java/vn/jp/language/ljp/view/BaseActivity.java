@@ -1,15 +1,18 @@
 package vn.jp.language.ljp.view;
 
+import static vn.jp.language.ljp.BaseApplication.mFirebaseAnalytics;
+
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import butterknife.ButterKnife;
+import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.utils.Log;
@@ -45,6 +48,13 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
 
 
     public void startActivity2(Class<?> cls) {
+        if (!BuildConfig.DEBUG) {
+            // [START custom_event]
+            Bundle params = new Bundle();
+            params.putString("Name", cls.getName());
+            mFirebaseAnalytics.logEvent("SCREEN", params);
+        }
+
         Intent i = new Intent(BaseActivity.this, cls);
         startActivity(i);
     }

@@ -22,7 +22,7 @@ public class Constant {
     public static final String FOLDER_JLPT = "/learn_japanese";
     public static final String LINK_JLPT = "https://firebasestorage.googleapis.com/v0/b/learnjapanese-966af.appspot.com/o/";
 
-    public static final String DB_CURRENT = "20220306";
+    public static final String DB_CURRENT = "20220318";
     public static final String DB_DOWNLOADING = "DB_DOWNLOADING";
 //    public static final int TRIAL_VOCABULARY = 3;
 //    public static final int TRIAL_KANJI = 3;

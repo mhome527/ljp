@@ -1,6 +1,9 @@
 package vn.jp.language.ljp;
 
 import android.app.Application;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import vn.jp.language.ljp.db.SqlLiteCopyDbHelper;
 import vn.jp.language.ljp.utils.Log;
 import vn.jp.language.ljp.utils.Prefs;
@@ -12,12 +15,14 @@ public class BaseApplication extends Application {
 
     private static String TAG = "BaseApplication";
     private static BaseApplication mInstance;
+    public static FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         mInstance = this;
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         /////////////// Import DB
         Prefs pref = new Prefs(this.getApplicationContext());

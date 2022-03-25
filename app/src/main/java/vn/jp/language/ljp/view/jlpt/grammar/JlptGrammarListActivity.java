@@ -1,13 +1,17 @@
 package vn.jp.language.ljp.view.jlpt.grammar;
 
+import static vn.jp.language.ljp.BaseApplication.mFirebaseAnalytics;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import butterknife.BindView;
+import vn.jp.language.ljp.BuildConfig;
 import vn.jp.language.ljp.Constant;
 import vn.jp.language.ljp.R;
 import vn.jp.language.ljp.db.table.PracticeTable;
@@ -55,14 +59,26 @@ public class JlptGrammarListActivity extends BaseActivity<JlptGrammarListActivit
         level = getIntent().getIntExtra(Constant.INTENT_LEVEL, PracticeTable.LEVEL_N5);
         kind = getIntent().getIntExtra(Constant.INTENT_KIND, 1);
         presenter = new JlptGrammarListPresenter(activity, level, kind);
-        if (kind == Constant.KIND_VOCABULARY)
+        String screen="jlpt";
+        if (kind == Constant.KIND_VOCABULARY) {
             setTitle("文字 N" + level);
-        else if (kind == Constant.KIND_GRAMMAR)
+            screen = "Vocabulary_" + level;
+        } else if (kind == Constant.KIND_GRAMMAR) {
             setTitle("文法 N" + level);
-        else if (kind == Constant.KIND_READING)
+            screen = "Grammar_" + level;
+        } else if (kind == Constant.KIND_READING) {
             setTitle("読解 N" + level);
-        else if (kind == Constant.KIND_LISTENING)
+            screen = "Reading_" + level;
+        } else if (kind == Constant.KIND_LISTENING) {
             setTitle("聴解 N" + level);
+            screen = "Listening__" + level;
+        }
+        if (!BuildConfig.DEBUG) {
+            // [START custom_event]
+            Bundle params = new Bundle();
+            params.putString("Name", screen);
+            mFirebaseAnalytics.logEvent("JLPT", params);
+        }
     }
 
     @Override
